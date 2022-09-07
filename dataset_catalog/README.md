@@ -5,7 +5,7 @@ Please note that this catalog is a temporary solution for reading data into our 
 
 ```python
 import intake
-url = 'https://raw.githubusercontent.com/USGS-python/hytest-catalogs/main/hytest_intake_catalog.yml'
+url = 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml'
 cat = intake.open_catalog(url)
 list(cat)
 ```
@@ -42,7 +42,7 @@ lcmap-cloud:
   description: LCMAP, all 36 years
   driver: intake_xarray.xzarr.ZarrSource
   metadata:
-    catalog_dir: https://raw.githubusercontent.com/USGS-python/hytest-catalogs/main
+    catalog_dir: https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog
  ```
  and xarray-type datasets can be loaded with `to_dask()`, while panda-type datasets can be loaded with `.read()`:
 ```python
