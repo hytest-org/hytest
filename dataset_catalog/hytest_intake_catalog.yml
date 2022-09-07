@@ -1,0 +1,85 @@
+sources:
+  
+  conus404-40year-onprem:
+    driver: zarr
+    description: "CONUS404 Hydro Variable subset, 40 years on Caldera on prem storage"
+    args:
+      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_out/conus404_whole.zarr/'
+      consolidated: true  
+  
+  conus404-2017-onprem:
+    driver: zarr
+    description: "CONUS404 Hydro Variable subset, water year 2017 on Caldera on prem storage"
+    args:
+      urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/zarr/conus404_2017/'
+      consolidated: true
+
+  conus404-2017-cloud:
+    driver: zarr
+    description: "CONUS404 Hydro Variable subset, water year 2017 on AWS S3 cloud storage"
+    args:
+      urlpath: 's3://esip-qhub/usgs/conus404/hydro_vars/2017' 
+      consolidated: true
+      storage_options:
+        requester_pays: true
+        
+  nwis-streamflow-usgs-gages-onprem:
+    driver: zarr
+    description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
+    args:
+      urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/conus404/zarr/nwis_chanobs.zarr'
+      consolidated: true
+      
+  nwis-streamflow-usgs-gages-cloud:
+    driver: zarr
+    description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
+    args:
+      urlpath: 's3://nhgf-development/nwm/nwis_chanobs.zarr'
+      consolidated: true
+      storage_options:
+        requester_pays: true
+      
+  nwm21-streamflow-usgs-gages-onprem:
+    driver: zarr
+    description: "Streamflow from NWM2.1, extracted and rechunked into time series"
+    args:
+      urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/conus404/zarr/chanobs.zarr'
+      consolidated: true
+      
+  nwm21-streamflow-usgs-gages-cloud:
+    driver: zarr
+    description: "Streamflow from NWM2.1, extracted and rechunked into time series"
+    args:
+      urlpath: 's3://nhgf-development/nwm/chanobs.zarr'
+      consolidated: true
+      storage_options:
+        requester_pays: true
+      
+  nwm21-streamflow-cloud:
+    driver: zarr
+    description: "National Water Model 2.1 CHRTOUT on AWS"
+    args:
+      urlpath: 's3://noaa-nwm-retrospective-2-1-zarr-pds/chrtout.zarr' 
+      consolidated: true
+      storage_options:
+        anon: true
+        
+  nwm21-scores:
+    description: US state information from [CivilServices](https://civil.services/)
+    driver: csv
+    args:
+      urlpath: 'https://raw.githubusercontent.com/nhm-usgs/data-pipeline-helpers/main/hytest/results/nwm_ref_gages_assessment.csv'
+
+  lcmap-cloud:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: 'LCMAP, all 36 years'
+    args:
+      urlpath: "reference://"
+      consolidated: false
+      storage_options:
+        target_options:
+          requester_pays: true
+        fo: 's3://nhgf-development/lcmap/lcmap.json'
+        remote_options:
+          requester_pays: true
+        remote_protocol: s3
