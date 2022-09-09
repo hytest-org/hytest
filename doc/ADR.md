@@ -7,10 +7,13 @@ for the inspiration.
 
 ADRs are typically used on larger projects. We include them here
 to keep track of foundational decisions which affect contributors
-over the longer term.  ADRs start as a [new issue](https://github.com/hytest-org/hytest/issues/new) tagged with <kbd>ADR</kbd>.  Discussion and decisions are included
-in the issue's discussion thread. They are added to this index once accepted as a
-convenience to see them all in one place. (also available by
+over the longer term. 
+
+For this project, we will not track ADRs as text/markdown files in our repository, as is typically done. Instead, we expect all major decisions to begin as a Github issue, and we expect a discussion and decisions to be made within that thread. To begin a discussion around a new decision point, a contributor should start a [new issue](https://github.com/hytest-org/hytest/issues/new) tagged with <kbd>ADR</kbd>. Once that issue comes to a resolution, it will be added to this index as a
+convenience to see them all in one place. You can also find all ADRs by
 a [search of the issues in this repo](https://github.com/hytest-org/hytest/issues?q=label%3AADR).
+
+
 
 | ADR Issue No.| Status | Description |
 |-----|-----|-----|
