@@ -1,0 +1,7 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "feature_id"
+    ],
+    "coordinates": "lat lon",
+    "long_name": "NHD Gage Event ID from SOURCE_FEA field in Gages feature class"
+}
