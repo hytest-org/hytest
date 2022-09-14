@@ -37,7 +37,7 @@ been placed.
 
 > **NOTE**: We are using 'hytest' as the environment name.  If you need to use
 another name, you'll need to make some adjustments to the
-[environment file](./HPC/HyTest.yml).
+[environment file](./environment_set_up/HyTest.yml).
 
 Conda is a package manager -- it will automate much of the software downloading
 and configuring that we will need to run these notebooks. Use the `HyTEST.yml` environment definition file as the input specification to create a
