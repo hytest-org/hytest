@@ -59,7 +59,7 @@ The Jupyter Server is the element which will actually run the notebooks
 which display in a remote (i.e. your desktop) web browser.  We have an auto-configuration script which will help with this configuration. Run:
 
 ```text
-> ./environment_set_up/auto-conf.sh
+> ./environment_set_up/auto-conf.py
 Set the access password for connecting to this Jupyter Server...
 Enter password:
 Verify password:
