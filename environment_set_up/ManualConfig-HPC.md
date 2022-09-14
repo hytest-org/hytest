@@ -15,7 +15,7 @@ Denali and Tallgrass and are comfortable using the command line.
 ## Installing a Conda Software Environment
 
 This is the same manual process as describe in the 
-[Quick-Start for HPC](../QuickStart-HPC.md)
+[Quick-Start for HPC](./QuickStart-HPC.md)
 
 ## Configure Jupyter
 

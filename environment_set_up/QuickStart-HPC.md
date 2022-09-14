@@ -44,7 +44,7 @@ and configuring that we will need to run these notebooks. Use the `HyTEST.yml` e
 new environment which includes the necessary software:
 
 ```text
-> conda env create -f ./HPC/HyTest.yml
+> conda env create -f ./environment_set_up/HyTest.yml
 ...
 ...
 ```
@@ -92,7 +92,7 @@ Start Jupyter Server on an Interactive Compute Node
 
 <kbd>account_name</kbd> is your account credential/name
 
-**NOTE** If you chose to configure more [manually](./HPC/ManualConfig.md),
+**NOTE** If you chose to configure more [manually](./environment_set_up/ManualConfig-HPC.md),
 you may need to supply extra options to that `jupyter lab` command.
 
 ## 3) Run Notebooks
