@@ -85,3 +85,12 @@ sources:
         remote_options:
           requester_pays: true
         remote_protocol: s3
+  
+  conus404-hourly-cloud-dev:
+    driver: zarr
+    description: "DEV -- CONUS404 Hydro Variable subset, 40 years of hourly values on Cloud.  Don't use for production"
+    args:
+      urlpath: 's3://nhgf-development/conus404/conus404_hourly_202209.zarr'
+      consolidated: true
+      storage_options:
+        requester_pays: true
