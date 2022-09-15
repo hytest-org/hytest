@@ -1,0 +1,37 @@
+name: hytest
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - matplotlib
+  - jupyter
+  - jupyterlab
+  - nbstripout
+  - jupyter-server-proxy
+  - ca-certificates
+  - certifi
+  - openssl
+  - xarray
+  - intake-xarray
+  - rioxarray
+  - dask
+  - dask-jobqueue
+  - dask-labextension
+  - graphviz
+  - scipy
+  - hvplot
+  - diff-match-patch
+  - fiona
+  - geoviews
+  - datashader
+  - zarr
+  - numcodecs
+  - xesmf
+  - statsmodels
+  - widgetsnbextension
+  - s3fs
+  - rechunker
+  - xbitinfo
+  - geopandas
+  - gdptools
