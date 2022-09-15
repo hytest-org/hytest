@@ -95,7 +95,7 @@ Start Jupyter Server on an interactive compute node
 > jupyter lab
 ```
 
-`account_name` is your account credential/name
+`account_name` is one of your accounts codes on the supercomputer. You will see a list of your account codes when you first log in to the supercomputer. They are listed in a table after some text saying `Your account codes are:`.
 
 **NOTE** If you chose to configure more [manually](./ManualConfig-HPC.md),
 you may need to supply extra options to that `jupyter lab` command, or use the
