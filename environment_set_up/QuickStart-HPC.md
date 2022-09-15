@@ -21,7 +21,7 @@ This software environment refers to steps taken to configure the HPC host.
 * Run this command:
 
 ```text
-curl -s -L 'https://github.com/hytest-org/hytest/releases/latest/download/hytest.zip' | tar xvf -
+curl -s -L https://github.com/hytest-org/hytest/releases/latest/download/hytest.tar.gz | tar zxf -
 ```
 
 You should now have a new directory, `hytest` into which this archive has
