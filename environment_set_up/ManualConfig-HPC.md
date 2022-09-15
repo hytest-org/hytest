@@ -1,7 +1,7 @@
 # Getting Started with On-Prem HPC
 
 This tutorial covers how to set up and use the Pangeo environment/stack
-on  USGS High Performance Computing (HPC) systems:
+on USGS High Performance Computing (HPC) systems:
 
 1) Creating a custom `hytest` conda environment
 2) Configuring [Jupyter](https://jupyter.org/) server
@@ -10,7 +10,7 @@ on  USGS High Performance Computing (HPC) systems:
    dashboard from your personal computer
 
 This document assumes that you already have an access to
-`denali` or `tallgrass` and are comfortable using the command line.
+either the `Denali` or `Tallgrass` [supercomputers at USGS](https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html) and are comfortable using the command line.
 
 ## Set up a `hytest` Conda Environment
 
@@ -67,7 +67,5 @@ interface to navigate to and run notebooks within your account, or create new on
 
 The `tallgrass` node uses a job-scheduling system to manage job submissions
 and executions among many users. The [dask-jobqueue](http://dask-jobqueue.readthedocs.io)
-package is designed to help dask interface with these job queuing systems.
-
-See [here](tallgrass_dask-jobqueue.md) for dask-specific details and how
+package is designed to help dask interface with these job queuing systems. Our notebooks are set up to handle this task for you, but if you would like to learn more, see [here](tallgrass_dask-jobqueue.md) for dask-specific details and how
 to interact with `dask-jobqueue` from within your notebook if it will be running on `tallgrass`.

@@ -3,6 +3,8 @@
 This document will help you set up the correct computing environment on a compute
 server (an HPC node), and access the notebooks on the HPC via your local desktop.
 
+This document assumes that you already have an access to either the `Denali` or `Tallgrass` [supercomputers at USGS](https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html) and are comfortable using the command line.
+
 ## 1) Configure the Software Environment
 
 This should only need to be done once. After you have the necessary
@@ -11,7 +13,7 @@ future work by only doing steps
 **2** ([starting a server](#2-start-the-jupyter-server)), and
 **3** ([running your notebooks](#3-run-notebooks)) for your routine workflow.
 
-This software environment refers to steps taken on the HPC host.
+This software environment refers to steps taken to configure the HPC host.
 
 ### 1.a) Download Materials to HPC Account
 
@@ -95,7 +97,7 @@ Start Jupyter Server on an interactive compute node
 
 `account_name` is your account credential/name
 
-**NOTE** If you chose to configure more [manually](./environment_set_up/ManualConfig-HPC.md),
+**NOTE** If you chose to configure more [manually](./ManualConfig-HPC.md),
 you may need to supply extra options to that `jupyter lab` command, or use the
 `start_jupyter.sh` example script we've provided for that purpose.
 
@@ -112,11 +114,11 @@ your HPC host's full network name. That should look something like
 The Jupyter Server will ask for a password.  This is the one supplied
 in [Step 1c](#1c-configure-jupyter-server) above.
 
-You can now run existing notebooks found in `hytest` , or create
+You can now run existing notebooks found in `hytest`, or create
 your own.
 
 ## 4) Shut Down Server
 
 After a daily session, you will want to shut down the jupyter server.
-In theterminal session where you started `jupyter lab`, merely press Ctl-C
+In the terminal session where you started `jupyter lab`, merely press Ctl-C
 to signal the server to shut down.
