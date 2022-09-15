@@ -33,18 +33,18 @@ been placed.
 ...
 ```
 
-### 1.b) Set up a `hytest` Conda environment
+### 1.b) Set up a `hytest` Conda Environment
 
 > **NOTE**: We are using 'hytest' as the environment name.  If you need to use
 another name, you'll need to make some adjustments to the
-[environment file](./environment_set_up/HyTest.yml).
+[environment file](./environment_set_up/HyTEST.yml).
 
 Conda is a package manager -- it will automate much of the software downloading
 and configuring that we will need to run these notebooks. Use the `HyTEST.yml` environment definition file as the input specification to create a
 new environment which includes the necessary software:
 
 ```text
-> conda env create -f ./environment_set_up/HyTest.yml
+> conda env create -f ./environment_set_up/HyTEST.yml
 ...
 ...
 ```

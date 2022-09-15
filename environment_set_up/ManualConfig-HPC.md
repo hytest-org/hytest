@@ -6,15 +6,15 @@ on  USGS High Performance Computing (HPC) systems:
 1) Creating a custom hytest conda environment
 2) Configuring [Jupyter](https://jupyter.org/) server
 3) Launching a Jupyter server
-4) Connecting to your Jupyter server and the[Dask](https://dask.pydata.org/) 
+4) Connecting to your Jupyter server and the[Dask](https://dask.pydata.org/)
    dashboard from your personal computer
 
 This document assumes that you already have an access to
 Denali and Tallgrass and are comfortable using the command line.
 
-## Installing a Conda Software Environment
+## Set up a `hytest` Conda Environment
 
-This is the same manual process as describe in the 
+This is the same manual process as describe in the
 [Quick-Start for HPC](./QuickStart-HPC.md#1b-set-up-a-hytest-conda-environment)
 to set up a `hytest` conda environment.
 

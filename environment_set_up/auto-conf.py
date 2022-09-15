@@ -2,7 +2,7 @@
 # coding: utf-8
 # pylint: disable=fixme
 """
-    Attempts to auto-configure the jupyter server for use in Pangeo-style stack
+    Attempts to auto-configure the jupyter server for use on HPC in Pangeo-style stack
 """
 
 import os
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     # bashrc = os.path.join(os.environ['USERPROFILE'], ".bashrc") #WINDOWS
 
     # TODO: Test system agnosticness by using on Mac and Linux
-    home_folder = os.path.expanduser('~')    
+    home_folder = os.path.expanduser('~')
     bashrc = os.path.join(home_folder, ".bashrc")
 
     try:
