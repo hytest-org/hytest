@@ -46,11 +46,22 @@ Now that we have Jupyter configured, we can start a notebook server on our inter
 > salloc -A account_name -t 02:00:00 -N 1 srun --pty bash
 > cd $HOME/hytest/
 > ./environment_set_up/start_jupyter.sh
+  * Wait until this script says the Jupyter server has started.
+
+  * Copy this ssh command into a terminal on your local computer:
+
+        ssh -N -L 8889:denali:8471  username@.cr.usgs.gov
+
+  * Browse to http://localhost:8889 using your web browser on your local computer
 ```
 
-Follow the steps printed out by the script to get connected. Note that after you login using the `ssh` command in Step 2, the cursor will hang.  This is expected and you can minimize the window.
+Follow the steps printed out by the script to get connected.
+Note that after you execute the `ssh` command, the cursor will hang.  This is expected and you can minimize the window.
 
 ## Running Notebooks
+
+Once the jupyter server is activated and accepting connections on the HPC node, you may use the web
+interface to navigate to and run notebooks within your account, or create new ones.
 
 ### Special Notes for dask jobqueue
 
