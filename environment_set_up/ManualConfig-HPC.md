@@ -56,5 +56,5 @@ The `tallgrass` node uses a job-scheduling system to manage job submissions
 and executions among many users. The [dask-jobqueue](http://dask-jobqueue.readthedocs.io)
 package is designed to help dask interface with these job queuing systems.
 
-See [this notebook](tallgrass_dask-jobqueue.md) for dask-specific details and how
-to interact with `dask-jobqueue` from within your notebook if it is running on `tallgrass`.
+See [here](tallgrass_dask-jobqueue.md) for dask-specific details and how
+to interact with `dask-jobqueue` from within your notebook if it will be running on `tallgrass`.
