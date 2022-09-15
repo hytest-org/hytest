@@ -38,12 +38,12 @@ export DASK_DISTRIBUTED__DASHBOARD__LINK="/proxy/8787/status"
 
 ## Start a Jupyter Notebook Server
 
-Now that we have Jupyter configured, we can start a notebook server on our interactive compute node. Use the [script provided](./start_jupyter.sh) to do this.
+Now that we have Jupyter configured, we can start a notebook server on our interactive compute node. Use the [script provided](start_jupyter.sh) to do this.
 
 ```text
 > salloc -A account_name -t 02:00:00 -N 1 srun --pty bash
-> cd $HOME/HyTEST-Tutorials/
-> ./HPC/start_jupyter.sh
+> cd $HOME/hytest/
+> ./environment_set_up/start_jupyter.sh
 ```
 
 Follow the steps printed out by the script to get connected. Note that after you login using the `ssh` command in Step 2, the cursor will hang.  This is expected and you can minimize the window.
@@ -52,10 +52,9 @@ Follow the steps printed out by the script to get connected. Note that after you
 
 ### Special Notes for dask jobqueue
 
-Most HPC systems use a job-scheduling system to manage job submissions
-and executions among many users.
-The [dask-jobqueue](http://dask-jobqueue.readthedocs.io) package is designed to help
-dask interface with these job queuing systems. Usage is quite simple and can be done
-from within your Jupyter notebook. See
-[this doc](../Syllabus/L2/xx_dask-jobqueue.ipynb) for dask-specific details and how
-to interact with `dask-jobqueue` from within your notebook.
+The `tallgrass` node uses a job-scheduling system to manage job submissions
+and executions among many users. The [dask-jobqueue](http://dask-jobqueue.readthedocs.io)
+package is designed to help dask interface with these job queuing systems.
+
+See [this notebook](tallgrass_dask-jobqueue.md) for dask-specific details and how
+to interact with `dask-jobqueue` from within your notebook if it is running on `tallgrass`.
