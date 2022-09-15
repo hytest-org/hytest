@@ -3,14 +3,14 @@
 This tutorial covers how to set up and use the Pangeo environment/stack
 on  USGS High Performance Computing (HPC) systems:
 
-1) Creating a custom hytest conda environment
+1) Creating a custom `hytest` conda environment
 2) Configuring [Jupyter](https://jupyter.org/) server
 3) Launching a Jupyter server
-4) Connecting to your Jupyter server and the[Dask](https://dask.pydata.org/)
+4) Connecting to your Jupyter server and the [Dask](https://dask.pydata.org/)
    dashboard from your personal computer
 
 This document assumes that you already have an access to
-Denali and Tallgrass and are comfortable using the command line.
+`denali` or `tallgrass` and are comfortable using the command line.
 
 ## Set up a `hytest` Conda Environment
 
@@ -20,7 +20,9 @@ to set up a `hytest` conda environment.
 
 ## Configure Jupyter
 
-Jupyter notebook servers include a password for security. First we generate the Jupyter config file then set a password:
+Jupyter notebook servers include a password for security. This will control who
+can use your personal jupyter server on the HPC. First we
+generate the Jupyter config file then set the password:
 
 ```text
 jupyter server --generate-config
@@ -29,7 +31,7 @@ jupyter server password
 
 This creates the file `~/.jupyter/jupyter_server_config.py`.
 
-Finally, we configure dask\'s dashboard to forward through
+Finally, we configure dask's dashboard to forward through
 Jupyter.  Add the following line to your `~/.bashrc` file:
 
 ```sh
