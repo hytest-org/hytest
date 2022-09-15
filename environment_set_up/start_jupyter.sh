@@ -1,4 +1,11 @@
 #!/bin/bash
+##
+# This is a script to help with manual startup of the jupyter server
+# if you've configured the HPC end manually (see ManualConfig-HPC.md)
+#
+# If you used auto-conf.py to set up the jupyter server config, you
+# should only need to run 'jupyter lab'.
+#
 source activate hytest
 cd $HOME/HyTEST-Tutorials/
 HOST=`hostname`
