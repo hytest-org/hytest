@@ -12,13 +12,13 @@ on USGS High Performance Computing (HPC) systems:
 This document assumes that you already have an access to
 either the `Denali` or `Tallgrass` [supercomputers at USGS](https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html) and are comfortable using the command line.
 
-## Set up a `hytest` Conda Environment
+## 1) Set up a `hytest` Conda Environment
 
 This is the same manual process as describe in the
 [Quick-Start for HPC](./QuickStart-HPC.md#1b-set-up-a-hytest-conda-environment)
 to set up a `hytest` conda environment.
 
-## Configure Jupyter
+## 2) Configure Jupyter
 
 Jupyter notebook servers include a password for security. This will control who
 can use your personal jupyter server on the HPC. First we
@@ -38,7 +38,7 @@ Jupyter.  Add the following line to your `~/.bashrc` file:
 export DASK_DISTRIBUTED__DASHBOARD__LINK="/proxy/8787/status"
 ```
 
-## Start a Jupyter Notebook Server
+## 3) Start a Jupyter Notebook Server
 
 Now that we have Jupyter configured, we can start a notebook server on our interactive compute node. Use the [script provided](start_jupyter.sh) to do this.
 
@@ -55,13 +55,26 @@ Now that we have Jupyter configured, we can start a notebook server on our inter
   * Browse to http://localhost:8889 using your web browser on your local computer
 ```
 
+`account_name` is one of your accounts codes on the supercomputer. You will see a list of your account codes when you first log in to the supercomputer. They are listed in a table after some text saying `Your account codes are:`.
+
 Follow the steps printed out by the script to get connected.
 Note that after you execute the `ssh` command, the cursor will hang.  This is expected and you can minimize the window.
 
 ## Running Notebooks
 
-Once the jupyter server is activated and accepting connections on the HPC node, you may use the web
-interface to navigate to and run notebooks within your account, or create new ones.
+You are now ready to connect a web browser to your jupyter server.  Launch
+a web browser on your dekstop and connect to the URL provided in the
+startup messaging when you launched `jupyter lab`.
+
+> NOTE:  Don't use the `localhost` option.  Use the URL which includes
+your HPC host's full network name. That should look something like
+<kbd>https://denali:8402/</kbd>.
+
+The Jupyter Server will ask for a password.  This is the one supplied
+in [Step 2](#2-start-a-jupyter-notebook-server) above.
+
+You can now run existing notebooks found in `hytest`, or create
+your own.
 
 ### Special Notes for dask jobqueue
 
