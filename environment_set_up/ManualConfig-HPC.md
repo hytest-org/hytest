@@ -50,7 +50,7 @@ Now that we have Jupyter configured, we can start a notebook server on our inter
 
   * Copy this ssh command into a terminal on your local computer:
 
-        ssh -N -L 8889:denali:8471  username@.cr.usgs.gov
+        ssh -N -L 8889:denali:8471  username@clustername.cr.usgs.gov
 
   * Browse to http://localhost:8889 using your web browser on your local computer
 ```
