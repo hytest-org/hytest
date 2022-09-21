@@ -1,0 +1,25 @@
+# python chaff...
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache
+
+# IPython & Jupyter
+profile_default/
+ipython_config.py
+.ipynb_checkpoints
+
+# MacOS exclusions...
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+Thumbs.db
+._*
+
+.vscode
+
+# caches from API call
+**/cache
+
