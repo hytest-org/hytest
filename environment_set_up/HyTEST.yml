@@ -35,4 +35,3 @@ dependencies:
   - xbitinfo
   - geopandas
   - gdptools
-  - seaborn
