@@ -51,7 +51,7 @@ https://github.com/hytest-org/hytest/releases/latest/download/HyTEST_EnvSetUp.ta
 ```
 
 ## What's in the archive
-The contents of the archive is driven by the contents of the `environment_set_up/manifest.txt` file. 
+The contents of the archive are intended to support the environment set up documented in our [QuickStart for HPC](../../environment_set_up/QuickStart-HPC.md). The specific files included are determined by the contents of the `environment_set_up/manifest.txt` file. 
 Put file names (one per line) in this file to see that they are included in the released archive. 
 The manifest file supports **simple** comments.  A `#` __as the first character__ will cause that line to 
 be ignored.  One file per line, with a path name relative to the base of the repo. 
