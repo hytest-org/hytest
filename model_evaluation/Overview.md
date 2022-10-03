@@ -13,7 +13,7 @@ flowchart LR
         SIM[(Simulated /<br>Modeled)]
         OBS[(Observed /<br>Reference)]
     end
-    subgraph PreProc [Pre-Processing]
+    subgraph PreProc [Data Preparation]
         direction TB
         SIM_r[[Simulated<br>/<br>Modeled<br>]]
         OBS_r[[Observed<br>/<br>Reference]]
@@ -57,6 +57,7 @@ representing the '_observed_' values covering the same variable and temporal ran
 _streamflow_ data, we have actual gage readings.  For other variables, we have other standard
 datasets representing the "reality" against which the model will be compared. 
 
+
 Source datasets are found in a variety of storage mechanisms.  The main mechanisms that we 
 need to be able to accomodate are: 
 * '_on-prem_' data stored on `/caldera`, accessible by one of the HPC hosts. 
@@ -64,27 +65,29 @@ need to be able to accomodate are:
 * [API request](/dev/null) -- data is offered by a provider as a network service.  An **A**plication **P**rogramming **I**nterface call is made from within a python
 program to fetch the data from the network provider. This is typically via 
 _http_ or _ftp_ transfer protocols. 
+* [Intake](https://pypi.org/project/intake/) catalog -- this is a convenience mechanism which can handle
+much of the infrastructure needed to access data, regardless of protocol. 
 
-The source datasets may be replecated among two or more of these access methods.  Which to
+The source datasets may be replecated among two or more of these access methods.  Which copy to
 use may depend on where the processing takes place (i.e. if running a notebook on `denali` or 
 `tallgrass`, _on-prem_ data is preferred over S3;  if running on a cloud environment (esip/qhub), 
 S3 is preferred.)
 
-## Pre-Processing
+## Data Preparation
 The pre-processing step is needed in order to rectify the data and organize it in preparation
 for analysis.  Rectifying the data includes measures such as: 
-* Organizing the time-series index according to the same time step for both _simulated_ and _observed_;
-* Coordinate aggregation units between _simulated_ and _observed_
-* Re-Chunking the data to make time-series analysis more efficient (see [here](/dev/null) for a primer on re-chunking)
+* Organizing the time-series index such that the time steps for both _simulated_ and _observed_ are congruent;
+* Coordinate aggregation units between _simulated_ and _observed_ (e.g. indexed on '_gage_id_' with similar string formats: 'USGS-01104200' vs '01104200')
+* Re-Chunking the data to make time-series analysis more efficient (see [here](/dev/null) for a primer on re-chunking).
 
 At this stage, a given variable should be represented as a pair of 2D array of values (one
-for _simulated_, one for _observed_).  
+for _simulated_, one for _observed_). 
 One dimension of the array is indexed by some nominal data field ('_gage_id_', '_HUC-12_ ID', 
 etc), while the other dimension is indexed by time step.
 
 ## Analysis
-The above data organization steps will allow us to pull a time-series for a given station
-from both the _simulated_ and _observed_ datasets, and run a series of statistical metrics
+The above data organization steps will allow us to extract a time series for a given station
+from each of the _simulated_ and _observed_ datasets, and run a series of statistical metrics
 against these values to evaluate Goodness Of Fit (GOF).  Benchmarking proceeds
 according tothis general recipe: 
 
