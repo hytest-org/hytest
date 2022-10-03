@@ -7,12 +7,21 @@
   * edit the `environment_set_up/manifest.txt` to reflect what you want in the bootstrap archive (see
     below: "What's In the Archive").
 * Create a PR to merge `dev` into `main`
-  * Use github **Labels** to identify how you want the Semantic Version to Increment:
-    - No labels, increments the _patch_ number (the _p_ in 'M.m.p')
-    - Label "SemVer::Minor++" increments the _minor_ number (the _m_ in 'M.m.p')
-    - Label "SemVer::Major++" increments the _major_ number (the M in 'M.m.p')
+  * Use github **Labels** to identify how you want the [Semantic Version](https://semver.org/) to increment:
+    - No labels, increments the _patch_ number (the _p_ in 'M.m.p')<br>
+      Patch updates are usually associated with minor changes meant to address problems or bugs. 
+    - Label "SemVer::Minor++" increments the _minor_ number (the _m_ in 'M.m.p')<br>
+      A minor update includes more impactful changes, but none of them are "breaking" changes -- meaning 
+      that a user doesn't have to change their behavior to use the new version... changes don't break
+      the user experience.  
+    - Label "SemVer::Major++" increments the _major_ number (the M in 'M.m.p').<br>
+      Major version increments are typically associated with "breaking" changes, where the user has
+      to change how they use the tool (it is 'broken' if they don't change). Example.. the change from 
+      Python 2.7 to 3.x includes breaking changes -- the nature of fundamental operations is different 
+      (e.g. the 'print' built-in works differently and is invoked differently between 2.x and 3.x)
   * These labels already exist in the repo... just apply as appropriate to reflect how 
     you want the version number to increment for this new release.
+  *  
 * PR can be approved / reviewed / updated... with last-second changes merged into `dev`
 * Merge `dev` into `main` **with a Pull Request**
   * The [github action](./release-on-pr-merge-to-main.yml) fires with this specific set of
@@ -23,7 +32,7 @@
 Upon a successful run, you should now see a new [release](https://github.com/hytest-org/hytest/releases). 
 Releases will be available indefinitely by referring to their GitHub **tag**, which is created
 as a part of this github action.  Tags are Semantic Version numbers, preceeded with a 'v' (e.g. 'v1.2.1'). 
-A give release is available via its version number:
+A git release is available via its version number:
 
 ```text
 https://github.com/hytest-org/hytest/releases/v1.2.1
