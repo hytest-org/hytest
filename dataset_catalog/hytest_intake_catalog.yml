@@ -2,25 +2,25 @@ sources:
   
   conus404-hourly-onprem:
     driver: zarr
-    description: "CONUS404 Hydro Variable subset, 40 years of hourly data on Caldera on prem storage"
+    description: "CONUS404 Hydro Variable subset, 40 years of hourly data on Caldera on prem storage, updated Sep 2022"
     args:
-      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_out/conus404_hourly.zarr/'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_hourly.zarr'
       consolidated: true      
 
   conus404-hourly-cloud:
     driver: zarr
-    description: "CONUS404 Hydro Variable subset, 40 years of hourly values on Cloud"
+    description: "CONUS404 Hydro Variable subset, 40 years of hourly values on Cloud, updated Sep 2022"
     args:
-      urlpath: 's3://nhgf-development/conus404/conus404_hourly.zarr'
+      urlpath: 's3://nhgf-development/conus404/conus404_hourly_202209.zarr'
       consolidated: true
       storage_options:
         requester_pays: true
         
   conus404-daily-onprem:
     driver: zarr
-    description: "CONUS404 Hydro Variable subset, 40 years of daily data on Caldera on prem storage"
+    description: "CONUS404 Hydro Variable subset, 40 years of daily data on Caldera on prem storage, updated Sep 2022"
     args:
-      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_daily_out/conus404_daily.zarr'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily.zarr'
       consolidated: true  
         
   conus404-daily-cloud:
@@ -31,6 +31,13 @@ sources:
       consolidated: true
       storage_options:
         requester_pays: true
+        
+  conus404-monthly-onprem:
+    driver: zarr
+    description: "CONUS404 Hydro Variable subset, 40 years of monthly data on Caldera on prem storage, updated Sep 2022"
+    args:
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily.zarr'
+      consolidated: true  
         
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
@@ -93,11 +100,3 @@ sources:
           requester_pays: true
         remote_protocol: s3
   
-  conus404-hourly-cloud-dev:
-    driver: zarr
-    description: "DEV -- CONUS404 Hydro Variable subset, 40 years of hourly values on Cloud.  Don't use for production"
-    args:
-      urlpath: 's3://nhgf-development/workspace/conus404_hourly_202209.zarr'
-      consolidated: true
-      storage_options:
-        requester_pays: true
