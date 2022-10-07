@@ -87,6 +87,7 @@ at once:
 * The next command creates a new environment using the specified `.yml`.
 
 ### 1d) Edit the `.bashrc`
+
 We can now direct the login shell to always be able to find the conda
 commands and environments. This requires an edit of the control file for
 your shell.
@@ -96,6 +97,7 @@ Edit your `${HOME}/.bashrc` file to add the following as the last line:
 ```text
 export PATH=${HOME}/miniconda3/bin:${PATH}
 ```
+
 You can use any editor you like to do this (`nano`) or (`vi`). See
 <https://hpcportal.cr.usgs.gov/training/courses/Intro_to_HPC/include_edit.html>
 for information about editing files.
@@ -105,6 +107,7 @@ every time you log in to the system.  If it gets broken in some way, you may nee
 admin help to fix it.  Be careful.
 
 ### 1.e) Test
+
 Log out, then back in to Denali.  You should now be able to activate the
 hytest environment with a command such as:
 
@@ -113,6 +116,7 @@ hytest environment with a command such as:
 ```
 
 ## 2) Install `jupyter-forward` on your PC
+
 This is a one-time operation to get the right software on your desktop.
 
 The [jupyter-forward](https://pypi.org/project/jupyter-forward/) software will
@@ -126,22 +130,34 @@ You will need to have python installed on your PC, along with either `pip` or
 `conda` to help manage the python environments. We recommend anaconda.
 You can request anaconda from IT,
 or you can download the installer from [anaconda.com](https://www.anaconda.com/)
-to install it in user spaced (admin is not required).
+to install it in user space (i.e. admin is not required).
 
 ### 2.b) Install
 
-python -m pip install jupyter-forward
-```
-conda install -c conda-forge jupyter-forward
+Launch an `Anaconda Shell` from your Start menu, then execute:
+
+```text
+> conda install -c conda-forge jupyter-forward
 ```
 
 ## 3) Launch Server
+
 With all of that set up, you are now ready to launch a session on the HPC using
 `jupyter-forward` on your PC. Do this every time you would like to run notebooks
 housed on the HPC host.
 
 * Launch an `Anaconda Shell` from your start menu
 * Run `jupyter-forward --conda-env=hytest denali`
+
+Note that this command will run the jupter server on the **login node** of denali.  This is OK if your workload is light (i.e. for tutorials).  If you will be doing heavier processing:
+
+```text
+jupyter-forward --launch-command "srun -A acctname -N 1 -t 02:00:00" --conda-env=hytest denali
+
+```
+Where `acctname` is the account code to use for the Slurm
+job in which this server will run.
+```
 
 ## 4) Shut Down Server
 
