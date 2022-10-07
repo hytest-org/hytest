@@ -5,17 +5,24 @@ server (an HPC node), and access the notebooks on the HPC via your local desktop
 
 This document assumes that you already have an access to either the `Denali` or `Tallgrass` [supercomputers at USGS](https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html) and are comfortable using the command line.
 
-## 1) Configure the Software Environment
+The Process:
+
+* Configure Software Environment on Denali/Tallgrass
+    * Install Conda
+    * Install software packages
+    * Modify account configuration
+* Install `jupyter-forward` on your PC
+    * Install conda (if you don't already have it)
+    * Add jupyter-forward
+
+
+## 1) Configure the Software Environment on Denali/Tallgrass
 
 This should only need to be done once. After you have the necessary
 configuration established in this step, you should be able to do
-future work by only doing steps
-**2** ([starting a server](#2-start-the-jupyter-server)), and
-**3** ([running your notebooks](#3-run-notebooks)) for your routine workflow.
+future work by invoking a command on your PC.
 
-This software environment refers to steps taken to configure the HPC host.
-
-### 1.a) Download Materials to HPC Account
+### 1.a) Download HyTEST Materials to HPC Account
 
 * Log in to the HPC machine
 * Run this command:
@@ -33,92 +40,111 @@ been placed.
 ...
 ```
 
-### 1.b) Set Up a `hytest` Conda Environment
+### 1.b) Install `conda` to your HPC user space.
 
-> **NOTE**: We are using 'hytest' as the environment name.  If you need to use
-another name, you'll need to make some adjustments to the
-[environment file](./environment_set_up/HyTEST.yml).
+Conda is a software package and dependency manager, similar in spirit to the `modules`
+which allow custom configurations on the HPC.  Conda is best set up in your home
+folder/directory on the HPC login node per the
+[instructions](https://hpcportal.cr.usgs.gov/training/courses/Parallel_Python/Installing_parallel_packages.html#miniconda)
+from ARC / HPC center.
 
-[Conda](https://docs.conda.io/en/latest/) is a software package manager -- it will automate much of the software downloading
-and configuring to satisfy software prerequisites to run HyTEST notebooks. Use the `HyTEST.yml` environment definition file
-as the input specification to create a new environment which includes the necessary software:
+* Download the latest miniconda installer:<br>
+  Note: the ARC instructions take an explicit approach to finding the latest
+    version.  The following link attempts to shortcut that:
 
 ```text
+> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+...
+```
+
+* You should now have a copy of `Miniconda3-latest-Linux-x86_64.sh`.  Run it:
+
+```text
+> bash Miniconda3-latest-Linux-x86_64.sh
+...
+```
+
+Accept defaults for location.  But it is **very important** that you not allow
+the installer to run an `init` to modify  your  login shell configuration. We
+need to do that in a very specific way ourselves (see below). Answer _no_ when asked
+if the installer should `init` for you.
+
+### 1.c) Create a HyTEST-specific conda environment
+
+[Conda] will automate much of the software downloading
+and configuring to satisfy software prerequisites to run HyTEST notebooks.
+The `HyTEST.yml` environment definition file will allow conda to do that all
+at once:
+
+```text
+> source ~/miniconda3/bin/activate
 > conda env create -f ./environment_set_up/HyTEST.yml
 ...
 ...
 ```
 
-> **NOTE**: We're using the `conda` given to us from the HPC sysadmin. You may
-see other conda-like replacements used in similar environments elsewhere (`mamba` is a popular
-one).  They are functionally equivalent for what we need to do here.
+* The `source` command activates the conda environment manager
+* The next command creates a new environment using the specified `.yml`.
 
-### 1.c) Configure Jupyter Server
+### 1d) Edit the `.bashrc`
+We can now direct the login shell to always be able to find the conda
+commands and environments. This requires an edit of the control file for
+your shell.
 
-The Jupyter Server is the element which will actually run the notebooks on the HPC, but
-which display in a remote (i.e. your desktop) web browser.  We have an auto-configuration
-script which will help with this configuration. Run:
-
-```text
-> ./environment_set_up/auto-conf.py
-Set the access password for connecting to this Jupyter Server...
-Enter password:
-Verify password:
-...
-```
-
-The password you supply will be used when you attempt to connect to the
-Jupyter server from your local web browser.
-
-Note that this `auto-conf.py` script handles a lot of
-configuration that you need only do once. It writes a configuration
-file to `$HOME/.jupyter/jupyter_server_config.json`, which will simplify
-the process of starting the server in future steps.
-
-If you need (or want) to deviate from the vanilla set-up created by
-`auto-conf.py` you can find more detailed information for setting up
-manually [here](ManualConfig-HPC.md)
-
-With that, your jupter server and its necessary environment should be set.
-
-## 2) Start the Jupyter Server
-
-The computation and data access will run on the compute node, and render
-results via web connection to the browser on your desktop. This model
-uses a 'server' process on the HPC in order to coordinate that connection.
-
-Start Jupyter Server on an interactive compute node
+Edit your `${HOME}/.bashrc` file to add the following as the last line:
 
 ```text
-> salloc -A account_name -t 02:00:00 -N 1 srun --pty bash
-> conda activate hytest
-> jupyter lab
+export PATH=${HOME}/miniconda3/bin:${PATH}
+```
+You can use any editor you like to do this (`nano`) or (`vi`). See
+<https://hpcportal.cr.usgs.gov/training/courses/Intro_to_HPC/include_edit.html>
+for information about editing files.
+
+Note that your `.bashrc` is an extremely important file which is consulted
+every time you log in to the system.  If it gets broken in some way, you may need
+admin help to fix it.  Be careful.
+
+### 1.e) Test
+Log out, then back in to Denali.  You should now be able to activate the
+hytest environment with a command such as:
+
+```text
+> source activate hytest
 ```
 
-`account_name` is one of your accounts codes on the supercomputer. You will see a list of your account codes when you first log in to the supercomputer. They are listed in a table after some text saying `Your account codes are:`.
+## 2) Install `jupyter-forward` on your PC
+This is a one-time operation to get the right software on your desktop.
 
-**NOTE** If you chose to configure more [manually](./ManualConfig-HPC.md),
-you may need to supply extra options to that `jupyter lab` command, or use the
-`start_jupyter.sh` example script we've provided for that purpose.
+The [jupyter-forward](https://pypi.org/project/jupyter-forward/) software will
+wrap up a series of commands
+necessary to to execute a jupyter server on the HPC host we just configured. It
+is a convenience package intended to make HPC-based jupyter servers easy.
 
-## 3) Run Notebooks
+### 2.a) You need python
 
-You are now ready to connect a web browser to your jupyter server.  Launch
-a web browser on your dekstop and connect to the URL provided in the
-startup messaging when you launched `jupyter lab`.
+You will need to have python installed on your PC, along with either `pip` or
+`conda` to help manage the python environments. We recommend anaconda.
+You can request anaconda from IT,
+or you can download the installer from [anaconda.com](https://www.anaconda.com/)
+to install it in user spaced (admin is not required).
 
-> NOTE:  Don't use the `localhost` option.  Use the URL which includes
-your HPC host's full network name. That should look something like
-<kbd>https://denali:8402/</kbd>.
+### 2.b) Install
 
-The Jupyter Server will ask for a password.  This is the one supplied
-in [Step 1c](#1c-configure-jupyter-server) above.
+python -m pip install jupyter-forward
+```
+conda install -c conda-forge jupyter-forward
+```
 
-You can now run existing notebooks found in `hytest`, or create
-your own.
+## 3) Launch Server
+With all of that set up, you are now ready to launch a session on the HPC using
+`jupyter-forward` on your PC. Do this every time you would like to run notebooks
+housed on the HPC host.
+
+* Launch an `Anaconda Shell` from your start menu
+* Run `jupyter-forward --conda-env=hytest denali`
 
 ## 4) Shut Down Server
 
 After a daily session, you will want to shut down the jupyter server.
-In the terminal session where you started `jupyter lab`, merely press Ctl-C
+In the terminal session where you started `jupyter-forward`, merely press Ctl-C
 to signal the server to shut down.
