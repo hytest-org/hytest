@@ -1,0 +1,8 @@
+VERSION
+environment_set_up/auto-conf.py
+environment_set_up/HyTEST.yml
+environment_set_up/ManualConfig-HPC.md
+environment_set_up/QuickStart-Cloud.md
+environment_set_up/QuickStart-HPC.md
+environment_set_up/start_jupyter.sh
+README.md
