@@ -1,18 +1,31 @@
 # Data/APIs
 
-Application Programming Interfaces (API) are a common way of accessing and processing data over the internet between a distant application and the application (or script) you are working on. Another method is File Transfer Protocol calls (FTP), which are used to transfer large amounts of data over the internet. As FTPs are not communications between applications but just simple data tranfers with no processing capabilities, they are being used less and less over time, though some data is still only available over the internet in this fashion. 
+Application Programming Interfaces (API) are a common way of accessing and processing
+data over the internet between a distant application and the application (or script)
+you are working on. Another method is File Transfer Protocol calls (FTP), which are
+used to transfer large amounts of data over the internet. As FTPs are not communications
+between applications but just simple data tranfers with no processing capabilities, they
+are being used less and less over time, though some data is still only available over
+the internet in this fashion.
 
 ## **API**
 
 In Python, there are different ways of getting data with APIs and we will examine two of the more common: using a library such as `requests` to query the API or use a library a developer has created to make interacting with an API easier, such as `pygeohydro`, through different helper functions or improved documentation.
 
-#### `requests` 
-The `requests` library is a [well documented library](https://requests.readthedocs.io/en/latest/) for issuing *get* requests. 
+### `requests`
 
-A common example in geospatial work is getting data from ArcGIS Feature Service layers and creating a `geopandas GeoDataFrame` from it. The typical process for accomplishing this is using a combination of the REST API page, the REST API query page to help build a query (if available), and an ArcGIS Online view of the data for help understanding the contents of fields. An example is the [HUC10 Watershed](https://hub.arcgis.com/datasets/CC-NY::wbdhu10-watershed/explore?location=42.219929%2C-73.252807%2C9.00) by Columbia County Planning.The dataset can be explored using the included map and an comes with an [API Explorer](https://hub.arcgis.com/datasets/CC-NY::wbdhu10-watershed/api) to help build the API. 
+The `requests` library is a [well documented library](https://requests.readthedocs.io/en/latest/) for issuing *get* requests.
+
+A common example in geospatial work is getting data from ArcGIS Feature Service layers and
+creating a `geopandas GeoDataFrame` from it. The typical process for accomplishing this is
+using a combination of the REST API page, the REST API query page to help build a query
+(if available), and an ArcGIS Online view of the data for help understanding the contents
+of fields. An example is the
+[HUC10 Watershed](https://hub.arcgis.com/datasets/CC-NY::wbdhu10-watershed/explore?location=42.219929%2C-73.252807%2C9.00)
+by Columbia County Planning. The dataset can be explored using the included map and an comes
+with an [API Explorer](https://hub.arcgis.com/datasets/CC-NY::wbdhu10-watershed/api) to help build the API.
 
 Putting this all together would look like this:
-<br>
 
 ```python
 import requests
@@ -31,7 +44,7 @@ payload = {"where":"1=1", #all records that match
 r = requests.get(base_url, params=payload)
 
 # check that get was successful before creating GeoDataFrame
-if r.status_code == 200: #200 = success
+if r.status_code == 200: #200 == success
     gdf = gpd.read_file(r.text)
 else:
     print(f"Request failed. Status code = {r.status_code}")
@@ -40,7 +53,11 @@ else:
 gdf.plot()
 ```
 
-Some FeatureServers have preformatted data calls that return the data as a GeoJSON, which can be read directly into a GeoDataFrame. The same code above would look like this with a GeoJSON API call:
+Some FeatureServers have preformatted data calls that return the data as a GeoJSON without
+having to construct a payload as above.  The request URL has the query parameters built in.
+This can be read directly into a GeoDataFrame.
+
+A request similar to the above would look like this with a GeoJSON API request using such a service:
 
 ```python
 import geopandas as gpd
@@ -54,9 +71,14 @@ gdf = gpd.read_file(url)
 gdf.plot()
 ```
 
-#### `pygeohydro`
+### `pygeohydro`
 
-Libraries like [pygeohydro](https://docs.hyriver.io/autoapi/pygeohydro/index.html) provide easy ways to format data calls to APIs by formatting the URL behind the scenes using their helper functions. This call is being made to the [WBD HUC6 Feature Layer](https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/3) and is being done using the already known HUC6 ids 020401 and 020402. 
+Libraries like [pygeohydro](https://docs.hyriver.io/autoapi/pygeohydro/index.html) provide
+easy ways to format data calls to data services via a customize API.  Libraries such as this
+format the URL behind the scenes.
+The example below is being made to the
+[WBD HUC6 Feature Layer](https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/3)
+and is being done using the already known HUC6 ids 020401 and 020402.
 
 ```python
 from pygeohydro import pygeohydro
@@ -67,7 +89,11 @@ gdf = pygeohydro.WBD("huc6").byids("huc6", ["020401", "020402"])
 gdf.plot()
 ```
 
-You can also use the `bysql` method to send a condition to the *where* field in the [query](https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/3/query). If we wanted the HUC6 boundaries found only in the state of Michigan (MI), we would create a SQL call (column='value') as states='MI'. Note the single quotes, which SQL uses in this instance and will not work with double quotes (" ").
+You can also use the `bysql` method to send a condition to the *where* field in the
+[query](https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/3/query). If we
+wanted the HUC6 boundaries found only in the state of Michigan (MI), we would create a
+SQL call with `column='value'` to query the database. (e.g. `states='MI'`). Note the
+single quotes, which SQL uses in this instance.  It will not work with double quotes (" ").
 
 ```python
 from pygeohydro import pygeohydro
@@ -78,9 +104,31 @@ gdf = pygeohydro.WBD("huc6").bysql("states='MI'")
 gdf.plot()
 ```
 
+### `NWIS`
+
+This API is a member of the `hyriver` suite (as is `pygeohydro`, above).  It facilitates
+queries to the NWIS service to obtain historical readings for stream gages.
+
+```python
+from pygeohydro import NWIS
+nwis = NWIS()
+DATE_RANGE= ("2000-01-01", "2010-12-31")
+
+# returns data as pandas DataFrame
+as_dastaframe = nwis.get_streamflow('USGS-13317000', DATE_RANGE)
+
+# returns data as xarray DataSet
+as_xarray = nwis.get_streamflow('USGS-13317000', DATE_RANGE, to_xarray=True)
+```
+
 ## **FTP**
 
-FTP is often the access method for many legacy datasets. An example is bringing in data from NOAA's [Global Climate Reference Network FTP Server](https://www.ncei.noaa.gov/access/crn/qcdatasets.html). Here, the `fsspec` library is used to create an FTPFileSystem instance locally that speaks to the FTP server, read in a text file that contains station data using `pandas`, and the data is used to create a GeoDataFrame.
+FTP is often the access method for many legacy datasets. An example is bringing in
+data from NOAA's
+[Global Climate Reference Network FTP Server](https://www.ncei.noaa.gov/access/crn/qcdatasets.html).
+Here, the `fsspec` library is used to create an FTPFileSystem instance locally that speaks to
+the FTP server, read in a text file that contains station data using `pandas`, and the data is
+used to create a GeoDataFrame.
 
 ```python
 import geopandas as gpd
@@ -88,15 +136,15 @@ from fsspec.implementations.ftp import FTPFileSystem
 import pandas as pd
 
 fs = FTPFileSystem("ftp.ncei.noaa.gov")
-
-data = pd.read_table(fs.open("/pub/data/uscrn/products/stations.tsv")) 
+data = pd.read_table(fs.open("/pub/data/uscrn/products/stations.tsv"))
 
 gdf = gpd.GeoDataFrame(data, geometry=gpd.points_from_xy(data["LONGITUDE"], data["LATITUDE"]), crs="EPSG:4326")
 
 gdf.plot()
 ```
 
-Say you just wanted the daily tabular data from a single station, you could use a combination of `fsspec` functions, including `glob` to search for files.
+Say you just wanted the daily tabular data from a single station, you could use a combination
+of `fsspec` functions, including `glob` to search for files.
 
 ```python
 from fsspec.implementations.ftp import FTPFileSystem
@@ -108,8 +156,7 @@ stat_name = "Avondale"
 fs = FTPFileSystem("ftp.ncei.noaa.gov")
 
 # get list of all files with Avondale in name
-file_list_glob = fs.glob(
-    f"/pub/data/uscrn/products/daily01/**/*{stat_name}*")
+file_list_glob = fs.glob(f"/pub/data/uscrn/products/daily01/**/*{stat_name}*")
 
 # create dataframe of data
 df = pd.DataFrame()
@@ -123,5 +170,3 @@ df = df[0].str.split(" +",expand = True)
 
 df.head()
 ```
-
-These are a couple of ways of accessing data using APIs and FTPs.
