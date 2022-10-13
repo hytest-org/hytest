@@ -20,7 +20,7 @@ here, create an issue to submit the recommendation.
 * <https://docs.python-guide.org/>
 * <https://github.com/jiffyclub/scipy-2021-intro-to-python>
 * <https://hpcportal.cr.usgs.gov/training/courses/Parallel_Python/index.html> &#9820;
-* [Hitchhiker's Guide to Python](<https://buildmedia.readthedocs.org/media/pdf/python-guide/latest/python-guide.pdf)
+* [Hitchhiker's Guide to Python](https://buildmedia.readthedocs.org/media/pdf/python-guide/latest/python-guide.pdf)
 * [Parallel Python](https://code.chs.usgs.gov/sas/arc/training/parallel_python) &#9820;
 
 ## Numerical/Scientific Computing
