@@ -35,12 +35,24 @@ been placed.
 
 ### 1.b) Set Up a `hytest` Conda Environment
 
-> **NOTE**: We are using 'hytest' as the environment name.  If you need to use
-another name, you'll need to make some adjustments to the
-[environment file](./environment_set_up/HyTEST.yml).
+Most of the software we will use can be managed in a virual environment, managed
+by `conda` (<https://docs.conda.io/en/latest/>).  This environement management tool
+is not provided on `denali` or `tallgrass`, so you'll need to set it up yourself.
 
-[Conda](https://docs.conda.io/en/latest/) is a software package manager -- it will automate much of the software downloading
-and configuring to satisfy software prerequisites to run HyTEST notebooks. Use the `HyTEST.yml` environment definition file
+* `wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh`
+* `bash Miniconda3-py39_4.12.0-Linux-x86_64.sh`<br>
+   follow the prompts, accepting default answers **EXCEPT** you must not let it 
+   `init` your login shell.  When asked about this task, answer 'no'.
+*  `rm Miniconda3-py39_4.12.0-Linux-x86_64.sh`
+*  `source ${HOME}/miniconda3/bin/activate`
+
+A baseline `conda` is now installed in your home folder (this home folder is
+shared between `tallgrass` and `denali`...  you need do this only on one host
+for it to be available to both).  With `conda` now available, we can ask it to
+find and install all of the software HyTEST needs for running notebooks out
+of a Jupyter server.  
+
+Use the provided `HyTEST.yml` environment definition file
 as the input specification to create a new environment which includes the necessary software:
 
 ```text
@@ -48,10 +60,10 @@ as the input specification to create a new environment which includes the necess
 ...
 ...
 ```
-
-> **NOTE**: We're using the `conda` given to us from the HPC sysadmin. You may
-see other conda-like replacements used in similar environments elsewhere (`mamba` is a popular
-one).  They are functionally equivalent for what we need to do here.
+This command will take some time to run.  In the end, you will have two 
+virtual environments in your HPC accounts:  '_base_' and '_hytest_'.  We won't 
+need the base installation, and will focus on the hytest environment for 
+everything else we need to do. 
 
 ### 1.c) Configure Jupyter Server
 
