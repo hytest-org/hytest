@@ -21,6 +21,7 @@ dependencies:
   - graphviz
   - scipy
   - hvplot
+  - panel=0.14.*
   - diff-match-patch
   - fiona
   - geoviews
