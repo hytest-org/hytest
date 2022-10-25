@@ -85,6 +85,7 @@ for analysis.  Rectifying the data includes measures such as:
 * Organizing the time-series index such that the time steps for both _simulated_ and _observed_ are congruent;
 * Coordinate aggregation units between _simulated_ and _observed_ (e.g. indexed on '_gage_id_' with similar string formats: 'USGS-01104200' vs '01104200')
 * Re-Chunking the data to make time-series analysis more efficient
+* Obtaining data from an API and storing it in more efficient format for reuse
 
 :::{sidebar}
 See [here](/dev/null) for a primer on re-chunking data, and why we choose to do it before analysis.
