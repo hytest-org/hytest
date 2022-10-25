@@ -88,10 +88,12 @@ and configuring to satisfy software prerequisites to run HyTEST notebooks.
 The `HyTEST.yml` environment definition file will allow conda to do that all
 at once:
 
+
 ```text
 > source ~/miniconda3/bin/activate
 > conda env create -f ./environment_set_up/HyTEST.yml
 ```
+
 
 * The `source` command activates the conda environment manager
 * The next command creates a new environment using the specified `.yml` definition file.

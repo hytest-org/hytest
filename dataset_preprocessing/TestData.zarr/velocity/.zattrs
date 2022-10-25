@@ -1,0 +1,10 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "time",
+        "feature_id"
+    ],
+    "coordinates": "latitude gage_id order longitude elevation",
+    "grid_mapping": "crs",
+    "long_name": "River Velocity",
+    "units": "m s-1"
+}
