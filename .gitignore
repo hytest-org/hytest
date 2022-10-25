@@ -22,3 +22,10 @@ Thumbs.db
 
 # caches from API call
 **/cache
+
+## Dask stuff
+*.lock
+dask-worker-space
+mydask.png
+dask-report.html
+
