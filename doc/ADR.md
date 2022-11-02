@@ -22,4 +22,4 @@ a [search of the issues in this repo](https://github.com/hytest-org/hytest/issue
 | [#19](https://github.com/hytest-org/hytest/issues/19) | Accepted | Template for tutorial learning objectives |
 | [#15](https://github.com/hytest-org/hytest/issues/15) | Accepted | Pangeo Stack |
 | [#14](https://github.com/hytest-org/hytest/issues/14) | Accepted | Preference for unrendered notebooks in repo |
-
+| [#69](https://github.com/hytest-org/hytest/issues/69) | Accepted | Branch naming convention |
