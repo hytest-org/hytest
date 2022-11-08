@@ -17,7 +17,9 @@ from your PC's command prompt) and will provide the URL where your PC's browser 
 
 This option can be useful if you want to build your own conda environment, rather than using the provided
 HyTEST environment. The [Pangeo docs](https://pangeo.io/setup_guides/hpc.html) are a good place to start
-if you would like to set up your own environment using this start script.
+if you would like to set up your own environment using this start script.  The central HyTEST environment
+is built using [this](./HyTEST.yml) environment definition. We recommend that you
+use it as the baseline if you will be building your own environment.
 
 If you choose to do that, you will want to edit the `jupyter-start.sh` script to reflect
 the particulars of your custom conda environment.

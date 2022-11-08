@@ -17,3 +17,6 @@ options, in increasing order of complexity and flexibility:
    This option lets you completely customize your HPC compute environment and invoke the Jupyter
    server from a command shell on the HPC. Requires familiarity with the HPC command line, file
    editing, etc.
+
+If your workflow makes use of parallelism using Dask on HPC hosts, read [this](./tallgrass_dask-jobqueue.md)
+for information about how to configure the Slurm job scheduler within your notebook.
