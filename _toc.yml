@@ -1,0 +1,23 @@
+format: jb-book
+root: README
+
+parts:
+  - caption: About HyTEST
+    chapters:
+    - file: doc/About
+    - file: doc/Team
+    - file: doc/Contact
+
+  - caption: Technology Foundations
+    chapters:
+    - file: essential_reading/00_StartHere
+
+  - caption: HyTest Workflows
+    chapters:
+    - file: model_evaluation/README
+      sections:
+      - file: model_evaluation/nwm_streamflow/00_Overfiew
+      - file: model_evaluation/nwm_streamflow/01_Data_Prep
+      - file: model_evaluation/nwm_streamflow/02_Analysis_NWM
+      - file: model_evaluation/nwm_streamflow/02_Analysis_DScore
+      - file: model_evaluation/nwm_streamflow/03_Visualization
