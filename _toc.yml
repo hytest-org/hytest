@@ -2,22 +2,21 @@ format: jb-book
 root: README
 
 parts:
-  - caption: About HyTEST                                                          # TODO this whole PART
+
+  - caption: About These Tutorials
     chapters:
-    - file: doc/About
-    - file: doc/Team
-    - file: doc/Contact
-    - file: doc/CONTRIBUTING
+    - file: doc/HowToUse                                                           # TODO
+    - file: environment_set_up/README                                              # TODO: this doc is in-process on another branch
 
 
-  - caption: Essential Workflows
+  - caption: Common Workflows
     chapters:
     - file: dataset_preprocessing/README                                           # TODO
       sections:
       - file: dataset_preprocessing/ReChunkingData
       - file: dataset_preprocessing/ReChunkingData_Cloud
       # TODO: Add more pre-processing sections
-    # TODO: Add more 'essential' (i.e. common/universal) chapters
+    # TODO: Add more  common/universal chapters
 
 
   - caption: Forcings Workflows                                                    # TODO:  This whole PART needs fleshing out...
@@ -27,12 +26,20 @@ parts:
 
   - caption: Evaluation Workflows
     chapters:
-    - file: model_evaluation/nwm_streeamflow/00_Overview
+    - file: model_evaluation/tutorials/nwm_streeamflow/00_Overview
       sections:
-      - file: model_evaluation/nwm_streamflow/01_Data_Prep
-      - file: model_evaluation/nwm_streamflow/02_Analysis_NWM
-      - file: model_evaluation/nwm_streamflow/02_Analysis_DScore
-      - file: model_evaluation/nwm_streamflow/03_Visualization
+      - file: model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
+      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
+      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
+      - file: model_evaluation/tutorials/nwm_streamflow/03_Visualization
+
+
+  - caption: About HyTEST                                                          # TODO this whole PART
+    chapters:
+    - file: doc/About
+    - file: doc/Team
+    - file: doc/Contact
+    - file: doc/CONTRIBUTING
 
 
   - caption: "Appendix A: Technology Foundations"
