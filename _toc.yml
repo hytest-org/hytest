@@ -2,22 +2,50 @@ format: jb-book
 root: README
 
 parts:
-  - caption: About HyTEST
+  - caption: About HyTEST                                                          # TODO this whole PART
     chapters:
     - file: doc/About
     - file: doc/Team
     - file: doc/Contact
+    - file: doc/CONTRIBUTING
 
-  - caption: Technology Foundations
-    chapters:
-    - file: essential_reading/00_StartHere
 
-  - caption: HyTest Workflows
+  - caption: Essential Workflows
     chapters:
-    - file: model_evaluation/README
+    - file: dataset_preprocessing/README                                           # TODO
       sections:
-      - file: model_evaluation/nwm_streamflow/00_Overfiew
+      - file: dataset_preprocessing/ReChunkingData
+      - file: dataset_preprocessing/ReChunkingData_Cloud
+      # TODO: Add more pre-processing sections
+    # TODO: Add more 'essential' (i.e. common/universal) chapters
+
+
+  - caption: Forcings Workflows                                                    # TODO:  This whole PART needs fleshing out...
+    chapters:
+    - file: dataset_access/conus404_explore   # placeholder only
+
+
+  - caption: Evaluation Workflows
+    chapters:
+    - file: model_evaluation/nwm_streeamflow/00_Overview
+      sections:
       - file: model_evaluation/nwm_streamflow/01_Data_Prep
       - file: model_evaluation/nwm_streamflow/02_Analysis_NWM
       - file: model_evaluation/nwm_streamflow/02_Analysis_DScore
       - file: model_evaluation/nwm_streamflow/03_Visualization
+
+
+  - caption: "Appendix A: Technology Foundations"
+    chapters:
+    - file: essential_reading/00_StartHere
+    - file: essential_reading/DataSources/README                                   # TODO
+      sections:
+      - file: essential_reading/DataSources/Data_APIs
+      - file: essential_reading/DataSources/Data_S3
+      - file: essential_reading/DataSources/Data_STAC
+      - file: essential_reading/DataSources/Data_intake                            # TODO
+    - file: essential_reading/ParallelProcessing/README                            # TODO
+      sections:
+      - file: essential_reading/ParallelProcessing/Parallel_Clusters
+      - file: essential_reading/ParallelProcessing/Parallel_Dask
+      - file: essential_reading/ParallelProcessing/Parallel_DaskJobQueue
