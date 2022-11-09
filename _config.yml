@@ -1,10 +1,10 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: HyTest Project Workbook
+title: HyTEST Project
 copyright: '2022'
 
-description: Training materials for HyTest workflows.
+description: Training materials for HyTEST workflows.
 thumbnail: thumbnail.png
 exclude_patterns : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
 
@@ -28,26 +28,25 @@ parse:
 
 sphinx:
   config:
-    html_favicon: images/icons/favicon.ico
+    # html_favicon: images/icons/favicon.ico                         # TODO: create a favicon;
     html_last_updated_fmt: '%-d %B %Y'
-    html_theme: sphinx_pythia_theme
+    html_theme: sphinx_pythia_theme                                  # this theme must be installed in the conda environment when jupyter-book runs
     html_permalinks_icon: '<i class="fas fa-link"></i>'
     html_theme_options:
       home_page_in_toc: true
       repository_url: https://github.com/hytest-org/hytest/ # Online location of your book
-      repository_branch: main # Which branch of the repository should be used when creating links (optional)
+      repository_branch: main                                        # Which branch of the repository should be used when creating links (optional)
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
       github_url: https://github.com/hytest-org/
-      launch_buttons:
+      launch_buttons:                                                # TODO: can these be launched on esip/qhub? or only binder
         binderhub_url: https://mybinder.org
         notebook_interface: jupyterlab
       extra_navbar: |
-        Theme by <a href="https://projectpythia.org">Project Pythia</a>.<br><br>
-        All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 (CC BY 4.0)</a>.<br><br>
-      logo_link: https://projectpythia.org
-      navbar_links:
+        Theme by <a href="https://projectpythia.org">Project Pythia</a>.
+      logo_link: https://projectpythia.org                           # Use HyTEST logo?
+      navbar_links:                                                  # TODO: Customize navbar items....
         - name: Home
           url: https://projectpythia.org
         - name: Foundations
