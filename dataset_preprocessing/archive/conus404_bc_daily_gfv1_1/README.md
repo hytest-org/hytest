@@ -15,5 +15,3 @@ c404bc by calendar year, for example 1980_gfv11_c404_daily_bc.nc
 notebooks:
 c404_calc_wghts.ipynb: used to generate weights for area-weighted statists
 run_weghts_c404bc.ipynb: given weights calculated above, process area-weighted average values of gridded c404 bias corrected daily data to hru polygons
-
-
