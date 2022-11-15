@@ -4,7 +4,7 @@ sources:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of hourly data on Caldera on prem storage"
     args:
-      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_out/conus404_hourly.zarr/'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_hourly.zarr/'
       consolidated: true      
 
   conus404-hourly-cloud:
@@ -20,7 +20,7 @@ sources:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of daily data on Caldera on prem storage"
     args:
-      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_daily_out/conus404_daily.zarr'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily.zarr/'
       consolidated: true  
         
   conus404-daily-cloud:
