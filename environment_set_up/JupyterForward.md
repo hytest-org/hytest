@@ -19,6 +19,7 @@ The [jupyter-forward](https://pypi.org/project/jupyter-forward/) software will
 wrap up a series of commands necessary to to execute a jupyter server on the
 HPC host we just configured. It is a convenience package intended to make
 HPC-based jupyter servers easy.
+
     * Install Python on your PC. <br>
       You will need to have python installed on your PC, along with either `pip` or
       `conda` to help manage the python environments. We recommend anaconda.
@@ -35,14 +36,16 @@ HPC-based jupyter servers easy.
    With all of that set up, you are now ready to launch a session on the HPC using
    `jupyter-forward` on your PC. Do this every time you would like to run notebooks
    housed on the HPC host.
+
     * Launch an `Anaconda Shell` from your start menu
     * Run `jupyter-forward denali`
     * NOTE: This command will run the jupter server on the **login node** of Denali.
       This is OK if your workload is light (i.e. for tutorials).  If you will be doing
       heavier processing:
-```text
-jupyter-forward --launch-command "srun -A acctname -N 1 -t 02:00:00"  denali
-```
+
+  ```text
+    jupyter-forward --launch-command "srun -A acctname -N 1 -t 02:00:00"  denali
+  ```
 
 ## 4) Shut Down Server<br>
 
