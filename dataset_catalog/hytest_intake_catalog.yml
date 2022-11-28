@@ -16,22 +16,38 @@ sources:
       storage_options:
         requester_pays: true
         
-  conus404-daily-onprem:
+  conus404-daily-average-onprem:
     driver: zarr
-    description: "CONUS404 Hydro Variable subset, 40 years of daily data on Caldera on prem storage"
+    description: "CONUS404 Hydro Variable subset, 40 years of daily average values on Caldera on prem storage"
     args:
       urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily.zarr/'
       consolidated: true  
-        
-  conus404-daily-cloud:
+
+  conus404-daily-instantaneous-onprem:
     driver: zarr
-    description: "CONUS404 Hydro Variables subset, 40 years of daily values on Cloud"
+    description: "CONUS404 Hydro Variable subset, 40 years of daily instantaneous values on Caldera on prem storage"
     args:
-      urlpath: 's3://nhgf-development/conus404/conus404_daily.zarr'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily_xtrm.zarr/'
+      consolidated: true  
+
+  conus404-daily-average-cloud:
+    driver: zarr
+    description: "CONUS404 Hydro Variables subset, 40 years of daily average values on Cloud"
+    args:
+      urlpath: 's3://nhgf-development/conus404/conus404_daily_202210.zarr/'
       consolidated: true
       storage_options:
         requester_pays: true
-        
+
+  conus404-daily-instantaneous-cloud:
+    driver: zarr
+    description: "CONUS404 Hydro Variables subset, 40 years of daily instantaneous values on Cloud"
+    args:
+      urlpath: 's3://nhgf-development/conus404/conus404_daily.zarr/'
+      consolidated: true
+      storage_options:
+        requester_pays: true
+
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
