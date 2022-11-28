@@ -11,7 +11,7 @@ sources:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of hourly values on Cloud"
     args:
-      urlpath: 's3://nhgf-development/conus404/conus404_hourly.zarr'
+      urlpath: 's3://nhgf-development/conus404/conus404_hourly_202209.zarr'
       consolidated: true
       storage_options:
         requester_pays: true
