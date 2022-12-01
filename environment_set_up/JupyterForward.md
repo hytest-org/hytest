@@ -35,8 +35,8 @@ HPC-based jupyter servers easy.
       > conda install -c conda-forge jupyter-forward
       ```
 Anaconda provides the option for multiple virtual environments and configurations.  It does not
-matter which one is active when you install `jupyter-forward`.  You just need to have that
-enviroment active when you attempt to launch the command later. 
+matter which one is active when you install `jupyter-forward` ( the "base" or some other).  You
+just need to have that enviroment active when you attempt to launch the command later.
 
 ## 3) Launch Server
 
