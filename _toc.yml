@@ -26,7 +26,7 @@ parts:
 
   - caption: Evaluation Workflows
     chapters:
-    - file: model_evaluation/tutorials/nwm_streeamflow/00_Overview
+    - file: model_evaluation/tutorials/nwm_streamflow/00_Overview
       sections:
       - file: model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
       - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
