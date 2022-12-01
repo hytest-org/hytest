@@ -22,4 +22,5 @@ is built using [this](./HyTEST.yml) environment definition. We recommend that yo
 use it as the baseline if you will be building your own environment.
 
 If you choose to do that, you will want to edit the `jupyter-start.sh` script to reflect
-the particulars of your custom conda environment.
+the particulars of your custom conda environment.  See [here](./QuickStart-HPC.md) for
+an example walk-through of that process.

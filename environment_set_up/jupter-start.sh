@@ -15,6 +15,7 @@
 JPORT=`shuf -i 8400-9400 -n 1`
 
 ### this will load the centralized HyTEST conda environment.
+module use --append /caldera/projects/usgs/water/impd/hytest/modules
 module load hytest
 
 ### If you want to use your own conda environment, remove the above module load statement

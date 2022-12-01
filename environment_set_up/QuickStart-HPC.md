@@ -3,28 +3,22 @@
 This document will help you set up the correct computing environment on a compute
 server (an HPC node), and access the notebooks on the HPC via your local desktop.
 
-:::{NOTE}
-The instructions here will configure your user account on the HPC hosts (Denali and Tallgrass)
-to support a custom and personalized jupyter server. We are working to add another option more
-similar to the JupyteHub web-only experience in the near future.  Until that happens, this is
-our recommended path to start using Jupyter notebooks on the HPC.
-:::
+These instructions are **DEPRECATED**.  The simplest options are to use one of these
+methods:
+* [OnDemand](./OpenOnDemand.md)
+* [jupyter-forward](./JupyterForward.md)
+* A [Start Script](./StartScript.md) from the HPC command prompt
 
-This document assumes that you already have an access to either the `Denali` or `Tallgrass`
-[supercomputers at USGS](https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html) and are
-comfortable using the command line.
+
+If none of those methods works for you, it is possible to install your own
+conda and virtual environments within the home directory on the HPC.
 
 ## The Configuration Process
 
 An overview of the steps you will be taking:
-
-* Configure Software Environment on Denali/Tallgrass
   * Install Conda
   * Install software packages
   * Modify account configuration to recognize the above
-* Install `jupyter-forward` on your PC
-  * Install conda (if you don't already have it)
-  * Add jupyter-forward
 
 -----
 
@@ -141,59 +135,26 @@ to instruct conda to clean up its temporary download files.
 
 -----
 
-## 2) Install `jupyter-forward` on your PC
+## Launching the Server
 
-This is a one-time operation to get the right software on your desktop.
+You can now use your custom environment to launch a jupyter server within an
+allocation.  While it is possible to run this from one of the login nodes, that
+should only be done for the lightest of workloads.
 
-The [jupyter-forward](https://pypi.org/project/jupyter-forward/) software will
-wrap up a series of commands necessary to to execute a jupyter server on the
-HPC host we just configured. It is a convenience package intended to make
-HPC-based jupyter servers easy.
+To shart your custom jupyter server and environment, you'll want to modify
+your own copy of the [jupyter-start.sh](./jupter-start.sh) script to utilize
+your conda, and not the one we've configured:
 
-### 2.a) You need Python and Anaconda
-
-You will need to have python installed on your PC, along with either `pip` or
-`conda` to help manage the python environments. We recommend anaconda.
-You can request anaconda from IT,
-or you can download the installer from [anaconda.com](https://www.anaconda.com/)
-to install it in user space (i.e. admin is not required).
-
-### 2.b) Install
-
-Launch an `Anaconda Shell` from your Start menu, then execute:
+Comment out these lines:
 
 ```text
-> conda install -c conda-forge jupyter-forward
+module use --append /caldera/projects/usgs/water/impd/hytest/modules
+module load hytest
 ```
 
-Let it do all of the installing it needs. Upon completion, your configuration should
-be set for easy launching of Jupyter on the HPC.
-
------
-
-## 3) Launch Server
-
-With all of that set up, you are now ready to launch a session on the HPC using
-`jupyter-forward` on your PC. Do this every time you would like to run notebooks
-housed on the HPC host.
-
-* Launch an `Anaconda Shell` from your start menu
-* Run `jupyter-forward --conda-env=hytest denali`
-
-Note that this command will run the jupter server on the **login node** of Denali.
-This is OK if your workload is light (i.e. for tutorials).  If you will be doing
-heavier processing:
+And un-comment these lines (making necessary changes to the path):
 
 ```text
-jupyter-forward --launch-command "srun -A acctname -N 1 -t 02:00:00" --conda-env=hytest denali
-
+# export PATH=/path/to/your/conda/bin:$PATH
+# source activate envname
 ```
-
-Where `acctname` is the account code to use for the Slurm
-job in which this server will run.
-
-## 4) Shut Down Server
-
-After a daily session, you will want to shut down the jupyter server.
-In the terminal session where you started `jupyter-forward`, merely press Ctl-C
-to signal the server to shut down.
