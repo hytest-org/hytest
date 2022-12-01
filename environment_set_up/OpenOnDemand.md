@@ -6,7 +6,7 @@ host:
 
 * Go to `https://tallgrass-denali-ondemand.cr.usgs.gov/pun/sys/dashboard/` in your web browser.  Note that you
   must be on the VPN to access this host.
-* Launch the HyTEST Jupyter Server app (NOTE: this is a work-in-progress; if it's not there now, it is expected soon.)
+* Launch the HyTEST Jupyter Server app.
 * Fill in the form to customize the allocation in which the Jupyter Server will execute.
 * Submit
 
