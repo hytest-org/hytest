@@ -3,56 +3,68 @@ root: README
 
 parts:
 
-  - caption: About These Tutorials
+  - caption: Dataset Access
     chapters:
-    - file: doc/HowToUse                                                           # TODO
-    - file: environment_set_up/README                                              # TODO: this doc is in-process on another branch
+    - file: ./dataset_access/conus404_explore
+    - file: ./dataset_access/conus404_regrid
+    - file: ./dataset_access/conus404_temporal_aggregation
 
 
-  - caption: Common Workflows
+  - caption: Dataset Catalog
     chapters:
-    - file: dataset_preprocessing/README                                           # TODO
+    - file: ./dataset_catalog/README
+
+
+  - caption: Dataset Preprocessing
+    chapters:
+    - file: ./dataset_preprocessing/ReChunkingData
+    - file: ./dataset_preprocessing/RechunkingData_Cloud
+    - file: ./dataset_preprocessing/archive/conus404_subset_to_zarr/readme
       sections:
-      - file: dataset_preprocessing/ReChunkingData
-      - file: dataset_preprocessing/ReChunkingData_Cloud
-      # TODO: Add more pre-processing sections
-    # TODO: Add more  common/universal chapters
-
-
-  - caption: Forcings Workflows                                                    # TODO:  This whole PART needs fleshing out...
-    chapters:
-    - file: dataset_access/conus404_explore   # placeholder only
-
-
-  - caption: Evaluation Workflows
-    chapters:
-    - file: model_evaluation/tutorials/nwm_streeamflow/00_Overview
+      - ./dataset_preprocessing/archive/conus404_subset_to_zarr/daily/README   ## TODO
+      - ./dataset_preprocessing/archive/conus404_subset_to_zarr/hourly/README  ## TODO
+    - file: ./dataset_preprocessing/demos/README                               ## TODO
       sections:
-      - file: model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
-      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
-      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
-      - file: model_evaluation/tutorials/nwm_streamflow/03_Visualization
-
-
-  - caption: About HyTEST                                                          # TODO this whole PART
-    chapters:
-    - file: doc/About
-    - file: doc/Team
-    - file: doc/Contact
-    - file: doc/CONTRIBUTING
-
-
-  - caption: "Appendix A: Technology Foundations"
-    chapters:
-    - file: essential_reading/00_StartHere
-    - file: essential_reading/DataSources/README                                   # TODO
+      - file: ./dataset_preprocessing/demos/era5-land-bitinfo
+      - file: ./dataset_preprocessing/demos/era5-land-api_dask
+      - file: ./dataset_preprocessing/demos/era5-land-kerchunk
+      - file: ./dataset_preprocessing/demos/gridmet_processing_with_pynco
+    - file: ./dataset_preprocessing/tutorials/README                           ## TODO
       sections:
-      - file: essential_reading/DataSources/Data_APIs
-      - file: essential_reading/DataSources/Data_S3
-      - file: essential_reading/DataSources/Data_STAC
-      - file: essential_reading/DataSources/Data_intake                            # TODO
-    - file: essential_reading/ParallelProcessing/README                            # TODO
+      - file: ./dataset_preprocessing/tutorials/CONUS404/conus404_eval_data_preparation
+      - file: ./dataset_preprocessing/tutorials/CONUS404/conus404_zonal_point_statistics
+      - file: ./dataset_preprocessing/tutorials/nwm/nwm_rechunking
+
+
+  - caption: Docs
+    chapters:
+    - file: ./docs/CONTRIBUTING
+    - file: ./docs/LICENSE
+
+
+  - caption: Environment Set-Up
+    chapters:
+    - file: ./environment_set_up/QuickStart-Cloud
+    - file: ./environment_set_up/QuickStart-HPC
+
+
+  - caption: Essential Reading
+    file: ./essential_reading/00_StartHere
+    chapters:
+    - file: ./essential_reading/DataSources/README     ## TODO
       sections:
-      - file: essential_reading/ParallelProcessing/Parallel_Clusters
-      - file: essential_reading/ParallelProcessing/Parallel_Dask
-      - file: essential_reading/ParallelProcessing/Parallel_DaskJobQueue
+      - file: ./essential_reading/DataSources/Data_APIs
+      - file: ./essential_reading/DataSources/Data_S3
+      - file: ./essential_reading/DataSources/Data_STAC
+    - file: ./essential_reading/ParallelProcessing/README  ## TODO
+      sections:
+      - file: ./essential_reading/ParallelProcessing/Parallel_Clusters
+      - file: ./essential_reading/ParallelProcessing/Parallel_Dask
+      - file: ./essential_reading/ParallelProcessing/Parallel_DaskJobQueue
+
+
+  - caption: Model Evaluation Tutorials
+    file: ./model_evaluation/tutorials/README    ## TODO
+    chapters:
+    - file: ./model_evaluation/tutorials/nwm_streamflow/00_Overview
+#   - file: ./model_evaluation/tutorials/other-tutorial-workflow/00_Overview  ## TODO
