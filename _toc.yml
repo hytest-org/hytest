@@ -4,6 +4,7 @@ root: README
 parts:
 
   - caption: Dataset Access
+    file: ./dataset_access/README                                                   ## TODO
     chapters:
     - file: ./dataset_access/conus404_explore
     - file: ./dataset_access/conus404_regrid
@@ -20,27 +21,17 @@ parts:
     - file: ./dataset_preprocessing/ReChunkingData
     - file: ./dataset_preprocessing/RechunkingData_Cloud
     - file: ./dataset_preprocessing/archive/conus404_subset_to_zarr/readme
+    # It may be that you don't want separate sections for these sub-directories in the TOC... Delete if that's the case.
       sections:
-      - file: dataset_preprocessing/ReChunkingData
-      - file: dataset_preprocessing/ReChunkingData_Cloud
-      # TODO: Add more pre-processing sections
-    # TODO: Add more  common/universal chapters
-
-
-  - caption: Forcings Workflows                                                    # TODO:  This whole PART needs fleshing out...
-    chapters:
-    - file: dataset_access/conus404_explore   # placeholder only
-
-
-  - caption: Evaluation Workflows
-    chapters:
-    - file: model_evaluation/tutorials/nwm_streamflow/00_Overview
+      - file: ./dataset_preprocessing/archive/conus404_subset_to_zarr/daily/README   ## TODO
+      - file: ./dataset_preprocessing/archive/conus404_subset_to_zarr/hourly/README  ## TODO
+    - file: ./dataset_preprocessing/demos/README                                     ## TODO
       sections:
       - file: ./dataset_preprocessing/demos/era5-land-bitinfo
       - file: ./dataset_preprocessing/demos/era5-land-api_dask
       - file: ./dataset_preprocessing/demos/era5-land-kerchunk
       - file: ./dataset_preprocessing/demos/gridmet_processing_with_pynco
-    - file: ./dataset_preprocessing/tutorials/README                           ## TODO
+    - file: ./dataset_preprocessing/tutorials/README                                 ## TODO
       sections:
       - file: ./dataset_preprocessing/tutorials/CONUS404/conus404_eval_data_preparation
       - file: ./dataset_preprocessing/tutorials/CONUS404/conus404_zonal_point_statistics
@@ -49,6 +40,7 @@ parts:
 
   - caption: Docs
     chapters:
+    - file: ./docs/ADR
     - file: ./docs/CONTRIBUTING
     - file: ./docs/LICENSE
 
@@ -62,12 +54,12 @@ parts:
   - caption: Essential Reading
     file: ./essential_reading/00_StartHere
     chapters:
-    - file: ./essential_reading/DataSources/README     ## TODO
+    - file: ./essential_reading/DataSources/README                           ## TODO
       sections:
       - file: ./essential_reading/DataSources/Data_APIs
       - file: ./essential_reading/DataSources/Data_S3
       - file: ./essential_reading/DataSources/Data_STAC
-    - file: ./essential_reading/ParallelProcessing/README  ## TODO
+    - file: ./essential_reading/ParallelProcessing/README                    ## TODO
       sections:
       - file: ./essential_reading/ParallelProcessing/Parallel_Clusters
       - file: ./essential_reading/ParallelProcessing/Parallel_Dask
@@ -75,7 +67,12 @@ parts:
 
 
   - caption: Model Evaluation Tutorials
-    file: ./model_evaluation/tutorials/README    ## TODO
+    file: ./model_evaluation/tutorials/README                                 ## TODO
     chapters:
     - file: ./model_evaluation/tutorials/nwm_streamflow/00_Overview
+      sections:
+      - file: ./model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
+      - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
+      - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
+      - file: ./model_evaluation/tutorials/nwm_streamflow/03_Vizualization
 #   - file: ./model_evaluation/tutorials/other-tutorial-workflow/00_Overview  ## TODO
