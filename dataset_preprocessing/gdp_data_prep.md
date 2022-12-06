@@ -15,8 +15,7 @@ primer for those unfamiliar with NetCDF. The final section gives general
 specifications and narrative notes regarding implementation of the
 specifications. This document is subject to change, and will grow as
 more NCCWSC projects do through this process. Please do not hesitate to
-email [dblodgett@usgs.gov](mailto:dblodgett@usgs.gov){.external-link
-rel="nofollow"} with questions comments and suggestions.
+email [dblodgett@usgs.gov](mailto:dblodgett@usgs.gov) with questions comments and suggestions.
 
 ## Data Publication and Metadata Curation Process 
 
@@ -115,8 +114,7 @@ interoperability target.
 
 For an in depth look at all things NetCDF please visit the Unidata
 [NetCDF Users
-guide](https://www.unidata.ucar.edu/software/netcdf/docs/netcdf/index.html#Top){.external-link
-rel="nofollow"}.
+guide](https://www.unidata.ucar.edu/software/netcdf/docs/netcdf/index.html#Top)
 
 ## Requirements and notes for gridded time series datasets. 
 
@@ -130,16 +128,13 @@ the middle can be handled using either approach described here.
 1.  Stored using NetCDF-3 or NetCDF-4 using the Classic data model.
 2.  Should use Lat/Lon or Projected X/Y gridded coordinates with a
     [NetCDF-CF grid mapping
-    variable.](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#grid-mappings-and-projections){.external-link
-    rel="nofollow"}
+    variable.](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#grid-mappings-and-projections)
 3.  Time must be included in the file with the time stamps corresponding
     to the leading edge of the time step.
 4.  All [NetCDF-CF
-    Attributes](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#idp4812688){.external-link
-    rel="nofollow"} should be included in files.
+    Attributes](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#idp4812688) should be included in files.
 5.  As many [NetCDF Attribute Convention for Dataset Discovery
-    attributes](http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_%28ACDD%29){.external-link
-    rel="nofollow"} as apply should be included in files.
+    attributes](http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_%28ACDD%29) as apply should be included in files.
 6.  If possible, data should be packed into fixed precision integers
     using offset and scale factor attributes on applicable variables.
 7.  Time must be the outer dimension (listed first in variable\'s
@@ -152,8 +147,8 @@ the middle can be handled using either approach described here.
     each contiguous spatio-temporal domain. eg. Region-1 2000-2030,
     Region-2 2000-2030, Region-1 2070-2100, etc. These domains can be
     made up of collections of files and assembled using
-    [NetCDF-Aggregation](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/v2.2/Aggregation.html){.external-link
-    rel="nofollow"}. Metadata from the files in the collection bubbles
+    [NetCDF-Aggregation](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/v2.2/Aggregation.html). 
+    Metadata from the files in the collection bubbles
     up to the whole collection. That metadata can be defined,
     overwritten, or removed when the collection is defined.
 -   The Geo Data Portal archive exposes all individual files from the
@@ -165,8 +160,7 @@ the middle can be handled using either approach described here.
     Adding attributes to files is best done when initially creating
     them, but can be accomplished easily using the [NetCDF Operators
     Command
-    *ncatted.*](http://nco.sourceforge.net/nco.html#ncatted-netCDF-Attribute-Editor){.external-link
-    rel="nofollow"}
+    *ncatted.*](http://nco.sourceforge.net/nco.html#ncatted-netCDF-Attribute-Editor)
 -   Item 6 above is required for datasets larger than a few hundred
     gigabytes. In addition, chunking and deflation of data should be
     performed. It has been found that chunks should be no less than 400
@@ -176,8 +170,7 @@ the middle can be handled using either approach described here.
 -   In order to allow aggregation of collections and fast access to
     underlying data of large datsets, items 7 and 8 above are required.
     While item 8 stops tools like the [NetCDF
-    Operators](http://nco.sourceforge.net/){.external-link
-    rel="nofollow"} from easily concatenating files together without a
+    Operators](http://nco.sourceforge.net/) from easily concatenating files together without a
     rewrite, it results in a huge improvement in performance when
     scanning files to determine their size. This is a result of a an
     \'unlimited\' dimensions coordinate variable (usually time) being
@@ -193,20 +186,17 @@ the middle can be handled using either approach described here.
 1.  Stored as NetCDF-4 using the Classic data model or as GeoTIFF files.
 2.  Should use Lat/Lon or Projected X/Y gridded coordinates with a
     [NetCDF-CF grid mapping
-    variable](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#grid-mappings-and-projections){.external-link
-    rel="nofollow"} or appropriate [GDAL
-    compatible](http://www.gdal.org/){.external-link rel="nofollow"}
+    variable](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#grid-mappings-and-projections) or appropriate [GDAL
+    compatible](http://www.gdal.org/)
     projection.
 3.  Time/date must be included in the file for NetCDF or the file names
     for GeoTIFF with time stamps corresponding to the leading edge of
     the time step.
 4.  All [NetCDF-CF
-    Attributes](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#idp4812688){.external-link
-    rel="nofollow"} should be included in NetCDF files or provided in
+    Attributes](http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#idp4812688)should be included in NetCDF files or provided in
     .ncml format for GeoTIFF files.
 5.  As many [NetCDF Attribute Convention for Dataset Discovery
-    attributes](http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_%28ACDD%29){.external-link
-    rel="nofollow"} as apply should be included.
+    attributes](http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_%28ACDD%29) as apply should be included.
 6.  Data must be stored using appropriate data types and compressed
     using a NetCDF-4 or GeoTIFF deflation algorithm.
 7.  For NetCDF data, time must be the outer dimension (listed first in
@@ -219,12 +209,10 @@ the middle can be handled using either approach described here.
     apply to high resolution and are not repeated here.
 -   Collections of GeoTIFF files will be created using the [NetCDF
     Markup Language\'s
-    \'joinNew\'](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/v2.2/Aggregation.html#joinNew){.external-link
-    rel="nofollow"} aggregation type. This method relies on a time stamp
+    \'joinNew\'](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/v2.2/Aggregation.html#joinNew) aggregation type. This method relies on a time stamp
     being available in each file\'s name. The format is flexible but
     must be describable using the
-    [java.text.SimpleDateFormat](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/v2.2/AnnotatedSchema.html#SimpleDateFormat){.external-link
-    rel="nofollow"}[]{#SimpleDateFormat rel="nofollow"} documented here.
+    [java.text.SimpleDateFormat](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/v2.2/AnnotatedSchema.html#SimpleDateFormat) documented here.
 -   Large data sets that could be stored as a smaller data type will be
     rejected. NetCDF-4 provides standard attributes to scale and offset
     integers into fixed precision decimals and GeoTIFFs can be written
