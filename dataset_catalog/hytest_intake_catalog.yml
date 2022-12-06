@@ -4,34 +4,50 @@ sources:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of hourly data on Caldera on prem storage"
     args:
-      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_out/conus404_hourly.zarr/'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_hourly.zarr/'
       consolidated: true      
 
   conus404-hourly-cloud:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of hourly values on Cloud"
     args:
-      urlpath: 's3://nhgf-development/conus404/conus404_hourly.zarr'
+      urlpath: 's3://nhgf-development/conus404/conus404_hourly_202209.zarr'
       consolidated: true
       storage_options:
         requester_pays: true
         
   conus404-daily-onprem:
     driver: zarr
-    description: "CONUS404 Hydro Variable subset, 40 years of daily data on Caldera on prem storage"
+    description: "CONUS404 40 years of daily values for subset of model output variables derived from hourly values on Caldera on-premise storage"
     args:
-      urlpath: '/caldera/projects/usgs/water/wbeep/conus404_work/zarr_daily_out/conus404_daily.zarr'
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily.zarr/'
       consolidated: true  
-        
+
+  conus404-daily-diagnostic-onprem:
+    driver: zarr
+    description: "CONUS404 40 years of daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10) on Caldera on-premise storage"
+    args:
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_daily_xtrm.zarr/'
+      consolidated: true  
+
   conus404-daily-cloud:
     driver: zarr
-    description: "CONUS404 Hydro Variables subset, 40 years of daily values on Cloud"
+    description: "CONUS404 40 years of daily values for subset of model output variables derived from hourly values on cloud storage"
     args:
-      urlpath: 's3://nhgf-development/conus404/conus404_daily.zarr'
+      urlpath: 's3://nhgf-development/conus404/conus404_daily_202210.zarr/'
       consolidated: true
       storage_options:
         requester_pays: true
-        
+
+  conus404-daily-diagnostic-cloud:
+    driver: zarr
+    description: "CONUS404 40 years of daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10) on cloud storage"
+    args:
+      urlpath: 's3://nhgf-development/conus404/conus404_daily.zarr/'
+      consolidated: true
+      storage_options:
+        requester_pays: true
+
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
