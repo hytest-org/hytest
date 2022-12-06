@@ -1,5 +1,5 @@
 
-# [ Geo Data Portal : Dataset Preparation for the Geo Data Portal ]
+# Geo Data Portal : Dataset Preparation for the Geo Data Portal 
 Created by [ Blodgett, David L.]{.author}, last modified by [ Hines,
 Megan K.]{.editor} on May 13, 2015
 
@@ -65,8 +65,7 @@ rel="nofollow"} with questions comments and suggestions.
 
 ## Introduction to the NetCDF Data Model 
 
-### **[NetCDF Data:]{.underline}**
-
+### NetCDF Data
 This guide will not go into specifics of any library or package for
 writing NetCDF data. Rather, below is an overview of important details
 of NetCDF files required for easy access with various NetCDF tools
