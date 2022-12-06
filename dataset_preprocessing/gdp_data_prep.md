@@ -1,27 +1,9 @@
----
-title: "Geo Data Portal : Dataset Preparation for the Geo Data Portal"
----
 
-::: {#page}
-::: {#main .aui-page-panel}
-::: {#main-header}
-::: {#breadcrumb-section}
-1.  [Geo Data Portal](index.html)
-2.  [GDP Home](GDP-Home_48070716.html)
-3.  [GDP Reference Materials](GDP-Reference-Materials_577997471.html)
-:::
-
-# [ Geo Data Portal : Dataset Preparation for the Geo Data Portal ]{#title-text} {#title-heading .pagetitle}
-:::
-
-::: {#content .view}
-::: page-metadata
+# [ Geo Data Portal : Dataset Preparation for the Geo Data Portal ]
 Created by [ Blodgett, David L.]{.author}, last modified by [ Hines,
 Megan K.]{.editor} on May 13, 2015
-:::
 
-::: {#main-content .wiki-content .group}
-## Introduction {#DatasetPreparationfortheGeoDataPortal-Introduction}
+## Introduction 
 
 This page is a reference for NCCWSC projects that are gridded time
 series data, generally climate projections, that will be archived using
@@ -36,7 +18,7 @@ more NCCWSC projects do through this process. Please do not hesitate to
 email [dblodgett@usgs.gov](mailto:dblodgett@usgs.gov){.external-link
 rel="nofollow"} with questions comments and suggestions.
 
-## Data Publication and Metadata Curation Process {#DatasetPreparationfortheGeoDataPortal-DataPublicationandMetadataCurationProcess}
+## Data Publication and Metadata Curation Process 
 
 1.  **Collect sources and do science / modeling / downscaling.**
     1.  Attention to data delivery considerations during this process
@@ -81,9 +63,9 @@ rel="nofollow"} with questions comments and suggestions.
         dataset release and permanent uris for data access will be
         established.
 
-## Introduction to the NetCDF Data Model {#DatasetPreparationfortheGeoDataPortal-IntroductiontotheNetCDFDataModel}
+## Introduction to the NetCDF Data Model 
 
-### **[NetCDF Data:]{.underline}** {#DatasetPreparationfortheGeoDataPortal-NetCDFData:}
+### **[NetCDF Data:]{.underline}**
 
 This guide will not go into specifics of any library or package for
 writing NetCDF data. Rather, below is an overview of important details
@@ -96,7 +78,7 @@ entire NetCDF file. Variables hold numerical values that are either data
 or coordinates, where coordinate values have significance in time or
 space.
 
-#### Dimensions: {#DatasetPreparationfortheGeoDataPortal-Dimensions:}
+#### Dimensions: 
 
 Gridded NetCDF files will always have an X and Y dimension. They may
 also have a T and / or Z dimension. Less common but possible, is a
@@ -104,7 +86,7 @@ also have a T and / or Z dimension. Less common but possible, is a
 however, one dimension, commonly time, can be \'unlimited\' meaning it
 can be added to with any special considerations.
 
-#### Variables: {#DatasetPreparationfortheGeoDataPortal-Variables:}
+#### Variables:
 
 NetCDF variables are containers for data. The special \'coordinate
 variables\' contain data that describes the dimension\'s coordinates in
@@ -115,7 +97,7 @@ integer and has dimensionality \'x,y,t\'. Once defined, data can be
 written into the indices of a variable according to its data type and
 dimensions.
 
-#### Attributes: {#DatasetPreparationfortheGeoDataPortal-Attributes:}
+#### Attributes: 
 
 NetCDF attributes describe variables and datasets. To be useful across
 multiple types of software, common conventions have been specified for
@@ -137,14 +119,14 @@ For an in depth look at all things NetCDF please visit the Unidata
 guide](https://www.unidata.ucar.edu/software/netcdf/docs/netcdf/index.html#Top){.external-link
 rel="nofollow"}.
 
-## Requirements and notes for gridded time series datasets. {#DatasetPreparationfortheGeoDataPortal-Requirementsandnotesforgriddedtimeseriesdatasets.}
+## Requirements and notes for gridded time series datasets. 
 
 Gridded time series datasets can be broken high and low spatial
 resolution. With 1-12km being low resolution and 10-30m bring high
 resolution. Most datasets fall into one or the other category. Those in
 the middle can be handled using either approach described here.
 
-### General Specifications for Low Resolution Gridded Time Series Datasets: {#DatasetPreparationfortheGeoDataPortal-GeneralSpecificationsforLowResolutionGriddedTimeSeriesDatasets:}
+### General Specifications for Low Resolution Gridded Time Series Datasets: 
 
 1.  Stored using NetCDF-3 or NetCDF-4 using the Classic data model.
 2.  Should use Lat/Lon or Projected X/Y gridded coordinates with a
@@ -166,8 +148,7 @@ the middle can be handled using either approach described here.
 8.  For archiving (read performance), it is preferred that the time
     dimension be fixed rather than unlimited.
 
-#### Notes regarding flexibility and purpose of these requirements: {#DatasetPreparationfortheGeoDataPortal-Notesregardingflexibilityandpurposeoftheserequirements:}
-
+#### Notes regarding flexibility and purpose of these requirements: 
 -   The Geo Data Portal archive includes a single, logical dataset, for
     each contiguous spatio-temporal domain. eg. Region-1 2000-2030,
     Region-2 2000-2030, Region-1 2070-2100, etc. These domains can be
@@ -208,7 +189,7 @@ the middle can be handled using either approach described here.
     \'fixed\' time dimension. Note that this change can be made using
     the NetCDF Operators flag \--fix_rec_dmn
 
-### General Specifications for high resolution gridded time series datasets: {#DatasetPreparationfortheGeoDataPortal-GeneralSpecificationsforhighresolutiongriddedtimeseriesdatasets:}
+### General Specifications for high resolution gridded time series datasets: 
 
 1.  Stored as NetCDF-4 using the Classic data model or as GeoTIFF files.
 2.  Should use Lat/Lon or Projected X/Y gridded coordinates with a
@@ -234,8 +215,7 @@ the middle can be handled using either approach described here.
 8.  For NetCDF, it is preferred that the time dimension be fixed rather
     than unlimited.
 
-#### Notes regarding flexibility and purpose of these requirements: {#DatasetPreparationfortheGeoDataPortal-Notesregardingflexibilityandpurposeoftheserequirements:.1}
-
+#### Notes regarding flexibility and purpose of these requirements:
 -   Generally, the notes for lower-resolution gridded time series data
     apply to high resolution and are not repeated here.
 -   Collections of GeoTIFF files will be created using the [NetCDF
@@ -256,17 +236,3 @@ the middle can be handled using either approach described here.
     of the archived data.
 
  
-:::
-:::
-:::
-
-::: {#footer role="contentinfo"}
-::: {.section .footer-body}
-Document generated by Confluence on Mar 14, 2022 09:07
-
-::: {#footer-logo}
-[Atlassian](http://www.atlassian.com/)
-:::
-:::
-:::
-:::
