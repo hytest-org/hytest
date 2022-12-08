@@ -117,3 +117,76 @@ sources:
       consolidated: true
       storage_options:
         requester_pays: true
+
+  nhm-v1.0-daymet-byHRU-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.0/dm_byHRU/nhm_v1.0_dm_byHRU_combined.json'
+
+  nhm-v1.0-daymet-byHW-musk-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.0/dm_byHRU_musk/nhm_v1.0_dm_byHRU_musk_combined.json'
+
+  nhm-v1.0-daymet-byHW-musk-obs-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.0/dm_byHRU_musk_obs/nhm_v1.0_dm_byHRU_musk_obs_combined.json'
+
+  nhm-v1.0-daymet-byHW-noroute-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing calibrated parameters with Daymet version 3 forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.0/dm_byHRU_noroute/nhm_v1.0_dm_byHRU_noroute_combined.json'
+
+  nhm-v1.0-daymet-byHW-noroute_obs-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.0/dm_byHRU_noroute_obs/nhm_v1.0_dm_byHRU_noroute_obs_combined.json'
+
+
+  nhm-v1.1-gridmet-byHRU-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with gridmet forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/gm_byHRU/nhm_v1.1_gm_byHRU_combined.json'
+
+  nhm-v1.1-gridmet-byHW-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with gridmet forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/gm_byHW/nhm_v1.1_gm_byHW_combined.json'
+
+  nhm-v1.1-gridmet-byHWobs-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with gridmet forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/gm_byHWobs/nhm_v1.1_gm_byHWobs_combined.json'          
