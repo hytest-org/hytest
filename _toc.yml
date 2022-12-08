@@ -3,17 +3,16 @@ root: README
 
 parts:
 
-  - caption: Dataset Access
-    file: ./dataset_access/README                                                   ## TODO
-    chapters:
-    - file: ./dataset_access/conus404_explore
-    - file: ./dataset_access/conus404_regrid
-    - file: ./dataset_access/conus404_temporal_aggregation
-
-
   - caption: Dataset Catalog
     chapters:
     - file: ./dataset_catalog/README
+
+
+  - caption: Environment Set-Up
+    chapters:
+    - file: ./environment_set_up/QuickStart-Cloud
+    - file: ./environment_set_up/QuickStart-HPC
+
 
 
   - caption: Dataset Preprocessing
@@ -38,17 +37,32 @@ parts:
       - file: ./dataset_preprocessing/tutorials/nwm/nwm_rechunking
 
 
+  - caption: Dataset Access
+    file: ./dataset_access/README                                                   ## TODO
+    chapters:
+    - file: ./dataset_access/conus404_explore
+    - file: ./dataset_access/conus404_regrid
+    - file: ./dataset_access/conus404_temporal_aggregation
+
+
+  - caption: Model Evaluation Tutorials
+    file: ./model_evaluation/tutorials/README                                 ## TODO
+    chapters:
+    - file: ./model_evaluation/tutorials/nwm_streamflow/00_Overview
+      sections:
+      - file: ./model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
+      - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
+      - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
+      - file: ./model_evaluation/tutorials/nwm_streamflow/03_Vizualization
+#   - file: ./model_evaluation/tutorials/other-tutorial-workflow/00_Overview  ## TODO
+
+
   - caption: Docs
     chapters:
     - file: ./docs/ADR
     - file: ./docs/CONTRIBUTING
     - file: ./docs/LICENSE
 
-
-  - caption: Environment Set-Up
-    chapters:
-    - file: ./environment_set_up/QuickStart-Cloud
-    - file: ./environment_set_up/QuickStart-HPC
 
 
   - caption: Essential Reading
@@ -64,15 +78,3 @@ parts:
       - file: ./essential_reading/ParallelProcessing/Parallel_Clusters
       - file: ./essential_reading/ParallelProcessing/Parallel_Dask
       - file: ./essential_reading/ParallelProcessing/Parallel_DaskJobQueue
-
-
-  - caption: Model Evaluation Tutorials
-    file: ./model_evaluation/tutorials/README                                 ## TODO
-    chapters:
-    - file: ./model_evaluation/tutorials/nwm_streamflow/00_Overview
-      sections:
-      - file: ./model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
-      - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
-      - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
-      - file: ./model_evaluation/tutorials/nwm_streamflow/03_Vizualization
-#   - file: ./model_evaluation/tutorials/other-tutorial-workflow/00_Overview  ## TODO
