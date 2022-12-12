@@ -48,6 +48,22 @@ sources:
       storage_options:
         requester_pays: true
 
+  conus404-monthly-onprem:
+    driver: zarr
+    description: "CONUS404 40 years of monthly values for subset of model output variables derived from daily values on Caldera on-premise storage"
+    args:
+      urlpath: '/caldera/hytest_scratch/scratch/conus404/conus404_monthly.zarr'
+      consolidated: true  
+
+  conus404-monthly-cloud:
+    driver: zarr
+    description: "CONUS404 40 years of monthly values for subset of model output variables derived from daily values on cloud storage"
+    args:
+      urlpath: 's3://nhgf-development/conus404/conus404_monthly_202210.zarr'
+      consolidated: true
+      storage_options:
+        requester_pays: true
+
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
