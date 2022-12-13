@@ -8,11 +8,15 @@ Server.
 ## 1) Configure your HPC account to access the HyTEST [conda](www.anaconda.org) environment :
 
     * log in to either HPC host ( `denali` or `tallgrass` )
-    * Execute this command:  ` echo "module load hytest" >> ~/.bashrc"
-    * NOTE.  It is **critical** that the above command uses the double-greater-than.  If you accidentally just use a single,
-      bad things will happen.
+    * Edit your `.bashrc` file to include these two lines at the bottom:
+      ```bash
+      module use --append /caldera/projects/usgs/water/impd/hytest/modules
+      module load hytest
+      ```
+    * NOTE: Edit your `.bashrc` with care. It controls what happens when you log in.  If it gets mangled,
+      your account may not work correctly .
 
-## 2) Install `jupyter-forward` on your PC.
+## 2) Install `jupyter-forward` on your PC
 
 This is a one-time operation to get the right software on your desktop.
 The [jupyter-forward](https://pypi.org/project/jupyter-forward/) software will
@@ -30,6 +34,9 @@ HPC-based jupyter servers easy.
       ```text
       > conda install -c conda-forge jupyter-forward
       ```
+Anaconda provides the option for multiple virtual environments and configurations.  It does not
+matter which one is active when you install `jupyter-forward` ( the "base" or some other).  You
+just need to have that enviroment active when you attempt to launch the command later.
 
 ## 3) Launch Server
 
