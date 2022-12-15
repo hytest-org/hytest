@@ -65,9 +65,9 @@ def apply_metadata(ds, rename_dims, rename_vars, remove_attrs, var_metadata):
     return ds
 
 
-def build_filelist_wrf2d(num_days, c_start, wrf_dir):
+def build_hourly_filelist(num_days, c_start, wrf_dir, file_pattern, verify=False):
     """
-    Build a list of wrf2d file paths
+    Build a list of file paths
     """
 
     job_files = []
@@ -82,8 +82,28 @@ def build_filelist_wrf2d(num_days, c_start, wrf_dir):
         for hh in range(24):
             fdate = cdate + datetime.timedelta(hours=hh)
 
-            file_pat = f'{wrf_dir}/{wy_dir}/wrf2d_d01_{fdate.strftime("%Y-%m-%d_%H:%M:%S")}'
-            job_files.append(file_pat)
+            # 201610010000.LDASIN_DOMAIN1
+            # file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
+            file_pat = eval(f"f'{file_pattern}'")
+
+            if verify:
+                # Verifying the existence of each file can put a heavy load on Lustre filesystems
+                # Only call this function with verify turned on when it's needed (e.g. when open_mfdataset fails).
+                if os.path.exists(file_pat):
+                    job_files.append(file_pat)
+                else:
+                    if fdate.month == 10 and fdate.day == 1 and fdate.hour == 0:
+                        # Sometimes a dataset includes the first hour of the next water year in
+                        # each water year directory; we need this file.
+                        wy_dir = f'WY{cdate.year}'
+                        file_pat = eval(f"f'{file_pattern}'")
+
+                        if os.path.exists(file_pat):
+                            job_files.append(file_pat)
+
+                        break
+            else:
+                job_files.append(file_pat)
     return job_files
 
 
