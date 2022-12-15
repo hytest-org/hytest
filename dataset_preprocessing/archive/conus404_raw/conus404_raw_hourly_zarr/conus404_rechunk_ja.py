@@ -151,8 +151,10 @@ def main():
     zarr.storage.default_compressor = Zstd(level=9)
     # zarr.storage.default_compressor = Blosc(cname='blosclz', clevel=4, shuffle=Blosc.SHUFFLE)
 
+    # Filename pattern for wrf2d hourly files
+    file_pat = '{wrf_dir}/{wy_dir}/wrf2d_d01_{fdate.strftime("%Y-%m-%d_%H:%M:%S")}'
+
     while c_start < en_date:
-        job_files = ch.build_filelist_wrf2d(num_days, c_start, wrf_dir)
         tstore_dir = f'{target_store}_{cnk_idx:05d}'
 
         # =============================================
@@ -169,9 +171,21 @@ def main():
         # Open netcdf source files
         t1 = time.time()
 
-        ds2d = xr.open_mfdataset(job_files, concat_dim='Time', combine='nested',
-                                 parallel=True, coords="minimal", data_vars="minimal",
-                                 engine='netcdf4', compat='override', chunks={})
+        try:
+            job_files = ch.build_hourly_filelist(num_days, c_start, wrf_dir, file_pat, verify=False)
+            ds2d = xr.open_mfdataset(job_files, concat_dim='Time', combine='nested',
+                                     parallel=True, coords="minimal", data_vars="minimal",
+                                     engine='netcdf4', compat='override', chunks={})
+        except FileNotFoundError:
+            # Re-run the filelist build with the expensive verify
+            job_files = ch.build_hourly_filelist(num_days, c_start, wrf_dir, file_pat, verify=True)
+            print(job_files[0])
+            print(job_files[-1])
+            print(f'Number of valid files: {len(job_files)}')
+
+            ds2d = xr.open_mfdataset(job_files, concat_dim='Time', combine='nested',
+                                     parallel=True, coords="minimal", data_vars="minimal",
+                                     engine='netcdf4', compat='override', chunks={})
 
         if cnk_idx == 0:
             # Add the wrf constants during the first time chunk
