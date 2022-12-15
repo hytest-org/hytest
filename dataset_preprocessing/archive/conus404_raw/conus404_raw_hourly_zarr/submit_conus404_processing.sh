@@ -1,17 +1,16 @@
 #!/bin/bash -e
 
+# NOTE: The python script options in rechunk.sbatch and to_zarr.sbatch must be
+#       set correctly prior to running this job script.
+
 STEP=10
-MAX_JOBS=50
+MAX_JOBS=30
 
-LAST_STEP=2495
-# LAST_STEP=50
+LAST_STEP=2556
 
-#sbatch --array=0-10:10 to_zarr.sbatch
-#sbatch --dependency=afterok:2749205 --array=0-100:10 to_zarr.sbatch
-
-# First rechunk CONUS404 model output
+# First rechunk the CONUS404 model output
 jobid0=$(sbatch --parsable --array=0-${LAST_STEP}%${MAX_JOBS} rechunk.sbatch)
 
-# Create final ZARR of CONUS404 data
+# Next create the final CONUS404 zarr dataset
 jobid1=$(sbatch --parsable --dependency=afterok:${jobid0} --array=0-9:${STEP} to_zarr.sbatch)
 sbatch --dependency=afterok:${jobid1} --array=10-${LAST_STEP}:${STEP}%${MAX_JOBS} to_zarr.sbatch
