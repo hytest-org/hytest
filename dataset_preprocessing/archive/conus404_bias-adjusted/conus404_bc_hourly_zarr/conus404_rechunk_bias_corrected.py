@@ -23,45 +23,45 @@ import conus404_maths as cmath
 import ctypes
 
 
-def build_filelist(num_days, c_start, wrf_dir, verify=False):
-    """
-    Build a list of file paths
-    """
-
-    job_files = []
-
-    for dd in range(num_days):
-        cdate = c_start + datetime.timedelta(days=dd)
-
-        wy_dir = f'WY{cdate.year}'
-        if cdate >= datetime.datetime(cdate.year, 10, 1):
-            wy_dir = f'WY{cdate.year+1}'
-
-        for hh in range(24):
-            fdate = cdate + datetime.timedelta(hours=hh)
-
-            # 201610010000.LDASIN_DOMAIN1
-            file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
-
-            if verify:
-                # Verifying the existence of each file can put a heavy load on Lustre filesystems
-                # Only call this function with verify turned on when it's needed (e.g. when open_mfdataset fails).
-                if os.path.exists(file_pat):
-                    job_files.append(file_pat)
-                else:
-                    if fdate.month == 10 and fdate.day == 1 and fdate.hour == 0:
-                        # The bias-adjusted dataset includes the first hour of the next water year in
-                        # each water year directory; we need this file.
-                        wy_dir = f'WY{cdate.year}'
-                        file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
-
-                        if os.path.exists(file_pat):
-                            job_files.append(file_pat)
-
-                        break
-            else:
-                job_files.append(file_pat)
-    return job_files
+# def build_filelist(num_days, c_start, wrf_dir, verify=False):
+#     """
+#     Build a list of file paths
+#     """
+#
+#     job_files = []
+#
+#     for dd in range(num_days):
+#         cdate = c_start + datetime.timedelta(days=dd)
+#
+#         wy_dir = f'WY{cdate.year}'
+#         if cdate >= datetime.datetime(cdate.year, 10, 1):
+#             wy_dir = f'WY{cdate.year+1}'
+#
+#         for hh in range(24):
+#             fdate = cdate + datetime.timedelta(hours=hh)
+#
+#             # 201610010000.LDASIN_DOMAIN1
+#             file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
+#
+#             if verify:
+#                 # Verifying the existence of each file can put a heavy load on Lustre filesystems
+#                 # Only call this function with verify turned on when it's needed (e.g. when open_mfdataset fails).
+#                 if os.path.exists(file_pat):
+#                     job_files.append(file_pat)
+#                 else:
+#                     if fdate.month == 10 and fdate.day == 1 and fdate.hour == 0:
+#                         # The bias-adjusted dataset includes the first hour of the next water year in
+#                         # each water year directory; we need this file.
+#                         wy_dir = f'WY{cdate.year}'
+#                         file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
+#
+#                         if os.path.exists(file_pat):
+#                             job_files.append(file_pat)
+#
+#                         break
+#             else:
+#                 job_files.append(file_pat)
+#     return job_files
 
 
 def trim_memory() -> int:
@@ -124,8 +124,8 @@ def main():
     print(f'{target_store=}')
     print('-'*60)
 
-    # base_date = datetime.datetime(1979, 10, 1)
-    base_date = datetime.datetime(2016, 10, 1)
+    base_date = datetime.datetime(1979, 10, 1)
+    # base_date = datetime.datetime(2016, 10, 1)
     num_days = 6
     delta = datetime.timedelta(days=num_days)
 
@@ -189,6 +189,9 @@ def main():
     zarr.storage.default_compressor = Zstd(level=9)
     # zarr.storage.default_compressor = Blosc(cname='blosclz', clevel=4, shuffle=Blosc.SHUFFLE)
 
+    # Filename pattern for bias-adjusted hourly files
+    file_pat = '{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
+
     while c_start < en_date:
         tstore_dir = f'{target_store}_{cnk_idx:05d}'
 
@@ -207,13 +210,13 @@ def main():
         t1 = time.time()
 
         try:
-            job_files = build_filelist(num_days, c_start, wrf_dir, verify=False)
+            job_files = ch.build_hourly_filelist(num_days, c_start, wrf_dir, file_pat, verify=False)
             ds2d = xr.open_mfdataset(job_files, concat_dim='time', combine='nested',
                                      parallel=True, coords="minimal", data_vars="minimal",
                                      engine='netcdf4', compat='override', chunks={})
         except FileNotFoundError:
             # Re-run the filelist build with the expensive verify
-            job_files = build_filelist(num_days, c_start, wrf_dir, verify=True)
+            job_files = ch.build_hourly_filelist(num_days, c_start, wrf_dir, file_pat, verify=True)
             print(job_files[0])
             print(job_files[-1])
             print(f'Number of valid files: {len(job_files)}')
