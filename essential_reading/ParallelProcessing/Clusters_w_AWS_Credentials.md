@@ -7,6 +7,14 @@ copy of the credentials, and may not be able to retrieve them for themselves.
 An example of this behaviour is the cluster configuration on a cloud platform
 such as the ESIP/QHUB deployment.
 
+This problem is sometimes only visible when datasets don't look like you
+expect after your notebook runs.  Often times, AWS permissions errors on
+worker nodes (within the cluster) are not propagated back to the notebook
+which spawned them.  This means that you may not see any errors, yet your
+output dataset is full of `NaN` or zero values. If that happens, your first
+debugging operation is to verify that AWS credentials are propagating through
+to workers correctly.
+
 ## Cloud Cluster Workers
 
 A 'cloud' deployment will often deploy a cluster of worker nodes using
@@ -156,6 +164,7 @@ print(client.dashboard_link)
 ```
 
 ### Trust, but Verify
+
 The following simple code block with verify what a cluster worker thinks of
 as the AWS credential:
 
