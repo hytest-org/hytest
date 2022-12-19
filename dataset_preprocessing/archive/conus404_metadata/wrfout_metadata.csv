@@ -1,0 +1,323 @@
+varname	long_name	accumulated	integration_length	description	notes	units	scale_factor	valid_range	flag_values	flag_meanings	dimensions	coordinates	datatype
+ACDEWC	Accumulated canopy dew rate	True	accumulated over prior 60 minutes	acccumlated QDEWC		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACDRIPR	Accumulated canopy precipitation drip rate	True	accumulated over prior 60 minutes	acccumlated QDRIPR		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACDRIPS	Accumulated canopy snow drip rate	True	accumulated over prior 60 minutes	acccumlated QDRIPS		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACECAN	Accumulated net evaporation of canopy water (evap + sublim - dew - frost)	True	accumulated over prior 60 minutes	acccumlated ECAN		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACEDIR	Accumulated net soil evaporation or snowpack sublimation (evap or sublim - dew or frost)	True	accumulated over prior 60 minutes	acccumlated EDIR		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACEFLXB	Accumulated energy influx from soil bottom	False		acccumlated EFLXB		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACETLSM	Accumulated total evaporation	True	accumulated over prior 60 minutes	acccumlated ET		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACETRAN	Accumulated plant transpiration	True	accumulated over prior 60 minutes	acccumlated ETRAN		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACEVAC	Accumulated canopy evaporation	True	accumulated over prior 60 minutes	acccumlated QEVAC		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACEVB	Accumulated latent heat flux over bare ground	True	accumulated over prior 60 minutes	acccumlated EVB		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACEVC	Accumulated latent heat flux for canopy layer	True	accumulated over prior 60 minutes	acccumlated EVC		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACEVG	Accumulated ground latent heat flux below canopy	True	accumulated over prior 60 minutes	acccumlated EVG		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACFROC	Accumulated canopy frost	True	accumulated over prior 60 minutes	acccumlated QFROC		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACFRZC	Accumulated refreezing of canopy liquid water	True	accumulated over prior 60 minutes	acccumlated QFRZC		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACGHB	Accumulated heat flux into soil or snowpack for bare ground	True	accumulated over prior 60 minutes	acccumlated GHB		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACGHFLSM	Accumulated total ground heat flux into soil or snowpack	True	accumulated over prior 60 minutes	acccumlated total ground heat flux		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACGHV	Accumulated heat flux into soil or snowpack under canopy	True	accumulated over prior 60 minutes	acccumlated GHV		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACGRDFLX	Accumulated ground heat flux	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED GROUND HEAT FLUX		J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACHFX	Accumulated upward sensible heat flux at the surface	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED UPWARD HEAT FLUX AT THE SURFACE		J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACINTR	Accumulated canopy rain interception rate	True	accumulated over prior 60 minutes	acccumlated QINTR		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACINTS	Accumulated canopy snow interception rate	True	accumulated over prior 60 minutes	acccumlated QINTS		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACIRB	Accumulated net longwave radiation for bare ground	True	accumulated over prior 60 minutes	acccumlated IRB		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACIRC	Accumulated net longwave radiation from canopy	True	accumulated over prior 60 minutes	acccumlated IRC		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACIRG	Accumulated net longwave radiation from ground below canopy	True	accumulated over prior 60 minutes	acccumlated IRG		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLHF	Accumulated upward latent heat flux at the surface	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED UPWARD LATENT HEAT FLUX AT THE SURFACE		J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLHFLSM	Accumulated total latent heat flux	True	accumulated over prior 60 minutes	acccumlated total latent heat flux		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWDNB	Accumulated downwelling longwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING LONGWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACLWDNB = ACLWDNB + I_ACLWDNB * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWDNBC	Accumulated downwelling clear sky longwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING CLEAR SKY LONGWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACLWDNBC = ACLWDNBC + I_ACLWDNBC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWDNLSM	Accumulated longwave downwelling radiation at land surface model 	True	accumulated over prior 60 minutes	acccumlated LWDN		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWDNT	Accumulated downwelling longwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING LONGWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACLWDNT = ACLWDNT + I_ACLWDNT * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWDNTC	Accumulated downwelling clear sky longwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING CLEAR SKY LONGWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACLWDNTC = ACLWDNTC + I_ACLWDNTC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWUPB	Accumulated upwelling longwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING LONGWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACLWUPB = ACLWUPB + I_ACLWUPB * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWUPBC	Accumulated upwelling clear sky longwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING CLEAR SKY LONGWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACLWUPBC = ACLWUPBC + I_ACLWUPBC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWUPLSM	Accumulated longwave upwelling radiation at land surface model	True	accumulated over prior 60 minutes	acccumlated LWUP		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWUPT	Accumulated upwelling longwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING LONGWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACLWUPT = ACLWUPT + I_ACLWUPT * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACLWUPTC	Accumulated upwelling clear sky longwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING CLEAR SKY LONGWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACLWUPTC = ACLWUPTC + I_ACLWUPTC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACMELTC	Accumulated canopy snow melt	True	accumulated over prior 60 minutes	acccumlated QMELTC		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACPAHB	Accumulated precipitation advected energy to bare ground	True	accumulated over prior 60 minutes	acccumlated PAHB		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACPAHG	Accumulated precipitation advected energy to below canopy	True	accumulated over prior 60 minutes	acccumlated PAHG		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACPAHLSM	Accumulated total precipitation heat flux advected to surface	True	accumulated over prior 60 minutes	acccumlated total precip heat flux		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACPAHV	Accumulated precipitation advected energy to vegetation	True	accumulated over prior 60 minutes	acccumlated PAHV		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACPONDING	Accumulated surface ponding from complete pack melt	True	accumulated over prior 60 minutes	acccumlated PONDING		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACQLAT	Accumulated groundwater lateral flow	True	accumulated over prior 60 minutes	accumulated lateral flow		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACQRF	Accumulated groundwater baseflow	True	accumulated over prior 60 minutes	accumulated baseflow		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACRAINLSM	Accumulated liquid precipitation into land surface model	True	accumulated over prior 60 minutes	acccumlated RAINLSM		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACRAINSNOW	Accumulated rain on snow pack	True	accumulated over prior 60 minutes	acccumlated rain on snow pack		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACRUNSB	Accumulated surface runoff	True	accumulated over prior 60 minutes	acccumlated RUNSF		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACRUNSF	Accumulated subsurface runoff	True	accumulated over prior 60 minutes	acccumlated RUNSB		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSAGB	Accumulated solar radiation absorbed by bare ground	True	accumulated over prior 60 minutes	acccumlated SAG under vegetation		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSAGV	Accumulated solar radiation absorbed by vegetated ground	True	accumulated over prior 60 minutes	acccumlated SAG in bare section		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSAV	Accumulated solar radiation absorbed by vegetated fraction	True	accumulated over prior 60 minutes	acccumlated SAV		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSHB	Accumulated sensible heat flux at bare fraction	True	accumulated over prior 60 minutes	acccumlated SHB		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSHC	Accumulated sensible heat flux, canopy to atmosphere	True	accumulated over prior 60 minutes	acccumlated SHC		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSHFLSM	Accumulated total sensible heat flux	True	accumulated over prior 60 minutes	acccumlated total sensible heat flux		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSHG	Accumulated sensible heat flux from ground below canopy	True	accumulated over prior 60 minutes	acccumlated SHG		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSNBOT	Accumulated liquid water flux out of bottom of snowpack	True	accumulated over prior 60 minutes	acccumlated QSNBOT		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSNFRO	Accumulated snowpack frost	True	accumulated over prior 60 minutes	acccumlated QSNFRO		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSNOM	Accumulated total liquid water out of the snowpack	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED MELTED SNOW		kg m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSNOWLSM	Accumulated frozen precipitation into land surface model	True	accumulated over prior 60 minutes	acccumlated SNOWLSM		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSNSUB	Accumulated snowpack sublimation	True	accumulated over prior 60 minutes	acccumlated QSNSUB		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSUBC	Accumulated canopy snow sublimation	True	accumulated over prior 60 minutes	acccumlated QSUBC		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWDNB	Accumulated downwelling shortwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING SHORTWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACSWDNB = ACSWDNB + I_ACSWDNB * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWDNBC	Accumulated downwelling clear sky shortwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING CLEAR SKY SHORTWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACSWDNBC = ACSWDNBC + I_ACSWDNBC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWDNLSM	Accumulated shortwave radiation down at land surface model	True	accumulated over prior 60 minutes	acccumlated SWDN		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWDNT	Accumulated downwelling shortwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING SHORTWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACSWDNT = ACSWDNT + I_ACSWDNT * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWDNTC	Accumulated downwelling clear sky shortwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED DOWNWELLING CLEAR SKY SHORTWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACSWDNTC = ACSWDNTC + I_ACSWDNTC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWUPB	Accumulated upwelling shortwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING SHORTWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACSWUPB = ACSWUPB + I_ACSWUPB * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWUPBC	Accumulated upwelling clear sky shortwave radiation flux at bottom	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING CLEAR SKY SHORTWAVE FLUX AT BOTTOM	Actual accumulated value computed with equation: ACSWUPBC = ACSWUPBC + I_ACSWUPBC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWUPLSM	Accumulated shortwave radiation up at land surface model	True	accumulated over prior 60 minutes	acccumlated SWUP		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWUPT	Accumulated upwelling shortwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING SHORTWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACSWUPT = ACSWUPT + I_ACSWUPT * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACSWUPTC	Accumulated upwelling clear sky shortwave radiation flux at top	True	accumulated since last bucket_J (1.0e9 J m-2) reset	ACCUMULATED UPWELLING CLEAR SKY SHORTWAVE FLUX AT TOP	Actual accumulated value computed with equation: ACSWUPTC = ACSWUPTC + I_ACSWUPTC * 1.0e9	J m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ACTHROR	Accumulated canopy rain throughfall	True	accumulated over prior 60 minutes	acccumlated QTHROR		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACTHROS	Accumulated canopy snow throughfall	True	accumulated over prior 60 minutes	acccumlated QTHROS		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACTR	Accumulated transpiration	True	accumulated over prior 60 minutes	acccumlated TR		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+ALBBCK	Background surface albedo	False		BACKGROUND ALBEDO							Time south_north west_east	XLONG XLAT XTIME	float32
+ALBEDO	Surface albedo including snow effects	False		ALBEDO		1					Time south_north west_east	XLONG XLAT XTIME	float32
+BF	Full levels, bf=0 => isobaric; bf=znw => sigma	False		full levels, bf=0 => isobaric; bf=znw => sigma		Dimensionless					Time bottom_top_stag		float32
+BH	Half levels, bh=0 => isobaric; bh=znu => sigma	False		half levels, bh=0 => isobaric; bh=znu => sigma		Dimensionless					Time bottom_top		float32
+C1F	Full levels, c1f = d bf / d eta, using znu	False		full levels, c1f = d bf / d eta, using znu		Dimensionless					Time bottom_top_stag		float32
+C1H	Half levels, c1h = d bf / d eta, using znw	False		half levels, c1h = d bf / d eta, using znw		Dimensionless					Time bottom_top		float32
+C2F	Full levels, c2f = (1-c1f)*(p0-pt)	False		full levels, c2f = (1-c1f)*(p0-pt)		Pa					Time bottom_top_stag		float32
+C2H	Half levels, c2h = (1-c1h)*(p0-pt)	False		half levels, c2h = (1-c1h)*(p0-pt)		Pa					Time bottom_top		float32
+C3F	Full levels, c3f = bf	False		full levels, c3f = bf		Dimensionless					Time bottom_top_stag		float32
+C3H	Half levels, c3h = bh	False		half levels, c3h = bh		Dimensionless					Time bottom_top		float32
+C4F	Full levels, c4f = (eta-bf)*(p0-pt)+pt, using znw	False		full levels, c4f = (eta-bf)*(p0-pt)+pt, using znw		Pa					Time bottom_top_stag		float32
+C4H	Half levels, c4h = (eta-bh)*(p0-pt)+pt, using znu	False		half levels, c4h = (eta-bh)*(p0-pt)+pt, using znu		Pa					Time bottom_top		float32
+CANICE	Canopy intercepted ice mass	False		intercepted ice mass		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+CANWAT	Canopy intercepted water	False		CANOPY WATER		kg m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+CF1	2nd order extrapolation constant	False		2nd order extrapolation constant							Time		float32
+CF2	2nd order extrapolation constant	False		2nd order extrapolation constant							Time		float32
+CF3	2nd order extrapolation constant	False		2nd order extrapolation constant							Time		float32
+CFN	Extrapolation constant	False		extrapolation constant							Time		float32
+CFN1	Extrapolation constant	False		extrapolation constant							Time		float32
+CLAT	Computational grid latitude, south is negative	False		COMPUTATIONAL GRID LATITUDE, SOUTH IS NEGATIVE		degree_north					Time south_north west_east	XLONG XLAT XTIME	float32
+CLDFRA	Cloud fraction	False		CLOUD FRACTION		1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+COSALPHA	Local cosine of map rotation	False		Local cosine of map rotation							Time south_north west_east	XLONG XLAT XTIME	float32
+COSZEN	Cosine of solar zenith angle	False		COS of SOLAR ZENITH ANGLE		dimensionless					Time south_north west_east	XLONG XLAT XTIME	float32
+DN	D(eta) values between half (mass) levels	False		d(eta) values between half (mass) levels							Time bottom_top		float32
+DNW	D(eta) values between full (w) levels	False		d(eta) values between full (w) levels							Time bottom_top		float32
+DZS	Thickness of soil layers	False		THICKNESSES OF SOIL LAYERS		m					Time soil_layers_stag		float32
+E	Coriolis cosine latitude term	False		Coriolis cosine latitude term		s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+EMISS	Surface emissivity	False		SURFACE EMISSIVITY		1					Time south_north west_east	XLONG XLAT XTIME	float32
+F	Coriolis sine latitude term	False		Coriolis sine latitude term		s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+FNM	Upper weight for vertical stretching	False		upper weight for vertical stretching							Time bottom_top		float32
+FNP	Lower weight for vertical stretching	False		lower weight for vertical stretching							Time bottom_top		float32
+FORCPLSM	Lowest model pressure into land surface model	False		lowest model P into LSM		Pa					Time south_north west_east	XLONG XLAT XTIME	float32
+FORCQLSM	Lowest model mixing ratio into land surface model	False		lowest model Q into LSM		kg kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+FORCTLSM	Lowest model temperature into land surface model	False		lowest model T into LSM		K					Time south_north west_east	XLONG XLAT XTIME	float32
+FORCWLSM	Lowest model wind speed into land surface model	False		lowest model wind speed into LSM		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+FORCZLSM	Lowest model height above ground level (AGL) into land surface model	False		lowest model Z into LSM		m					Time south_north west_east	XLONG XLAT XTIME	float32
+GLW	Downward long wave flux at ground surface	False		DOWNWARD LONG WAVE FLUX AT GROUND SURFACE		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+GRAUPELNC	Accumulated total grid scale graupel	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED TOTAL GRID SCALE GRAUPEL		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+GRAUPEL_ACC_NC	Accumulated graupel water equivalent	True	accumulated over prior 60 minutes	ACCUMULATED GRAUPEL WATER EQUIVALENT OVER prec_acc_dt PERIODS OF TIME		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+GRDFLX	Ground heat flux	False		GROUND HEAT FLUX		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+GRPL_MAX	Maximum column-integrated graupel	False		MAX COL INT GRAUPEL		kg m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+HAILNC	Accumulated total grid scale hail	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED TOTAL GRID SCALE HAIL		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+HAIL_MAX2D	Maximum hail diameter entire column	False		MAX HAIL DIAMETER ENTIRE COLUMN		m					Time south_north west_east	XLONG XLAT XTIME	float32
+HAIL_MAXK1	Maximum hail diameter K=1	False		MAX HAIL DIAMETER K=1		m					Time south_north west_east	XLONG XLAT XTIME	float32
+HFX	Upward heat flux at the surface	False		UPWARD HEAT FLUX AT THE SURFACE		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+HFX_FORCE	Single-column model (SCM) ideal surface sensible heat flux	False		SCM ideal surface sensible heat flux		W m-2					Time		float32
+HFX_FORCE_TEND	Single-column model (SCM) ideal surface sensible heat flux tendency	False		SCM ideal surface sensible heat flux tendency		W m-2 s-1					Time		float32
+HGT	Terrain Height	False		Terrain Height		m					Time south_north west_east	XLONG XLAT XTIME	float32
+ISEEDARRAY_SPP_CONV	Array to hold seed for restart, RAND_PERT2	False		Array to hold seed for restart, RAND_PERT2							Time bottom_top		int32
+ISEEDARRAY_SPP_LSM	Array to hold seed for restart, RAND_PERT4	False		Array to hold seed for restart, RAND_PERT4							Time bottom_top		int32
+ISEEDARRAY_SPP_PBL	Array to hold seed for restart, RAND_PERT3	False		Array to hold seed for restart, RAND_PERT3							Time bottom_top		int32
+ISEEDARR_RAND_PERTURB	Array to hold seed for restart, RAND_PERT	False		Array to hold seed for restart, RAND_PERT							Time bottom_top		int32
+ISEEDARR_SKEBS	Array to hold seed for restart, stochastic kinetic-energy backscatter scheme (SKEBS)	False		Array to hold seed for restart, SKEBS							Time bottom_top		int32
+ISEEDARR_SPPT	Array to hold seed for restart, stochastically perturbed physics tendencies (SPPT)	False		Array to hold seed for restart, SPPT							Time bottom_top		int32
+ISLTYP	Dominant soil category	False		DOMINANT SOIL CATEGORY				1, 16	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16	sand loamy_sand sand_loam silt_loam silt loam sandy_clay_loam silty_clay_loam clay_loam sandy_clay silty_clay clay organic_material water bedrock other_land-ice	Time south_north west_east	XLONG XLAT XTIME	int32
+ITIMESTEP		False									Time		int32
+IVGTYP	Dominant vegetation category	False		DOMINANT VEGETATION CATEGORY				1, 20	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20	evergreen_needleleaf_forest evergreen_broadleaf_forest deciduous_needleleaf_forest deciduous_broadleaf_forest mixed_forests closed_shrublands open_shrublands woody_savannas savannas grasslands permanent_wetlands croplands urban_and_built-up cropland-natural_vegetation_mosaic snow_and_ice barren_or_sparsely_vegetated water wooded_tundra mixed_tundra barren_tundra	Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWDNB	Bucket for downwelling longwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING LONGWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWDNBC	Bucket for downwelling clear sky longwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING CLEAR SKY LONGWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWDNT	Bucket for downwelling longwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING LONGWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWDNTC	Bucket for downwelling clear sky longwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING CLEAR SKY LONGWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWUPB	Bucket for upwelling longwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING LONGWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWUPBC	Bucket for upwelling clear sky longwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING CLEAR SKY LONGWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWUPT	Bucket for upwelling longwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING LONGWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACLWUPTC	Bucket for upwelling clear sky longwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING CLEAR SKY LONGWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWDNB	Bucket for downwelling shortwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING SHORTWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWDNBC	Bucket for downwelling clear sky shortwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING CLEAR SKY SHORTWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWDNT	Bucket for downwelling shortwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING SHORTWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWDNTC	Bucket for downwelling clear sky shortwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR DOWNWELLING CLEAR SKY SHORTWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWUPB	Bucket for upwelling shortwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING SHORTWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWUPBC	Bucket for upwelling clear sky shortwave radiation flux at bottom	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING CLEAR SKY SHORTWAVE FLUX AT BOTTOM		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWUPT	Bucket for upwelling shortwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING SHORTWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_ACSWUPTC	Bucket for upwelling clear sky shortwave radiation flux at top	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR UPWELLING CLEAR SKY SHORTWAVE FLUX AT TOP		J m-2	1.0e9				Time south_north west_east	XLONG XLAT XTIME	int32
+I_RAINC	Bucket for convective rain	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR RAINC		mm	100				Time south_north west_east	XLONG XLAT XTIME	int32
+I_RAINNC	Bucket for non-convective rain	True	accumulated since 1979-10-01 00:00:00	BUCKET FOR RAINNC		mm	100				Time south_north west_east	XLONG XLAT XTIME	int32
+LAI	Leaf area index	False		LEAF AREA INDEX		m2 m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LAKEMASK	Lake mask (1 for lake, 0 for non-lake)	False		LAKE MASK (1 FOR LAKE, 0 FOR NON-LAKE)				0.0, 1.0	0.0, 1.0	non-lake lake	Time south_north west_east	XLONG XLAT XTIME	float32
+LANDMASK	Land mask (1 for land, 0 for water)	False		LAND MASK (1 FOR LAND, 0 FOR WATER)				0.0, 1.0	0.0, 1.0	water land	Time south_north west_east	XLONG XLAT XTIME	float32
+LH	Latent heat flux at the surface	False		LATENT HEAT FLUX AT THE SURFACE		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LH_FORCE	Single-column model (SCM) ideal surface latent heat flux	False		SCM ideal surface latent heat flux		W m-2					Time		float32
+LH_FORCE_TEND	Single-column model (SCM) ideal surface latent heat flux tendency	False		SCM ideal surface latent heat flux tendency		W m-2 s-1					Time		float32
+LU_INDEX	Land use category	False		LAND USE CATEGORY				1, 20	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20	evergreen_needleleaf_forest evergreen_broadleaf_forest deciduous_needleleaf_forest deciduous_broadleaf_forest mixed_forests closed_shrublands open_shrublands woody_savannas savannas grasslands permanent_wetlands croplands urban_and_built-up cropland-natural_vegetation_mosaic snow_and_ice barren_or_sparsely_vegetated water wooded_tundra mixed_tundra barren_tundra	Time south_north west_east	XLONG XLAT XTIME	float32
+LWDNB	Instantaneous downwelling longwave radiation flux at bottom	False		INSTANTANEOUS DOWNWELLING LONGWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWDNBC	Instantaneous downwelling clear sky longwave radiation flux at bottom	False		INSTANTANEOUS DOWNWELLING CLEAR SKY LONGWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWDNT	Instantaneous downwelling longwave radiation flux at top	False		INSTANTANEOUS DOWNWELLING LONGWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWDNTC	Instantaneous downwelling clear sky longwave radiation flux at top	False		INSTANTANEOUS DOWNWELLING CLEAR SKY LONGWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWUPB	Instantaneous upwelling longwave radiation flux at bottom	False		INSTANTANEOUS UPWELLING LONGWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWUPBC	Instantaneous upwelling clear sky longwave radiation flux at bottom	False		INSTANTANEOUS UPWELLING CLEAR SKY LONGWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWUPT	Instantaneous upwelling longwave radiation flux at top	False		INSTANTANEOUS UPWELLING LONGWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+LWUPTC	Instantaneous upwelling clear sky longwave radiaton flux at top	False		INSTANTANEOUS UPWELLING CLEAR SKY LONGWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+MAPFAC_M	Map scale factor on mass grid	False		Map scale factor on mass grid							Time south_north west_east	XLONG XLAT XTIME	float32
+MAPFAC_MX	Map scale factor on mass grid, x direction	False		Map scale factor on mass grid, x direction							Time south_north west_east	XLONG XLAT XTIME	float32
+MAPFAC_MY	Map scale factor on mass grid, y direction	False		Map scale factor on mass grid, y direction							Time south_north west_east	XLONG XLAT XTIME	float32
+MAPFAC_U	Map scale factor on u-grid	False		Map scale factor on u-grid							Time south_north west_east_stag	XLONG_U XLAT_U XTIME	float32
+MAPFAC_UX	Map scale factor on u-grid, x direction	False		Map scale factor on u-grid, x direction							Time south_north west_east_stag	XLONG_U XLAT_U XTIME	float32
+MAPFAC_UY	Map scale factor on u-grid, y direction	False		Map scale factor on u-grid, y direction							Time south_north west_east_stag	XLONG_U XLAT_U XTIME	float32
+MAPFAC_V	Map scale factor on v-grid	False		Map scale factor on v-grid							Time south_north_stag west_east	XLONG_V XLAT_V XTIME	float32
+MAPFAC_VX	Map scale factor on v-grid, x direction	False		Map scale factor on v-grid, x direction							Time south_north_stag west_east	XLONG_V XLAT_V XTIME	float32
+MAPFAC_VY	Map scale factor on v-grid, y direction	False		Map scale factor on v-grid, y direction							Time south_north_stag west_east	XLONG_V XLAT_V XTIME	float32
+MAX_MSTFX	Maximum map factor in domain	False		Max map factor in domain							Time		float32
+MAX_MSTFY	Maximum map factor in domain	False		Max map factor in domain							Time		float32
+MF_VX_INV	Inverse map scale factor on v-grid, x direction	False		Inverse map scale factor on v-grid, x direction							Time south_north_stag west_east	XLONG_V XLAT_V XTIME	float32
+MLCAPE	Mixed-layer convective available potential energy (CAPE)	False		MIXED-LAYER CAPE		J kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+MLCINH	Mixed-layer convective inhibition up to the level of free convection (CINH)	False		MIXED-LAYER CINH		J kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+MLLCL	Mixed-layer lifting condensation level (LCL)	False		MIXED-LAYER LCL		m					Time south_north west_east	XLONG XLAT XTIME	float32
+MU	Perturbation dry air mass in column	False		perturbation dry air mass in column		Pa					Time south_north west_east	XLONG XLAT XTIME	float32
+MUB	Base state dry air mass in column	False		base state dry air mass in column		Pa					Time south_north west_east	XLONG XLAT XTIME	float32
+MUCAPE	Most-unstable convective available potential energy (CAPE)	False		MOST-UNSTABLE CAPE		J kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+MUCINH	Most-unstable convective inhibition up to the level of free convection (CINH)	False		MOST-UNSTABLE CINH		J kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+MULCL	Most-unstable lifting condensation level (LCL)	False		MOST-UNSTABLE LCL		m					Time south_north west_east	XLONG XLAT XTIME	float32
+NEST_POS	-	False		-		-					Time south_north west_east	XLONG XLAT XTIME	float32
+NOAHRES	Residual of the NOAH surface energy budget	False		RESIDUAL OF THE NOAH SURFACE ENERGY BUDGET		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+O3RAD	Radiation 3D ozone	False		RADIATION 3D OZONE		ppmv					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+OLR	Top-of-atmosphere (TOA) outgoing longwave radiation	False		TOA OUTGOING LONG WAVE		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+P	Perturbation pressure	False		perturbation pressure		Pa					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+P00	Base state pressure	False		BASE STATE PRESURE		Pa					Time		float32
+PB	Base state pressure	False		BASE STATE PRESSURE		Pa					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+PBLH	Planetary boundary layer height	False		PBL HEIGHT		m					Time south_north west_east	XLONG XLAT XTIME	float32
+PC	Perturbation dry air mass in column	False		perturbation dry air mass in column		Pa					Time south_north west_east	XLONG XLAT XTIME	float32
+PCB	Base state dry air mass in column	False		base state dry air mass in column		Pa					Time south_north west_east	XLONG XLAT XTIME	float32
+PH	Perturbation geopotential	False		perturbation geopotential		m2 s-2					Time bottom_top_stag south_north west_east	XLONG XLAT XTIME	float32
+PHB	Base-state geopotential	False		base-state geopotential		m2 s-2					Time bottom_top_stag south_north west_east	XLONG XLAT XTIME	float32
+PREC_ACC_C	Accumulated cumulus precipitation	True	accumulated over prior 60 minutes	ACCUMULATED CUMULUS PRECIPITATION OVER prec_acc_dt PERIODS OF TIME		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+PREC_ACC_NC	Accumulated grid scale precipitation	True	accumulated over prior 60 minutes	ACCUMULATED GRID SCALE  PRECIPITATION OVER prec_acc_dt PERIODS OF TIME		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+PSFC	Surface pressure	False		SFC PRESSURE		Pa					Time south_north west_east	XLONG XLAT XTIME	float32
+P_HYD	Hydrostatic pressure	False		hydrostatic pressure		Pa					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+P_STRAT	Base state pressure at bottom of stratosphere	False		BASE STATE PRESSURE AT BOTTOM OF STRATOSPHERE		Pa					Time		float32
+P_TOP	Pressure top of the model	False		PRESSURE TOP OF THE MODEL		Pa					Time		float32
+Q2	Water vapor mixing ratio at 2 meters	False		QV at 2 M		kg kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+QCLOUD	Cloud water mixing ratio	False		Cloud water mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QFX	Upward moisture flux at the surface	False		UPWARD MOISTURE FLUX AT THE SURFACE		kg m-2 s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+QGRAUP	Graupel mixing ratio	False		Graupel mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QICE	Ice mixing ratio	False		Ice mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QNICE	Ice number concentration	False		Ice Number concentration		kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QNRAIN	Rain number concentration	False		Rain Number concentration		kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QRAIN	Rain water mixing ratio	False		Rain water mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QRFS	Accumulated baseflow	True	accumulated since 1979-10-01 00:00:00	sum baseflow		m					Time south_north west_east	XLONG XLAT XTIME	float32
+QSLAT	Accumulated groundwater lateral flow	True	accumulated since 1979-10-01 00:00:00	sum lateral flow		m					Time south_north west_east	XLONG XLAT XTIME	float32
+QSNOW	Snow mixing ratio	False		Snow mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+QSPRINGS	Accumulated seeping water	True	accumulated since 1979-10-01 00:00:00	sum seeping water		m					Time south_north west_east	XLONG XLAT XTIME	float32
+QVAPOR	Water vapor mixing ratio	False		Water vapor mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+RAINC	Accumulated total cumulus precipitation	True	accumulated since last bucket_mm (100 mm) reset	ACCUMULATED TOTAL CUMULUS PRECIPITATION	Actual accumulated value computed with equation: RAINC = RAINC + I_RAINC * 100	mm					Time south_north west_east	XLONG XLAT XTIME	float32
+RAINNC	Accumulated total grid scale precipitation	True	accumulated since last bucket_mm (100 mm) reset	ACCUMULATED TOTAL GRID SCALE PRECIPITATION	Actual accumulated value computed with equation: RAINNC = RAINNC + I_RAINNC * 100	mm					Time south_north west_east	XLONG XLAT XTIME	float32
+RAINNCV	Time-step nonconvective precipitation	False		TIME-STEP NONCONVECTIVE PRECIPITATION		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+RAINSH	Accumulated shallow cumulus precipitation	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED SHALLOW CUMULUS PRECIPITATION		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+RDN	Inverse d(eta) values between half (mass) levels	False		inverse d(eta) values between half (mass) levels							Time bottom_top		float32
+RDNW	Inverse d(eta) values between full (w) levels	False		inverse d(eta) values between full (w) levels							Time bottom_top		float32
+RDX	Inverse X grid length	False		INVERSE X GRID LENGTH		m-1					Time		float32
+RDY	Inverse Y grid length	False		INVERSE Y GRID LENGTH		m-1					Time		float32
+RECH	Accumulated water table recharge	True	accumulated since 1979-10-01 00:00:00	sum water table recharge		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+REFD_MAX	Maximum derived radar reflectivity	False		MAX DERIVED RADAR REFL		dbZ					Time south_north west_east	XLONG XLAT XTIME	float32
+REFL_10CM	Radar reflectivity (lambda = 10 cm) at the lowest model level	False		Radar reflectivity (lamda = 10 cm)		dBZ					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+REFL_1KM_AGL	1-km above ground level (AGL) reflectivity	False		1KM AGL REFLECTIVITY		dbZ					Time south_north west_east	XLONG XLAT XTIME	float32
+REFL_COM	Composite reflectivity	False		COMPOSITE REFLECTIVITY		dbZ					Time south_north west_east	XLONG XLAT XTIME	float32
+RESM	Time weight constant for small steps	False		TIME WEIGHT CONSTANT FOR SMALL STEPS							Time		float32
+SAVE_TOPO_FROM_REAL	1=original topo from real/0=topo modified by WRF	False		1=original topo from real/0=topo modified by WRF		flag		0, 1	0, 1	original_topo_from_real top_modified_by_WRF	Time		int32
+SBCAPE	Surface-based convective available potential energy (CAPE)	False		SURFACE-BASED CAPE		J kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+SBCINH	Surface-based convective inhibition up to the level of free convection (CINH)	False		SURFACE-BASED CINH		J kg-1					Time south_north west_east	XLONG XLAT XTIME	float32
+SBLCL	Surface-based lifting condensation level (LCL)	False		SURFACE-BASED LCL		m					Time south_north west_east	XLONG XLAT XTIME	float32
+SEAICE	Sea ice flag	False		SEA ICE FLAG							Time south_north west_east	XLONG XLAT XTIME	float32
+SFROFF	Surface runoff	False		SURFACE RUNOFF		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+SH2O	Soil liquid water	False		SOIL LIQUID WATER		m3 m-3					Time soil_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+SHDMAX	Annual maximum vegetation fraction	False		ANNUAL MAX VEG FRACTION		1					Time south_north west_east	XLONG XLAT XTIME	float32
+SHDMIN	Annual minimum vegetation fraction	False		ANNUAL MIN VEG FRACTION		1					Time south_north west_east	XLONG XLAT XTIME	float32
+SINALPHA	Local sine of map rotation	False		Local sine of map rotation							Time south_north west_east	XLONG XLAT XTIME	float32
+SMCWTD	Deep soil moisture	False		deep soil moisture		m3 m-3					Time south_north west_east	XLONG XLAT XTIME	float32
+SMOIS	Soil moisture	False		SOIL MOISTURE		m3 m-3					Time soil_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+SNICE	Snow layer ice	False		snow layer ice		mm					Time snow_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+SNLIQ	Snow layer liquid	False		snow layer liquid		mm					Time snow_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+SNOALB	Annual maximum snow albedo in fraction	False		ANNUAL MAX SNOW ALBEDO IN FRACTION		1					Time south_north west_east	XLONG XLAT XTIME	float32
+SNOW	Snow water equivalent	False		SNOW WATER EQUIVALENT		kg m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SNOWC	Snow cover fraction	False		FLAG INDICATING SNOW COVERAGE (1 FOR SNOW COVER)				0.0, 1.0			Time south_north west_east	XLONG XLAT XTIME	float32
+SNOWENERGY	Energy content in snow relative to 273.16 K	False		energy content in snow relative to 273.16		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SNOWH	Physical snow depth	False		PHYSICAL SNOW DEPTH		m					Time south_north west_east	XLONG XLAT XTIME	float32
+SNOWNC	Accumulated total grid scale snow and ice	True	accumulated since 1979-10-01 00:00:00	ACCUMULATED TOTAL GRID SCALE SNOW AND ICE		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+SNOW_ACC_NC	Accumulated snow water equivalent	True	accumulated over prior 60 minutes	ACCUMULATED SNOW WATER EQUIVALENT OVER prec_acc_dt PERIODS OF TIME		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+SOILENERGY	Energy content in soil relative to 273.16 K	False		energy content in soil relative to 273.16		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SR	Fraction of frozen precipitation	False		fraction of frozen precipitation		1					Time south_north west_east	XLONG XLAT XTIME	float32
+SRH01	0-1km storm-relative helicity	False		0-1km storm-relative helicity		m2 s-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SRH03	0-3km storm-relative helicity	False		0-3km storm-relative helicity		m2 s-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SST	Sea surface temperature	False		SEA SURFACE TEMPERATURE		K					Time south_north west_east	XLONG XLAT XTIME	float32
+SSTSK	Skin sea surface temperature	False		SKIN SEA SURFACE TEMPERATURE		K					Time south_north west_east	XLONG XLAT XTIME	float32
+SST_INPUT	Sea surface temperature from WRFLOWINPUT file	False		SEA SURFACE TEMPERATURE FROM WRFLOWINPUT FILE		K					Time south_north west_east	XLONG XLAT XTIME	float32
+SWDNB	Instantaneous downwelling shortwave radiation flux at bottom	False		INSTANTANEOUS DOWNWELLING SHORTWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWDNBC	Instantaneous downwelling clear sky shortwave radiation flux at bottom	False		INSTANTANEOUS DOWNWELLING CLEAR SKY SHORTWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWDNT	Instantaneous downwelling shortwave radiation flux at top	False		INSTANTANEOUS DOWNWELLING SHORTWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWDNTC	Instantaneous downwelling clear sky shortwave radiation flux at top	False		INSTANTANEOUS DOWNWELLING CLEAR SKY SHORTWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWDOWN	Downward shortwave radiation flux at ground surface	False		DOWNWARD SHORT WAVE FLUX AT GROUND SURFACE		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWNORM	Normal shortwave radiation flux at ground surface (slope-dependent)	False		NORMAL SHORT WAVE FLUX AT GROUND SURFACE (SLOPE-DEPENDENT)		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWUPB	Instantaneous upwelling shortwave radiation flux at bottom	False		INSTANTANEOUS UPWELLING SHORTWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWUPBC	Instantaneous upwelling clear sky shortwave radiation flux at bottom	False		INSTANTANEOUS UPWELLING CLEAR SKY SHORTWAVE FLUX AT BOTTOM		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWUPT	Instantaneous upwelling shortwave radiation flux at top	False		INSTANTANEOUS UPWELLING SHORTWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+SWUPTC	Instantaneous upwelling clear sky shortwave radiation flux at top	False		INSTANTANEOUS UPWELLING CLEAR SKY SHORTWAVE FLUX AT TOP		W m-2					Time south_north west_east	XLONG XLAT XTIME	float32
+T	Perturbation potential temperature (theta-t0)	False		perturbation potential temperature (theta-t0)		K					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
+T00	Base state temperature	False		BASE STATE TEMPERATURE		K					Time		float32
+T2	Temperature at 2 meters	False		TEMP at 2 M		K					Time south_north west_east	XLONG XLAT XTIME	float32
+TD2	Dewpoint temperature at 2 meters	False		2-m dewpoint temperature		K					Time south_north west_east	XLONG XLAT XTIME	float32
+TG	Bulk ground temperature	False		bulk ground temperature		K					Time south_north west_east	XLONG XLAT XTIME	float32
+TH2	Potential temperature at 2 meters	False		POT TEMP at 2 M		K					Time south_north west_east	XLONG XLAT XTIME	float32
+THIS_IS_AN_IDEAL_RUN	T/F flag: this is an ARW ideal simulation	False		T/F flag: this is an ARW ideal simulation		-		0, 1	0, 1	not_ideal_simulation ideal_simulation	Time		int32
+TISO	Temperature at which the base perturbation potential temperature turns constant	False		TEMP AT WHICH THE BASE T TURNS CONST		K					Time		float32
+TLP	Base state lapse rate	False		BASE STATE LAPSE RATE							Time		float32
+TLP_STRAT	Base state lapse rate (DT/D(LN(P)) in stratosphere	False		BASE STATE LAPSE RATE (DT/D(LN(P)) IN STRATOSPHERE		K					Time		float32
+TMN	Soil temperature at lower boundary	False		SOIL TEMPERATURE AT LOWER BOUNDARY		K					Time south_north west_east	XLONG XLAT XTIME	float32
+TRAD	Surface radiative temperature	False		surface radiative temperature		K					Time south_north west_east	XLONG XLAT XTIME	float32
+TSK	Surface skin temperature	False		SURFACE SKIN TEMPERATURE		K					Time south_north west_east	XLONG XLAT XTIME	float32
+TSK_FORCE	Single-column model (SCM) ideal surface skin temperature	False		SCM ideal surface skin temperature		W m-2					Time		float32
+TSK_FORCE_TEND	Single-column model (SCM) ideal surface skin temperature tendency	False		SCM ideal surface skin temperature tendency		W m-2 s-1					Time		float32
+TSLB	Soil temperature	False		SOIL TEMPERATURE		K					Time soil_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+TSNO	Snow temperature	False		snow temperature		K					Time snow_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+TV	Vegetation leaf temperature	False		vegetation leaf temperature		K					Time south_north west_east	XLONG XLAT XTIME	float32
+Times	Model time in string format (YYYY-MM-DD_hh:mm:ss)	False									Time		bytes8
+U	U-component of wind with respect to model grid	False		x-wind component		m s-1					Time bottom_top south_north west_east_stag	XLONG_U XLAT_U XTIME	float32
+U10	U-component of wind at 10 meters with respect to model grid	False		U at 10 M		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+UDROFF	Underground runoff	False		UNDERGROUND RUNOFF		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+UP_HELI_MAX	Maximum updraft helicity	False		MAX UPDRAFT HELICITY		m2 s-2					Time south_north west_east	XLONG XLAT XTIME	float32
+USHR1	0-1km above ground level (AGL) U-component wind shear	False		0-1km AGL U-component Wind Shear		s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+USHR6	0-6km above ground level (AGL) U-component wind shear	False		0-6km AGL U-component Wind Shear		s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+UST	U* in similarity theory	False		U* IN SIMILARITY THEORY		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+U_BUNK	U-component of Bunkers storm motion	False		U-component of Bunkers storm motion		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+V	V-component of wind with respect to model grid	False		y-wind component		m s-1					Time bottom_top south_north_stag west_east	XLONG_V XLAT_V XTIME	float32
+V10	V-component of wind at 10 meters with respect to model grid	False		V at 10 M		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+VAR	Orographic variance	False		OROGRAPHIC VARIANCE							Time south_north west_east	XLONG XLAT XTIME	float32
+VAR_SSO	Variance of subgrid-scale orography	False		variance of subgrid-scale orography		m2					Time south_north west_east	XLONG XLAT XTIME	float32
+VEGFRA	Vegetation fraction	False		VEGETATION FRACTION		1					Time south_north west_east	XLONG XLAT XTIME	float32
+VSHR1	0-1km above ground level (AGL) V-component wind shear	False		0-1km AGL V-component Wind Shear		s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+VSHR6	0-6km above ground level (AGL) V-component wind shear	False		0-6km AGL V-component Wind Shear		s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+V_BUNK	V-component of Bunkers storm motion	False		V-component of Bunkers storm motion		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+W	W-component of wind	False		z-wind component		m s-1					Time bottom_top_stag south_north west_east	XLONG XLAT XTIME	float32
+WSPD10MAX	Wind speed maximum at 10 meters	False		WIND SPD MAX 10 M		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+W_DN_MAX	Maximum W-component of wind downdraft	False		MAX Z-WIND DOWNDRAFT		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+W_MEAN	Hourly mean W-component of wind	False		HOURLY MEAN Z-WIND		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+W_UP_MAX	Maximum W-component of wind updraft	False		MAX Z-WIND UPDRAFT		m s-1					Time south_north west_east	XLONG XLAT XTIME	float32
+XICEM	Sea ice flag (previous step)	False		SEA ICE FLAG (PREVIOUS STEP)							Time south_north west_east	XLONG XLAT XTIME	float32
+XLAND	Land mask (1 for land, 2 for water)	False		LAND MASK (1 FOR LAND, 2 FOR WATER)				1.0, 2.0	1, 2	land water	Time south_north west_east	XLONG XLAT XTIME	float32
+XLAT	Latitude, south is negative	False		LATITUDE, SOUTH IS NEGATIVE		degree_north					Time south_north west_east	XLONG XLAT	float32
+XLAT_U	Latitude, south is negative	False		LATITUDE, SOUTH IS NEGATIVE		degree_north					Time south_north west_east_stag	XLONG_U XLAT_U	float32
+XLAT_V	Latitude, south is negative	False		LATITUDE, SOUTH IS NEGATIVE		degree_north					Time south_north_stag west_east	XLONG_V XLAT_V	float32
+XLONG	Longitude, west is negative	False		LONGITUDE, WEST IS NEGATIVE		degree_east					Time south_north west_east	XLONG XLAT	float32
+XLONG_U	Longitude, west is negative	False		LONGITUDE, WEST IS NEGATIVE		degree_east					Time south_north west_east_stag	XLONG_U XLAT_U	float32
+XLONG_V	Longitude, west is negative	False		LONGITUDE, WEST IS NEGATIVE		degree_east					Time south_north_stag west_east	XLONG_V XLAT_V	float32
+XTIME	Minutes since 1979-10-01 00:00:00	False		minutes since 1979-10-01 00:00:00		minutes since 1979-10-01 00:00:00					Time		float32
+ZETATOP	ZETA at model top	False		ZETA AT MODEL TOP							Time		float32
+ZNU	Eta values on half (mass) levels	False		eta values on half (mass) levels							Time bottom_top		float32
+ZNW	Eta values on full (w) levels	False		eta values on full (w) levels							Time bottom_top_stag		float32
+ZS	Depths of centers of soil layers	False		DEPTHS OF CENTERS OF SOIL LAYERS		m					Time soil_layers_stag		float32
+ZSNSO	Layer-bottom depth from snow surface	False		layer-bottom depth from snow surf		m					Time snso_layers_stag south_north west_east	XLONG XLAT XTIME	float32
+ZWT	Water table depth	False		water table depth		m					Time south_north west_east	XLONG XLAT XTIME	float32
