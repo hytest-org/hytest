@@ -49,7 +49,7 @@ cluster workers cannot read or write to (for example) `/home/username/file.txt`
 because `/home` is not availabie; no filesystems are available to node
 workers on a cloud cluster.
 
-What does this mean for AWS credentials?  Typicall, those credentials are
+What does this mean for AWS credentials?  Typically, those credentials are
 read from a special configuration file in your home folder (`/home/username/.aws/credentials`).
 Your interactive session in the jupyter notebook will be able to read that, but
 **NONE** of the workers in the cluster will be able to.  We have to pass
@@ -74,12 +74,13 @@ filesystem).
 
 ### AWS Credentials as Environment Variables
 
-The common way to do give workers AWS credentials is to configure manually
+The common way to give workers AWS credentials is to configure manually
 and store them in special "environment" variables.  Environment variables are
-a part of the part of the execution environment which holds the running
+a part of the execution environment which holds the running
 program -- so they are included in the memory footprint of the program/script.
 This will be duplicated to all workers when they begin execution. The trick,
-then, is to correctly set up those environment variables in advance.
+then, is to correctly set up those environment variables in advance of starting
+the cluster.
 
 We can do this if we manually parse the credentials file and set environment
 variables based on what we find.
@@ -151,7 +152,7 @@ gateway = Gateway()
 options = gateway.cluster_options()
 options.conda_environment='users/pangeo'
 options.profile = 'Medium Worker'
-### SET os.environ as above AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_S3_ENDPOINT
+### SET os.environ as above: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_S3_ENDPOINT
 options.environment_vars = dict(os.environ)
 #  ^^^^^^^^^^^^^^^^^^^^^^     This tells the cluster what OS Environment variables
 # you want to propagate.  This example propagates *ALL* os.environ variables.
@@ -165,7 +166,7 @@ print(client.dashboard_link)
 
 ### Trust, but Verify
 
-The following simple code block with verify what a cluster worker thinks of
+The following simple code block will verify what a cluster worker thinks of
 as the AWS credential:
 
 ```python
