@@ -13,6 +13,8 @@ ACLWUPTC	Accumulated upwelling clear sky longwave radiation flux at top
 ACPAHLSM	Accumulated total precipitation heat flux advected to surface
 ACQRF	Accumulated groundwater baseflow
 ACQLAT	Accumulated groundwater lateral flow
+ACRUNSB	Accumulated subsurface runoff
+ACRUNSF	Accumulated surface runoff
 ACSAGB	Accumulated solar radiation absorbed by bare ground
 ACSAGV	Accumulated solar radiation absorbed by vegetated ground
 ACSNOM	Accumulated total liquid water out of the snowpack
