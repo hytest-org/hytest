@@ -209,8 +209,8 @@ QICE	Ice mixing ratio	False		Ice mixing ratio		kg kg-1					Time bottom_top south
 QNICE	Ice number concentration	False		Ice Number concentration		kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
 QNRAIN	Rain number concentration	False		Rain Number concentration		kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
 QRAIN	Rain water mixing ratio	False		Rain water mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
-QRFS	Accumulated baseflow	True	accumulated since 1979-10-01 00:00:00	sum baseflow		m					Time south_north west_east	XLONG XLAT XTIME	float32
-QSLAT	Accumulated groundwater lateral flow	True	accumulated since 1979-10-01 00:00:00	sum lateral flow		m					Time south_north west_east	XLONG XLAT XTIME	float32
+QRFS	Accumulated baseflow	True	accumulated since 1979-10-01 00:00:00	sum baseflow		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+QSLAT	Accumulated groundwater lateral flow	True	accumulated since 1979-10-01 00:00:00	sum lateral flow		mm					Time south_north west_east	XLONG XLAT XTIME	float32
 QSNOW	Snow mixing ratio	False		Snow mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
 QSPRINGS	Accumulated seeping water	True	accumulated since 1979-10-01 00:00:00	sum seeping water		m					Time south_north west_east	XLONG XLAT XTIME	float32
 QVAPOR	Water vapor mixing ratio	False		Water vapor mixing ratio		kg kg-1					Time bottom_top south_north west_east	XLONG XLAT XTIME	float32
