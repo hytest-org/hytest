@@ -45,8 +45,8 @@ ACQLAT	Accumulated groundwater lateral flow	True	accumulated over prior 60 minut
 ACQRF	Accumulated groundwater baseflow	True	accumulated over prior 60 minutes	accumulated baseflow		mm					Time south_north west_east	XLONG XLAT XTIME	float32
 ACRAINLSM	Accumulated liquid precipitation into land surface model	True	accumulated over prior 60 minutes	acccumlated RAINLSM		mm					Time south_north west_east	XLONG XLAT XTIME	float32
 ACRAINSNOW	Accumulated rain on snow pack	True	accumulated over prior 60 minutes	acccumlated rain on snow pack		mm					Time south_north west_east	XLONG XLAT XTIME	float32
-ACRUNSB	Accumulated surface runoff	True	accumulated over prior 60 minutes	acccumlated RUNSF		mm					Time south_north west_east	XLONG XLAT XTIME	float32
-ACRUNSF	Accumulated subsurface runoff	True	accumulated over prior 60 minutes	acccumlated RUNSB		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACRUNSB	Accumulated subsurface runoff	True	accumulated over prior 60 minutes	acccumlated RUNSF		mm					Time south_north west_east	XLONG XLAT XTIME	float32
+ACRUNSF	Accumulated surface runoff	True	accumulated over prior 60 minutes	acccumlated RUNSB		mm					Time south_north west_east	XLONG XLAT XTIME	float32
 ACSAGB	Accumulated solar radiation absorbed by bare ground	True	accumulated over prior 60 minutes	acccumlated SAG under vegetation		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
 ACSAGV	Accumulated solar radiation absorbed by vegetated ground	True	accumulated over prior 60 minutes	acccumlated SAG in bare section		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
 ACSAV	Accumulated solar radiation absorbed by vegetated fraction	True	accumulated over prior 60 minutes	acccumlated SAV		kJ m-2					Time south_north west_east	XLONG XLAT XTIME	float32
