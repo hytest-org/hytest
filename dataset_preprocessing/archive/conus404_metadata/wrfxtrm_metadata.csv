@@ -1,0 +1,38 @@
+varname	long_name	description	units	dimensions	coordinates	datatype
+Q2MAX	Daily maximum water vapor mixing ratio at 2 meters	MAXIMUM WATER VAPOR MIX. RAT. AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	kg kg-1	Time south_north west_east	XLONG XLAT XTIME	float32
+Q2MEAN	Daily mean water vapor mixing ratio at 2 meters	MEAN WATER VAPOR MIX. RAT. AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	kg kg-1	Time south_north west_east	XLONG XLAT XTIME	float32
+Q2MIN	Daily minimum water vapor mixing ratio at 2 meters	MINIMUM WATER VAPOR MIX. RAT. AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	kg kg-1	Time south_north west_east	XLONG XLAT XTIME	float32
+Q2STD	Daily standard deviation of water vapor mixing ratio at 2 meters	STANDARD DEV. WATER VAPOR MIX. RAT. AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	kg kg-1	Time south_north west_east	XLONG XLAT XTIME	float32
+RAINCVMAX	Daily maximum cumulus precipitation flux	MAXIMUM CUMULUS PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	kg m-2 s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+RAINCVMEAN	Daily mean cumulus precipitation flux	MEAN CUMULUS PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	kg m-2 s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+RAINCVSTD	Daily standard deviation of cumulus precipitation flux	STANDARD DEV. CUMULUS PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	kg m-2 s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+RAINNCVMAX	Daily maximum grid scale precipitation flux	MAXIMUM GRID SCALE PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	kg m-2 s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+RAINNCVMEAN	Daily mean grid scale precipitation flux	MEAN GRID SCALE PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	kg m-2 s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+RAINNCVSTD	Daily standard deviation of grid scale precipitation	STANDARD DEV. GRID SCALE PRECIPITATION IN FLUX DIAGNOSTIC OUTPUT INTERVAL	kg m-2 s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+SKINTEMPMAX	Daily maximum skin temperature	MAXIMUM SKIN TEMPERATURE IN DIAGNOSTIC OUTPUT INTERVAL	K	Time south_north west_east	XLONG XLAT XTIME	float32
+SKINTEMPMEAN	Daily mean skin temperature	MEAN SKIN TEMPERATURE IN DIAGNOSTIC OUTPUT INTERVAL	K	Time south_north west_east	XLONG XLAT XTIME	float32
+SKINTEMPMIN	Daily minimum skin temperature	MINIMUM SKIN TEMPERATURE IN DIAGNOSTIC OUTPUT INTERVAL	K	Time south_north west_east	XLONG XLAT XTIME	float32
+SKINTEMPSTD	Daily standard deviation of skin temperature	STANDARD DEV. OF SKIN TEMPERATURE IN CLWRF HOURS	K	Time south_north west_east	XLONG XLAT XTIME	float32
+SPDUV10MAX	Daily maximum wind speed at 10 meters	MAXIMUM WIND SPEED AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+SPDUV10MEAN	Daily mean wind speed at 10 meters	MEAN WIND SPEED AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+SPDUV10STD	Daily standard deviation of wind speed at 10 meters	STANDARD DEV. WIND SPEED AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+T2MAX	Daily maximum temperature at 2 meters	MAXIMUM TEMPERATURE AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	K	Time south_north west_east	XLONG XLAT XTIME	float32
+T2MEAN	Daily mean temperature at 2 meters	MEAN TEMPERATURE AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	K	Time south_north west_east	XLONG XLAT XTIME	float32
+T2MIN	Daily minimum temperature at 2 meters	MINIMUM TEMPERATURE AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	K	Time south_north west_east	XLONG XLAT XTIME	float32
+T2STD	Daily standard deviation of temperature at 2 meters	STANDARD DEV. TEMPERATURE AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	k	Time south_north west_east	XLONG XLAT XTIME	float32
+TQ2MAX	Time of daily maximum water vapor mixing ratio at 2 meters	TIME OF MAXIMUM WATER VAPOR MIX. RAT. AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TQ2MIN	Time of daily minimum water vapor mixing ratio at 2 meters	TIME OF MINIMUM WATER VAPOR MIX. RAT. AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TRAINCVMAX	Time of daily maximum cumulus precipitation flux	TIME OF MAXIMUM CUMULUS PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TRAINNCVMAX	Time of daily maximum grid scale precipitation flux	TIME OF MAXIMUM GRID SCALE PRECIPITATION FLUX IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TSKINTEMPMAX	Time of daily maximum skin temperature	TIME OF MAXIMUM SKIN TEMPERATURE IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TSKINTEMPMIN	Time of daily minimum skin temperature	TIME OF MINIMUM SKIN TEMPERATURE IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TSPDUV10MAX	Time of daily maximum wind speed at 10 meters	TIME OF MAXIMUM WIND SPEED AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TT2MAX	Time of daily maximum temperature at 2 meters	TIME OF MAXIMUM TEMPERATURE AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+TT2MIN	Time of daily minimum temperature at 2 meters	TIME OF MINIMUM TEMPERATURE AT 2M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	minutes since 1979-10-01 00:00:00	Time south_north west_east	XLONG XLAT XTIME	float32
+Times	Model time in string format (YYYY-MM-DD_hh:mm:ss)			Time		bytes8
+U10MAX	Daily maximum U-component of wind at 10 meters with respect to model grid	MAXIMUM U AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+U10MEAN	Daily mean U-component of wind at 10 meters with respect to model grid	MEAN U AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+U10STD	Daily standard deviation of U-component of wind at 10 meters with respect to model grid	STANDARD DEV. U AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+V10MAX	Daily maximum V-component of wind at 10 meters with respect to model grid	MAXIMUM V AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+V10MEAN	Daily mean V-component of wind at 10 meters with respect to model grid	MEAN V AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32
+V10STD	Daily standard deviation of V-component of wind at 10 meters with respect to model grid	STANDARD DEV. V AT 10M HEIGHT IN DIAGNOSTIC OUTPUT INTERVAL	m s-1	Time south_north west_east	XLONG XLAT XTIME	float32

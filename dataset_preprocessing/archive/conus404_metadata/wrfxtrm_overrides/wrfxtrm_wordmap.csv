@@ -1,0 +1,33 @@
+word	count	new_word
+10M	10	10 meter
+2M	12	2 meter
+AT	22	at
+CLWRF	1	
+CUMULUS	4	cumulus
+DEV.	8	deviation
+DIAGNOSTIC	35	diagnostic
+FLUX	8	flux
+GRID	4	grid
+HEIGHT	22	height
+HOURS	1	hours
+IN	36	in
+INTERVAL	35	interval
+MAXIMUM	14	maximum
+MEAN	8	mean
+MINIMUM	6	minimum
+MIX.	6	mixing
+OF	10	of
+OUTPUT	35	output
+PRECIPITATION	8	precipitation
+RAT.	6	ratio
+SCALE	4	scale
+SKIN	6	skin
+SPEED	4	speed
+STANDARD	8	standard
+TEMPERATURE	12	temperature
+TIME	9	time
+U	3	
+V	3	
+VAPOR	6	vapor
+WATER	6	water
+WIND	4	wind
