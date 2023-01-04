@@ -1,0 +1,3 @@
+varname	units
+I_RAINNC	mm
+XTIME	minutes since 1979-10-01 00:00:00
