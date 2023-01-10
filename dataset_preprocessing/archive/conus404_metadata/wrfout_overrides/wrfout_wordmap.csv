@@ -1,0 +1,449 @@
+Word	Count	New_word
+(1	4	
+(1-c1f)*(p0-pt)	1	
+(1-c1h)*(p0-pt)	1	
+(DT/D(LN(P))	1	
+(PREVIOUS	1	(previous
+(SLOPE-DEPENDENT)	1	(slope-dependent)
+(eta-bf)*(p0-pt)+pt,	1	
+(eta-bh)*(p0-pt)+pt,	1	
+(lamda	1	
+(mass)	3	
+(theta-t0)	1	
+(w)	3	
+-	1	
+/	2	
+0	2	
+0-1km	3	
+0-3km	1	
+0-6km	2	
+0:00:00	1	
+10	4	
+10/1/79	1	
+1=original	1	
+1KM	1	1-km
+2	4	
+2-m	1	
+273.16	2	
+2nd	3	
+3D	1	
+=	9	
+=>	4	
+ACCUMULATED	30	accumulated
+AGL	5	above ground level (AGL)
+ALBEDO	3	albedo
+AND	1	and
+ANGLE	1	angle
+ANNUAL	3	annual
+AREA	1	area
+ARW	1	
+AT	60	at
+Array	6	array
+BACKGROUND	1	background
+BASE	7	base
+BOTTOM	25	bottom
+BOUNDARY	1	boundary
+BUCKET	18	bucket
+BUDGET	1	budget
+Bunkers	2	
+CANOPY	1	canopy
+CAPE	3	convective available potential energy (CAPE)
+CATEGORY	3	category
+CENTERS	1	centers
+CINH	3	convective inhibition up to the level of free convection (CINH)
+CLEAR	24	clear
+CLOUD	1	cloud
+COL	1	column
+COLUMN	1	column
+COMPOSITE	1	composite
+COMPUTATIONAL	1	computational
+CONST	1	constant
+CONSTANT	1	constant
+COS	1	cosine
+COVER)	1	cover)
+COVERAGE	1	coverage
+CUMULUS	3	cumulus
+Cloud	1	cloud
+Coriolis	2	coriolis
+DEPTH	1	depth
+DEPTHS	1	depths
+DERIVED	1	derived
+DIAMETER	2	diameter
+DOMINANT	2	dominant
+DOWNDRAFT	1	downdraft
+DOWNWARD	2	downward
+DOWNWELLING	24	downwelling
+ECAN	1	net evaporation of canopy water (evap + sublim - dew - frost)
+EDIR	1	net soil evaporation or snowpack sublimation (evap or sublim - dew or frost)
+EFLXB	1	energy influx from soil bottom
+EMISSIVITY	1	emissivity
+ENERGY	1	energy
+ENTIRE	1	entire
+EQUIVALENT	3	equivalent
+ET	1	total evaporation
+ETRAN	1	plant transpiration
+EVB	1	latent heat flux over bare ground
+EVC	1	latent heat flux for canopy layer
+EVG	1	ground latent heat flux below canopy
+FILE	1	file
+FLAG	3	flag
+FLUX	58	flux
+FOR	26	for
+FRACTION	5	fraction
+FROM	1	from
+GHB	1	heat flux into soil or snowpack for bare ground
+GHV	1	heat flux into soil or snowpack under canopy
+GRAUPEL	3	graupel
+GRID	8	grid
+GROUND	5	ground
+Graupel	1	graupel
+HAIL	3	hail
+HEAT	6	heat
+HEIGHT	1	height
+HELICITY	1	helicity
+HOURLY	1	hourly
+Height	1	
+ICE	3	ice
+IN	3	in
+INDEX	1	index
+INDICATING	1	indicating
+INSTANTANEOUS	16	instantaneous
+INT	1	integrated
+INVERSE	2	inverse
+IRB	1	net longwave radiation for bare ground
+IRC	1	net longwave radiation from canopy
+IRG	1	net longwave radiation from ground below canopy
+IS	7	is
+Ice	2	ice
+Inverse	1	inverse
+K=1	1	
+LAKE	1	lake
+LAKE,	1	lake,
+LAND	3	land
+LAND,	2	land,
+LAPSE	2	lapse
+LATENT	2	latent
+LATITUDE,	4	latitude,
+LAYERS	2	layers
+LCL	3	lifting condensation level (LCL)
+LEAF	1	leaf
+LENGTH	2	length
+LIQUID	1	liquid
+LONG	2	long
+LONGITUDE,	3	longitude,
+LONGWAVE	24	longwave
+LOWER	1	lower
+LSM	5	land surface model
+LWDN	1	longwave downwelling radiation at land surface model 
+LWUP	1	longwave upwelling radiation at land surface model
+Local	2	local
+M	6	meters
+MASK	3	mask
+MAX	10	maximum
+MEAN	1	mean
+MELTED	1	melted
+MIN	1	minimum
+MIXED-LAYER	3	mixed-layer
+MODEL	2	model
+MOISTURE	2	moisture
+MOST-UNSTABLE	3	most-unstable
+Map	9	map
+Max	2	maximum
+NEGATIVE	7	negative
+NOAH	1	
+NON-LAKE)	1	non-lake)
+NONCONVECTIVE	1	nonconvective
+NORMAL	1	normal
+Number	2	number
+OF	10	of
+OROGRAPHIC	1	orographic
+OUTGOING	1	outgoing
+OVER	4	over
+OZONE	1	ozone
+P	1	pressure
+PAHB	1	precipitation advected energy to bare ground
+PAHG	1	precipitation advected energy to below canopy
+PAHV	1	precipitation advected energy to vegetation
+PBL	1	planetary boundary layer
+PERIODS	4	periods
+PHYSICAL	1	physical
+PONDING	1	surface ponding from complete pack melt
+POT	1	potential
+PRECIPITATION	6	precipitation
+PRESSURE	4	pressure
+PRESURE	1	pressure
+Q	1	mixing ratio
+QDEWC	1	canopy dew rate
+QDRIPR	1	canopy precipitation drip rate
+QDRIPS	1	drip (unloading) rate for intercepted snow
+QEVAC	1	canopy evaporation
+QFROC	1	canopy frost
+QFRZC	1	refreezing of canopy liquid water
+QINTR	1	canopy rain interception rate
+QINTS	1	canopy snow interception rate
+QMELTC	1	canopy snow melt
+QSNBOT	1	liquid water flux out of bottom of snowpack
+QSNFRO	1	snowpack frost
+QSNSUB	1	snowpack sublimation
+QSUBC	1	canopy snow sublimation
+QTHROR	1	canopy rain throughfall
+QTHROS	1	canopy snow throughfall
+QV	1	water vapor mixing ratio
+RADAR	1	radar
+RADIATION	1	radiation
+RAINC	1	convective rain
+RAINLSM	1	liquid precipitation into land surface model
+RAINNC	1	non-convective rain
+RAND_PERT	1	
+RAND_PERT2	1	
+RAND_PERT3	1	
+RAND_PERT4	1	
+RATE	2	rate
+REFL	1	reflectivity
+REFLECTIVITY	2	reflectivity
+RESIDUAL	1	residual
+RUNOFF	2	runoff
+RUNSB	1	subsurface runoff
+RUNSF	1	surface runoff
+Radar	1	radar
+Rain	2	rain
+SAG	2	solar radiation absorbed by ground
+SAV	1	solar radiation absorbed by vegetated fraction
+SCALE	5	scale
+SCM	6	single-column model (SCM)
+SEA	5	sea
+SFC	1	surface
+SHALLOW	1	shallow
+SHB	1	sensible heat flux at bare fraction
+SHC	1	sensible heat flux, canopy to atmosphere
+SHG	1	sensible heat flux from ground below canopy
+SHORT	2	short
+SHORTWAVE	24	shortwave
+SIMILARITY	1	similarity
+SKEBS	1	stochastic kinetic-energy backscatter scheme (SKEBS)
+SKIN	2	skin
+SKY	24	sky
+SMALL	1	small
+SNOW	8	snow
+SNOWLSM	1	
+SOIL	7	soil
+SOLAR	1	solar
+SOUTH	4	south
+SPD	1	speed
+SPPT	1	stochastically perturbed physics tendencies (SPPT)
+STATE	6	state
+STEP)	1	step)
+STEPS	1	steps
+STRATOSPHERE	2	stratosphere
+SURFACE	15	surface
+SURFACE-BASED	3	surface-based
+SWDN	1	shortwave down at land surface model
+SWUP	1	shortwave up at land surface model
+Shear	4	shear
+Snow	1	snow
+T	2	perturbation potential temperature
+T/F	1	
+TEMP	3	temperature
+TEMPERATURE	7	temperature
+THE	8	the
+THEORY	1	theory
+THICKNESSES	1	thickness
+TIME	5	time
+TIME-STEP	1	time-step
+TOA	1	top-of-atmosphere (TOA)
+TOP	26	top
+TOTAL	5	total
+TR	1	transpiration
+TURNS	1	turns
+Terrain	1	terrain
+U	1	U-component of wind
+U*	1	
+U-component	3	
+UNDERGROUND	1	underground
+UPDRAFT	2	updraft
+UPWARD	4	upward
+UPWELLING	24	upwelling
+USE	1	use
+V	1	V-component of wind
+V-component	3	
+VARIANCE	1	variance
+VEG	2	vegetation
+VEGETATION	2	vegetation
+WATER	5	water
+WATER)	2	water)
+WAVE	4	wave
+WEIGHT	1	weight
+WEST	3	west
+WHICH	1	which
+WIND	1	wind
+WRF	1	
+WRFLOWINPUT	1	
+Water	1	water
+Wind	4	wind
+X	1	
+Y	1	
+Z	1	height above ground level (AGL)
+Z-WIND	3	W-wind
+ZENITH	1	zenith
+ZETA	1	
+acccumlated	52	accumulated
+accumulated	2	
+air	4	
+an	1	
+at	5	
+bare	1	
+base	2	
+base-state	1	
+baseflow	2	
+between	4	
+bf	3	
+bf=0	1	
+bf=znw	1	
+bh	1	
+bh=0	1	
+bh=znu	1	
+bulk	1	
+by	1	
+c1f	1	
+c1h	1	
+c2f	1	
+c2h	1	
+c3f	1	
+c3h	1	
+c4f	1	
+c4h	1	
+cm)	1	
+column	4	
+component	3	
+concentration	2	
+constant	5	
+content	2	
+cosine	2	
+d	4	
+d(eta)	4	
+deep	1	
+depth	2	
+dewpoint	1	
+direction	7	
+domain	2	
+dry	4	
+energy	2	
+eta	2	
+eta,	2	
+extrapolation	5	
+factor	12	
+flag:	1	
+flow	2	
+flux	8	
+for	8	
+fraction	1	
+from	2	
+frozen	1	
+full	8	
+geopotential	2	
+grid	1	
+grid,	2	
+ground	2	
+half	8	
+heat	8	
+helicity	2	
+hold	6	
+hydrostatic	1	
+ice	2	
+ideal	7	
+in	9	
+intercepted	1	
+into	5	
+inverse	2	
+is	1	
+isobaric;	2	
+latent	3	
+lateral	2	
+latitude	2	
+layer	2	
+layer-bottom	1	
+leaf	1	
+levels	6	
+levels,	10	
+liquid	1	
+lower	1	
+lowest	5	
+map	5	
+mass	8	
+minutes	1	
+mixing	6	
+model	5	
+modified	1	
+moisture	1	
+motion	2	
+of	7	
+on	13	
+order	3	
+orography	1	
+pack	1	
+perturbation	5	
+potential	1	
+prec_acc_dt	4	
+precip	1	
+precipitation	1	
+pressure	2	
+radiative	1	radiative
+rain	1	
+ratio	6	
+real/0=topo	1	
+recharge	1	
+reflectivity	1	
+relative	2	
+restart,	6	
+rotation	2	
+scale	10	
+section	1	
+seed	6	
+seeping	1	
+sensible	3	
+sigma	2	
+simulation	1	
+since	1	
+sine	2	
+skin	2	
+snow	6	
+soil	2	
+speed	1	
+state	2	
+storm	2	
+storm-relative	2	
+stretching	2	
+subgrid-scale	1	
+sum	4	accumulated
+surf	1	surface
+surface	7	
+table	2	
+temperature	8	
+tendency	3	
+term	2	
+this	1	
+to	8	
+topo	1	
+total	4	
+u-grid	1	
+u-grid,	2	
+under	1	
+upper	1	
+using	4	
+v-grid	1	
+v-grid,	3	
+values	6	
+vapor	1	
+variance	1	
+vegetation	2	
+vertical	2	
+water	5	
+weight	2	
+wind	1	
+x	4	
+x-wind	1	
+y	3	
+y-wind	1	
+z-wind	1	W-wind
+znu	2	
+znw	2	

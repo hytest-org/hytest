@@ -1,0 +1,38 @@
+varname	long_name
+Q2MAX	Daily maximum water vapor mixing ratio at 2 meters
+Q2MEAN	Daily mean water vapor mixing ratio at 2 meters
+Q2MIN	Daily minimum water vapor mixing ratio at 2 meters
+Q2STD	Daily standard deviation of water vapor mixing ratio at 2 meters
+RAINCVMAX	Daily maximum cumulus precipitation flux
+RAINCVMEAN	Daily mean cumulus precipitation flux
+RAINCVSTD	Daily standard deviation of cumulus precipitation flux
+RAINNCVMAX	Daily maximum grid scale precipitation flux
+RAINNCVMEAN	Daily mean grid scale precipitation flux
+RAINNCVSTD	Daily standard deviation of grid scale precipitation
+SKINTEMPMAX	Daily maximum skin temperature
+SKINTEMPMEAN	Daily mean skin temperature
+SKINTEMPMIN	Daily minimum skin temperature
+SKINTEMPSTD	Daily standard deviation of skin temperature
+SPDUV10MAX	Daily maximum wind speed at 10 meters
+SPDUV10MEAN	Daily mean wind speed at 10 meters
+SPDUV10STD	Daily standard deviation of wind speed at 10 meters
+T2MAX	Daily maximum temperature at 2 meters
+T2MEAN	Daily mean temperature at 2 meters
+T2MIN	Daily minimum temperature at 2 meters
+T2STD	Daily standard deviation of temperature at 2 meters
+TQ2MAX	Time of daily maximum water vapor mixing ratio at 2 meters
+TQ2MIN	Time of daily minimum water vapor mixing ratio at 2 meters
+TRAINCVMAX	Time of daily maximum cumulus precipitation flux
+TRAINNCVMAX	Time of daily maximum grid scale precipitation flux
+TSKINTEMPMAX	Time of daily maximum skin temperature
+TSKINTEMPMIN	Time of daily minimum skin temperature
+TSPDUV10MAX	Time of daily maximum wind speed at 10 meters
+TT2MAX	Time of daily maximum temperature at 2 meters
+TT2MIN	Time of daily minimum temperature at 2 meters
+Times	Model time in string format (YYYY-MM-DD_hh:mm:ss)
+U10MAX	Daily maximum U-component of wind at 10 meters with respect to model grid
+U10MEAN	Daily mean U-component of wind at 10 meters with respect to model grid
+U10STD	Daily standard deviation of U-component of wind at 10 meters with respect to model grid
+V10MAX	Daily maximum V-component of wind at 10 meters with respect to model grid
+V10MEAN	Daily mean V-component of wind at 10 meters with respect to model grid
+V10STD	Daily standard deviation of V-component of wind at 10 meters with respect to model grid

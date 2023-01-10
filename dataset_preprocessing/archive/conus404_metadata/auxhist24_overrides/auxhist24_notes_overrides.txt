@@ -1,0 +1,3 @@
+varname	notes
+PREC_ACC_NC	15-min accumulation is computed with, P15m(t) = PREC_ACC_NC(t) if is is 15 minutes past the hour and P15m(t) = PREC_ACC_NC(t) - PREC_ACC_NC(t-1) if it is 30, 45, and 60 minutes past the hour. 
+RAINNC	Actual accumulated value computed with equation: RAINNC = RAINNC + I_RAINNC * 100

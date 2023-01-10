@@ -1,0 +1,10 @@
+varname	units
+TQ2MAX	minutes since 1979-10-01 00:00:00
+TQ2MIN	minutes since 1979-10-01 00:00:00
+TRAINCVMAX	minutes since 1979-10-01 00:00:00
+TRAINNCVMAX	minutes since 1979-10-01 00:00:00
+TSKINTEMPMAX	minutes since 1979-10-01 00:00:00
+TSKINTEMPMIN	minutes since 1979-10-01 00:00:00
+TSPDUV10MAX	minutes since 1979-10-01 00:00:00
+TT2MAX	minutes since 1979-10-01 00:00:00
+TT2MIN	minutes since 1979-10-01 00:00:00
