@@ -1,14 +1,12 @@
 # Parallel / Clusters
 
-
 `dask` parallelism makes use of 'clusters' of individual workers.
 Each worker is given some task to do, and typically operates in a lightweight environment (i.e. it does
 not always have full access to the full system, notably the local filesystem).
 
 Cluster configurations vary widely, depending on the task and the hardware available.
-Here are a few of the configurations that you will see in use.
+Here are a few of the configurations that you might see with HyTEST workflows.
 In each case, we need a handle for the cluster configuration, and a client by which we can monitor or adjust the cluster.
-
 
 ## JupyterHub / ESIP-QHUB / Nebari
 
@@ -38,6 +36,13 @@ try:
     del os.environ['AWS_PROFILE']
 except KeyError:
     pass
+
+## to open a filesystem (IF NEEDED):
+fs_write = fsspec.filesystem(  ## Note that no profile is specified... fsspec honors env variables.
+    's3',
+    skip_instance_cache=True,
+    client_kwargs={'endpoint_url': _endpoint}
+)
 ```
 
 The above code merely sets up your credentials (identified by the profile name) in _environment
@@ -94,7 +99,6 @@ cluster = LocalCluster(threads_per_worker=1)
 client=Client(cluster)
 ```
 
-
 ### Tallgrass
 
 The SLURM scheduler controls how jobs are dispatched and serviced on the
@@ -118,4 +122,3 @@ cluster = SLURMCluster(
     )
 client = Client(cluster)
 ```
-
