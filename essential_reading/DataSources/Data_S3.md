@@ -139,24 +139,6 @@ that takes the shortcut if it is available.
 
 :::
 
-## Read-only access with "requestor pays"
-
-Some datasets, such as the example above, are offered with 'egress fees' paid by the data owner.
-This means that all access is free to anybody. The cost of bandwidth used to server the data is
-covered by the host.
-Not all "public" data is offered this way.
-Some data is offered for read access, but they want the user (the 'requestor') to pay
-the egress fee.
-When you access a requestor-pays dataset, your profile identifies the account which will be
-billed for access.  Open such datasets with an extra option to `fsspec`:
-
-```python
-fs = fsspec.filesystem(
-    's3',
-    profile='osn-renci', ## see below for info about profiles.
-    requestor_pays=True
-    )
-```
 
 ## Credentialed Access
 
@@ -214,3 +196,28 @@ Examples:
 
 See the [API documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html)
 for the full details of available operations.
+
+## Read-only access with "requestor pays"
+
+Some datasets, such as the first example above (anonymous reading), are offered with 'egress fees' paid by the data owner.
+This means that all access is free to anybody.
+The cost of the network bandwidth used to serve the data is covered by the data's host.
+Not all "public" data is offered this way: it is still available to anybody who wants to read it, but
+the access fees must be paid by the reador (i.e. the 'requestor').
+
+When you access a requestor-pays dataset, your profile identifies the account which will be
+billed for access.  Open such datasets with an extra option to `fsspec`:
+
+```python
+fs = fsspec.filesystem(
+    's3',
+    profile='osn-renci',
+    anon=False,
+    requestor_pays=True
+)
+fs.ls('s3://esip-qhub/noaa/nwm/')
+```
+
+The `fsspec` call identifies how you will be interacting with object storage (your identity and what
+you are willing to pay for).  File-system operations using that `fs` handle will be made using that
+configuration.
