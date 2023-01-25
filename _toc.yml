@@ -78,7 +78,6 @@ parts:
       - file: ./essential_reading/ParallelProcessing/Parallel_Clusters
       - file: ./essential_reading/ParallelProcessing/Parallel_Dask
       - file: ./essential_reading/ParallelProcessing/Parallel_DaskJobQueue
-
   - caption: Model Evaluation Tutorials
     file: ./model_evaluation/tutorials/README                                 ## TODO
     chapters:
