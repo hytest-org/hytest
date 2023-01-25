@@ -59,8 +59,6 @@ parts:
     - file: ./docs/CONTRIBUTING
     - file: ./docs/LICENSE
 
-
-
   - caption: Essential Reading
     file: ./essential_reading/00_StartHere
     chapters:
