@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: HyTEST Project
-copyright: '2022'
+copyright: '2023'
 
 description: Training materials for HyTEST workflows.
 thumbnail: thumbnail.png
@@ -28,7 +28,7 @@ parse:
 
 sphinx:
   config:
-    # html_favicon: images/icons/favicon.ico                         # TODO: create a favicon;
+    html_favicon: doc/assets/favicon.ico                         # TODO: create a favicon;
     html_last_updated_fmt: '%-d %B %Y'
     html_theme: sphinx_pythia_theme                                  # this theme must be installed in the conda environment when jupyter-book runs
     html_permalinks_icon: '<i class="fas fa-link"></i>'
@@ -58,6 +58,4 @@ sphinx:
         - name: Community
           url: https://projectpythia.org/index.html#join-us
       footer_logos:
-        NCAR: notebooks/images/logos/NCAR-contemp-logo-blue.svg
-        Unidata: notebooks/images/logos/Unidata_logo_horizontal_1200x300.svg
-        UAlbany: notebooks/images/logos/UAlbany-A2-logo-purple-gold.svg
+        HyTEST: doc/assets/HyTEST_Badge.svg
