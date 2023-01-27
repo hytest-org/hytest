@@ -13,7 +13,7 @@ In each case, we need a handle for the cluster configuration, and a client by wh
 These names refer to different implementations of a 'JupyterHub' model.
 This model hosts compute resources in the cloud, and offeres a Jupyter Lab interface by which that compute
 environment is accessed.
-The physical location of those compute resurces is left to the cloud provider.
+The physical location of those compute resources is left to the cloud provider.
 
 The vast majority of workflows you will find in the HyTEST repo will be written to run in this sort of environment.
 The main trick to clusters in this enironment is to correctly configure workers such that they have a place
@@ -49,7 +49,7 @@ The above code merely sets up your credentials (identified by the profile name) 
 variables_. Unlike the file system, your python execution environment (and env variables) propagates
 to cluster workers.
 
-Note that if your cluster workers do not need to write any data to S3 or ready any `requestor_pays` data,
+Note that if your cluster workers do not need to write any data to S3 or ready any `requester_pays` data,
 then credentials likely won't need to be set at all.
 
 Now you can spin up a cluster of workers:
@@ -72,7 +72,7 @@ client.dashboard_link                           ##<< prints the URL to monitor c
 ## Hosted Clusters
 
 Each of the cluster options below will run on systems which do have access to a file system.
-This means (among other things) that they won't necessisarily need to have AWS credentials
+This means (among other things) that they won't necessarily need to have AWS credentials
 configured in order to read and write data.
 
 ### Local / Desktop

@@ -1,12 +1,12 @@
 # Data / Cloud Storage
 
 One of the main storage locations for HyTest data is in '_The Cloud_'. This is sometimes referred to as **'Object Storage'**.
-The data is kept in datacenters operated by Amazon, Microsoft, or similar, which makes it easily available to network-connected devices.
-The main advantage of doing this is that if your compute engine is also in that same datacenter (or nearby, as is the case with many JupyterHub services),
+The data is kept in data centers operated by Amazon, Microsoft, or similar, which makes it easily available to network-connected devices.
+The main advantage of doing this is that if your compute engine is also in that same data center (or nearby, as is the case with many JupyterHub services),
 the data doesn't have to go very far to get to the compute power.
 This brings the computation to the data, rather than shipping large datasets across the internet to get to the compute engine.
 
-[S3](https://aws.amazon.com/s3/) is Amazon's implementation of object storage, which pairs with the Amazon (AWS) nodes on which the Jupter Hub runs.
+[S3](https://aws.amazon.com/s3/) is Amazon's implementation of object storage, which pairs with the Amazon (AWS) nodes on which the JupyterHub runs.
 What follows is a brief demo of how S3 data is accessed (both read and write), and some pitfalls to watch out for.
 
 The permissions scheme for S3 allows for anonymous/global read access, as well as secured access via specific credentials.
@@ -127,7 +127,7 @@ Execute full data read operations only if this notebook is being hosted and run 
 
 The good news about some of the larger science-oriented libraries (xarray, dask, pandas, zarr, etc), is that
 they can automatically handle the `fsspec` operations for you **IF YOUR ACCESS IS ANONYMOUS**.
-This is a convenience, but is a special case for read-only data where `anon=True` and `requestor_pays=False`.
+This is a convenience, but is a special case for read-only data where `anon=True` and `requester_pays=False`.
 
 Note that this is a feature of
 [specific libraries](https://filesystem-spec.readthedocs.io/en/latest/#who-uses-fsspec),
@@ -142,11 +142,11 @@ that takes the shortcut if it is available.
 
 ## Credentialed Access
 
-For most data storage within the HyTEST workflows, access will not be anonymous.
+For some data storage within the HyTEST workflows, access will not be anonymous.
 Permissions are set by the owners of that data, using credentials assigned to an AWS 'profile'.
 
 Profile credentials are usually stored outside of the Python program (typically in a master file in
-your ``HOME` folder on the compute/jupyter server).
+your `HOME` folder on the compute/jupyter server).
 You need to have this set up beforehand, and is usually achieved by copying specific credential files into the right spot.
 A common mechanism to handle the profile configuration is with the `aws`
 [command line interface](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
@@ -203,9 +203,9 @@ Some datasets, such as the first example above (anonymous reading), are offered 
 This means that all access is free to anybody.
 The cost of the network bandwidth used to serve the data is covered by the data's host.
 Not all "public" data is offered this way: it is still available to anybody who wants to read it, but
-the access fees must be paid by the reador (i.e. the 'requestor').
+the access fees must be paid by the reador (i.e. the 'requester').
 
-When you access a requestor-pays dataset, your profile identifies the account which will be
+When you access a requester-pays dataset, your profile identifies the account which will be
 billed for access.  Open such datasets with an extra option to `fsspec`:
 
 ```python
@@ -213,7 +213,7 @@ fs = fsspec.filesystem(
     's3',
     profile='osn-renci',
     anon=False,
-    requestor_pays=True
+    requester_pays=True
 )
 fs.ls('s3://esip-qhub/noaa/nwm/')
 ```
