@@ -1,0 +1,61 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: HyTEST Project
+copyright: '2023'
+
+description: Training materials for HyTEST workflows.
+thumbnail: thumbnail.png
+exclude_patterns : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
+
+# Execute the notebooks upon build
+execute:
+  execute_notebooks: cache
+  timeout: 600
+  allow_errors: True
+
+# Add a few extensions to help with parsing content
+parse:
+  myst_enable_extensions: # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - replacements
+    - smartquotes
+    - substitution
+
+sphinx:
+  config:
+    html_favicon: doc/assets/favicon.ico                         # TODO: create a favicon;
+    html_last_updated_fmt: '%-d %B %Y'
+    html_theme: sphinx_pythia_theme                                  # this theme must be installed in the conda environment when jupyter-book runs
+    html_permalinks_icon: '<i class="fas fa-link"></i>'
+    html_theme_options:
+      home_page_in_toc: true
+      repository_url: https://github.com/hytest-org/hytest/ # Online location of your book
+      repository_branch: main                                        # Which branch of the repository should be used when creating links (optional)
+      use_issues_button: true
+      use_repository_button: true
+      use_edit_page_button: true
+      github_url: https://github.com/hytest-org/
+      launch_buttons:                                                # TODO: can these be launched on esip/qhub? or only binder
+        binderhub_url: https://mybinder.org
+        notebook_interface: jupyterlab
+      extra_navbar: |
+        Theme by <a href="https://projectpythia.org">Project Pythia</a>.
+      logo_link: https://projectpythia.org                           # Use HyTEST logo?
+      navbar_links:                                                  # TODO: Customize navbar items....
+        - name: Home
+          url: https://projectpythia.org
+        - name: Foundations
+          url: https://foundations.projectpythia.org
+        - name: Cookbooks
+          url: https://cookbooks.projectpythia.org
+        - name: Resources
+          url: https://projectpythia.org/resource-gallery.html
+        - name: Community
+          url: https://projectpythia.org/index.html#join-us
+      footer_logos:
+        HyTEST: doc/assets/HyTEST_Badge.svg
