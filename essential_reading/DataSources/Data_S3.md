@@ -194,10 +194,23 @@ Examples:
 * `mv` -- moves/renames a file or folder
 * `rm` -- removes a file or folder
 
+From within your Python program, writes to S3 storage can be achieved a few different ways.
+Often, the most convenient is to use a `mapper` to connect a file-like python object to
+the S3 object storage location:
+
+```python
+fname='s3://rsignellbucket2/testing/outfile.zarr'
+outfile=fs_write.get_mapper(fname)
+xarray_dataset.to_zarr(outfile)
+```
+
+The `outfile` variable can be used most anywhere that a file-like object is needed for
+writing.
+
 See the [API documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html)
 for the full details of available operations.
 
-## Read-only access with "requestor pays"
+## Read-only access with "requester pays"
 
 Some datasets, such as the first example above (anonymous reading), are offered with 'egress fees' paid by the data owner.
 This means that all access is free to anybody.
