@@ -28,7 +28,7 @@ dependencies:
   - datashader
   - zarr
   - numcodecs
-  - xesmf
+  - pangeo-xesmf
   - statsmodels
   - widgetsnbextension
   - s3fs
