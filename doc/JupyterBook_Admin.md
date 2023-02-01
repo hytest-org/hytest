@@ -51,7 +51,7 @@ Of particular interest for this book build, the following directives can be used
 sidebar text goes here...
 :::
 </pre>
-The specified text will appear as a gloss/sidebar in the right margin. See the examples [here](https://jupyterbook.org/en/stable/content/layout.html#sidebar-content)
+The specified text will appear as a gloss/sidebar in the right margin when rendered with JupyterBook. See the examples [here](https://jupyterbook.org/en/stable/content/layout.html#sidebar-content).  But in plain markdown, will render just as you see it above (with the `{sidebar}` directive visible.)
 
 ### Admonitions
 
