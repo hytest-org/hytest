@@ -55,9 +55,9 @@ parts:
 
   - caption: Docs
     chapters:
-    - file: ./docs/ADR
-    - file: ./docs/CONTRIBUTING
-    - file: ./docs/LICENSE
+    - file: ./doc/ADR
+    - file: ./doc/CONTRIBUTING
+    - file: ./doc/LICENSE
 
   - caption: Essential Reading
     file: ./essential_reading/00_StartHere

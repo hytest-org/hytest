@@ -61,7 +61,7 @@ text goes here
 :::
 Admonitions are highlighted block quotes, with a colorful headline bar.  These are useful to highlight text
 of particular importance.  There are different styles of admonition (note, warning, error, tip, etc).  See
-the [cheat sheet]() for examples.
+the [documentation](https://jupyterbook.org/en/stable/content/content-blocks.html#notes-warnings-and-other-admonitions) for examples.
 </pre>
 
 ### Dropdowns
