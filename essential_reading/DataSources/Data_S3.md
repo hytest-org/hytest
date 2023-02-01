@@ -12,15 +12,15 @@ What follows is a brief demo of how S3 data is accessed (both read and write), a
 The permissions scheme for S3 allows for anonymous/global read access, as well as secured access via specific credentials.
 We'll look at generic workflows using an anonymous-access store, then finish off with some private/credentialed operations.
 
-The easiest way to access S3 data from within a Python program is via the
+The easiest way to access data with the S3 API through a Python program is via the
 [fsspec](https://filesystem-spec.readthedocs.io/en/latest/) module.
 This is a layer of abstraction that lets us interact with arbitrary storage mechanisms as if
-they are conventional file systems. It makes S3 'look' like a conventional file system.
+they are conventional file systems. It makes this object storage 'look' like a conventional file system.
 
 ## Anonymous Reads
 
 A lot of data is available for global read, which does not require credentials or a profile.
-In this case, we set `anon=True` when plumbing the `fsspec` object:
+In this case, we set `anon=True` when plumbing the `fsspec` object. Here we demonstrate how to list the contents of an AWS S3 bucket with global read access:
 
 ```python
 fs = fsspec.filesystem(
@@ -143,15 +143,11 @@ that takes the shortcut if it is available.
 ## Credentialed Access
 
 For some data storage within the HyTEST workflows, access will not be anonymous.
-Permissions are set by the owners of that data, using credentials assigned to an AWS 'profile'.
+Permissions are set by the owners of that data, and the rules governing your ability to read from or write to certain locations may be defined with a set of credentials assigned to an AWS 'profile'.
 
-Profile credentials are usually stored outside of the Python program (typically in a master file in
-your `HOME` folder on the compute/jupyter server).
-You need to have this set up beforehand, and is usually achieved by copying specific credential files into the right spot.
-A common mechanism to handle the profile configuration is with the `aws`
-[command line interface](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
+Profile credentials are usually stored outside of the Python program, typically in a file in your `HOME` folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the `aws` [command line interface(https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
 
-To create a new AWS profile:
+To create a new AWS profile, which we will name `osn-renci`:
 
 ```sh
 > aws configure --profile osn-renci
@@ -161,15 +157,15 @@ Default region name : us-east-1
 Default output format: json
 ```
 
-The first two prompts will ask for key/security information you were assigned for access to object storage.
-Answer last questions with "us-east-1" (region) and "json" (format).
+The first two prompts will ask for key/security information you were assigned for access to object storage. Credentials for the OSN pod should have been provided by the HyTEST team if you need credentialed access to the OSN pod.
+The default region for the OSN pod should be "us-east-1" because this is the region in which the pod is physically located, and default output format should be "json".
 
 Note that this configuration is specific to the OSN 'pod' storage.
-Your profile name and region may be different.
+Your profile name and region may be different if you are setting up your credentials for an AWS S3 object storage bucket.
 
 ## Endpoints
 
-For storage operations, the AWS system needs the web address of the access point, or _endpoint_
+For storage operations, the S3 API needs the web address of the access point, or _endpoint_
 where it should address filesystem operations. If your storage is completely within the Amazon
 ecosystem, you will likely not need to specify an endpoint.
 However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the
@@ -187,7 +183,7 @@ The enpoint URL will be given to you when your key ID and access key are assigne
 
 ## Writing Data to S3
 
-With greater permissions, you may be able to do more destructive activities (overwriting, removing, etc).
+With adequate permissions, you may be able to do more destructive activities to objects in a bucket (overwriting, removing, etc).
 Examples:
 
 * `mkdir` -- makes a new directory / folder
@@ -199,9 +195,9 @@ Often, the most convenient is to use a `mapper` to connect a file-like python ob
 the S3 object storage location:
 
 ```python
-fname='s3://rsignellbucket2/testing/outfile.zarr'
+fname='usgs-scratch/testing/outfile.zarr'
 outfile=fs_write.get_mapper(fname)
-xarray_dataset.to_zarr(outfile)
+xarray_dataset.to_zarr(outfile, mode='w', consolidated=True)
 ```
 
 The `outfile` variable can be used most anywhere that a file-like object is needed for
@@ -216,7 +212,7 @@ Some datasets, such as the first example above (anonymous reading), are offered 
 This means that all access is free to anybody.
 The cost of the network bandwidth used to serve the data is covered by the data's host.
 Not all "public" data is offered this way: it is still available to anybody who wants to read it, but
-the access fees must be paid by the reador (i.e. the 'requester').
+the access fees must be paid by the reader (i.e. the 'requester').
 
 When you access a requester-pays dataset, your profile identifies the account which will be
 billed for access.  Open such datasets with an extra option to `fsspec`:
@@ -228,7 +224,7 @@ fs = fsspec.filesystem(
     anon=False,
     requester_pays=True
 )
-fs.ls('s3://esip-qhub/noaa/nwm/')
+fs.ls('usgs-scratch/')
 ```
 
 The `fsspec` call identifies how you will be interacting with object storage (your identity and what
