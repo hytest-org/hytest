@@ -10,17 +10,17 @@ which a _static_ website can be built using [jupyter book](https://jupyterbook.o
   for that to succeed (cluster hardware, S3 write access, python modules/libraries, etc).
 * The environment must also contain the jupyter-book package. This package is not needed for any
   of the notebooks to run; it is only needed for the build process.  For this reason, it is not included
-  in the `HyTEST.yml` environment file.
+  in the `HyTEST.yml` environment file. You should [install jupyter-book](https://pypi.org/project/jupyter-book/) to your hytest conda environment if you would like to build the JupyterBook
 * JB is based on [Sphinx](https://jupyterbook.org/en/stable/explain/sphinx.html) as the documentation engine.
   Sphinx uses templates to establish styling and
   features.  The Project Pythia Cookbook style is the basis of the HyTEST book style.
-* Styling templates are installed as python packages, usin conda or pip.  Much like the jupyter-book
-  package itself, `sphinx_pythia_theme` must be installed.  This package is also not included in the
+* Styling templates are installed as python packages, using conda or pip.  Much like the jupyter-book
+  package itself, [`sphinx_pythia_theme`](https://pypi.org/project/sphinx-pythia-theme/) must be installed.  This package is also not included in the
   `HyTEST.yml` environment file.
 * Jupyter Book only builds the static website; it does not publish to a server.
   - How to publish depends on where you want the docs to go.
   - The default for this repo is to use 'GitHub Pages' as the deployment.
-  - Publication to GH Pages is made easier with `ghp-import`.  This is yet another of those packages that
+  - Publication to GH Pages is made easier with [`ghp-import`](https://pypi.org/project/ghp-import/).  This is yet another of those packages that
     your build environment will need, but is not included in the `HyTEST.yml` file (because notebook users
     don't need it).
 * To ease the jupyter-book command invocation, a `Makefile` is included, with simplified targets defined:
@@ -33,7 +33,7 @@ which a _static_ website can be built using [jupyter book](https://jupyterbook.o
 * Automation -- In an ideal world, we would have an automatic system to rebuild the jupyterbook whenever
   changes to the documentation are pushed to the `main` branch of the repo. This is limited by the need
   of our notebooks to execute on a clustered environment with access to specific S3 buckets. As yet, that
-  environemnt is not built which will let us do that, so these books must be built by hand.
+  environment is not built which will let us do that, so these books must be built by hand.
 
 ## Document Features
 

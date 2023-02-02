@@ -60,9 +60,10 @@ parts:
     - file: ./doc/LICENSE
 
   - caption: Essential Reading
-    file: ./essential_reading/00_StartHere
+    file: ./essential_reading/README.md
     chapters:
-    - file: ./essential_reading/DataSources/README                           ## TODO
+        - file: ./essential_reading/DataSources/00_StartHere                           ## TODO
+        - file: ./essential_reading/DataSources/README                           ## TODO
       sections:
       - file: ./essential_reading/DataSources/Data_APIs
       - file: ./essential_reading/DataSources/Data_S3
