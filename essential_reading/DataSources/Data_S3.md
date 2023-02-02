@@ -116,7 +116,7 @@ Output:
 :::{warning}
 
 We are deliberately demonstrating using commands that read **only** the zarr metadata from the
-object storage -- **not the full data set**.
+object storage -- **not the full dataset**.
 
 The above example is a very, _very_, **very** large dataset, which you don't want to load over the network to your desktop.
 Execute full data read operations only if this notebook is being hosted and run out of the same AWS center where the data lives.
@@ -190,9 +190,9 @@ Examples:
 * `mv` -- moves/renames a file or folder
 * `rm` -- removes a file or folder
 
-From within your Python program, writes to S3 storage can be achieved a few different ways.
+From within your Python program, writes to object storage can be achieved a few different ways.
 Often, the most convenient is to use a `mapper` to connect a file-like python object to
-the S3 object storage location:
+the object storage location:
 
 ```python
 fname='usgs-scratch/testing/outfile.zarr'
