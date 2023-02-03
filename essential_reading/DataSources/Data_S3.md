@@ -6,8 +6,9 @@ The main advantage of doing this is that if your compute engine is also in that 
 the data doesn't have to go very far to get to the compute power.
 This brings the computation to the data, rather than shipping large datasets across the internet to get to the compute engine.
 
-[S3](https://aws.amazon.com/s3/) is Amazon's implementation of object storage, which pairs with the Amazon (AWS) nodes on which the JupyterHub runs.
-What follows is a brief demo of how S3 data is accessed (both read and write), and some pitfalls to watch out for.
+The HyTEST project is collaborating with the [Woods Hole Oceanographic Institution](https://www.whoi.edu/) to demonstrate the utility of using an [Open Storage Network (OSN)](https://www.openstoragenetwork.org/) pod for providing access to data within scientific workflows. This OSN pod will provide 1 PB of usable [Ceph Object Storage](https://docs.ceph.com/en/pacific/glossary/#term-Ceph-Object-Storage) and will be housed at the Massachusetts Green High Performance Computing Center on a high-speed (100+ GbE) network. This piece of hardware provides the opportunity to host data without the storage or egress fees that come along with other forms of cloud object storage, such as [Amazon S3 object storage](https://aws.amazon.com/s3/). Ceph object storage supports an [API that is compatible with the basic data access model of the Amazon S3 API](https://docs.ceph.com/en/pacific/radosgw/s3/#).
+
+What follows is a brief demo of how data can be read from or written to object storage through the S3 API and some pitfalls to watch out for. These methods should be generally applicable to both S3 object storage and the OSN pod object storage.
 
 The permissions scheme for S3 allows for anonymous/global read access, as well as secured access via specific credentials.
 We'll look at generic workflows using an anonymous-access store, then finish off with some private/credentialed operations.
