@@ -10,6 +10,9 @@ sources:
         requester_pays: false
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
+      xarray_kwargs:
+        chunks = {}
+        decode_coords = 'all'
 
   prism-drb-OSN:
     driver: netcdf
