@@ -1,8 +1,8 @@
 sources:
 
-  conus404-drb-cat:
+  conus404-drb-eval-tutorial-catalog:
     args:
-      path: "../dataset_preprocessing/tutorials/CONUS404/tutorial_data.yml"
+      urlpath: "https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-drb-eval-tutorial-catalog.yml"
     description: 'Catalog for CONUS404 DRB tutorial intermdieate datasets'
     driver: intake.catalog.local.YAMLFileCatalog
   
