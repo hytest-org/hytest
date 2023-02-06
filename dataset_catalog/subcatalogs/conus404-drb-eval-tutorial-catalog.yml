@@ -11,8 +11,8 @@ sources:
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
       xarray_kwargs:
-        chunks = {}
-        decode_coords = 'all'
+        chunks: {}
+        decode_coords: 'all'
 
   prism-drb-OSN:
     driver: netcdf
