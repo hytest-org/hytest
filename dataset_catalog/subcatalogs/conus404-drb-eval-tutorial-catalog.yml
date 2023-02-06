@@ -1,3 +1,7 @@
+plugins:
+  source:
+      - module: intake_xarray
+
 sources:
   
   conus404-drb-OSN:
