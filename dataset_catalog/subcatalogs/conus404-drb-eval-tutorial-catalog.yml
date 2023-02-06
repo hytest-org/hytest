@@ -27,6 +27,8 @@ sources:
         requester_pays: false
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
+      xarray_kwargs:
+        decode_coords: 'all'
 
   ceres-drb-OSN:
     driver: netcdf
@@ -37,7 +39,9 @@ sources:
         anon: true
         requester_pays: false
         client_kwargs:
-          endpoint_url: https://renc.osn.xsede.org          
+          endpoint_url: https://renc.osn.xsede.org    
+      xarray_kwargs:
+        decode_coords: 'all'
 
   crn-drb-OSN:
     driver: parquet
