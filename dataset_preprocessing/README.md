@@ -8,6 +8,3 @@ The contents of this folder contain notebooks, scripts, and documentation used t
   - `era5-land_api_dask.ipynb`: parallelizes many API requests with [dask](https://www.dask.org/)
   - `era5-land_kerchunk.ipynb`: 
   - `gridmet_processing_with_pynco.ipynb`: demonstrates an alternative method to rechunking netCDF data files using [pynco](https://pynco.readthedocs.io/en/latest/), a python module to access the NCO command-line too for processing netCDFs
-- `tutorials`: notebooks designed for teaching that include learning materials that walk a reader through concepts and libraries
-  - `CONUS404`: 
-  - `nwm`: 
