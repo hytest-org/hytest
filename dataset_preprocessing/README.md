@@ -4,10 +4,10 @@ The contents of this folder contain notebooks, scripts, and documentation used t
   - `conus404_metadata`: workflows used to generate CONUS404 data dictionaries to describe its data variables
   - `conus404_subset_to_zarr`: scripts used to rechunk and convert CONUS404 module output to cloud-optimized zarr format
 - `demos`: notebooks that demonstrate a concept or package usage, without fully developed instructional materials
-  - `era5-land-bitinfo.ipynb`: 
-  - `era5-land_api_dask.ipynb`: 
+  - `era5-land-bitinfo.ipynb`: reduces file size substantially with [xbitinfo](https://xbitinfo.readthedocs.io/en/latest/)
+  - `era5-land_api_dask.ipynb`: parallelizes many API requests with [dask](https://www.dask.org/)
   - `era5-land_kerchunk.ipynb`: 
-  - `gridmet_processing_with_pynco.ipynb`: 
+  - `gridmet_processing_with_pynco.ipynb`: demonstrates an alternative method to rechunking netCDF data files using [pynco](https://pynco.readthedocs.io/en/latest/), a python module to access the NCO command-line too for processing netCDFs
 - `tutorials`: notebooks designed for teaching that include learning materials that walk a reader through concepts and libraries
   - `CONUS404`: 
   - `nwm`: 
