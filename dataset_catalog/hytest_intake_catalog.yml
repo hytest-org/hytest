@@ -94,8 +94,13 @@ sources:
     driver: zarr
     description: "Streamflow from NWM2.1, extracted and rechunked into time series"
     args:
-      urlpath: 'https://renc.osn.xsede.org/rsignellbucket2/hytest/nwm/chanobs.zarr'
+      urlpath: 's3://rsignellbucket2/hytest/nwm/chanobs.zarr'
       consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://renc.osn.xsede.org
       
   nwm21-streamflow-cloud:
     driver: zarr
