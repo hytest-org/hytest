@@ -75,8 +75,13 @@ sources:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
     args:
-      urlpath: 'https://renc.osn.xsede.org/rsignellbucket2/hytest/nwm/nwis_chanobs.zarr'
+      urlpath: 's3://rsignellbucket2/hytest/nwm/nwis_chanobs.zarr'
       consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://renc.osn.xsede.org
       
   nwm21-streamflow-usgs-gages-onprem:
     driver: zarr
