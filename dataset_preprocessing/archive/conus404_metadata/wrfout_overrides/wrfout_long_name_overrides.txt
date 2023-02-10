@@ -1,0 +1,94 @@
+varname	long_name
+ACDRIPS	Accumulated canopy snow drip rate
+ACGHFLSM	Accumulated total ground heat flux into soil or snowpack
+ACHFX	Accumulated upward sensible heat flux at the surface
+ACLWDNB	Accumulated downwelling longwave radiation flux at bottom
+ACLWDNBC	Accumulated downwelling clear sky longwave radiation flux at bottom
+ACLWDNT	Accumulated downwelling longwave radiation flux at top
+ACLWDNTC	Accumulated downwelling clear sky longwave radiation flux at top
+ACLWUPB	Accumulated upwelling longwave radiation flux at bottom
+ACLWUPBC	Accumulated upwelling clear sky longwave radiation flux at bottom
+ACLWUPT	Accumulated upwelling longwave radiation flux at top
+ACLWUPTC	Accumulated upwelling clear sky longwave radiation flux at top
+ACPAHLSM	Accumulated total precipitation heat flux advected to surface
+ACQRF	Accumulated groundwater baseflow
+ACQLAT	Accumulated groundwater lateral flow
+ACRUNSB	Accumulated subsurface runoff
+ACRUNSF	Accumulated surface runoff
+ACSAGB	Accumulated solar radiation absorbed by bare ground
+ACSAGV	Accumulated solar radiation absorbed by vegetated ground
+ACSNOM	Accumulated total liquid water out of the snowpack
+ACSNOWLSM	Accumulated frozen precipitation into land surface model
+ACSWDNB	Accumulated downwelling shortwave radiation flux at bottom
+ACSWDNBC	Accumulated downwelling clear sky shortwave radiation flux at bottom
+ACSWDNLSM	Accumulated shortwave radiation down at land surface model
+ACSWDNT	Accumulated downwelling shortwave radiation flux at top
+ACSWDNTC	Accumulated downwelling clear sky shortwave radiation flux at top
+ACSWUPB	Accumulated upwelling shortwave radiation flux at bottom
+ACSWUPBC	Accumulated upwelling clear sky shortwave radiation flux at bottom
+ACSWUPLSM	Accumulated shortwave radiation up at land surface model
+ACSWUPT	Accumulated upwelling shortwave radiation flux at top
+ACSWUPTC	Accumulated upwelling clear sky shortwave radiation flux at top
+ALBBCK	Background surface albedo
+ALBEDO	Surface albedo including snow effects
+CANICE	Canopy intercepted ice mass
+CANWAT	Canopy intercepted water
+FORCTLSM	Lowest model temperature into land surface model
+FORCZLSM	Lowest model height above ground level (AGL) into land surface model
+GRAUPEL_ACC_NC	Accumulated graupel water equivalent
+GRPL_MAX	Maximum column-integrated graupel
+I_ACLWDNB	Bucket for downwelling longwave radiation flux at bottom
+I_ACLWDNBC	Bucket for downwelling clear sky longwave radiation flux at bottom
+I_ACLWDNT	Bucket for downwelling longwave radiation flux at top
+I_ACLWDNTC	Bucket for downwelling clear sky longwave radiation flux at top
+I_ACLWUPB	Bucket for upwelling longwave radiation flux at bottom
+I_ACLWUPBC	Bucket for upwelling clear sky longwave radiation flux at bottom
+I_ACLWUPT	Bucket for upwelling longwave radiation flux at top
+I_ACLWUPTC	Bucket for upwelling clear sky longwave radiation flux at top
+I_ACSWDNB	Bucket for downwelling shortwave radiation flux at bottom
+I_ACSWDNBC	Bucket for downwelling clear sky shortwave radiation flux at bottom
+I_ACSWDNT	Bucket for downwelling shortwave radiation flux at top
+I_ACSWDNTC	Bucket for downwelling clear sky shortwave radiation flux at top
+I_ACSWUPB	Bucket for upwelling shortwave radiation flux at bottom
+I_ACSWUPBC	Bucket for upwelling clear sky shortwave radiation flux at bottom
+I_ACSWUPT	Bucket for upwelling shortwave radiation flux at top
+I_ACSWUPTC	Bucket for upwelling clear sky shortwave radiation flux at top
+LWDNB	Instantaneous downwelling longwave radiation flux at bottom
+LWDNBC	Instantaneous downwelling clear sky longwave radiation flux at bottom
+LWDNT	Instantaneous downwelling longwave radiation flux at top
+LWDNTC	Instantaneous downwelling clear sky longwave radiation flux at top
+LWUPB	Instantaneous upwelling longwave radiation flux at bottom
+LWUPBC	Instantaneous upwelling clear sky longwave radiation flux at bottom
+LWUPT	Instantaneous upwelling longwave radiation flux at top
+LWUPTC	Instantaneous upwelling clear sky longwave radiaton flux at top
+MU	Perturbation dry air mass in column
+OLR	Top-of-atmosphere (TOA) outgoing longwave radiation
+PREC_ACC_C	Accumulated cumulus precipitation
+PREC_ACC_NC	Accumulated grid scale precipitation
+QSLAT	Accumulated groundwater lateral flow
+REFL_10CM	Radar reflectivity (lambda = 10 cm) at the lowest model level
+SNOWC	Snow cover fraction
+SNOWENERGY	Energy content in snow relative to 273.16 K
+SNOW_ACC_NC	Accumulated snow water equivalent
+SOILENERGY	Energy content in soil relative to 273.16 K
+SWDNB	Instantaneous downwelling shortwave radiation flux at bottom
+SWDNBC	Instantaneous downwelling clear sky shortwave radiation flux at bottom
+SWDNT	Instantaneous downwelling shortwave radiation flux at top
+SWDNTC	Instantaneous downwelling clear sky shortwave radiation flux at top
+SWDOWN	Downward shortwave radiation flux at ground surface
+SWNORM	Normal shortwave radiation flux at ground surface (slope-dependent)
+SWUPB	Instantaneous upwelling shortwave radiation flux at bottom
+SWUPBC	Instantaneous upwelling clear sky shortwave radiation flux at bottom
+SWUPT	Instantaneous upwelling shortwave radiation flux at top
+SWUPTC	Instantaneous upwelling clear sky shortwave radiation flux at top
+TD2	Dewpoint temperature at 2 meters
+Times	Model time in string format (YYYY-MM-DD_hh:mm:ss)
+U	U-component of wind with respect to model grid
+U10	U-component of wind at 10 meters with respect to model grid
+V	V-component of wind with respect to model grid
+V10	V-component of wind at 10 meters with respect to model grid
+W	W-component of wind
+WSPD10MAX	Wind speed maximum at 10 meters
+W_DN_MAX	Maximum W-component of wind downdraft
+W_MEAN	Hourly mean W-component of wind
+W_UP_MAX	Maximum W-component of wind updraft
