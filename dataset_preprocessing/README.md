@@ -6,6 +6,6 @@ The contents of this folder contain notebooks, scripts, and documentation used t
 - `demos`: notebooks that demonstrate a concept or package usage, without fully developed instructional materials
   - `era5-land-bitinfo.ipynb`: reduces file size substantially with [xbitinfo](https://xbitinfo.readthedocs.io/en/latest/)
   - `era5-land_api_dask.ipynb`: parallelizes many API requests with [dask](https://www.dask.org/)
-  - `era5-land_kerchunk.ipynb`: 
+  - `era5-land_kerchunk.ipynb`: updates an existing [kerchunk](https://github.com/fsspec/kerchunk) consolidated metadata json with any new ERA5 netCDF files
   - `gridmet_processing_with_pynco.ipynb`: demonstrates an alternative method to rechunking netCDF data files using [pynco](https://pynco.readthedocs.io/en/latest/), a python module to access the NCO command-line too for processing netCDFs
   - `nwm_rechunking.ipynb`: uses pyriver geohydro package to extract streamflow from NWIS, subset to the gages used by the National Water Model, and implement a chunking scheme to create a more optimal zarr dataset
