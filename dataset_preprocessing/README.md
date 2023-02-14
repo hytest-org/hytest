@@ -1,0 +1,11 @@
+The contents of this folder contain notebooks, scripts, and documentation used to prepare key HyTEST datasets. Descriptions of the what each of the current notebooks demonstrate are provided below:
+- `archive`: scripts that were used to create datasets we are providing access to; stored for reproducibility, not for instruction or demonstration
+  - `conus404_bc_daily_gfv1_1`: scripts used to process conus404 bias-corrected daily zarr data to the NHGF geospatial-fabric v1.1
+  - `conus404_metadata`: workflows used to generate CONUS404 data dictionaries to describe its data variables
+  - `conus404_subset_to_zarr`: scripts used to rechunk and convert CONUS404 module output to cloud-optimized zarr format
+- `demos`: notebooks that demonstrate a concept or package usage, without fully developed instructional materials
+  - `era5-land-bitinfo.ipynb`: reduces file size substantially with [xbitinfo](https://xbitinfo.readthedocs.io/en/latest/)
+  - `era5-land_api_dask.ipynb`: parallelizes many API requests with [dask](https://www.dask.org/)
+  - `era5-land_kerchunk.ipynb`: updates an existing [kerchunk](https://github.com/fsspec/kerchunk) consolidated metadata json with any new ERA5 netCDF files
+  - `gridmet_processing_with_pynco.ipynb`: demonstrates an alternative method to rechunking netCDF data files using [pynco](https://pynco.readthedocs.io/en/latest/), a python module to access the NCO command-line too for processing netCDFs
+  - `nwm_rechunking.ipynb`: uses pyriver geohydro package to extract streamflow from NWIS, subset to the gages used by the National Water Model, and implement a chunking scheme to create a more optimal zarr dataset
