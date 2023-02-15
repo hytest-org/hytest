@@ -28,4 +28,4 @@ start clusters in these environments:
 * [Denali HPC](Help_Cluster_Denali.ipynb)
 * [Tallgrass HPC](./Help_Cluster_Tallgrass.ipynb)
 * [Nebari](./Help_Cluster_Nebari.ipynb)
-* [Pangeo.CHS.uggs.gov](./Help_Cluster_PangeoCHS.ipynb)
+* [Pangeo.CHS.usgs.gov](./Help_Cluster_PangeoCHS.ipynb)
