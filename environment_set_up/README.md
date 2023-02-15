@@ -28,5 +28,14 @@ While we prefer that these notebooks be run on "_cloud_" infrastructure, we also
    server from a command shell on the HPC. Requires familiarity with the HPC command line, file
    editing, etc.
 
-If your workflow makes use of parallelism using Dask on HPC hosts, you will need to read [this](./tallgrass_dask-jobqueue.md)
-for information about how to configure the Slurm job scheduler within your notebook after you have set up your Jupyter server.
+--------
+
+Some of the notebooks in this repo make use of parallelism using Dask clusters.
+The details of spinning up a cluster will differ, depending upon the environment.
+We have a few sample 'helper' notebooks to illustrate the recommended way to
+start clusters in these environments:
+
+* [Denali HPC](./Help_Cluster_Denali.ipynb)
+* [Tallgrass HPC](./Help_Cluster_Tallgrass.ipynb)
+* [Nebari](./Help_Cluster_Nebari.ipynb)
+* [Pangeo.CHS.usgs.gov](./Help_Cluster_PangeoCHS.ipynb)
