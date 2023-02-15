@@ -25,7 +25,7 @@ The details of spinning up a cluster will differ, depending upon the environment
 We have a few sample 'helper' notebooks to illustrate the recommended way to
 start clusters in these environments:
 
-* [Denali HPC](Help_Cluster_Denali.ipynb)
+* [Denali HPC](./Help_Cluster_Denali.ipynb)
 * [Tallgrass HPC](./Help_Cluster_Tallgrass.ipynb)
 * [Nebari](./Help_Cluster_Nebari.ipynb)
 * [Pangeo.CHS.usgs.gov](./Help_Cluster_PangeoCHS.ipynb)
