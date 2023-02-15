@@ -46,4 +46,3 @@ here, create an issue to submit the recommendation.
   * <https://holoviz.org/tutorial>
   * <https://github.com/holoviz/holoviz/blob/master/doc/installation.rst>
   * <https://github.com/symmy596/PythonMaps-Scipy-2022>
-

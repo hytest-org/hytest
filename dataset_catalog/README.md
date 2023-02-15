@@ -49,3 +49,13 @@ lcmap-cloud:
 ds = cat['lcmap-cloud'].to_dask()
 df = cat['nwm21-scores'].read()
 ```
+
+### Demos
+Demos for working with the data catalogs can be found in the 'demos' folder.
+
+### Subcatalogs
+HyTEST will generate a number of ```intake``` catalogs for a variety of use cases (tutorials, demos, workflows, etc.) 
+which can be found in the "hytest/dataset_catalog/subcatalogs" folder and called in by using the `intake` example 
+above. An example of calling these catalogs in can be found in the "Nested_catalogs_and_datasets.ipynb" notebook in 
+the 'demos' folder. 
+

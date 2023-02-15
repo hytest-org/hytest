@@ -1,4 +1,10 @@
 sources:
+
+  conus404-drb-eval-tutorial-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-drb-eval-tutorial-catalog.yml'
+    description: 'Catalog for CONUS404 DRB tutorial intermdieate datasets'
+    driver: intake.catalog.local.YAMLFileCatalog
   
   conus404-hourly-onprem:
     driver: zarr
@@ -75,10 +81,13 @@ sources:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
     args:
-      urlpath: 's3://nhgf-development/nwm/nwis_chanobs.zarr'
+      urlpath: 's3://rsignellbucket2/hytest/nwm/nwis_chanobs.zarr'
       consolidated: true
       storage_options:
-        requester_pays: true
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://renc.osn.xsede.org
       
   nwm21-streamflow-usgs-gages-onprem:
     driver: zarr
@@ -91,10 +100,13 @@ sources:
     driver: zarr
     description: "Streamflow from NWM2.1, extracted and rechunked into time series"
     args:
-      urlpath: 's3://nhgf-development/nwm/chanobs.zarr'
+      urlpath: 's3://rsignellbucket2/hytest/nwm/chanobs.zarr'
       consolidated: true
       storage_options:
-        requester_pays: true
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://renc.osn.xsede.org
       
   nwm21-streamflow-cloud:
     driver: zarr
