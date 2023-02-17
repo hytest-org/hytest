@@ -18,8 +18,8 @@ import conus404_helpers as ch
 
 def main():
     parser = argparse.ArgumentParser(description='Create cloud-optimized hourly zarr files from CONUS404 hourly netcdf')
-    parser.add_argument('-d', '--dst_zarr', help='Location of destination hourly zarr store', required=True)
-    parser.add_argument('-s', '--src_zarr', help='Location of source hourly zarr store', required=True)
+    parser.add_argument('-d', '--dst_zarr', help='Path to hourly zarr store', required=True)
+    parser.add_argument('-s', '--src_zarr', help='Path to source hourly zarr store', required=True)
 
     args = parser.parse_args()
 
