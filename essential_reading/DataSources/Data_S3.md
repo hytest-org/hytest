@@ -175,13 +175,7 @@ The default region for the OSN pod should be "us-east-1" because this is the reg
 Note that this configuration is specific to the OSN 'pod' storage.
 Your profile name and region may be different if you are setting up your credentials for an AWS S3 object storage bucket.
 
-## Endpoints
-
-For storage operations, the S3 API needs the web address of the access point, or _endpoint_
-where it should address filesystem operations. If your storage is completely within the Amazon
-ecosystem, you will likely not need to specify an endpoint.
-However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the
-endpoint when the filesystem is first referenced using `fsspec`.
+We can now set up a virtual filesystem to access the OSN pod with the credentials stored in the `osn-renci` profile you just created. This credentialed access will grant you additional permissions that you did not have with the anonymous access we used above.
 
 ```python
 fs_write = fsspec.filesystem(
