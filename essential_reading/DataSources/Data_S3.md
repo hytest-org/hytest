@@ -185,8 +185,6 @@ fs_write = fsspec.filesystem(
 )
 ```
 
-The enpoint URL will be given to you when your key ID and access key are assigned.
-
 ## Writing Data to S3
 
 With adequate permissions, you may be able to do more destructive activities to objects in a bucket (overwriting, removing, etc).
