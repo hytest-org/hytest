@@ -44,6 +44,17 @@ Output:
  'noaa-nwm-retrospective-2-1-zarr-pds/rtout.zarr']
 ```
 
+## Endpoints
+
+For storage operations, the S3 API needs the web address of the access point, or _endpoint_ where it should address filesystem operations. If your storage is completely within the Amazon ecosystem, you will likely not need to specify an endpoint. However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the endpoint when the filesystem is first referenced using `fsspec`. We can list the files stored in the `usgs-scratch` bucket of the OSN pod with the following:
+
+```python
+fs_osn = fsspec.filesystem(
+    's3',
+    anon=True,   # Does not require credentials
+    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
+)
+fs_osn.ls('usgs-scratch')
 We can call other methods on the `fsspec` object "`fs`" to interact with filesystem objects.
 
 ```python
