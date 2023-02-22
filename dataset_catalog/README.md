@@ -1,7 +1,7 @@
 # hytest-catalogs
-This directory holds the `hytest_intake_catalog.yml`. This catalog is structured to be compatible with the Python intake package and facilitates reading the data into the other notebooks contained in this repository. Example usage of this catalog is shown below.
+This directory holds the `hytest_intake_catalog.yml`. This catalog is structured to be compatible with the Python intake package and facilitates reading the data into the other notebooks contained in this repository. The intake catalog is stored as a yaml file, which should also be easy to parse using other programming languages, even if there is no equivalent to the intake package in that programming language. Example usage of this catalog is shown below.
 
-Please note that this catalog is a temporary solution for reading data into our workflows. By the end of 2022, we hope to replace this catalog by a [STAC](https://stacspec.org/en). We plan to update all notebooks to read from our STAC at that time, as well.
+Please note that this catalog is a temporary solution for reading data into our workflows. By the end of 2023, we hope to replace this catalog by a [STAC](https://stacspec.org/en). We plan to update all notebooks to read from our STAC at that time, as well.
 
 ```python
 import intake
@@ -49,3 +49,13 @@ lcmap-cloud:
 ds = cat['lcmap-cloud'].to_dask()
 df = cat['nwm21-scores'].read()
 ```
+
+### Demos
+Demos for working with the data catalogs can be found in the [demos](https://github.com/hytest-org/hytest/tree/main/dataset_catalog/demos) folder.
+
+### Subcatalogs
+HyTEST will generate a number of ```intake``` catalogs for a variety of use cases (tutorials, demos, workflows, etc.) 
+which can be found in the "hytest/dataset_catalog/subcatalogs" folder and called in by using the `intake` example 
+above. An example of calling these catalogs in can be found in the "Nested_catalogs_and_datasets.ipynb" notebook in 
+the 'demos' folder. 
+
