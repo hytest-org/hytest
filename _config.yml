@@ -6,7 +6,7 @@ copyright: '2023'
 
 description: Training materials for HyTEST workflows.
 thumbnail: doc/assets/HyTEST_Badge.svg
-exclude_patterns : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
+exclude_patterns : [_build, Thumbs.db, .github, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
 only_build_toc_files: True 
 
 # Execute the notebooks upon build
