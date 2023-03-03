@@ -1,4 +1,4 @@
-# Environment Setup
+# Compute Environments 
 
 The `environment_set_up` directory contains instructional materials and helper scripts to set 
 up your computational environment for running HyTEST workflows and scripts in this repository.
@@ -9,7 +9,7 @@ there to run these workflows, but given that a large number of our users work on
 systems, we have also build out some instructional materials to help set up these workflows 
 in those environments as well.
 
-# Cloud Environment
+## Cloud Environment
 
 If you are working in the cloud, we expect you to work in a JupyterHub instance that has 
 already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few 
@@ -35,7 +35,7 @@ options for accessing a JupyterHub instance:
    make sure you have a kernel with all of the required packages set up to run these notebooks.
 
 
-# HPC Environment
+## HPC Environment
 
 While we prefer that these notebooks be run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
 
