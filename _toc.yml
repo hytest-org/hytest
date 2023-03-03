@@ -2,34 +2,31 @@ format: jb-book
 root: README
 
 parts:
-  # - caption: Dataset Catalog
-  #   chapters:
-  #   - file: ./dataset_catalog/README
-
   - caption: Environment Set-Up
     chapters:
-    - file: ./environment_set_up/README
+    - file: environment_set_up/README
+      sections: 
+      - file: environment_set_up/QuickStart-Cloud-Nebari
+      - file: environment_set_up/QuickStart-Cloud-pangeoCHS
+      - file: environment_set_up/OpenOnDemand
+    - file: environment_set_up/clusters
       sections:
-      - file: ./environment_set_up/QuickStart-Cloud-Nebari
-      - file: ./environment_set_up/QuickStart-Cloud-pangeo.chs.usgs.gov
-      - file: ./environment_set_up/OpenOnDemand
+      - file: environment_set_up/Start_Dask_Cluster_Nebari  
+#     - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
+      - file: environment_set_up/Start_Dask_Cluster_Denali
+#     - file: environment_set_up/Start_Dask_Cluster_Tallgrass
 
-  # - caption: Dataset Access
-  #   chapters:
-  #   - file: ./dataset_access/README
-  #     sections:
-  #     - file: ./dataset_access/conus404_explore
-  #     # - file: ./dataset_access/conus404_regrid
-  #     # - file: ./dataset_access/conus404_spatial_aggregation
-  #     # - file: ./dataset_access/conus404_temporal_aggregation
-
-  # - caption: Model Evaluation Tutorials
-  #   chapters:
-  #   - file: ./model_evaluation/tutorials/README
-  #   - file: ./model_evaluation/tutorials/nwm_streamflow/00_Overview
-  #     sections:
-  #     # - file: ./model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
-  #     - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_NWM
-  #     - file: ./model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
-  #     - file: ./model_evaluation/tutorials/nwm_streamflow/03_Vizualization
-
+  - caption: Model Evaluation Tutorials
+    chapters:
+    - file: model_evaluation/metrics
+      sections:
+      - file: model_evaluation/Metrics_DScore_Suite_v1
+      - file: model_evaluation/tutorials/stats/Usage_DScore_Suite_v1
+      - file: model_evaluation/Metrics_StdSuite_v1
+      - file: model_evaluation/tutorials/stats/Usage_StdSuite_v1
+    - file: model_evaluation/tutorials/nwm_streamflow/00_Overview
+      sections:
+      - file: model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
+      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_StdSuite
+      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
+      - file: model_evaluation/tutorials/nwm_streamflow/03_Vizualization

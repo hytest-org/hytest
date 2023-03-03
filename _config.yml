@@ -11,7 +11,7 @@ only_build_toc_files: True
 
 # Execute the notebooks upon build
 execute:
-  execute_notebooks: auto
+  execute_notebooks: cache
   timeout: 600
   allow_errors: True
 
@@ -28,6 +28,8 @@ parse:
     - substitution
 
 sphinx:
+  extra_extensions:
+    - sphinxcontrib.mermaid
   config:
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js

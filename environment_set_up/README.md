@@ -14,7 +14,7 @@ in those environments as well.
 If you are working in the cloud, we expect you to work in a JupyterHub instance that has 
 already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few 
 options for accessing a JupyterHub instance:
-1) [pangeo.chs.usgs.gov](./QuickStart-Cloud-pangeo.chs.usgs.gov.md)<br>
+1) [pangeo.chs.usgs.gov](QuickStart-Cloud-pangeoCHS.md)<br>
    This JupyterHub instance is currently deployed on a USGS AWS account, and any USGS employee 
    can request access to this space. Once you are added, the url will take you to your own 
    personal JupyterHub space, and files in this space are only visible/accessible to the user 
@@ -22,7 +22,7 @@ options for accessing a JupyterHub instance:
    to using this JupyterHub instance is that if you want to update the packages in the kernel 
    you are working in or create a new kernel, you will need to submit a ticket to CTek, and 
    the update may not happen for several weeks.
-2) [Nebari](./QuickStart-Cloud-Nebari.md)<br>
+2) [Nebari](QuickStart-Cloud-Nebari.md)<br>
    The HyTEST project is currently working on deploying an instance of Nebari JupyterHub, and 
    we will allow some of our priority users to access this space. This will be a shared 
    JupyterHub space, where all users can access and run any files in this deployment. Any 
@@ -39,13 +39,13 @@ options for accessing a JupyterHub instance:
 
 While we prefer that these notebooks be run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
 
-1) [Open OnDemand](./OpenOnDemand.md)<br>
+1) [Open OnDemand](OpenOnDemand.md)<br>
    This option provides the most effortless access to HPC hardware using a web interface. Only runs on the [`Tallgrass`](https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/tallgrass.html) supercomputer.
-2) [Jupyter Forward](./JupyterForward.md)<br>
+2) [Jupyter Forward](JupyterForward.md)<br>
    This option gives you more control over how to launch the server, and on which host (can be
    run on [`Denali`](https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/denali.html), [`Tallgrass`](https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/tallgrass.html), or other hosts to which you have a login).  Requires that you
    install the jupyter-forward software on your PC.
-3) [Custom Server Script](./StartScript.md)<br>
+3) [Custom Server Script](StartScript.md)<br>
    This option lets you completely customize your HPC compute environment and invoke the Jupyter
    server from a command shell on the HPC. Requires familiarity with the HPC command line, file
    editing, etc.
@@ -57,7 +57,7 @@ The details of spinning up a cluster will differ, depending upon the environment
 We have a few sample 'helper' notebooks to illustrate the recommended way to
 start clusters in these environments:
 
-* [Denali HPC](./Start_Dask_Cluster_Denali.ipynb)
-* [Tallgrass HPC](./Start_Dask_Cluster_Tallgrass.ipynb)
-* [Nebari](./Start_Dask_Cluster_Nebari.ipynb)
-* [Pangeo.CHS.usgs.gov](./Start_Dask_Cluster_PangeoCHS.ipynb)
+* [Denali HPC](Start_Dask_Cluster_Denali.ipynb)
+* [Tallgrass HPC](Start_Dask_Cluster_Tallgrass.ipynb)
+* [Nebari](Start_Dask_Cluster_Nebari.ipynb)
+* [Pangeo.CHS.usgs.gov](Start_Dask_Cluster_PangeoCHS.ipynb)
