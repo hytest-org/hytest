@@ -1,11 +1,11 @@
-# HPC Server :: Open OnDemand
+# HPC Server: Open OnDemand
 
 This is a custom service provided by the ARC team and customized for use in HyTEST workflows. It is the easiest
 to use (no configuration needed on your part), and provides reasonable compute resources via the `tallgrass`
 host:
 
-* Go to `https://tallgrass-denali-ondemand.cr.usgs.gov/pun/sys/dashboard/` in your web browser.  Note that you
-  must be on the VPN to access this host.
+* Go to `https://tallgrass-denali-ondemand.cr.usgs.gov/pun/sys/dashboard/` in your web browser.
+  Note that you must be on the VPN to access this host.
 * Launch the HyTEST Jupyter Server app.
 * Fill in the form to customize the allocation in which the Jupyter Server will execute.
 * Submit

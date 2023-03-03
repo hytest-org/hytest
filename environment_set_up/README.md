@@ -1,16 +1,38 @@
-The `environment_set_up` directory contains instructional materials and helper scripts to set up your computational environment for running HyTEST workflows and scripts in this repository.
+# Environment Setup
 
-The scripts in this repository are designed to be portable between a cloud environment and on-prem HPC resources. We prioritize work in the cloud because anyone can create an account there to run these workflows, but given that a large number of our users work on the USGS HPC systems, we have also build out some instructional materials to help set up these workflows in those environments as well.
+The `environment_set_up` directory contains instructional materials and helper scripts to set 
+up your computational environment for running HyTEST workflows and scripts in this repository.
+
+The scripts in this repository are designed to be portable between a cloud environment and 
+on-prem HPC resources. We prioritize work in the cloud because anyone can create an account 
+there to run these workflows, but given that a large number of our users work on the USGS HPC 
+systems, we have also build out some instructional materials to help set up these workflows 
+in those environments as well.
 
 # Cloud Environment
 
-If you are working in the cloud, we expect you to work in a JupyterHub instance that has already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few options for accessing a JupyterHub instance:
+If you are working in the cloud, we expect you to work in a JupyterHub instance that has 
+already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few 
+options for accessing a JupyterHub instance:
 1) [pangeo.chs.usgs.gov](./QuickStart-Cloud-pangeo.chs.usgs.gov.md)<br>
-   This JupyterHub instance is currently deployed on a USGS AWS account, and any USGS employee can request access to this space. Once you are added, the url will take you to your own personal JupyterHub space, and files in this space are only visible/accessible to the user who created them. You will also have access to a shared set of kernels. The main disadvantage to using this JupyterHub instance is that if you want to update the packages in the kernel you are working in or create a new kernel, you will need to submit a ticket to CTek, and the update may not happen for several weeks.
+   This JupyterHub instance is currently deployed on a USGS AWS account, and any USGS employee 
+   can request access to this space. Once you are added, the url will take you to your own 
+   personal JupyterHub space, and files in this space are only visible/accessible to the user 
+   who created them. You will also have access to a shared set of kernels. The main disadvantage 
+   to using this JupyterHub instance is that if you want to update the packages in the kernel 
+   you are working in or create a new kernel, you will need to submit a ticket to CTek, and 
+   the update may not happen for several weeks.
 2) [Nebari](./QuickStart-Cloud-Nebari.md)<br>
-   The HyTEST project is currently working on deploying an instance of Nebari JupyterHub, and we will allow some of our priority users to access this space. This will be a shared JupyterHub space, where all users can access and run any files in this deployment. Any user can also quickly modify and update the kernels available in this deployment. We will provide instructions for projects outside of HyTEST to deploy their own instance of a shared Nebari space. This work is currently in development, and these instructions will be updated once this is available.
+   The HyTEST project is currently working on deploying an instance of Nebari JupyterHub, and 
+   we will allow some of our priority users to access this space. This will be a shared 
+   JupyterHub space, where all users can access and run any files in this deployment. Any 
+   user can also quickly modify and update the kernels available in this deployment. We will 
+   provide instructions for projects outside of HyTEST to deploy their own instance of a 
+   shared Nebari space. This work is currently in development, and these instructions will 
+   be updated once this is available.
 3) Your own JupyterHub Instance<br>
-   Your can also work with your own deployment of a JupyterHub environment. You will need to make sure you have a kernel with all of the required packages set up to run these notebooks.
+   Your can also work with your own deployment of a JupyterHub environment. You will need to 
+   make sure you have a kernel with all of the required packages set up to run these notebooks.
 
 
 # HPC Environment

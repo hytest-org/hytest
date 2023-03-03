@@ -5,12 +5,13 @@ title: HyTEST Project
 copyright: '2023'
 
 description: Training materials for HyTEST workflows.
-thumbnail: thumbnail.png
+thumbnail: doc/assets/HyTEST_Badge.svg
 exclude_patterns : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
+only_build_toc_files: True 
 
 # Execute the notebooks upon build
 execute:
-  execute_notebooks: cache
+  execute_notebooks: auto
   timeout: 600
   allow_errors: True
 
@@ -28,34 +29,36 @@ parse:
 
 sphinx:
   config:
-    html_favicon: doc/assets/favicon.ico                         # TODO: create a favicon;
-    html_last_updated_fmt: '%-d %B %Y'
-    html_theme: sphinx_pythia_theme                                  # this theme must be installed in the conda environment when jupyter-book runs
-    html_permalinks_icon: '<i class="fas fa-link"></i>'
-    html_theme_options:
-      home_page_in_toc: true
-      repository_url: https://github.com/hytest-org/hytest/ # Online location of your book
-      repository_branch: main                                        # Which branch of the repository should be used when creating links (optional)
-      use_issues_button: true
-      use_repository_button: true
-      use_edit_page_button: true
-      github_url: https://github.com/hytest-org/
-      launch_buttons:                                                # TODO: can these be launched on esip/qhub? or only binder
-        binderhub_url: https://mybinder.org
-        notebook_interface: jupyterlab
-      extra_navbar: |
-        Theme by <a href="https://projectpythia.org">Project Pythia</a>.
-      logo_link: https://projectpythia.org                           # Use HyTEST logo?
-      navbar_links:                                                  # TODO: Customize navbar items....
-        - name: Home
-          url: https://projectpythia.org
-        - name: Foundations
-          url: https://foundations.projectpythia.org
-        - name: Cookbooks
-          url: https://cookbooks.projectpythia.org
-        - name: Resources
-          url: https://projectpythia.org/resource-gallery.html
-        - name: Community
-          url: https://projectpythia.org/index.html#join-us
-      footer_logos:
-        HyTEST: doc/assets/HyTEST_Badge.svg
+    html_js_files:
+    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    html_favicon: doc/assets/favicon.ico
+    # html_last_updated_fmt: '%-d %B %Y'
+    # # html_theme: sphinx_pythia_theme                                  # this theme must be installed in the conda environment when jupyter-book runs
+    # html_permalinks_icon: '<i class="fas fa-link"></i>'
+    # html_theme_options:
+    #   home_page_in_toc: true
+    #   repository_url: https://github.com/hytest-org/hytest/          # Online location of your book
+    #   repository_branch: main                                        # Which branch of the repository should be used when creating links (optional)
+    #   use_issues_button: true
+    #   use_repository_button: true
+    #   use_edit_page_button: true
+    #   github_url: https://github.com/hytest-org/
+    #   launch_buttons:                                                # TODO: can these be launched on esip/qhub? or only binder
+    #     binderhub_url: https://mybinder.org
+    #     notebook_interface: jupyterlab
+    #   extra_navbar: |
+    #     Theme by <a href="https://projectpythia.org">Project Pythia</a>.
+    #   logo_link: https://projectpythia.org                           # Use HyTEST logo?
+    #   navbar_links:                                                  # TODO: Customize navbar items....
+    #     - name: Home
+    #       url: https://projectpythia.org
+    #     - name: Foundations
+    #       url: https://foundations.projectpythia.org
+    #     - name: Cookbooks
+    #       url: https://cookbooks.projectpythia.org
+    #     - name: Resources
+    #       url: https://projectpythia.org/resource-gallery.html
+    #     - name: Community
+    #       url: https://projectpythia.org/index.html#join-us
+    #   footer_logos:
+    #     HyTEST: doc/assets/HyTEST_Badge.svg
