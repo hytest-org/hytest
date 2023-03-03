@@ -1,13 +1,13 @@
 # Parallel / Clusters
 
 
-dask parallelism makes use of 'clusters' of workers, each of which 
+dask parallelism makes use of 'clusters' of workers, each of which
 is given some task to do.  Cluster configurations vary widely, depending
 on the task and the hardware available.  Here are a few of the configurations
-that you will see in use.  
+that you will see in use.
 
 In each case, we need a handle for the cluster configuration, and a client
-by which we can monitor or adjust the cluster. 
+by which we can monitor or adjust the cluster.
 
 ## Local / Desktop
 
@@ -20,7 +20,7 @@ client = Client(cluster)
 ```
 
 ## Denali
-Denali is treated as a very, very bit desktop. 
+Denali is treated as a very, very bit desktop.
 
 ```python
 from dask.distributed import Client, LocalCluster
@@ -32,7 +32,7 @@ client=Client(cluster)
 
 ## Tallgrass
 The SLURM scheduler controls how jobs are dispatched and serviced on the
-tallgrass cluster. 
+tallgrass cluster.
 
 ```python
 try:
@@ -46,7 +46,7 @@ cluster = SLURMCluster(
     cores=1,            #per job
     memory='10GB',      #per job
     interface='ib0',    #network interface for scheduler-worker communication.
-    account=os.environ.get('SLURM_JOB_ACCOUNT', "Unknown"), 
+    account=os.environ.get('SLURM_JOB_ACCOUNT', "Unknown"),
     walltime='04:00:00',
     job_extra_directives={'hint': 'multithread', 'exclusive':'user'}
     )
@@ -54,9 +54,9 @@ client = Client(cluster)
 ```
 
 ## JupyterHub / ESIP-QHUB
-For 'cloud' computing platforms, such as the ESIP/QHUB jupyerhub server use 
+For 'cloud' computing platforms, such as the ESIP/QHUB jupyerhub server use
 AWS-specific cluster configurations. The physical location of those compute
-resurces is left to the cloud provider. 
+resurces is left to the cloud provider.
 ```python
 import ebdpy as ebd
 
