@@ -39,12 +39,6 @@ parts:
     - file: dataset_catalog/README
     - file: dataset_catalog/subcatalogs/README
 
-  - caption: Dataset Access
-    chapters:
-    - file: dataset_access/README
-      sections:
-      - file: dataset_access/conus404_explore
-    
    
   - caption: Model Evaluation Tutorials
     chapters:
