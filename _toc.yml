@@ -11,10 +11,11 @@ parts:
       - file: environment_set_up/OpenOnDemand
     - file: environment_set_up/clusters
       sections:
+      #- file: environment_set_up/Help_AWS_Credentials
       - file: environment_set_up/Start_Dask_Cluster_Nebari  
-#     - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
+      #- file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
-#     - file: environment_set_up/Start_Dask_Cluster_Tallgrass
+      #- file: environment_set_up/Start_Dask_Cluster_Tallgrass
 
   - caption: Model Evaluation Tutorials
     chapters:
