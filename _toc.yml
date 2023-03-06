@@ -18,8 +18,7 @@ parts:
       #- file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
       #- file: environment_set_up/Start_Dask_Cluster_Tallgrass
-      
-      
+   
   - caption: Getting Started
     chapters:
     - file: essential_reading/ReadingsTutorials
@@ -39,11 +38,14 @@ parts:
     chapters:
     - file: dataset_catalog/README
     - file: dataset_catalog/subcatalogs/README
+
+  - caption: Dataset Access
+    chapters:
     - file: dataset_access/README
       sections:
       - file: dataset_access/conus404_explore
     
-    
+   
   - caption: Model Evaluation Tutorials
     chapters:
     - file: model_evaluation/metrics
