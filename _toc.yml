@@ -9,6 +9,8 @@ parts:
       - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/QuickStart-Cloud-pangeoCHS
       - file: environment_set_up/OpenOnDemand
+      - file: environment_set_up/JupyterForward
+      - file: environment_set_up/StartScript
     - file: environment_set_up/clusters
       sections:
       - file: environment_set_up/Help_AWS_Credentials
@@ -16,6 +18,26 @@ parts:
       #- file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
       #- file: environment_set_up/Start_Dask_Cluster_Tallgrass
+   
+  - caption: Getting Started
+    chapters:
+    - file: essential_reading/ReadingsTutorials
+    - file: essential_reading/DataSources/README
+      sections: 
+      - file: essential_reading/DataSources/Data_APIs
+      - file: essential_reading/DataSources/Data_S3
+      - file: essential_reading/DataSources/Data_STAC
+    - file: essential_reading/Parallel_Dask
+    - file: dataset_preprocessing/chunk
+      sections: 
+      - file: dataset_preprocessing/ReChunkingData
+      - file: dataset_preprocessing/ReChunkingData_Cloud
+
+
+  - caption: Dataset Access
+    chapters:
+    - file: dataset_catalog/README
+    - file: dataset_catalog/subcatalogs/README
 
   - caption: Dataset Access
     chapters:
@@ -23,6 +45,7 @@ parts:
       sections:
       - file: dataset_access/conus404_explore
     
+   
   - caption: Model Evaluation Tutorials
     chapters:
     - file: model_evaluation/metrics
@@ -37,3 +60,9 @@ parts:
       - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_StdSuite
       - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
       - file: model_evaluation/tutorials/nwm_streamflow/03_Vizualization
+
+
+  - caption: Back Matter
+    chapters:
+    - file: doc/CONTRIBUTING
+    - file: doc/LICENSE

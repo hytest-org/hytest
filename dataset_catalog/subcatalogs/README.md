@@ -1,4 +1,4 @@
-# hytest-catalogs
+# hytest sub-catalogs
 This directory holds subcatalogs called in by the `hytest_intake_catalog.yml`. These catalogs are structured to be compatible with the Python intake package and facilitate reading the data into the other notebooks contained in this repository. The intake catalog is stored as a yaml file, which should also be easy to parse using other programming languages, even if there is no equivalent to the intake package in that programming language. Example usage of this catalog is shown below.
 
 ```python
@@ -47,5 +47,5 @@ conus404-hourly-cloud:
 ds = cat['conus404-hourly-cloud'].to_dask()
 ```
 
-### Demos
+## Demos
 Demos for working with the data catalogs can be found in the [demos](https://github.com/hytest-org/hytest/tree/main/dataset_catalog/demos) folder.

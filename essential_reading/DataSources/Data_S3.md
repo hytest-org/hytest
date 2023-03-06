@@ -1,4 +1,4 @@
-# Data / Cloud Storage
+# Data/Cloud Storage
 
 One of the main storage locations for HyTest data is in '_The Cloud_'. This is sometimes referred to as **'Object Storage'**.
 The data is kept in data centers operated by Amazon, Microsoft, or similar, which makes it easily available to network-connected devices.
@@ -88,7 +88,7 @@ with fs.open('s3://noaa-nwm-retrospective-2-1-zarr-pds/index.html') as f:
 
 Output:
 
-```text
+```
 b'<!DOCTYPE html>\r\n'
 b'\r\n'
 b'<!--\r\n'
@@ -135,7 +135,6 @@ Execute full data read operations only if this notebook is being hosted and run 
 
 :::
 
-:::{sidebar}
 
 The good news about some of the larger science-oriented libraries (xarray, dask, pandas, zarr, etc), is that
 they can automatically handle the `fsspec` operations for you **IF YOUR ACCESS IS ANONYMOUS**.
@@ -149,7 +148,6 @@ Because it isn't universally available, and only applies to anonymous reads, exa
 always explicitly plumb `fsspec` 'longhand' using `get_mapper()`. You may see example code elsewhere
 that takes the shortcut if it is available.
 
-:::
 
 
 ## Credentialed Access
