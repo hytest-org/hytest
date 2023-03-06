@@ -135,7 +135,7 @@ Execute full data read operations only if this notebook is being hosted and run 
 
 :::
 
-:::{sidebar}
+:::{margin}
 
 The good news about some of the larger science-oriented libraries (xarray, dask, pandas, zarr, etc), is that
 they can automatically handle the `fsspec` operations for you **IF YOUR ACCESS IS ANONYMOUS**.
