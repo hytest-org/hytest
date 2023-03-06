@@ -19,6 +19,7 @@ parts:
       - file: environment_set_up/Start_Dask_Cluster_Denali
       #- file: environment_set_up/Start_Dask_Cluster_Tallgrass
       
+      
   - caption: Getting Started
     chapters:
     - file: essential_reading/ReadingsTutorials
@@ -33,6 +34,7 @@ parts:
       - file: dataset_preprocessing/ReChunkingData
       - file: dataset_preprocessing/ReChunkingData_Cloud
 
+
   - caption: Dataset Access
     chapters:
     - file: dataset_catalog/README
@@ -41,7 +43,6 @@ parts:
       sections:
       - file: dataset_access/conus404_explore
     
-
     
   - caption: Model Evaluation Tutorials
     chapters:
@@ -58,10 +59,8 @@ parts:
       - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
       - file: model_evaluation/tutorials/nwm_streamflow/03_Vizualization
 
+
   - caption: Back Matter
     chapters:
     - file: doc/CONTRIBUTING
     - file: doc/LICENSE
-
-    
-    
