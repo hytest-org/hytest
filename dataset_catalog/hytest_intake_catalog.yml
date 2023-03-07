@@ -223,7 +223,7 @@ sources:
     driver: zarr
     description: "Sample streamflow and velocity data used in HyTEST rechunking tutorial"
     args:
-      urlpath: 'rsignellbucket2/hytest/tutorials/dataset_preprocessing/ReChunking_Tutorial_Data.zarr'
+      urlpath: 's3://rsignellbucket2/hytest/tutorials/dataset_preprocessing/ReChunking_Tutorial_Data.zarr'
       consolidated: true
       storage_options:
         anon: true
