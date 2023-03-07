@@ -30,8 +30,8 @@ parts:
     - file: essential_reading/Parallel_Dask
     - file: dataset_preprocessing/chunk
       sections: 
-      - file: dataset_preprocessing/ReChunkingData
-      - file: dataset_preprocessing/ReChunkingData_Cloud
+      - file: dataset_preprocessing/tutorials/rechunking/ReChunkingData
+      - file: dataset_preprocessing/tutorials/rechunking/ReChunkingData_Cloud
 
 
   - caption: Dataset Access
