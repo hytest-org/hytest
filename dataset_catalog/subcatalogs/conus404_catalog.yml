@@ -14,10 +14,7 @@ sources:
       urlpath: 's3://nhgf-development/conus404/conus404_hourly_202209.zarr'
       consolidated: true
       storage_options:
-        anon: true
-        requester_pays: false
-        client_kwargs:
-          endpoint_url: https://renc.osn.xsede.org
+        requester_pays: true
 
   conus404-hourly-osn:
     driver: zarr
@@ -26,7 +23,10 @@ sources:
       urlpath: 's3://rsignellbucket2/hytest/conus404/conus404_hourly_202302.zarr'
       consolidated: true
       storage_options:
-        requester_pays: true
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://renc.osn.xsede.org
 
   conus404-daily-diagnostic-onprem:
     driver: zarr
