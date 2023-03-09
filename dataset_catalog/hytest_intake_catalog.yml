@@ -3,9 +3,15 @@ sources:
   conus404-drb-eval-tutorial-catalog:
     args:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-drb-eval-tutorial-catalog.yml'
-    description: 'Catalog for CONUS404 DRB tutorial intermdieate datasets'
+    description: 'Catalog for CONUS404 DRB tutorial intermediate datasets'
     driver: intake.catalog.local.YAMLFileCatalog
-  
+
+  conus404-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-catalog.yml'
+    description: 'Catalog for CONUS404 datasets'
+    driver: intake.catalog.local.YAMLFileCatalog
+   
   conus404-hourly-onprem:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of hourly data on Caldera on prem storage"
