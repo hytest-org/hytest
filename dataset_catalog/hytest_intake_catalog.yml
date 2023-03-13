@@ -6,10 +6,10 @@ sources:
     description: 'Catalog for CONUS404 DRB tutorial intermediate datasets'
     driver: intake.catalog.local.YAMLFileCatalog
     
-  nhm-v1.1-c404-bc-onprem-catalog:
+  nhm-v1.1-c404-bc-catalog:
     args:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/nhm-v1.1-c404-bc-catalog.yml'
-    description: 'Catalog for National Hydrologic Model version 1.1 model output variables with CONUS404 bias-corrected forcings in Caldera storage'
+    description: 'Catalog for National Hydrologic Model version 1.1 model output variables with CONUS404 bias-corrected forcings'
     driver: intake.catalog.local.YAMLFileCatalog
     
   conus404-catalog:
