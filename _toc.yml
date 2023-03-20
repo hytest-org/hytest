@@ -42,18 +42,18 @@ parts:
    
   - caption: Model Evaluation Tutorials
     chapters:
-    - file: model_evaluation/metrics
+    - file: evaluation/metrics
       sections:
-      - file: model_evaluation/Metrics_DScore_Suite_v1
-      - file: model_evaluation/tutorials/stats/Usage_DScore_Suite_v1
-      - file: model_evaluation/Metrics_StdSuite_v1
-      - file: model_evaluation/tutorials/stats/Usage_StdSuite_v1
-    - file: model_evaluation/tutorials/nwm_streamflow/00_Overview
+      - file: evaluation/Metrics_DScore_Suite_v1
+      - file: evaluation/tutorials/stats/Usage_DScore_Suite_v1
+      - file: evaluation/Metrics_StdSuite_v1
+      - file: evaluation/tutorials/stats/Usage_StdSuite_v1
+    - file: evaluation/tutorials/nwm_streamflow/00_Overview
       sections:
-      - file: model_evaluation/tutorials/nwm_streamflow/01_Data_Prep
-      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_StdSuite
-      - file: model_evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
-      - file: model_evaluation/tutorials/nwm_streamflow/03_Vizualization
+      - file: evaluation/tutorials/nwm_streamflow/01_Data_Prep
+      - file: evaluation/tutorials/nwm_streamflow/02_Analysis_StdSuite
+      - file: evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
+      - file: evaluation/tutorials/nwm_streamflow/03_Vizualization
 
 
   - caption: Back Matter
