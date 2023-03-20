@@ -8,7 +8,7 @@ in additional models.
 
 An example can be found in the CONUS404 DRB tutorials, which go over the
 process for evaluating forcings inputs (accumulated precipitation, net
-radiation, and mean temperature) of a model ouput (CONUS404).
+radiation, and mean temperature from the CONUS404 dataset), which is actually the output from an application of the WRF model.
 
 The *Metrics* notebooks above provide an overview of the different stats
 that are used in various notebooks.
