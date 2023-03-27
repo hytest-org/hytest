@@ -1,10 +1,9 @@
 # Contributing
 
-Contributions are welcome from the community. Questions can be asked on the
-[issues page](https://github.com/USGS-python/hytest_notebook_tutorials/issues). Before
-creating a new issue, please take a moment to search and make sure a similar issue
+Contributions are welcome from the community. Problems with code or requests for changes to the repo can be made by opening an issue on the [issues page](https://github.com/hytest-org/hytest/issues). Questions can be asked on the [discussions page](https://github.com/hytest-org/hytest/discussions). Before
+creating a new issue or discussion, please take a moment to search and make sure a similar one
 does not already exist. If one does exist, you can comment (most simply even with
-just a `:+1:`) to show your support for that issue.
+just a `:+1:`) to show your support for that issue/discussion.
 
 If you have direct contributions you would like considered for incorporation
 into the project you can
