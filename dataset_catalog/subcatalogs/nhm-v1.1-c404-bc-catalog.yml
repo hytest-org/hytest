@@ -1,0 +1,28 @@
+sources:
+
+  nhm-v1.1-c404-bc-byHRU-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with CONUS404 bias-corrected forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/c404-bc_byHRU/nhm_v1.1_c404-bc_byHRU_combined.json'
+
+  nhm-v1.1-c404-bc-byHW-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with CONUS404 bias-corrected forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/c404-bc_byHW/nhm_v1.1_c404-bc_byHW_combined.json'
+
+  nhm-v1.1-c404-bc-byHWobs-onprem:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with CONUS404 bias-corrected forcings"
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/c404-bc_byHWobs/nhm_v1.1_c404-bc_byHWobs_combined.json'
