@@ -1,12 +1,7 @@
 # QuickStart 
 
 The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) 
-software stack.
-We have some startup guides to help build the environment on HPC and 
-cloud infrastructure, but those are somewhat customized to compute resources 
-you may not have access to. 
-
-For general advice, you should start with Pangeo's 
+software stack. For general advice, you should start with Pangeo's 
 [Deployment Setup Guides](https://pangeo.io/setup_guides/index.html)
 and select an option which resembles your compute environment.
 

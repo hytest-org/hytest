@@ -1,15 +1,13 @@
 # Compute Environments
 
-The `environment_set_up` directory contains instructional materials and helper scripts to set
-up your computational environment for running HyTEST workflows and scripts in this repository.
+The `environment_set_up` directory contains instructional materials and helper scripts to set up your computational environment for running HyTEST workflows and scripts in this repository.
 
-The scripts in this repository are designed to be portable between a cloud environment and
-on-prem HPC resources. We prioritize work in the cloud because anyone can create an account
-there to run these workflows, but given that a large number of our users work on the USGS HPC
-systems, we have also build out some instructional materials to help set up these workflows
-in those environments as well.
+The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) software stack, and are designed to be portable between the cloud, HPC clusters, and your local computer (though some workflows may take an unreasonable amount of time to complete if you are working only on a local computer). The instructions in this README help guide you to set up your own computational environment or to utilize USGS HPC and cloud resources (only available to USGS staff).
 
-## Cloud Environment
+## Your Own Computation Environment
+If you do  not have access to USGS computational resources, we recommend you follow [these instructions](QuickStart-General.md) to set up a computational environment that can run our workflows.
+
+## USGS Cloud Environment
 
 If you are working in the cloud, we expect you to work in a JupyterHub instance that has
 already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few
@@ -35,9 +33,8 @@ options for accessing a JupyterHub instance:
    make sure you have a kernel with all of the required packages set up to run these notebooks.
 
 
-## HPC Environment
+## USGS HPC Environment
 
-While we prefer that these notebooks be run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
 While we prefer that these notebooks be run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
 
 1) [Open OnDemand](OpenOnDemand.md)<br>
@@ -51,7 +48,7 @@ While we prefer that these notebooks be run on "_cloud_" infrastructure, we also
    server from a command shell on the HPC. Requires familiarity with the HPC command line, file
    editing, etc.
 
---------
+## Spinning Up Dask Clusters
 
 Some of the notebooks in this repo make use of parallelism using Dask clusters.
 The details of spinning up a cluster will differ, depending upon the environment.
