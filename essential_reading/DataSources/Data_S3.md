@@ -153,7 +153,7 @@ fs_osn.ls('s3://usgs-scratch')
 For some data storage within the HyTEST workflows, access will not be anonymous.
 Permissions are set by the owners of that data, and the rules governing your ability to read from or write to certain locations may be defined with a set of credentials assigned to an AWS 'profile'.
 
-Profile credentials are usually stored outside of the Python program, typically in a file in your `HOME` folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the `aws` [command line interface(https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
+Profile credentials are usually stored outside of the Python program, typically in a file in your `HOME` folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the `aws` [command line interface](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
 
 To create a new AWS profile, which we will name `osn-renci`:
 
