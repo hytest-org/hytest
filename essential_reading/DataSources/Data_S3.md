@@ -42,17 +42,6 @@ Output:
  'noaa-nwm-retrospective-2-1-zarr-pds/rtout.zarr']
 ```
 
-## Anonymous Reads from Endpoints Outside of S3 (that use the S3 API)
-
-For storage operations, the S3 API needs the web address of the access point, or _endpoint_ where it should address filesystem operations. If your storage is completely within the Amazon ecosystem, you will likely not need to specify an endpoint. However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the endpoint when the filesystem is first referenced using `fsspec`. We can list the files stored in the `usgs-scratch` bucket of the OSN pod with the following:
-
-```python
-fs_osn = fsspec.filesystem(
-    's3',
-    anon=True,   # Does not require credentials
-    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
-)
-fs_osn.ls('usgs-scratch')
 We can call other methods on the `fsspec` object "`fs`" to interact with filesystem objects.
 
 ```python
@@ -86,7 +75,7 @@ with fs.open('s3://noaa-nwm-retrospective-2-1-zarr-pds/index.html') as f:
 
 Output:
 
-```
+```text
 b'<!DOCTYPE html>\r\n'
 b'\r\n'
 b'<!--\r\n'
@@ -146,7 +135,18 @@ Because it isn't universally available, and only applies to anonymous reads, exa
 always explicitly plumb `fsspec` 'longhand' using `get_mapper()`. You may see example code elsewhere
 that takes the shortcut if it is available.
 
+## Anonymous Reads from Endpoints Outside of S3 (that use the S3 API)
 
+For storage operations, the S3 API needs the web address of the access point, or _endpoint_ where it should address filesystem operations. If your storage is completely within the Amazon ecosystem, you will likely not need to specify an endpoint. However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the endpoint when the filesystem is first referenced using `fsspec`. We can list the files stored in the `usgs-scratch` bucket of the OSN pod with the following:
+
+```python
+fs_osn = fsspec.filesystem(
+    's3',
+    anon=True,   # Does not require credentials
+    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
+)
+fs_osn.ls('s3://usgs-scratch')
+```
 
 ## Credentialed Access
 
@@ -210,28 +210,29 @@ configuration.
 From within your Python program, writes to object storage can be achieved a few different ways, which we will demonstrate below. Writing data will typically require credentials. If this is the case, you should use an `fsspec` filesystem with a profile defined, similar to the `fs_osn` object that we created in the Credentialed Access section above.
 
 ### Uploading a Local File to S3
-If you have a file saved on your local file system, and you would like to upload it directly to object storage, you can use the `upload` function.
+
+If you have a file saved on your local file system, and you would like to upload it directly to object storage, you can use the `upload` method.
 
 ```python
 fs_osn.upload('outfile.nc', 'usgs-scratch/testing/outfile.nc')
 ```
 
 ### Writing a Pandas Dataframe to a CSV File on S3
+
 If you would like to write a pandas dataframe object directly to a csv file on object storage, you can do something like:
 
 ```python
-outfile = fs_osn.open("usgs-scratch/testing/outfile.csv", mode='wt')
-
-with outfile as f:
+with fs_osn.open("usgs-scratch/testing/outfile.csv", mode='wt') as f:
     pandas_df.to_csv(f)
 ```
 
 ### Writing Zarr Data to S3
+
 For zarr data, the most convenient way to write data to object storage is to use a `mapper` to connect a file-like python object to
 the object storage location:
 
 ```python
-fname='usgs-scratch/testing/outfile.zarr'
+fname='s3://usgs-scratch/testing/outfile.zarr'
 outfile=fs_osn.get_mapper(fname)
 xarray_dataset.to_zarr(outfile, mode='w', consolidated=True)
 ```
@@ -240,6 +241,7 @@ The `outfile` variable can be used most anywhere that a file-like object is need
 writing.
 
 ### Additional Commands
+
 With adequate permissions, you may be able to do more destructive activities to objects in a bucket (overwriting, removing, etc).
 Examples:
 
