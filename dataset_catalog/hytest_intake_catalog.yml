@@ -26,7 +26,7 @@ sources:
 
   conus404-catalog:
     args:
-      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-catalog.yml'
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404_catalog.yml'
     description: 'Catalog for CONUS404 datasets'
     driver: intake.catalog.local.YAMLFileCatalog
 
