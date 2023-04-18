@@ -37,12 +37,17 @@ parts:
       - file: dataset_preprocessing/ReChunkingData
       - file: dataset_preprocessing/ReChunkingData_Cloud
 
-
   - caption: Dataset Access
     chapters:
     - file: dataset_catalog/README
-    - file: dataset_catalog/subcatalogs/README
-
+      sections: 
+        - file: dataset_catalog/subcatalogs/README
+    - file: dataset_access/README
+      sections: 
+        - file: dataset_access/conus404_explore
+        - file: dataset_access/conus404_temporal_aggregation
+        - file: dataset_access/conus404_spatial_aggregation
+        - file: dataset_access/conus404_regrid
    
   - caption: Model Evaluation Tutorials
     chapters:
