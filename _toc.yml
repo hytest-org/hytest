@@ -21,13 +21,17 @@ parts:
    
   - caption: Getting Started
     chapters:
+    - file: essential_reading/README
     - file: essential_reading/ReadingsTutorials
+    - file: essential_reading/Demoing_Commonly_Used_Libraries
     - file: essential_reading/DataSources/README
       sections: 
       - file: essential_reading/DataSources/Data_APIs
       - file: essential_reading/DataSources/Data_S3
       - file: essential_reading/DataSources/Data_STAC
     - file: essential_reading/Parallel_Dask
+
+  - caption: Dataset Preprocessing
     - file: dataset_preprocessing/chunk
       sections: 
       - file: dataset_preprocessing/ReChunkingData
