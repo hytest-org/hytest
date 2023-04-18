@@ -46,6 +46,7 @@ parts:
    
   - caption: Model Evaluation Tutorials
     chapters:
+    - file: evaluation/README
     - file: evaluation/metrics
       sections:
       - file: evaluation/Metrics_DScore_Suite_v1
