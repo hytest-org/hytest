@@ -1,5 +1,5 @@
 format: jb-book
-root: README
+root: doc/About
 
 parts:
   - caption: Environment Set-Up
