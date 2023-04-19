@@ -50,6 +50,7 @@ The details of spinning up a cluster will differ, depending upon the environment
 We have a few sample 'helper' notebooks to illustrate the recommended way to
 start clusters in these environments:
 
+* [Local Desktop](Start_Dask_Cluster_Desktop.ipynb)
 * [Denali HPC](Start_Dask_Cluster_Denali.ipynb)
 * [Tallgrass HPC](Start_Dask_Cluster_Tallgrass.ipynb)
 * [Nebari](Start_Dask_Cluster_Nebari.ipynb)
