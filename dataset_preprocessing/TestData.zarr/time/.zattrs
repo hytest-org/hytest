@@ -1,9 +1,0 @@
-{
-    "_ARRAY_DIMENSIONS": [
-        "time"
-    ],
-    "calendar": "proleptic_gregorian",
-    "long_name": "valid output time",
-    "standard_name": "time",
-    "units": "hours since 1979-02-01T01:00:00"
-}
