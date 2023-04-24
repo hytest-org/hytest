@@ -1,8 +1,0 @@
-{
-    "_ARRAY_DIMENSIONS": [
-        "feature_id"
-    ],
-    "cf_role": "timeseries_id",
-    "comment": "NHDPlusv2 ComIDs within CONUS, arbitrary Reach IDs outside of CONUS",
-    "long_name": "Reach ID"
-}

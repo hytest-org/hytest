@@ -1,7 +1,0 @@
-{
-    "TITLE": "OUTPUT FROM WRF-Hydro v5.2.0-beta2",
-    "code_version": "v5.2.0-beta2",
-    "featureType": "timeSeries",
-    "model_configuration": "retrospective",
-    "proj4": "+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@"
-}
