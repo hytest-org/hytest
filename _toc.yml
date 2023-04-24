@@ -1,11 +1,11 @@
 format: jb-book
-root: README
+root: doc/About
 
 parts:
   - caption: Environment Set-Up
     chapters:
     - file: environment_set_up/README
-      sections: 
+      sections:
       - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/QuickStart-Cloud-pangeoCHS
       - file: environment_set_up/OpenOnDemand
@@ -14,34 +14,45 @@ parts:
     - file: environment_set_up/clusters
       sections:
       - file: environment_set_up/Help_AWS_Credentials
-      - file: environment_set_up/Start_Dask_Cluster_Nebari  
-      #- file: environment_set_up/Start_Dask_Cluster_PangeoCHS
+      - file: environment_set_up/Start_Dask_Cluster_Nebari
+      - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
-      #- file: environment_set_up/Start_Dask_Cluster_Tallgrass
-   
+      - file: environment_set_up/Start_Dask_Cluster_Tallgrass
+
   - caption: Getting Started
     chapters:
+    - file: essential_reading/README
     - file: essential_reading/ReadingsTutorials
+    - file: essential_reading/Demoing_Commonly_Used_Libraries
     - file: essential_reading/DataSources/README
-      sections: 
+      sections:
       - file: essential_reading/DataSources/Data_APIs
       - file: essential_reading/DataSources/Data_S3
       - file: essential_reading/DataSources/Data_STAC
     - file: essential_reading/Parallel_Dask
+
+  - caption: Dataset Preprocessing
+    chapters:
     - file: dataset_preprocessing/chunk
-      sections: 
+      sections:
       - file: dataset_preprocessing/ReChunkingData
       - file: dataset_preprocessing/ReChunkingData_Cloud
-
 
   - caption: Dataset Access
     chapters:
     - file: dataset_catalog/README
-    - file: dataset_catalog/subcatalogs/README
+      sections:
+        - file: dataset_catalog/subcatalogs/README
+    - file: dataset_access/README
+      sections:
+        - file: dataset_access/conus404_explore
+        - file: dataset_access/conus404_temporal_aggregation
+        - file: dataset_access/conus404_spatial_aggregation
+        - file: dataset_access/conus404_regrid
 
-   
   - caption: Model Evaluation Tutorials
     chapters:
+    - file: evaluation/README
     - file: evaluation/metrics
       sections:
       - file: evaluation/Metrics_DScore_Suite_v1

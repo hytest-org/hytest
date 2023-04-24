@@ -7,13 +7,19 @@ copyright: '2023'
 description: Training materials for HyTEST workflows.
 thumbnail: doc/assets/HyTEST_Badge.svg
 exclude_patterns : [_build, Thumbs.db, .github, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
-only_build_toc_files: True 
+only_build_toc_files: True
 
 # Execute the notebooks upon build
 execute:
   execute_notebooks: cache
   timeout: 600
   allow_errors: True
+  ## Some notebooks demonstrate workflows for non-nebari systems; but we build on nebari, so these noteboooks are excluded from execution.
+  exclude_patterns: [
+    environment_set_up/Start_Dask_Cluster_Denali.ipynb,
+    environment_set_up/Start_Dask_Cluster_PangeoCHS.ipynb,
+    environment_set_up/Start_Dask_Cluster_Tallgrass.ipynb
+    ]
 
 # Add a few extensions to help with parsing content
 parse:
