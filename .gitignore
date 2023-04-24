@@ -2,6 +2,8 @@
 ## Jupyterbook and sphinx build space
 _build
 
+*.nc
+
 # python chaff...
 __pycache__/
 *.py[cod]
