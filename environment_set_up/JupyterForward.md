@@ -5,7 +5,7 @@ will be invoked by a command installed on your PC.  This option minimizes the co
 needed on the HPC host, but still permits relatively easy access to that hardware via a personal Jupyter
 Server.
 
-## 1) Configure your HPC account to access the HyTEST [conda](www.anaconda.org) environment :
+## 1) Configure your HPC account to access the HyTEST [conda](https://www.anaconda.org) environment :
 
     * log in to either HPC host ( `denali` or `tallgrass` )
     * Edit your `.bashrc` file to include these two lines at the bottom:

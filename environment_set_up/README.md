@@ -4,7 +4,10 @@ The `environment_set_up` directory contains instructional materials and helper s
 
 The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) software stack, and are designed to be portable between the cloud, HPC clusters, and your local computer (though some workflows may take an unreasonable amount of time to complete if you are working only on a local computer).
 
-The instructions in this README help guide you to set up your own computational environment or to utilize USGS HPC and cloud resources (only available to USGS staff). If you do  not have access to USGS computational resources, we recommend you follow [these instructions](QuickStart-General.md) to set up a computational environment that can run our workflows.
+The instructions in this README help guide you to set up your own computational environment or to 
+utilize USGS HPC and cloud resources (only available to USGS staff). If you do  not have access 
+to USGS computational resources, we recommend you follow [these instructions](QuickStart-General.md) 
+to set up a computational environment that can run our workflows.
 
 ## USGS Cloud Environment
 

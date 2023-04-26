@@ -3,6 +3,7 @@
 _build
 
 *.nc
+core.*
 
 # python chaff...
 __pycache__/

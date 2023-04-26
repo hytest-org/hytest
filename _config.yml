@@ -3,17 +3,25 @@
 
 title: HyTEST Project
 copyright: '2023'
+logo: doc/assets/HyTEST_Badge.svg
+
 
 description: Training materials for HyTEST workflows.
 thumbnail: doc/assets/HyTEST_Badge.svg
 exclude_patterns : [_build, Thumbs.db, .github, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
 only_build_toc_files: True
+repository: 
+  url: https://github.com/hytest-org/hytest
+html:
+  use_repository_button: true
+  home_page_in_navbar : false
+  announcement: "v0.0.1_alpha01"
 
 # Execute the notebooks upon build
 execute:
   execute_notebooks: cache
   timeout: 600
-  allow_errors: True
+  allow_errors: False
   ## Some notebooks demonstrate workflows for non-nebari systems; but we build on nebari, so these noteboooks are excluded from execution.
   exclude_patterns: [
     "environment_set_up/Start_Dask_Cluster_**"
@@ -33,6 +41,7 @@ parse:
 
 sphinx:
   config:
+    suppress_warnings: ["mystnb.unknown_mime_type"] 
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
     html_favicon: doc/assets/favicon.ico

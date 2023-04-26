@@ -22,8 +22,9 @@ parts:
   - caption: Getting Started
     chapters:
     - file: essential_reading/README
-    - file: essential_reading/ReadingsTutorials
-    - file: essential_reading/Demoing_Commonly_Used_Libraries
+      sections:
+      - file: essential_reading/ReadingsTutorials
+      - file: essential_reading/Demoing_Commonly_Used_Libraries
     - file: essential_reading/DataSources/README
       sections:
       - file: essential_reading/DataSources/Data_APIs
