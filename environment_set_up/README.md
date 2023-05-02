@@ -1,6 +1,6 @@
 # Compute Environments
 
-The `environment_set_up` directory contains instructional materials and helper scripts to set up your computational environment for running HyTEST workflows and scripts in this repository.
+This section contains instructional materials and helper scripts to set up your computational environment for running HyTEST workflows and scripts in this repository.
 
 The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) software stack, and are designed to be portable between the cloud, HPC clusters, and your local computer (though some workflows may take an unreasonable amount of time to complete if you are working only on a local computer).
 
