@@ -6,6 +6,7 @@ parts:
     chapters:
     - file: environment_set_up/README
       sections:
+      - file: environment_set_up/QuickStart-General
       - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/QuickStart-Cloud-pangeoCHS
       - file: environment_set_up/OpenOnDemand
@@ -14,6 +15,7 @@ parts:
     - file: environment_set_up/clusters
       sections:
       - file: environment_set_up/Help_AWS_Credentials
+      - file: environment_set_up/Start_Dask_Cluster_Desktop
       - file: environment_set_up/Start_Dask_Cluster_Nebari
       - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
