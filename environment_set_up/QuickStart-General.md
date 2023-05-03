@@ -1,4 +1,4 @@
-# QuickStart - General
+# General QuickStart
 
 The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) 
 software stack. For general advice, you should start with Pangeo's 
