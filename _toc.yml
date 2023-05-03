@@ -7,19 +7,19 @@ parts:
     - file: environment_set_up/README
       sections:
       - file: environment_set_up/QuickStart-General
-      - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/QuickStart-Cloud-pangeoCHS
+      - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/OpenOnDemand
       - file: environment_set_up/JupyterForward
       - file: environment_set_up/StartScript
+    - file: environment_set_up/Help_AWS_Credentials
     - file: environment_set_up/clusters
       sections:
-      - file: environment_set_up/Help_AWS_Credentials
-      - file: environment_set_up/Start_Dask_Cluster_Desktop
       - file: environment_set_up/Start_Dask_Cluster_Nebari
       - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
       - file: environment_set_up/Start_Dask_Cluster_Tallgrass
+      - file: environment_set_up/Start_Dask_Cluster_Desktop
 
   - caption: Getting Started
     chapters:

@@ -1,4 +1,4 @@
-# HPC Server: Open OnDemand
+# HPC Server: Open OnDemand Quick-Start
 
 This is a custom service provided by the ARC team and customized for use in HyTEST workflows. It is the easiest
 to use (no configuration needed on your part), and provides reasonable compute resources via the `tallgrass`

@@ -11,9 +11,8 @@ to set up a computational environment that can run our workflows.
 
 ## USGS Cloud Environment
 
-If you are working in the cloud, we expect you to work in a JupyterHub instance that has
-already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few
-options for accessing a JupyterHub instance:
+If you are working in the cloud, we expect you to work in a JupyterHub instance that has already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few
+options for accessing a JupyterHub instance. These are described below, and more detailed instructions to set each option up are included in the hyperlinked name of the environment:
 1) [pangeo.chs.usgs.gov](QuickStart-Cloud-pangeoCHS.md)<br>
    This JupyterHub instance is currently deployed on USGS's AWS account, and any USGS employee
    can request access to this space. Once you are added, the url will take you to your own
@@ -24,7 +23,7 @@ options for accessing a JupyterHub instance:
    shared kernels, but sometimes the update process can take several weeks.
 2) [Nebari](QuickStart-Cloud-Nebari.md)<br>
    The HyTEST project is currently working on deploying an instance of [Nebari](https://www.nebari.dev/) JupyterHub. HyTEST will
-   allow some of our priority users to test out this space once it is created. We will also provide instructions for how your project can deploy its own instance of Nebari JupyterHub. Nebari includes a shared space in the JupyterHub deployement, where all users can access and run aeach other's files/scripts. Any
+   allow some of our priority users to test out this space once it is created. We will also provide instructions for how your project can deploy its own instance of Nebari JupyterHub. Nebari includes a shared space in the JupyterHub deployement, where all users can access and run each other's files/scripts. Any
    user can also quickly modify and update a set of shared kernels so that all users are working in the same development environment. This work is currently in development, and these instructions will be updated once this is available.
 3) Your own JupyterHub Instance<br>
    Your can also work with your own deployment of a JupyterHub environment. You will need to
@@ -45,16 +44,3 @@ While we prioritize the development of workflows to run on "_cloud_" infrastruct
    This option lets you completely customize your HPC compute environment and invoke the Jupyter
    server from a command shell on the HPC. This requires familiarity with the HPC command line, file
    editing, etc.
-
-## Spinning Up Dask Clusters
-
-Some of the notebooks in this repository make use of parallelism using Dask clusters.
-The details of spinning up a cluster will differ, depending upon the environment.
-We have a few sample 'helper' notebooks to illustrate the recommended way to
-start clusters in these environments:
-
-* [Local Desktop](Start_Dask_Cluster_Desktop.ipynb)
-* [Denali HPC](Start_Dask_Cluster_Denali.ipynb)
-* [Tallgrass HPC](Start_Dask_Cluster_Tallgrass.ipynb)
-* [Nebari](Start_Dask_Cluster_Nebari.ipynb)
-* [Pangeo.CHS.usgs.gov](Start_Dask_Cluster_PangeoCHS.ipynb)

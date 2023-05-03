@@ -1,10 +1,9 @@
-# Starting a Cluster
+# Starting a Dask Cluster
 
-Many of the workflows in this repo are designed to take advantage of parallelism 
-via `dask`.  Exactly how to start a cluster varies considerably, depending on the
-compute platform.  We have boilerplate code to help in starting a suitable cluster
-for many of the computing environments where HyTEST workflows are likely to run. 
+Many of the workflows in this repository are designed to take advantage of parallelism via dask clusters. The details of spinning up a cluster will differ, depending on the compute platform. We have boilerplate code to help in starting a suitable cluster for many of the computing environments where HyTEST workflows are likely to run.
 
-```{tableofcontents}
-```
-
+* [Nebari](Start_Dask_Cluster_Nebari.ipynb)
+* [Pangeo.CHS.usgs.gov](Start_Dask_Cluster_PangeoCHS.ipynb)
+* [Denali HPC](Start_Dask_Cluster_Denali.ipynb)
+* [Tallgrass HPC](Start_Dask_Cluster_Tallgrass.ipynb)
+* [Local Desktop](Start_Dask_Cluster_Desktop.ipynb)
