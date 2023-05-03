@@ -1,6 +1,6 @@
-# Quick-Start for pangeo.chs.usgs.gov Cloud Environment
+# Cloud: pangeo.chs.usgs.gov Quick-Start
 
-Once you are added, the url will take you to your own personal JupyterHub space. The files in this space are only visible/accessible to the user who created them, so you will need to push them to a shared repository to work collaboratively. You will also have access to a shared set of kernels that are managed by USGS's Cloud Technologies (CTek) team in the Enterprise Technology Office (ETO). To use this JupyterHub instance:
+This JupyterHub instance is currently deployed on USGS's AWS account, and any USGS employee can request access to this space. Once you are added, the url will take you to your own personal JupyterHub space. The files in this space are only visible/accessible to the user who created them, so you will need to push them to a shared repository to work collaboratively. You will also have access to a shared set of kernels that are managed by USGS's Cloud Technologies (CTek) team in the Enterprise Technology Office (ETO). To use this JupyterHub instance:
 
 1) Obtain access to `pangeo.chs.usgs.gov` by following 
 [these instructions](https://support.chs.usgs.gov/display/CHSKB/Pangeo+Framework)

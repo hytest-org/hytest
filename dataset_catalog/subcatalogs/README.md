@@ -1,13 +1,13 @@
-# hytest sub-catalogs
-This directory holds subcatalogs called in by the `hytest_intake_catalog.yml`. These catalogs are structured to be compatible with the Python intake package and facilitate reading the data into the other notebooks contained in this repository. The intake catalog is stored as a yaml file, which should also be easy to parse using other programming languages, even if there is no equivalent to the intake package in that programming language. Example usage of this catalog is shown below.
+# HyTEST Intake Sub-Catalogs
+This section describes how to use the subcatalogs contained in HyTEST's main data catalog (`hytest_intake_catalog.yml`). Example usage of the CONUS404 sub-catalog is shown below.
 
 ```python
 import intake
-url = 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404_catalog.yml'
-cat = intake.open_catalog(url)
-list(cat)
+hytest_cat = intake.open_catalog("https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml")
+list(hytest_cat)
 ```
-produces a list of datasets, for example:
+
+produces a list of datasets and sub-catalogs in the main HyTEST data catalog, for example:
 ```
 ['conus404-hourly-onprem',
  'conus404-hourly-cloud',
@@ -17,8 +17,27 @@ produces a list of datasets, for example:
  'conus404-daily-cloud',
  'conus404-monthly-onprem',
  'conus404-monthly-cloud']
- ```
- The characteristics of indivdual datasets can be explored:
+
+```
+We can then open the CONUS404 sub-catalog with:
+```python
+cat = hytest_cat['conus404-catalog']
+list(cat)
+```
+producing a list of all the CONUS404 dataset versions:
+```
+['conus404-hourly-onprem',
+ 'conus404-hourly-cloud',
+ 'conus404-hourly-osn',
+ 'conus404-daily-diagnostic-onprem',
+ 'conus404-daily-diagnostic-cloud',
+ 'conus404-daily-onprem',
+ 'conus404-daily-cloud',
+ 'conus404-monthly-onprem',
+ 'conus404-monthly-cloud']
+```
+
+The characteristics of indivdual datasets can be explored:
 ```python
 cat['conus404-hourly-cloud']
 ```
@@ -42,10 +61,3 @@ conus404-hourly-cloud:
   metadata:
     catalog_dir: https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs
 ```
- and xarray-type datasets can be loaded with `to_dask()`:
-```python
-ds = cat['conus404-hourly-cloud'].to_dask()
-```
-
-## Demos
-Demos for working with the data catalogs can be found in the [demos](https://github.com/hytest-org/hytest/tree/main/dataset_catalog/demos) folder.

@@ -1,4 +1,4 @@
-# HPC Server :: Jupyter Forward
+# HPC Server: Jupyter Forward Quick-Start
 
 This option will configure your HPC account to access the correct Jupyter server software.  That server
 will be invoked by a command installed on your PC.  This option minimizes the configuration changes

@@ -1,10 +1,7 @@
-# Evaluation folder
+# Model Evaluation
 
-The evaluation folder contains demos, tutorials, and resources for evaluating
-model and forcing datasets. These datasets are not so different from one
-another, as model outputs can be inputs for other models. An example is
-CONUS404, a model output, contains forcings data variables that are used
-in additional models.
+The section contains tutorials for evaluating model outputs and forcing datasets. Model outputs and forcing datasets are not so different from one another, as model outputs can be inputs for other models. For example,
+CONUS404, a model output, contains forcings data variables that are used as inputs in additional models.
 
 An example can be found in the CONUS404 DRB tutorials, which go over the
 process for evaluating forcings inputs (accumulated precipitation, net

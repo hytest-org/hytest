@@ -1,4 +1,4 @@
-# QuickStart 
+# QuickStart - General
 
 The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) 
 software stack. For general advice, you should start with Pangeo's 
@@ -31,7 +31,7 @@ installed.
 The Jupyter server is the harder problem to solve -- primarily because 
 there are so many variables and options to consider when setting it up. 
 The Pangeo docs cover a few of the options, and the [Jupyter](https://jupyter.org/)
-docs also give some help for setting up. These deploytments, generally, 
+docs also give some help for setting up. These deployments, generally, 
 are meant for a single user to run notebooks on a semi-private host. 
 
 If multiple users will be using the same server, consider deploying a

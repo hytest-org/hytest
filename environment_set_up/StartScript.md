@@ -1,5 +1,4 @@
-# HPC Server :: Start Script
-
+# HPC Server: Start Script Quick-Start
 
 Use this option if you would like more control over the allocation request and the environment in
 which the jupyter server runs. This option requires that you log into the HPC host to run a custom
