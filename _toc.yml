@@ -51,9 +51,8 @@ parts:
       - file: dataset_preprocessing/tutorials/rechunking/ReChunkingData
       - file: dataset_preprocessing/tutorials/rechunking/ReChunkingData_Cloud
 
-  - caption: Model Evaluation Tutorials
+  - caption: Model Evaluation
     chapters:
-    - file: evaluation/README
     - file: evaluation/metrics
       sections:
       - file: evaluation/Metrics_DScore_Suite_v1
