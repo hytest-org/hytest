@@ -28,8 +28,8 @@ Source datasets are found in a variety of storage mechanisms.  The main mechanis
 need to be able to accomodate are:
 
 * '_on-prem_' data stored on `/caldera`, accessible by one of the HPC hosts.
-* Object storage in the '_cloud_' -- typically an [S3 bucket](/dev/null) in the AWS cloud computing ecosystem.
-* [API request](/dev/null) -- Data is offered by a provider as a network service.  An **A**plication
+* Object storage in the '_cloud_' -- typically an [S3 bucket](../../../essential_reading/DataSources/Data_S3.md) in the AWS cloud computing ecosystem.
+* [API request](../../../essential_reading/DataSources/Data_APIs.md) -- Data is offered by a provider as a network service.  An **A**plication
 **P**rogramming **I**nterface call is made from within a python
 program to fetch the data from the network provider. This is typically via
 _http_ or _ftp_ transfer protocols.
@@ -53,7 +53,7 @@ for analysis.  Rectifying the data includes measures such as:
 * Obtaining data from an API and storing it in more efficient format for reuse
 
 :::{margin}
-See [here](/dev/null) for a primer on re-chunking data, and why we choose to do it before analysis.
+See [here](../../../dataset_preprocessing/tutorials/rechunking/ReChunkingData.ipynb) for a primer on re-chunking data, and why we choose to do it before analysis.
 :::
 
 At this stage, a given variable should be represented as a pair of 2D array of values (one
