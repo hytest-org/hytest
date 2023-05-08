@@ -5,10 +5,11 @@ to use (no configuration needed on your part), and provides reasonable compute r
 host:
 
 * Go to `https://tallgrass-denali-ondemand.cr.usgs.gov/pun/sys/dashboard/` in your web browser.
-  Note that you must be on the VPN to access this host.
-* Launch the HyTEST Jupyter Server app.
-* Fill in the form to customize the allocation in which the Jupyter Server will execute.
+  Note that you must be on the VPN to access this host. You will be prompted to log in to the server, and you should use your AD username and password here.
+* Launch the HyTEST Jupyter Server app under the Interactive Apps dropdown menu.
+* Fill in the form to customize the allocation in which the Jupyter Server will execute. You may want to consider adding the git and/or aws modules if you plan to use them during your session. You will just need to type `module load git` and/or `module load aws` in the `Module loads` section.
 * Submit
+* Once your server is ready, a `Connect to Jupyter` button will appear that you can click to start your session.
 
 The Jupyter Server will run in an allocation on `tallgrass`. This server will have access to your home
 directory/folder on that host, which is where your notebooks will reside.
