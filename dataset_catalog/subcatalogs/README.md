@@ -9,14 +9,19 @@ list(hytest_cat)
 
 produces a list of datasets and sub-catalogs in the main HyTEST data catalog, for example:
 ```
-['conus404-hourly-onprem',
- 'conus404-hourly-cloud',
- 'conus404-daily-diagnostic-onprem',
- 'conus404-daily-diagnostic-cloud',
- 'conus404-daily-onprem',
- 'conus404-daily-cloud',
- 'conus404-monthly-onprem',
- 'conus404-monthly-cloud']
+['conus404-catalog',
+ 'conus404-drb-eval-tutorial-catalog',
+ 'nhm-v1.0-daymet-catalog',
+ 'nhm-v1.1-c404-bc-catalog',
+ 'nhm-v1.1-gridmet-catalog',
+ 'nwis-streamflow-usgs-gages-onprem',
+ 'nwis-streamflow-usgs-gages-cloud',
+ 'nwm21-streamflow-usgs-gages-onprem',
+ 'nwm21-streamflow-usgs-gages-cloud',
+ 'nwm21-streamflow-cloud',
+ 'nwm21-scores',
+ 'lcmap-cloud',
+ 'rechunking-tutorial-cloud']
 
 ```
 We can then open the CONUS404 sub-catalog with:
@@ -31,10 +36,13 @@ producing a list of all the CONUS404 dataset versions:
  'conus404-hourly-osn',
  'conus404-daily-diagnostic-onprem',
  'conus404-daily-diagnostic-cloud',
+ 'conus404-daily-diagnostic-osn',
  'conus404-daily-onprem',
  'conus404-daily-cloud',
+ 'conus404-daily-osn',
  'conus404-monthly-onprem',
- 'conus404-monthly-cloud']
+ 'conus404-monthly-cloud',
+ 'conus404-monthly-osn']
 ```
 
 The characteristics of indivdual datasets can be explored:
