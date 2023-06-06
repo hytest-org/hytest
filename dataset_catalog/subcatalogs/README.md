@@ -47,24 +47,24 @@ producing a list of all the CONUS404 dataset versions:
 
 The characteristics of indivdual datasets can be explored:
 ```python
-cat['conus404-hourly-cloud']
+cat['conus404-hourly-osn']
 ```
 producing
 ```yaml
-conus404-hourly-cloud:
+conus404-hourly-osn:
   args:
     consolidated: true
     storage_options:
-      requester_pays: true
-    urlpath: s3://nhgf-development/conus404/conus404_hourly_202209.zarr
+      anon: true
+      client_kwargs:
+        endpoint_url: https://renc.osn.xsede.org
+      requester_pays: false
+    urlpath: s3://rsignellbucket2/hytest/conus404/conus404_hourly_202302.zarr
   description: 'CONUS404 Hydro Variable subset, 40 years of hourly values. These files
     were created wrfout model output files (see ScienceBase data release for more
     details: https://www.sciencebase.gov/catalog/item/6372cd09d34ed907bf6c6ab1). This
     dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can
-    work with this data for free if your workflow is running in the us-west-2 region,
-    but you will be charged according to AWS S3 pricing (https://aws.amazon.com/s3/pricing/)
-    to read the data into a workflow running outside of the cloud or in a different
-    AWS cloud region.'
+    work with this data for free in any environment (there are no egress fees).'
   driver: intake_xarray.xzarr.ZarrSource
   metadata:
     catalog_dir: https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs
