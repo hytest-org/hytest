@@ -1,5 +1,11 @@
 sources:
 
+  conus404-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-catalog.yml'
+    description: 'Catalog for CONUS404 datasets'
+    driver: intake.catalog.local.YAMLFileCatalog
+    
   conus404-drb-eval-tutorial-catalog:
     args:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-drb-eval-tutorial-catalog.yml'
@@ -22,12 +28,6 @@ sources:
     args:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/nhm-v1.1-gridmet-catalog.yml'
     description: 'Catalog for National Hydrologic Model version 1.1 model output variables with Gridmet forcings'
-    driver: intake.catalog.local.YAMLFileCatalog
-
-  conus404-catalog:
-    args:
-      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-catalog.yml'
-    description: 'Catalog for CONUS404 datasets'
     driver: intake.catalog.local.YAMLFileCatalog
 
   nwis-streamflow-usgs-gages-onprem:
