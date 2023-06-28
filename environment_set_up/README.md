@@ -4,12 +4,11 @@ This section contains instructional materials and helper scripts to set up your 
 
 The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) software stack, and are designed to be portable between the cloud, HPC clusters, and your local computer (though some workflows may take an unreasonable amount of time to complete if you are working only on a local computer).
 
-These instructions help guide you to set up your own computational environment or to 
-utilize USGS HPC and cloud resources (only available to USGS staff). If you do  not have access 
-to USGS computational resources, we recommend you follow [these instructions](QuickStart-General.md) 
-to set up a computational environment that can run our workflows.
+## Setting Up Your Own Computing Environment
 
-## USGS Cloud Environment
+If you do not have access to USGS computational resources, we recommend you follow [these instructions](QuickStart-General.md) to set up a computational environment that can run our workflows.
+
+## USGS Cloud Environment (only avaialble to USGS staff)
 
 If you are working in the cloud, we expect you to work in a JupyterHub instance that has already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few
 options for accessing a JupyterHub instance. These are described below, and more detailed instructions to set each option up are included in the hyperlinked name of the environment:
@@ -30,7 +29,7 @@ options for accessing a JupyterHub instance. These are described below, and more
    make sure you have a kernel with all of the required packages set up to run these notebooks.
 
 
-## USGS HPC Environment
+## USGS HPC Environment (only avaialble to USGS staff)
 
 While we prioritize the development of workflows to run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
 
