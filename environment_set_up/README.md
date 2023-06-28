@@ -31,7 +31,11 @@ options for accessing a JupyterHub instance. These are described below, and more
 
 ## USGS HPC Environment (only avaialble to USGS staff)
 
-While we prioritize the development of workflows to run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
+While we prioritize the development of workflows to run on "_cloud_" infrastructure, we also provide some guidance for running them on USGS's supercomputers. First, make sure you have an account on Denali or Tallgrass. We recommend accounts on both systems, as at times compute nodes may be unavailable on one system or the other. To get an account, fill out the [request form](https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html#getting-started) and wait for approval (this may take a day or so).
+
+Note that to access any of the HPCs, you must be on the DOI Network. If you are not in the office, use Ivanti Secure to access the VPN.
+
+You will need to access an enviroment which emulates the Jupyter server -- where the notebooks will reside and execute -- using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:
 
 1) [Open OnDemand](OpenOnDemand.md)<br>
    This option provides the most effortless access to HPC hardware using a web interface. However, this only runs on the [`Tallgrass`](https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/tallgrass.html) supercomputer.
@@ -42,4 +46,5 @@ While we prioritize the development of workflows to run on "_cloud_" infrastruct
 3) [Custom Server Script](StartScript.md)<br>
    This option lets you completely customize your HPC compute environment and invoke the Jupyter
    server from a command shell on the HPC. This requires familiarity with the HPC command line, file
-   editing, etc.
+   editing, etc. This (can be
+   run on [`Denali`](https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/denali.html), [`Tallgrass`](https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/tallgrass.html), or other hosts to which you have a login).
