@@ -1,6 +1,8 @@
 # CONUS404 Access
 
-This section contains notebooks that demonstrate how to access and perform basic data manipulation for the CONUS404 dataset. These methods are likely applicable to many of the other key HyTEST datasets that can be opened with xarray. We currently have four demonstrations:
+This section contains notebooks that demonstrate how to access and perform basic data manipulation for the CONUS404 dataset. These methods are likely applicable to many of the other key HyTEST datasets that can be opened with xarray. If you need help setting up a computing environment where you can run these notebooks, you should review the [Computing Environments](../environment_set_up/README.md) section of the documentation.
+
+We currently have four demonstrations:
 
 - [Explore CONUS404 Dataset](./conus404_explore.ipynb): opens the CONUS404 dataset, loads and plots the entire spatial 
    domain of a specified variable at a specfic time step, and loads and plots a time series of a variable at a specified coordinate pair.
