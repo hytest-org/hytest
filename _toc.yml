@@ -1,0 +1,73 @@
+format: jb-book
+root: doc/About
+
+parts:
+  - caption: Environment Set-Up
+    chapters:
+    - file: environment_set_up/README
+      sections:
+      - file: environment_set_up/QuickStart-General
+      - file: environment_set_up/QuickStart-Cloud-pangeoCHS
+      - file: environment_set_up/QuickStart-Cloud-Nebari
+      - file: environment_set_up/OpenOnDemand
+      - file: environment_set_up/JupyterForward
+      - file: environment_set_up/StartScript
+    - file: environment_set_up/Help_AWS_Credentials
+    - file: environment_set_up/clusters
+      sections:
+      - file: environment_set_up/Start_Dask_Cluster_Nebari
+      - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
+      - file: environment_set_up/Start_Dask_Cluster_Denali
+      - file: environment_set_up/Start_Dask_Cluster_Tallgrass
+      - file: environment_set_up/Start_Dask_Cluster_Desktop
+
+  - caption: Getting Started
+    chapters:
+    - file: essential_reading/README
+      sections:
+      - file: essential_reading/ReadingsTutorials
+    - file: essential_reading/DataSources/README
+      sections:
+      - file: essential_reading/DataSources/Data_APIs
+      - file: essential_reading/DataSources/Data_S3
+    - file: essential_reading/Parallel_Dask
+
+  - caption: Dataset Access
+    chapters:
+    - file: dataset_catalog/README
+      sections:
+        - file: dataset_catalog/subcatalogs/README
+    - file: dataset_access/README
+      sections:
+        - file: dataset_access/conus404_explore
+        - file: dataset_access/conus404_temporal_aggregation
+        - file: dataset_access/conus404_spatial_aggregation
+        - file: dataset_access/conus404_regrid
+
+  - caption: Dataset Preprocessing
+    chapters:
+    - file: dataset_preprocessing/chunk
+      sections: 
+      - file: dataset_preprocessing/tutorials/rechunking/ReChunkingData
+      - file: dataset_preprocessing/tutorials/rechunking/ReChunkingData_Cloud
+
+  - caption: Model Evaluation
+    chapters:
+    - file: evaluation/metrics
+      sections:
+      - file: evaluation/Metrics_DScore_Suite_v1
+      - file: evaluation/tutorials/stats/Usage_DScore_Suite_v1
+      - file: evaluation/Metrics_StdSuite_v1
+      - file: evaluation/tutorials/stats/Usage_StdSuite_v1
+    - file: evaluation/tutorials/nwm_streamflow/00_Overview
+      sections:
+      - file: evaluation/tutorials/nwm_streamflow/01_Data_Prep
+      - file: evaluation/tutorials/nwm_streamflow/02_Analysis_StdSuite
+      - file: evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
+      - file: evaluation/tutorials/nwm_streamflow/03_Vizualization
+
+
+  - caption: Back Matter
+    chapters:
+    - file: doc/CONTRIBUTING
+    - file: doc/LICENSE

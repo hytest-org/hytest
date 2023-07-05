@@ -8,4 +8,5 @@ The contents of this folder contain notebooks, scripts, and documentation used t
   - `era5-land_api_dask.ipynb`: parallelizes many API requests with [dask](https://www.dask.org/)
   - `era5-land_kerchunk.ipynb`: updates an existing [kerchunk](https://github.com/fsspec/kerchunk) reference file with any new ERA5 netCDF files
   - `gridmet_processing_with_pynco.ipynb`: demonstrates an alternative method to rechunking netCDF data files using [pynco](https://pynco.readthedocs.io/en/latest/), a python module to access the NCO command-line too for processing netCDFs
-  - `nwm_rechunking.ipynb`: uses pyriver geohydro package to extract streamflow from NWIS, subset to the gages used by the National Water Model, and implement a chunking scheme to create a more optimal zarr dataset
+  - `nwis_to_nwm_gages_rechunking.ipynb`: uses pyriver geohydro package to extract streamflow from NWIS, subset to the gages used by the National Water Model, and implement a chunking scheme to create a more optimal zarr dataset
+  - `nwm_rechunking.md`: links to the NCAR repository with code that was used to rechunk the National Water Model v2.1 output into a more optimal zarr dataset that is [currently available through the Registry of Open Data on AWS](https://noaa-nwm-retrospective-2-1-zarr-pds.s3.amazonaws.com/index.html)

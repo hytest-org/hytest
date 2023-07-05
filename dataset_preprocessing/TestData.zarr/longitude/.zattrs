@@ -1,8 +1,0 @@
-{
-    "_ARRAY_DIMENSIONS": [
-        "feature_id"
-    ],
-    "long_name": "feature longitude",
-    "standard_name": "longitude",
-    "units": "degrees_east"
-}

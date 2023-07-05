@@ -1,10 +1,8 @@
-# Data / Cloud Storage
+# Data/Cloud Storage
 
 One of the main storage locations for HyTest data is in '_The Cloud_'. This is sometimes referred to as **'Object Storage'**.
 The data is kept in data centers operated by Amazon, Microsoft, or similar, which makes it easily available to network-connected devices.
-The main advantage of doing this is that if your compute engine is also in that same data center (or nearby, as is the case with many JupyterHub services),
-the data doesn't have to go very far to get to the compute power.
-This brings the computation to the data, rather than shipping large datasets across the internet to get to the compute engine.
+The main advantage of doing this is that if your compute engine is also in that same data center (or nearby, as is the case with many JupyterHub services), the data doesn't have to go very far to get to the compute power. This brings the computation to the data, rather than shipping large datasets across the internet to get to the compute engine.
 
 The HyTEST project is collaborating with the [Woods Hole Oceanographic Institution](https://www.whoi.edu/) to demonstrate the utility of using an [Open Storage Network (OSN)](https://www.openstoragenetwork.org/) pod for providing access to data within scientific workflows. This OSN pod will provide 1 PB of usable [Ceph Object Storage](https://docs.ceph.com/en/pacific/glossary/#term-Ceph-Object-Storage) and will be housed at the Massachusetts Green High Performance Computing Center on a high-speed (100+ GbE) network. This piece of hardware provides the opportunity to host data without the storage or egress fees that come along with other forms of cloud object storage, such as [Amazon S3 object storage](https://aws.amazon.com/s3/). Ceph object storage supports an [API that is compatible with the basic data access model of the Amazon S3 API](https://docs.ceph.com/en/pacific/radosgw/s3/#).
 
@@ -18,7 +16,7 @@ The easiest way to access data with the S3 API through a Python program is via t
 This is a layer of abstraction that lets us interact with arbitrary storage mechanisms as if
 they are conventional file systems. It makes this object storage 'look' like a conventional file system.
 
-## Anonymous Reads
+## Anonymous Reads from S3
 
 A lot of data is available for global read, which does not require credentials or a profile.
 In this case, we set `anon=True` when plumbing the `fsspec` object. Here we demonstrate how to list the contents of an AWS S3 bucket with global read access:
@@ -44,17 +42,6 @@ Output:
  'noaa-nwm-retrospective-2-1-zarr-pds/rtout.zarr']
 ```
 
-## Endpoints
-
-For storage operations, the S3 API needs the web address of the access point, or _endpoint_ where it should address filesystem operations. If your storage is completely within the Amazon ecosystem, you will likely not need to specify an endpoint. However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the endpoint when the filesystem is first referenced using `fsspec`. We can list the files stored in the `usgs-scratch` bucket of the OSN pod with the following:
-
-```python
-fs_osn = fsspec.filesystem(
-    's3',
-    anon=True,   # Does not require credentials
-    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
-)
-fs_osn.ls('usgs-scratch')
 We can call other methods on the `fsspec` object "`fs`" to interact with filesystem objects.
 
 ```python
@@ -135,7 +122,6 @@ Execute full data read operations only if this notebook is being hosted and run 
 
 :::
 
-:::{sidebar}
 
 The good news about some of the larger science-oriented libraries (xarray, dask, pandas, zarr, etc), is that
 they can automatically handle the `fsspec` operations for you **IF YOUR ACCESS IS ANONYMOUS**.
@@ -149,15 +135,25 @@ Because it isn't universally available, and only applies to anonymous reads, exa
 always explicitly plumb `fsspec` 'longhand' using `get_mapper()`. You may see example code elsewhere
 that takes the shortcut if it is available.
 
-:::
+## Anonymous Reads from Endpoints Outside of S3 (that use the S3 API)
 
+For storage operations, the S3 API needs the web address of the access point, or _endpoint_ where it should address filesystem operations. If your storage is completely within the Amazon ecosystem, you will likely not need to specify an endpoint. However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the endpoint when the filesystem is first referenced using `fsspec`. We can list the files stored in the `usgs-scratch` bucket of the OSN pod with the following:
+
+```python
+fs_osn = fsspec.filesystem(
+    's3',
+    anon=True,   # Does not require credentials
+    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
+)
+fs_osn.ls('s3://usgs-scratch')
+```
 
 ## Credentialed Access
 
 For some data storage within the HyTEST workflows, access will not be anonymous.
 Permissions are set by the owners of that data, and the rules governing your ability to read from or write to certain locations may be defined with a set of credentials assigned to an AWS 'profile'.
 
-Profile credentials are usually stored outside of the Python program, typically in a file in your `HOME` folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the `aws` [command line interface(https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
+Profile credentials are usually stored outside of the Python program, typically in a file in your `HOME` folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the `aws` [command line interface](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
 
 To create a new AWS profile, which we will name `osn-renci`:
 
@@ -178,37 +174,12 @@ Your profile name and region may be different if you are setting up your credent
 We can now set up a virtual filesystem to access the OSN pod with the credentials stored in the `osn-renci` profile you just created. This credentialed access will grant you additional permissions that you did not have with the anonymous access we used above.
 
 ```python
-fs_write = fsspec.filesystem(
+fs_osn = fsspec.filesystem(
     's3',
     profile='osn-renci',  ## This is the profile name you configured above.
     client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
 )
 ```
-
-## Writing Data to S3
-
-With adequate permissions, you may be able to do more destructive activities to objects in a bucket (overwriting, removing, etc).
-Examples:
-
-* `mkdir` -- makes a new directory / folder
-* `mv` -- moves/renames a file or folder
-* `rm` -- removes a file or folder
-
-From within your Python program, writes to object storage can be achieved a few different ways.
-Often, the most convenient is to use a `mapper` to connect a file-like python object to
-the object storage location:
-
-```python
-fname='usgs-scratch/testing/outfile.zarr'
-outfile=fs_write.get_mapper(fname)
-xarray_dataset.to_zarr(outfile, mode='w', consolidated=True)
-```
-
-The `outfile` variable can be used most anywhere that a file-like object is needed for
-writing.
-
-See the [API documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html)
-for the full details of available operations.
 
 ## Read-only access with "requester pays"
 
@@ -222,15 +193,60 @@ When you access a requester-pays dataset, your profile identifies the account wh
 billed for access.  Open such datasets with an extra option to `fsspec`:
 
 ```python
-fs = fsspec.filesystem(
+fs_requesterpays = fsspec.filesystem(
     's3',
-    profile='osn-renci',
+    profile='profile_name',
     anon=False,
     requester_pays=True
 )
-fs.ls('usgs-scratch/')
 ```
 
 The `fsspec` call identifies how you will be interacting with object storage (your identity and what
 you are willing to pay for).  File-system operations using that `fs` handle will be made using that
 configuration.
+
+## Writing Data to S3
+
+From within your Python program, writes to object storage can be achieved a few different ways, which we will demonstrate below. Writing data will typically require credentials. If this is the case, you should use an `fsspec` filesystem with a profile defined, similar to the `fs_osn` object that we created in the Credentialed Access section above.
+
+### Uploading a Local File to S3
+
+If you have a file saved on your local file system, and you would like to upload it directly to object storage, you can use the `upload` method.
+
+```python
+fs_osn.upload('outfile.nc', 'usgs-scratch/testing/outfile.nc')
+```
+
+### Writing a Pandas Dataframe to a CSV File on S3
+
+If you would like to write a pandas dataframe object directly to a csv file on object storage, you can do something like:
+
+```python
+with fs_osn.open("usgs-scratch/testing/outfile.csv", mode='wt') as f:
+    pandas_df.to_csv(f)
+```
+
+### Writing Zarr Data to S3
+
+For zarr data, the most convenient way to write data to object storage is to use a `mapper` to connect a file-like python object to
+the object storage location:
+
+```python
+fname='s3://usgs-scratch/testing/outfile.zarr'
+outfile=fs_osn.get_mapper(fname)
+xarray_dataset.to_zarr(outfile, mode='w', consolidated=True)
+```
+
+The `outfile` variable can be used most anywhere that a file-like object is needed for
+writing.
+
+### Additional Commands
+
+With adequate permissions, you may be able to do more destructive activities to objects in a bucket (overwriting, removing, etc).
+Examples:
+
+* `mkdir` -- makes a new directory / folder
+* `mv` -- moves/renames a file or folder
+* `rm` -- removes a file or folder
+
+See the [API documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html) for the full details of available operations.
