@@ -7,7 +7,7 @@ Server.
 
 ## 1) Configure your HPC account to access the HyTEST [conda](https://www.anaconda.org) environment :
 
-    * log in to either HPC host ( `denali` or `tallgrass` )
+    * Open a terminal window and log in to your HPC host. If you do not know how to do this, you can consult the [HPC User Docs](https://hpcportal.cr.usgs.gov/hpc-user-docs/guides/connecting/ssh.html).
     * Edit your `.bashrc` file to include these two lines at the bottom:
       ```bash
       module use --append /caldera/projects/usgs/water/impd/hytest/modules
@@ -30,7 +30,7 @@ HPC-based jupyter servers easy.
       You can request anaconda from IT, or you can download the installer from [anaconda.com](https://www.anaconda.com/)
       to install it in user space (i.e. admin is not required).
     * Add `jupyter-forward` to your PC:<br>
-      Launch an `Anaconda Shell` from your Start menu, then execute:
+      Launch an `Anaconda Prompt` from your Start menu, then execute:
       ```text
       > conda install -c conda-forge jupyter-forward
       ```
@@ -44,15 +44,14 @@ just need to have that enviroment active when you attempt to launch the command 
    `jupyter-forward` on your PC. Do this every time you would like to run notebooks
    housed on the HPC host.
 
-    * Launch an `Anaconda Shell` from your start menu
-    * Run `jupyter-forward denali`
-    * NOTE: This command will run the jupter server on the **login node** of Denali.
-      This is OK if your workload is light (i.e. for tutorials).  If you will be doing
-      heavier processing:
+    * Launch an `Anaconda Prompt` from your start menu on your local computer
+    * Run the following command to connect compute node. If you are not in the `impd` group, you will need to replace `impd` with a group you are a part of. You may also need to update the number of hours you want to have access to the compute node (in this example, we are requesting 1 hour).:
 
   ```text
-    jupyter-forward --launch-command "srun -A acctname -N 1 -t 02:00:00"  denali
+    jupyter-forward --launch-command "srun -A impd -N 1 -t 01:00:00"  denali
   ```
+    * Log in with your AD username and password.
+    * The output of the script will also provide the URL where your PC's browser will find the jupter server. You can open one of these urls in your browser.
 
 ## 4) Shut Down Server<br>
 

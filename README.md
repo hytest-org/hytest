@@ -1,6 +1,7 @@
 # HyTEST
+This repository contains code and documentation for the HyTEST project. Most users will find that this content is easier to navigate from our [JupyterBook](https://hytest-org.github.io/hytest/doc/About.html#).
 
-The contents of this repository are organized as follows:
+If you do need to navigate this repository, the contents are organized as follows:
 - [essential_reading](./essential_reading): background reading material on key concepts and packages used in our workflows
 - [environment_set_up](./environment_set_up): instructions and helper scripts to help you get your computing environment set up for HyTEST workflows to be run in
 - [dataset_catalog](./dataset_catalog): catalog(s) of priority HyTEST datasets, as well as other datasets being accessed in our workflows
