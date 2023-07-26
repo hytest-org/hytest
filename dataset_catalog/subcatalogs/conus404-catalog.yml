@@ -96,7 +96,7 @@ sources:
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
 
-    conus404-daily-osn2:
+  conus404-daily-osn2:
     driver: zarr
     description: "CONUS404 40 years of daily values for subset of model output variables derived from hourly values. This dataset is stored on AWS S3 cloud storage in a requester-pays bucket.  This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free in any environment (there are no egress fees)."
     args:
