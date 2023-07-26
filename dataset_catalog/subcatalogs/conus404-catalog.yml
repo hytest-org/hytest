@@ -27,6 +27,18 @@ sources:
         requester_pays: false
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
+ 
+  conus404-hourly-osn2:
+    driver: zarr
+    description: "CONUS404 Hydro Variable subset, 40 years of hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://www.sciencebase.gov/catalog/item/6372cd09d34ed907bf6c6ab1). This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free in any environment (there are no egress fees)."
+    args:
+      urlpath: 's3://usgspod-testbucket/hytest/conus404/conus404_hourly_202302.zarr'
+      consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
 
   conus404-daily-diagnostic-onprem:
     driver: zarr
@@ -84,6 +96,18 @@ sources:
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
 
+    conus404-daily-osn2:
+    driver: zarr
+    description: "CONUS404 40 years of daily values for subset of model output variables derived from hourly values. This dataset is stored on AWS S3 cloud storage in a requester-pays bucket.  This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free in any environment (there are no egress fees)."
+    args:
+      urlpath: 's3://usgspod-testbucket/hytest/conus404/conus404_daily_202210.zarr'
+      consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+          
   conus404-monthly-onprem:
     driver: zarr
     description: "CONUS404 40 years of monthly values for subset of model output variables derived from daily values. This dataset is stored on USGS on-premise Caldera storage and is only accessible through USGS on-premise computing resources."
