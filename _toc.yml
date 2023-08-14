@@ -42,6 +42,7 @@ parts:
         - file: dataset_access/conus404_explore
         - file: dataset_access/conus404_temporal_aggregation
         - file: dataset_access/conus404_spatial_aggregation
+        - file: dataset_access/conus404_point_selection
         - file: dataset_access/conus404_regrid
 
   - caption: Dataset Preprocessing
