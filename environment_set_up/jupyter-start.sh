@@ -36,4 +36,4 @@ echo "COPY and paste the 127.0.0.1 URL below into a browser on your desktop"
 echo "##########################################################################"
 echo
 
-srun jupyter lab --ip '*' --no-browser --port $JPORT --notebook-dir $PWD
+jupyter lab --ip '*' --no-browser --port $JPORT --notebook-dir $PWD
