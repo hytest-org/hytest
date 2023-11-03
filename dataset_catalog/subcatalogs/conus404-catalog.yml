@@ -20,13 +20,13 @@ sources:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, 40 years of hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://www.sciencebase.gov/catalog/item/6372cd09d34ed907bf6c6ab1). This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free in any environment (there are no egress fees)."
     args:
-      urlpath: 's3://rsignellbucket2/hytest/conus404/conus404_hourly_202302.zarr'
+      urlpath: 's3://hytest/conus404/conus404_hourly.zarr'
       consolidated: true
       storage_options:
         anon: true
         requester_pays: false
         client_kwargs:
-          endpoint_url: https://renc.osn.xsede.org
+          endpoint_url: https://usgs.osn.mghpcc.org/
  
   conus404-hourly-osn2:
     driver: zarr
