@@ -199,7 +199,7 @@ compiled book content. (It's not papermill, but it's similar.)
 #### Run `jb build`
 
 * `cd` to the repo root directory
-* Activate the correct conda environment (`conda activate users-pangeo`)
+* Activate the correct conda environment (`conda activate global-pangeo`)
 * Run `jb build .` to build the book.
 
 This will create a `_build` directory that contains the compiled book content as well
