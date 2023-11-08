@@ -17,3 +17,5 @@ directory/folder on that host, which is where your notebooks will reside.
 For light duty work (i.e. tutorials), a `Viz` node is likely adequate in your allocation request.  If you
 will be doing heavier processing, you may want to request a compute node.  None of the HyTEST tutorials
 utilize GPU code; a GPU-enabled node is not necessary.
+
+##### Note: The code to build this app is in [this repository](https://code.chs.usgs.gov/sas/arc/arc-software/ood/bc_jupyter_hytest); however, this repo is only visible on the internal USGS network.
