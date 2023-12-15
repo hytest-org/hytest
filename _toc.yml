@@ -37,8 +37,9 @@ parts:
     - file: dataset_catalog/README
       sections:
         - file: dataset_catalog/subcatalogs/README
-    - file: dataset_access/README
+    - file: dataset_access/CONUS404_ACCESS
       sections:
+        - file: dataset_access/CONUS404_CHANGELOG
         - file: dataset_access/conus404_explore
         - file: dataset_access/conus404_temporal_aggregation
         - file: dataset_access/conus404_spatial_aggregation
