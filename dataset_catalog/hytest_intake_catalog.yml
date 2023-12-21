@@ -29,6 +29,18 @@ sources:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/nhm-v1.1-gridmet-catalog.yml'
     description: 'Catalog for National Hydrologic Model version 1.1 model output variables with Gridmet forcings'
     driver: intake.catalog.local.YAMLFileCatalog
+    
+  trends-and-drivers-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/trends-and-drivers-catalog.yml'
+    description: 'Catalog for USGS Trends and Drivers project data. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data.'
+    driver: intake.catalog.local.YAMLFileCatalog
+    
+  nhm-prms-v1.1-gridmet-format-testing-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/nhm-prms-v1.1-gridmet-format-testing-catalog.yml'
+    description: 'Catalog of NHM-PRMS v1.1 with Gridmet Forcings data stored in various file formats, used for testing purposes with the USGS National Modeled Water Atlas Project. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data.'
+    driver: intake.catalog.local.YAMLFileCatalog
 
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
@@ -37,11 +49,11 @@ sources:
       urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/conus404/zarr/nwis_chanobs.zarr'
       consolidated: true
       
-  nwis-streamflow-usgs-gages-cloud:
+  nwis-streamflow-usgs-gages-osn:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
     args:
-      urlpath: 's3://rsignellbucket2/hytest/nwm/nwis_chanobs.zarr'
+      urlpath: 's3://hytest/tutorials/evaluation/nwm/nwis_chanobs.zarr'
       consolidated: true
       storage_options:
         anon: true
@@ -56,11 +68,11 @@ sources:
       urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/conus404/zarr/chanobs.zarr'
       consolidated: true
       
-  nwm21-streamflow-usgs-gages-cloud:
+  nwm21-streamflow-usgs-gages-osn:
     driver: zarr
     description: "Streamflow from NWM2.1, extracted and rechunked into time series"
     args:
-      urlpath: 's3://rsignellbucket2/hytest/nwm/chanobs.zarr'
+      urlpath: 's3://hytest/tutorials/evaluation/nwm/chanobs.zarr'
       consolidated: true
       storage_options:
         anon: true
@@ -76,7 +88,107 @@ sources:
       consolidated: true
       storage_options:
         anon: true
-        
+
+  geofabric_v1_1-zip-osn:
+    driver: geoparquet # note - this is the wrong driver, and you cannot open this dataset with intake
+    description: "GIS Features of the Geospatial Fabric for the National Hydrologic Model, version 1.1 (https://doi.org/10.5066/P971JAGF). This dataset cannot be opened with intake because the GDB driver doesn't exist; however it is still being catalogged here for the purpose of being able to read the urlpath into your workflow to locate the data."
+    args:
+      urlpath: 's3://hytest/geofabric_v1_1/GFv1.1.gdb.zip'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  geofabric_v1_1_POIs_v1_1-osn:
+    driver: geoparquet
+    description: "POIs_v1_1 layer of the GIS Features of the Geospatial Fabric for the National Hydrologic Model, version 1.1 (https://doi.org/10.5066/P971JAGF) converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/geofabric_v1_1/GFv1.1_POIs_v1_1.geoparquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  geofabric_v1_1_TBtoGFv1_POIs-osn:
+    driver: geoparquet
+    description: "TBtoGFv1_POIs layer of the GIS Features of the Geospatial Fabric for the National Hydrologic Model, version 1.1 (https://doi.org/10.5066/P971JAGF) converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/geofabric_v1_1/GFv1.1_TBtoGFv1_POIs.geoparquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+          
+  geofabric_v1_1_nhru_v1_1-osn:
+    driver: geoparquet
+    description: "nhru_v1_1 layer of the GIS Features of the Geospatial Fabric for the National Hydrologic Model, version 1.1 (https://doi.org/10.5066/P971JAGF) converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/geofabric_v1_1/GFv1.1_nhru_v1_1.geoparquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  geofabric_v1_1_nhru_v1_1_simp-osn:
+    driver: geoparquet
+    description: "nhru_v1_1_simp layer of the GIS Features of the Geospatial Fabric for the National Hydrologic Model, version 1.1 (https://doi.org/10.5066/P971JAGF) converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/geofabric_v1_1/GFv1.1_nhru_v1_1_simp.geoparquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+          
+  geofabric_v1_1_nsegment_v1_1-osn:
+    driver: geoparquet
+    description: "nsegment_v1_1 layer of the GIS Features of the Geospatial Fabric for the National Hydrologic Model, version 1.1 (https://doi.org/10.5066/P971JAGF) converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/geofabric_v1_1/GFv1.1_nsegment_v1_1.geoparquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  gages2_nndar-osn:
+    driver: parquet
+    description: "Estimated streamflow at GAGESII locations (https://doi.org/10.5066/P9XT4WSP) using nearest-neighbor drainage area ratio (NNDAR), converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/nwis_gages2_streamflow_estimates/gages2_nndar.parquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  wbd-zip-osn:
+    driver: geoparquet # note - this is the wrong driver, and you cannot open this dataset with intake
+    description: "Watershed Boundary Dataset (https://doi.org/10.5066/P9BTKP3T). This dataset cannot be opened with intake because the GDB driver doesn't exist; however it is still being catalogged here for the purpose of being able to read the urlpath into your workflow to locate the data."
+    args:
+      urlpath: 's3://hytest/wbd/WBD_National_GDB.zip'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  huc12-geoparquet-osn:
+    driver: geoparquet
+    description: "WBDHU12 layer of Watershed Boundary Dataset (https://doi.org/10.5066/P9BTKP3T) converted to geoparquet format"
+    args:
+      urlpath: 's3://hytest/wbd/huc12/huc12.geoparquet'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  huc12-gpkg-osn:
+    driver: geopackage # This is not currently supported by intake - will be supported in intake v2
+    description: "WBDHU12 layer of Watershed Boundary Dataset (https://doi.org/10.5066/P9BTKP3T) converted to geopackage format. This file format is not currently supported by intake, so you cannot currently open this dataset with intake. This will be compatible with intake v2 when in is released in early 2024."
+    args:
+      urlpath: 's3://hytest/wbd/huc12/huc12.gpkg'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
   nwm21-scores:
     description: US state information from [CivilServices](https://civil.services/)
     driver: csv
@@ -97,14 +209,34 @@ sources:
           requester_pays: true
         remote_protocol: s3
 
-  rechunking-tutorial-cloud:
+  rechunking-tutorial-osn:
     driver: zarr
     description: "Sample streamflow and velocity data used in HyTEST rechunking tutorial"
     args:
-      urlpath: 's3://rsignellbucket2/hytest/tutorials/dataset_preprocessing/ReChunking_Tutorial_Data.zarr'
+      urlpath: 's3://hytest/tutorials/dataset_preprocessing/ReChunking_Tutorial_Data.zarr'
       consolidated: true
       storage_options:
         anon: true
         requester_pays: false
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
+
+  pointsample-tutorial-sites-osn:
+    driver: csv
+    description: "Sample gage/point locations used in CONUS404 point sampling tutorial"
+    args:
+      urlpath: 's3://hytest/tutorials/data_access/filtered_temperature_sites.csv'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+
+  pointsample-tutorial-output-osn:
+    driver: netcdf
+    description: "Output point sampled CONUS404 data from CONUS404 point sampling tutorial"
+    args:
+      urlpath: 's3://hytest/tutorials/data_access/daily_skintemp_at_filtered_temperature_sites.nc'
+      storage_options:
+        anon: true
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
