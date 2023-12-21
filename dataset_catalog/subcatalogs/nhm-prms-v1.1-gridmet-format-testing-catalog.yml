@@ -76,7 +76,7 @@ sources:
     description: "NHM-PRMS v1.1 with Gridmet forcings data stored in a zarr. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data."
     args:
       urlpath: 's3://hytest-internal/nhm_prms_v1_1_gridmet/nhm_prms_v1_1_gridmet.zarr'
-      consolidated: true
+      consolidated: false
       storage_options:
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org
