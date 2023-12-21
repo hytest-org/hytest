@@ -29,6 +29,18 @@ sources:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/nhm-v1.1-gridmet-catalog.yml'
     description: 'Catalog for National Hydrologic Model version 1.1 model output variables with Gridmet forcings'
     driver: intake.catalog.local.YAMLFileCatalog
+    
+  trends-and-drivers-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/trends-and-drivers-catalog.yml'
+    description: 'Catalog for USGS Trends and Drivers project data. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data.'
+    driver: intake.catalog.local.YAMLFileCatalog
+    
+  nhm-prms-v1.1-gridmet-format-testing-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/nhm-prms-v1.1-gridmet-format-testing-catalog.yml'
+    description: 'Catalog of NHM-PRMS v1.1 with Gridmet Forcings data stored in various file formats, used for testing purposes with the USGS National Modeled Water Atlas Project. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data.'
+    driver: intake.catalog.local.YAMLFileCatalog
 
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
@@ -37,7 +49,7 @@ sources:
       urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/conus404/zarr/nwis_chanobs.zarr'
       consolidated: true
       
-  nwis-streamflow-usgs-gages-cloud:
+  nwis-streamflow-usgs-gages-osn:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"
     args:
@@ -56,7 +68,7 @@ sources:
       urlpath: '/caldera/projects/usgs/hazards/cmgp/woodshole/rsignell/conus404/zarr/chanobs.zarr'
       consolidated: true
       
-  nwm21-streamflow-usgs-gages-cloud:
+  nwm21-streamflow-usgs-gages-osn:
     driver: zarr
     description: "Streamflow from NWM2.1, extracted and rechunked into time series"
     args:
@@ -197,7 +209,7 @@ sources:
           requester_pays: true
         remote_protocol: s3
 
-  rechunking-tutorial-cloud:
+  rechunking-tutorial-osn:
     driver: zarr
     description: "Sample streamflow and velocity data used in HyTEST rechunking tutorial"
     args:
@@ -209,23 +221,21 @@ sources:
         client_kwargs:
           endpoint_url: https://renc.osn.xsede.org
 
-  pointsample-tutorial-sites-cloud:
+  pointsample-tutorial-sites-osn:
     driver: csv
     description: "Sample gage/point locations used in CONUS404 point sampling tutorial"
     args:
       urlpath: 's3://hytest/tutorials/data_access/filtered_temperature_sites.csv'
-      consolidated: true
       storage_options:
         anon: true
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org
 
-  pointsample-tutorial-output-cloud:
+  pointsample-tutorial-output-osn:
     driver: netcdf
     description: "Output point sampled CONUS404 data from CONUS404 point sampling tutorial"
     args:
       urlpath: 's3://hytest/tutorials/data_access/daily_skintemp_at_filtered_temperature_sites.nc'
-      consolidated: true
       storage_options:
         anon: true
         client_kwargs:

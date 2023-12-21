@@ -1,3 +1,7 @@
+metadata:
+  version: 1
+  description: 
+  
 plugins:
   source:
       - module: intake_xarray
