@@ -180,7 +180,7 @@ sources:
           endpoint_url: https://usgs.osn.mghpcc.org
 
   huc12-gpkg-osn:
-    driver: geopackage # This is not currently supported by intake - will be supported in intake v2
+    driver: geoparquet # This should be geopackage, but this is not currently supported by intake - will be supported in intake v2
     description: "WBDHU12 layer of Watershed Boundary Dataset (https://doi.org/10.5066/P9BTKP3T) converted to geopackage format. This file format is not currently supported by intake, so you cannot currently open this dataset with intake. This will be compatible with intake v2 when in is released in early 2024."
     args:
       urlpath: 's3://hytest/wbd/huc12/huc12.gpkg'
