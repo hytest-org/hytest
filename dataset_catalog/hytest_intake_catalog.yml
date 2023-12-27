@@ -59,7 +59,7 @@ sources:
         anon: true
         requester_pays: false
         client_kwargs:
-          endpoint_url: https://renc.osn.xsede.org
+          endpoint_url: https://usgs.osn.mghpcc.org
       
   nwm21-streamflow-usgs-gages-onprem:
     driver: zarr
@@ -78,7 +78,7 @@ sources:
         anon: true
         requester_pays: false
         client_kwargs:
-          endpoint_url: https://renc.osn.xsede.org
+          endpoint_url: https://usgs.osn.mghpcc.org
       
   nwm21-streamflow-cloud:
     driver: zarr
