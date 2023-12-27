@@ -219,7 +219,7 @@ sources:
         anon: true
         requester_pays: false
         client_kwargs:
-          endpoint_url: https://renc.osn.xsede.org
+          endpoint_url: https://usgs.osn.mghpcc.org
 
   pointsample-tutorial-sites-osn:
     driver: csv
