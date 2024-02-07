@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 
-# import numpy as np
 import os
 import argparse
 import dask
 import datetime
 import fsspec
-# import numpy as np
 import pandas as pd
-# import rechunker
 import time
 import xarray as xr
 import zarr
@@ -18,50 +15,8 @@ from numcodecs import Zstd   # , Blosc
 from dask.distributed import Client
 
 import conus404_helpers as ch
-import conus404_maths as cmath
 
 import ctypes
-
-
-# def build_filelist(num_days, c_start, wrf_dir, verify=False):
-#     """
-#     Build a list of file paths
-#     """
-#
-#     job_files = []
-#
-#     for dd in range(num_days):
-#         cdate = c_start + datetime.timedelta(days=dd)
-#
-#         wy_dir = f'WY{cdate.year}'
-#         if cdate >= datetime.datetime(cdate.year, 10, 1):
-#             wy_dir = f'WY{cdate.year+1}'
-#
-#         for hh in range(24):
-#             fdate = cdate + datetime.timedelta(hours=hh)
-#
-#             # 201610010000.LDASIN_DOMAIN1
-#             file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
-#
-#             if verify:
-#                 # Verifying the existence of each file can put a heavy load on Lustre filesystems
-#                 # Only call this function with verify turned on when it's needed (e.g. when open_mfdataset fails).
-#                 if os.path.exists(file_pat):
-#                     job_files.append(file_pat)
-#                 else:
-#                     if fdate.month == 10 and fdate.day == 1 and fdate.hour == 0:
-#                         # The bias-adjusted dataset includes the first hour of the next water year in
-#                         # each water year directory; we need this file.
-#                         wy_dir = f'WY{cdate.year}'
-#                         file_pat = f'{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
-#
-#                         if os.path.exists(file_pat):
-#                             job_files.append(file_pat)
-#
-#                         break
-#             else:
-#                 job_files.append(file_pat)
-#     return job_files
 
 
 def trim_memory() -> int:
@@ -90,6 +45,9 @@ def main():
 
     args = parser.parse_args()
 
+    # Filename pattern for bias-adjusted hourly files
+    file_pat = '{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
+
     temp_store = os.environ.get("RAM_SCRATCH")
 
     print(f'HOST: {os.environ.get("HOSTNAME")}')
@@ -102,8 +60,6 @@ def main():
 
     base_dir = os.path.realpath(args.base_dir)
     wrf_dir = os.path.realpath(args.wrf_dir)
-    # const_file = ch.set_file_path(args.constants_file, base_dir)
-    # metadata_file = ch.set_file_path(args.metadata_file, base_dir)
     proc_vars_file = ch.set_file_path(args.vars_file, base_dir)
 
     # The scratch filesystem seems to randomly return false for pre-existing
@@ -118,14 +74,11 @@ def main():
 
     print(f'{base_dir=}')
     print(f'{wrf_dir=}')
-    # print(f'{const_file=}')
-    # print(f'{metadata_file=}')
     print(f'{proc_vars_file=}')
     print(f'{target_store=}')
     print('-'*60)
 
     base_date = datetime.datetime(1979, 10, 1)
-    # base_date = datetime.datetime(2016, 10, 1)
     num_days = 6
     delta = datetime.timedelta(days=num_days)
 
@@ -149,7 +102,6 @@ def main():
     x_chunk = 175
     y_chunk = 175
 
-
     # Variables
     # RAINRATE
     # T2D (min, max)
@@ -165,7 +117,7 @@ def main():
     # dask.config.set({'distributed.logging.tornado': 'critical'})
     # dask.config.set({'distributed.logging.tornado__application': 'error'})
 
-    client = Client(n_workers=15, threads_per_worker=2, diagnostics_port=None)
+    client = Client(n_workers=6, threads_per_worker=2, diagnostics_port=None)
     client.amm.start()
 
     print(f'dask tmp directory: {dask.config.get("temporary-directory")}')
@@ -188,9 +140,6 @@ def main():
     #       when part of a job on denali or tallgrass.
     zarr.storage.default_compressor = Zstd(level=9)
     # zarr.storage.default_compressor = Blosc(cname='blosclz', clevel=4, shuffle=Blosc.SHUFFLE)
-
-    # Filename pattern for bias-adjusted hourly files
-    file_pat = '{wrf_dir}/{wy_dir}/{fdate.strftime("%Y%m%d%H%M")}.LDASIN_DOMAIN1'
 
     while c_start < en_date:
         tstore_dir = f'{target_store}_{cnk_idx:05d}'
@@ -225,47 +174,7 @@ def main():
                                      parallel=True, coords="minimal", data_vars="minimal",
                                      engine='netcdf4', compat='override', chunks={})
 
-        # if cnk_idx == 0:
-        #     # Add the wrf constants during the first time chunk
-        #     df_const = xr.open_dataset(const_file, decode_coords=False, chunks={})
-        #     ds2d = ds2d.merge(df_const)
-        #
-        #     for vv in df_const.variables:
-        #         if vv in rename_vars:
-        #             var_list.append(rename_vars[vv])
-        #         elif vv in rename_dims:
-        #             var_list.append(rename_dims[vv])
-        #         else:
-        #             var_list.append(vv)
-        #     df_const.close()
-        #
-        #     ds2d = ch.apply_metadata(ds2d, rename_dims, rename_vars, remove_attrs, var_metadata)
-        # else:
-        #     # The rename_vars variable is only needed for the first rechunk index
-        #     # when the constants file is added.
-        #     ds2d = ch.apply_metadata(ds2d, rename_dims, {}, remove_attrs, var_metadata)
-
         print(f'    Open mfdataset: {time.time() - t1:0.3f} s', flush=True)
-
-        # NOTE: 2022-09-29 PAN - computing solar radiation variables here is NOT efficient
-        # for svar in list({'ACLWDNB', 'ACLWUPB', 'ACSWDNB', 'ACSWDNT', 'ACSWUPB'} & set(var_list)):
-        #     sol_time = time.time()
-        #     # Compute the accumulated solar radiation
-        #     if f'I_{svar}' not in var_list:
-        #         print(f'{svar} missing matching I_{svar}')
-        #     else:
-        #         print(f'    --- computing {svar}', flush=True)
-        #         ds2d[svar] = ds2d[svar] + ds2d[f'I_{svar}']
-        #         # ds2d[svar] = cmath.solar_radiation_acc(ds2d[svar], ds2d[f'I_{svar}'])
-        #         ds2d.compute()
-        #
-        #         del ds2d[svar].attrs['notes']
-        #         ds2d[svar].attrs['integration_length'] = 'accumulated since 1979-10-01 00:00:00'
-        #
-        #         # Remove the bucket variable since it's no longer needed
-        #         del ds2d[f'I_{svar}']
-        #         var_list.remove(f'I_{svar}')
-        #         print(f'    --- time: {time.time() - sol_time:0.5f} s', flush=True)
 
         ch.rechunker_wrapper(ds2d[var_list], target_store=tstore_dir, temp_store=temp_store,
                              mem=max_mem, consolidated=True, verbose=False,
