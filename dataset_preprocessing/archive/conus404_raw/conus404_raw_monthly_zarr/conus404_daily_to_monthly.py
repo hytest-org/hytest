@@ -65,15 +65,23 @@ def main():
         #       when part of a job on denali or tallgrass.
         zarr.storage.default_compressor = Zstd(level=9)
 
+        # Get the ending date from the monthly zarr store to limit the timesteps
+        # included in the daily resample
+        ds_dst = xr.open_dataset(dst_zarr, engine='zarr', backend_kwargs=dict(consolidated=True), chunks={})
+        en_date = ds_dst.time.values[-1]
+        ds_dst.close()
+
         print('--- Open source datastore ---', flush=True)
         # Open hourly source datastore
         ds = xr.open_dataset(src_zarr, engine='zarr',
                              backend_kwargs=dict(consolidated=True), chunks={})
 
+        ds = ds.sel(time=slice(ds.time.values[0], en_date))
+
         # Get integration information for computing daily
         accum_types = ch.get_accum_types(ds)
         var_list = accum_types[accum_type_map[args.type]]
-        var_list.remove('time')
+        # var_list.remove('time')
         var_list.sort()
         print(f'    --- Number of variables of type, {args.type}: {len(var_list)}')
 
@@ -95,9 +103,9 @@ def main():
             ds_tmp = ds[[cvar]]
 
             if args.type == 'instant':
-                ds_monthly = ds_tmp[[cvar]].resample(time='M').mean(skipna=False).chunk(mon_chunks)
+                ds_monthly = ds_tmp[[cvar]].resample(time='ME').mean(skipna=False).chunk(mon_chunks)
             elif args.type == 'cum24':
-                ds_monthly = ds_tmp[[cvar]].resample(time='M').sum(skipna=False).chunk(mon_chunks)
+                ds_monthly = ds_tmp[[cvar]].resample(time='ME').sum(skipna=False).chunk(mon_chunks)
 
             ds_monthly.compute()
 
