@@ -3,7 +3,8 @@
 import argparse
 import dask
 import fsspec
-import pandas as pd
+# import pandas as pd
+import numpy as np
 import os
 import time
 import xarray as xr
@@ -33,6 +34,8 @@ def main():
     print(f'SLURMD_NODENAME: {os.environ.get("SLURMD_NODENAME")}')
     # print(f'RAM_SCRATCH: {temp_store}')
 
+    target_pat = 'target_'
+
     first_idx = args.index
     idx_span = args.step
     last_idx = first_idx + idx_span
@@ -40,7 +43,7 @@ def main():
     base_dir = os.path.realpath(args.base_dir)
     outzarr_dir = os.path.realpath(args.dst_dir)
 
-    src_zarr = os.path.realpath(f'{args.zarr_dir}/target_*')
+    src_zarr = os.path.realpath(f'{args.zarr_dir}/{target_pat}')
 
     dst_zarr = outzarr_dir
     # dst_zarr = f'{outzarr_dir}/conus404_whole.zarr'
@@ -60,21 +63,25 @@ def main():
     time_cnk = 144
 
     fs = fsspec.filesystem('file')
-    # zlist = sorted(fs.glob(f'{base_dir}/test1/target_0*'))
-    zlist = sorted(fs.glob(src_zarr))
-    num_targets = len(zlist)
+    # # zlist = sorted(fs.glob(f'{base_dir}/test1/target_0*'))
+    # zlist = sorted(fs.glob(src_zarr))
+    # num_targets = len(zlist)
+    #
+    # if num_targets < last_idx - 1:
+    #     idx_span = num_targets - first_idx
+    #     last_idx = first_idx + idx_span
+    #     print(f'NOTE: Adjusted processing indices')
 
-    if num_targets < last_idx - 1:
-        idx_span = num_targets - first_idx
-        last_idx = first_idx + idx_span
-        print(f'NOTE: Adjusted processing indices')
+    # Build dictionary of candidate target paths to process
+    target_dict = {idx: f'{args.zarr_dir}/{target_pat}{idx:05d}' for idx in range(first_idx, last_idx)}
 
     print(f'Index start: {first_idx}; Index end: {last_idx - 1}')
 
     t1_proc = time.time()
     # Start up the cluster
     # client = Client(n_workers=8, threads_per_worker=1, memory_limit='24GB')
-    client = Client()
+    with dask.config.set({"distributed.scheduler.worker-saturation": 1.0}):
+        client = Client(n_workers=10, threads_per_worker=2, diagnostics_port=None)   # , memory_limit='24GB')
 
     # Change the default compressor to Zstd
     # NOTE: 2022-08: The LZ-related compressors seem to generate random errors
@@ -92,27 +99,35 @@ def main():
 
     print(f'Client startup time: {time.time() - t1_proc:0.3f} s', flush=True)
 
-    for i in range(first_idx, last_idx):
+    # Get the time values from the destination zarr store
+    ds_dst = xr.open_dataset(dst_zarr, engine='zarr', mask_and_scale=True, chunks={})
+    dst_time = ds_dst.time.values
+
+    for idx, cfile in target_dict.items():
         t1 = time.time()
-        start = i * time_cnk
-        stop = (i + 1) * time_cnk
+        start = idx * time_cnk
+        stop = (idx + 1) * time_cnk
+
+        try:
+            dsi = xr.open_dataset(cfile, engine='zarr', mask_and_scale=True, chunks={})
+        except FileNotFoundError:
+            print(f'{cfile} does not exist; skipping.')
+            continue
 
         # print(zlist[i])
-        dsi = xr.open_dataset(zlist[i], engine='zarr', mask_and_scale=True, chunks={})
+        # dsi = xr.open_dataset(zlist[i], engine='zarr', mask_and_scale=True, chunks={})
         drop_vars = ch.get_accum_types(dsi).get('constant', [])
 
-        # NOTE: 2022-09-29 PAN - with mask_and_scale set to False certain attributes must be
-        #       removed before writing to a zarr region or xarray will puke with a ValueError
-        #       just because.
-        #       See https://github.com/pydata/xarray/issues/6329 for a similar problem
-        # for cvar in dsi.variables:
-        #     if '_FillValue' in dsi[cvar].attrs.keys():
-        #         del dsi[cvar].attrs['_FillValue']
-        #     elif 'scale_factor' in dsi[cvar].attrs.keys():
-        #         del dsi[cvar].attrs['scale_factor']
+        st_date_src = dsi.time.values[0]
+        en_date_src = dsi.time.values[-1]
+        st_time_idx = np.where(dst_time == st_date_src)[0].item()
+        en_time_idx = np.where(dst_time == en_date_src)[-1].item() + 1
 
-        dsi.drop_vars(drop_vars, errors='ignore').to_zarr(dst_zarr, region={'time': slice(start, stop)})
-        print(f'  Index {i}: {time.time() - t1:0.3f} s', flush=True)
+        print(f'  time slice: {start}, {stop} = {stop-start}')
+        print(f'  dst time slice: {st_time_idx}, {en_time_idx} = {en_time_idx - st_time_idx}')
+
+        dsi.drop_vars(drop_vars, errors='ignore').to_zarr(dst_zarr, region={'time': slice(st_time_idx, en_time_idx)})
+        print(f'  Index {idx}: {time.time() - t1:0.3f} s', flush=True)
 
     client.close()
     if dask.config.get("temporary-directory") == '/dev/shm':
