@@ -156,6 +156,7 @@ def main():
             loop_start = time.time()
             print(f'--- Index {c_idx:04d} ---', flush=True)
 
+            # Get the index range for the hourly zarr store
             c_st = c_idx * hrly_step_idx
             c_en = c_st + hrly_step_idx
 
@@ -189,8 +190,13 @@ def main():
             # Get the daily output index positions
             daily_st = int(c_st / 24)
             daily_en = int(c_en / 24)
+            if (daily_en - daily_st) < ds_daily.time.size:
+                print(f'    time interval changed from {daily_en - daily_st} to {ds_daily.time.size}')
+                daily_en += 1
+
             print(f'    daily range: {daily_st} ({ds_daily.time.dt.strftime("%Y-%m-%d %H:%M:%S")[0].values}) to '
-                  f'{daily_en} ({ds_daily.time.dt.strftime("%Y-%m-%d %H:%M:%S")[-1].values})')
+                  f'{daily_en} ({ds_daily.time.dt.strftime("%Y-%m-%d %H:%M:%S")[-1].values})'
+                  f'  timesteps: {daily_en-daily_st}')
 
             # print('    --- write to zarr store', flush=True)
             ds_daily.drop_vars(drop_vars, errors='ignore').to_zarr(dst_zarr, region={'time': slice(daily_st, daily_en)})
