@@ -57,7 +57,7 @@ def main():
 
         print('--- Create daily zarr store ---', flush=True)
         ds = xr.open_dataset(src_zarr, engine='zarr',
-                             backend_kwargs=dict(consolidated=True), chunks={})
+                             backend_kwargs=dict(consolidated=True), decode_coords=False, chunks={})
 
         # Get integration information
         accum_types = ch.get_accum_types(ds)
@@ -69,9 +69,10 @@ def main():
         # Get all variables but the constant variables
         source_dataset = ds.drop_vars(drop_vars, errors='ignore')
 
-        source_dataset['T2MAX'] = source_dataset['T2D']
-        source_dataset['T2MIN'] = source_dataset['T2D']
-        source_dataset['RAIN'] = source_dataset['RAINRATE']
+        # Change the integration_length for accumulated variables
+        for cvar in source_dataset.variables:
+            if cvar in accum_types['accumulated over prior 60 minutes'] or cvar in accum_types['accumulated since 1979-10-01 00:00:00']:
+                source_dataset[cvar].attrs['integration_length'] = '24-hour accumulation'
 
         print('    --- Create template', end=' ')
         template = (source_dataset.chunk(daily_chunks).pipe(xr.zeros_like).isel(time=0, drop=True).expand_dims(time=len(dates)))
