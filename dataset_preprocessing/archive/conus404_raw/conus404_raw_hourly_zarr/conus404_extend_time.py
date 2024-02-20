@@ -88,6 +88,8 @@ def main():
         with open(cfilename, 'w') as out_hdl:
             json.dump(uncol_meta, out_hdl, indent=4, sort_keys=True, ensure_ascii=True, separators=(',', ': '), cls=NumberEncoder)
 
+    ds.close()
+
     con.print('  consolidating metadata')
     # Re-open the zarr datastore using the unconsolidated metadata
     ds = xr.open_dataset(src_zarr_dir, engine='zarr',
