@@ -3,7 +3,7 @@
 import argparse
 import dask
 import fsspec
-import pandas as pd
+import numpy as np
 import os
 import time
 import xarray as xr
@@ -14,6 +14,7 @@ import zarr.storage
 from numcodecs import Zstd   # , Blosc
 
 import conus404_helpers as ch
+import conus404_maths as cmath
 from dask.distributed import Client
 
 warnings.filterwarnings('ignore')
@@ -33,6 +34,8 @@ def main():
     print(f'SLURMD_NODENAME: {os.environ.get("SLURMD_NODENAME")}')
     # print(f'RAM_SCRATCH: {temp_store}')
 
+    target_pat = 'target_'
+
     first_idx = args.index
     idx_span = args.step
     last_idx = first_idx + idx_span
@@ -40,13 +43,9 @@ def main():
     base_dir = os.path.realpath(args.base_dir)
     outzarr_dir = os.path.realpath(args.dst_dir)
 
-    src_zarr = os.path.realpath(f'{args.zarr_dir}/target_*')
+    src_zarr = os.path.realpath(f'{args.zarr_dir}/{target_pat}')
 
     dst_zarr = outzarr_dir
-    # dst_zarr = f'{outzarr_dir}/conus404_whole.zarr'
-
-    # base_dir = '/caldera/projects/usgs/water/wbeep/conus404_work'
-    # outzarr_dir = f'{base_dir}/zarr_out'
 
     print(f'{first_idx=}')
     print(f'{idx_span=}')
@@ -59,29 +58,34 @@ def main():
 
     time_cnk = 144
 
-    # For the bucket variables to_zarr will default to float64 unless we override it
-    bucket_enc = {'I_ACLWDNB': {'dtype': 'float32'},
-                  'I_ACLWUPB': {'dtype': 'float32'},
-                  'I_ACSWDNB': {'dtype': 'float32'},
-                  'I_ACSWDNT': {'dtype': 'float32'},
-                  'I_ACSWUPB': {'dtype': 'float32'}}
+    # Accumulated solar radiation variables which have matching bucket variables
+    solrad_vars = {'ACLWDNB': 'I_ACLWDNB',
+                   'ACLWUPB': 'I_ACLWUPB',
+                   'ACSWDNB': 'I_ACSWDNB',
+                   'ACSWDNT': 'I_ACSWDNT',
+                   'ACSWUPB': 'I_ACSWUPB'}
 
     fs = fsspec.filesystem('file')
-    # zlist = sorted(fs.glob(f'{base_dir}/test1/target_0*'))
-    zlist = sorted(fs.glob(src_zarr))
-    num_targets = len(zlist)
+    # # zlist = sorted(fs.glob(f'{base_dir}/test1/target_0*'))
+    # zlist = sorted(fs.glob(src_zarr))
+    # num_targets = len(zlist)
+    #
+    # if num_targets < last_idx - 1:
+    #     idx_span = num_targets - first_idx
+    #     last_idx = first_idx + idx_span
+    #     print(f'NOTE: Adjusted processing indices')
 
-    if num_targets < last_idx - 1:
-        idx_span = num_targets - first_idx
-        last_idx = first_idx + idx_span
-        print(f'NOTE: Adjusted processing indices')
+    # Build dictionary of candidate target paths to process
+    target_dict = {idx: f'{args.zarr_dir}/{target_pat}{idx:05d}' for idx in range(first_idx, last_idx)}
 
     print(f'Index start: {first_idx}; Index end: {last_idx - 1}')
 
     t1_proc = time.time()
     # Start up the cluster
     # client = Client(n_workers=8, threads_per_worker=1, memory_limit='24GB')
-    client = Client()
+    with dask.config.set({"distributed.scheduler.worker-saturation": 1.0}):
+        client = Client(n_workers=10, threads_per_worker=2, diagnostics_port=None)   # , memory_limit='24GB')
+    # client = Client()
 
     # Change the default compressor to Zstd
     # NOTE: 2022-08: The LZ-related compressors seem to generate random errors
@@ -99,50 +103,67 @@ def main():
 
     print(f'Client startup time: {time.time() - t1_proc:0.3f} s', flush=True)
 
-    if first_idx == 0:
-        print('='*20, ' first index ', '='*20)
-        # Open first and last zarr file to get date range
-        # NOTE: 2022-09-29 PAN - must set mask_and_scale to False or xarray/zarr will
-        #       convert integer variables with scale_factor set to >f8 dtype and somehow manage
-        #       to corrupt the values in the process.
-        ds0 = xr.open_dataset(zlist[0], engine='zarr', mask_and_scale=True, chunks={})
-        ds1 = xr.open_dataset(zlist[-1], engine='zarr', mask_and_scale=True, chunks={})
+    # if first_idx == 0:
+    #     print('='*20, ' first index ', '='*20)
+    #     # Open first and last zarr file to get date range
+    #     # NOTE: 2022-09-29 PAN - must set mask_and_scale to False or xarray/zarr will
+    #     #       convert integer variables with scale_factor set to >f8 dtype and somehow manage
+    #     #       to corrupt the values in the process.
+    #     ds0 = xr.open_dataset(zlist[0], engine='zarr', mask_and_scale=True, chunks={})
+    #     ds1 = xr.open_dataset(zlist[-1], engine='zarr', mask_and_scale=True, chunks={})
+    #
+    #     # TODO: the freq argument must reflect the time interval (e.g hourly, daily)
+    #     dates = pd.date_range(start=ds0.time[0].values, end=ds1.time[-1].values, freq='1h')
+    #     print(f'    date range: {ds0.time.dt.strftime("%Y-%m-%d %H:%M:%S")[0].values} to '
+    #           f'{ds1.time.dt.strftime("%Y-%m-%d %H:%M:%S")[-1].values}')
+    #     print(f'    number of timesteps: {len(dates)}')
+    #
+    #     # Have to drop the constant variables (e.g. variables having no time dimension)
+    #     drop_vars = ch.get_accum_types(ds0).get('constant', [])
+    #
+    #     source_dataset = ds0.drop_vars(drop_vars, errors='ignore')
+    #
+    #     print(f'{len(dates)=}')
+    #     print(f'{time_cnk=}')
+    #
+    #     template = (source_dataset.chunk().pipe(xr.zeros_like).isel(time=0, drop=True).expand_dims(time=len(dates)))
+    #     template['time'] = dates
+    #     template = template.chunk({'time': time_cnk})
+    #
+    #     # Writes no data (yet)
+    #     template.to_zarr(dst_zarr, compute=False, encoding=bucket_enc, consolidated=True, mode='w')
+    #
+    #     # Add the wrf constants
+    #     ds0[drop_vars].to_zarr(dst_zarr, mode='a')
+    #
+    #     print(f'    Index {first_idx} (pre-create zarr store): {time.time() - t1_proc:0.3f} s')
+    #     print('-'*20, 'end first index', '-'*20, flush=True)
 
-        # TODO: the freq argument must reflect the time interval (e.g hourly, daily)
-        dates = pd.date_range(start=ds0.time[0].values, end=ds1.time[-1].values, freq='1h')
-        print(f'    date range: {ds0.time.dt.strftime("%Y-%m-%d %H:%M:%S")[0].values} to '
-              f'{ds1.time.dt.strftime("%Y-%m-%d %H:%M:%S")[-1].values}')
-        print(f'    number of timesteps: {len(dates)}')
+    # Get the time values from the destination zarr store
+    ds_dst = xr.open_dataset(dst_zarr, engine='zarr', mask_and_scale=True, chunks={})
+    dst_time = ds_dst.time.values
 
-        # Have to drop the constant variables (e.g. variables having no time dimension)
-        drop_vars = ch.get_accum_types(ds0).get('constant', [])
-
-        source_dataset = ds0.drop_vars(drop_vars, errors='ignore')
-
-        print(f'{len(dates)=}')
-        print(f'{time_cnk=}')
-
-        template = (source_dataset.chunk().pipe(xr.zeros_like).isel(time=0, drop=True).expand_dims(time=len(dates)))
-        template['time'] = dates
-        template = template.chunk({'time': time_cnk})
-
-        # Writes no data (yet)
-        template.to_zarr(dst_zarr, compute=False, encoding=bucket_enc, consolidated=True, mode='w')
-
-        # Add the wrf constants
-        ds0[drop_vars].to_zarr(dst_zarr, mode='a')
-
-        print(f'    Index {first_idx} (pre-create zarr store): {time.time() - t1_proc:0.3f} s')
-        print('-'*20, 'end first index', '-'*20, flush=True)
-
-    for i in range(first_idx, last_idx):
+    for idx, cfile in target_dict.items():
         t1 = time.time()
-        start = i * time_cnk
-        stop = (i + 1) * time_cnk
 
-        # print(zlist[i])
-        dsi = xr.open_dataset(zlist[i], engine='zarr', mask_and_scale=True, chunks={})
+        start = idx * time_cnk
+        stop = (idx + 1) * time_cnk
+
+        try:
+            dsi = xr.open_dataset(cfile, engine='zarr', mask_and_scale=True, chunks={})
+        except FileNotFoundError:
+            print(f'{cfile} does not exist; skipping.')
+            continue
+
         drop_vars = ch.get_accum_types(dsi).get('constant', [])
+
+        st_date_src = dsi.time.values[0]
+        en_date_src = dsi.time.values[-1]
+        st_time_idx = np.where(dst_time == st_date_src)[0].item()
+        en_time_idx = np.where(dst_time == en_date_src)[-1].item() + 1
+
+        print(f'  time slice: {start}, {stop} = {stop-start}')
+        print(f'  dst time slice: {st_time_idx}, {en_time_idx} = {en_time_idx - st_time_idx}')
 
         # NOTE: 2022-09-29 PAN - with mask_and_scale set to False certain attributes must be
         #       removed before writing to a zarr region or xarray will puke with a ValueError
@@ -154,8 +175,35 @@ def main():
         #     elif 'scale_factor' in dsi[cvar].attrs.keys():
         #         del dsi[cvar].attrs['scale_factor']
 
-        dsi.drop_vars(drop_vars, errors='ignore').to_zarr(dst_zarr, region={'time': slice(start, stop)})
-        print(f'  Index {i}: {time.time() - t1:0.3f} s', flush=True)
+        # ==================== solar radiation ============================
+        if len(set(dsi.variables.keys()) - set(solrad_vars.keys()) - set(solrad_vars.values()) - {'time'}) == 0:
+            # When the target only contains the solar radiation variables which have matching bucket
+            # variables then we compute the final accumulated values and drop the bucket variables.
+            # This will fail if any of the sol_var or bucket_var variables is missing from the incoming target.
+            print('Computing accumulated solar radiation values')
+            for sol_var, bucket_var in solrad_vars.items():
+                dsi[sol_var] = cmath.solar_radiation_acc(dsi[sol_var], dsi[bucket_var])
+
+            dsi.compute()
+
+            for sol_var, bucket_var in solrad_vars.items():
+                if 'notes' in dsi[sol_var].attrs:
+                    del dsi[sol_var].attrs['notes']
+                dsi[sol_var].attrs['integration_length'] = 'accumulated since 1979-10-01 00:00:00'
+
+            # Drop the bucket variables
+            dsi = dsi.drop_vars(solrad_vars.values(), errors='ignore')
+        elif len(set(dsi.variables.keys()) & (set(solrad_vars.keys()) | set(solrad_vars.values()))) > 0:
+            # Accumulated solar radiation variables that have a matching bucket variable should not be
+            # processed if we are processing other variables too.
+            drop_sol_vars = list(set(dsi.variables.keys()) & (set(solrad_vars.keys()) | set(solrad_vars.values())))
+            print(f'Dropping solar radiation variables: {drop_sol_vars}')
+            dsi = dsi.drop_vars(drop_sol_vars)
+        # =================================================================
+
+        dsi = dsi.drop_vars(drop_vars, errors='ignore')
+        dsi.to_zarr(dst_zarr, region={'time': slice(st_time_idx, en_time_idx)})
+        print(f'  Index {idx}: {time.time() - t1:0.3f} s', flush=True)
 
     client.close()
     if dask.config.get("temporary-directory") == '/dev/shm':

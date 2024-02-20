@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import os
 import argparse
 import dask
 import datetime
 import fsspec
-# import numpy as np
 import pandas as pd
-# import rechunker
 import time
+
 import xarray as xr
 import zarr
 import zarr.storage
@@ -20,6 +22,7 @@ import conus404_helpers as ch
 # import conus404_maths as cmath
 
 import ctypes
+
 
 
 def trim_memory() -> int:
@@ -120,22 +123,33 @@ def main():
     var_metadata = ch.read_metadata(metadata_file)
 
     # Start up the cluster
+    dask.config.set({'distributed.scheduler.active-memory-manager.measure': 'optimistic'})
+    dask.config.set({'distributed.worker.memory.recent-to-old-time': 60})
+    dask.config.set({'distributed.worker.memory.rebalance.measure': 'managed'})
+    dask.config.set({'distributed.worker.memory.spill': False})
+    dask.config.set({'distributed.worker.memory.pause': False})
+    dask.config.set({'distributed.worker.memory.terminate': False})
+    dask.config.set({'distributed.nanny.pre-spawn-environ.MALLOC_TRIM_THRESHOLD_': 1})
     # dask.config.set({'distributed.logging.distributed': 'warning'})
-    # dask.config.set({'distributed.logging.distributed__client': 'warning'})
+    # dask.config.set({'distributed.logging.distributed.client': 'warning'})
+    # dask.config.set({'distributed.logging.distributed.worker': 'warning'})
     # dask.config.set({'distributed.logging.bokeh': 'critical'})
     # dask.config.set({'distributed.logging.tornado': 'critical'})
     # dask.config.set({'distributed.logging.tornado__application': 'error'})
+    # dask.config.set({'distributed.scheduler.worker-ttl': None})
 
-    client = Client(n_workers=15, threads_per_worker=2, diagnostics_port=None)
+    client = Client(n_workers=6, threads_per_worker=2)  # , diagnostics_port=None)
     client.amm.start()
 
+    print(f'Number of workers: {len(client.ncores())}')
     print(f'dask tmp directory: {dask.config.get("temporary-directory")}')
 
     # Get the maximum memory per thread to use for chunking
-    max_mem = ch.get_maxmem_per_thread(client, max_percent=0.7, verbose=False)
+    max_mem = ch.get_maxmem_per_thread(client, max_percent=0.6, verbose=True)
 
     # Read variables to process
     df = pd.read_csv(proc_vars_file)
+    print(f'Number of variables to process: {len(df)}')
 
     fs = fsspec.filesystem('file')
 
@@ -208,26 +222,7 @@ def main():
 
         print(f'    Open mfdataset: {time.time() - t1:0.3f} s', flush=True)
 
-        # NOTE: 2022-09-29 PAN - computing solar radiation variables here is NOT efficient
-        # for svar in list({'ACLWDNB', 'ACLWUPB', 'ACSWDNB', 'ACSWDNT', 'ACSWUPB'} & set(var_list)):
-        #     sol_time = time.time()
-        #     # Compute the accumulated solar radiation
-        #     if f'I_{svar}' not in var_list:
-        #         print(f'{svar} missing matching I_{svar}')
-        #     else:
-        #         print(f'    --- computing {svar}', flush=True)
-        #         ds2d[svar] = ds2d[svar] + ds2d[f'I_{svar}']
-        #         # ds2d[svar] = cmath.solar_radiation_acc(ds2d[svar], ds2d[f'I_{svar}'])
-        #         ds2d.compute()
-        #
-        #         del ds2d[svar].attrs['notes']
-        #         ds2d[svar].attrs['integration_length'] = 'accumulated since 1979-10-01 00:00:00'
-        #
-        #         # Remove the bucket variable since it's no longer needed
-        #         del ds2d[f'I_{svar}']
-        #         var_list.remove(f'I_{svar}')
-        #         print(f'    --- time: {time.time() - sol_time:0.5f} s', flush=True)
-
+        # with performance_report(filename=f'dask_perf_{args.index}.html'):
         ch.rechunker_wrapper(ds2d[var_list], target_store=tstore_dir, temp_store=temp_store,
                              mem=max_mem, consolidated=True, verbose=False,
                              chunks={'time': time_chunk,
@@ -235,7 +230,7 @@ def main():
                                      'y_stag': y_chunk, 'x_stag': x_chunk})
 
         end = time.time()
-        print(f'Chunk: {cnk_idx}, elapsed time: {(end - start) / 60.:0.3f}, {job_files[0]}')
+        print(f'Chunk: {cnk_idx}, elapsed time: {(end - start) / 60.:0.3f} minutes, {job_files[0]}')
 
         cnk_idx += 1
         c_start += delta

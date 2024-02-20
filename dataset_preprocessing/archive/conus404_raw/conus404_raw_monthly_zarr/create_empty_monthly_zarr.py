@@ -56,7 +56,8 @@ def main():
 
         print('--- Create daily zarr store ---', flush=True)
         ds = xr.open_dataset(src_zarr, engine='zarr',
-                             backend_kwargs=dict(consolidated=True), chunks={})
+                             backend_kwargs=dict(consolidated=True), decode_coords=False,
+                             chunks={})
 
         # Get integration information
         accum_types = ch.get_accum_types(ds)
@@ -66,10 +67,16 @@ def main():
         # the last date falls on the end of the month.
         dates = pd.date_range(start=ds.time[0].values,
                               end=(ds.time[-1].values + pd.DateOffset(day=31)),
-                              freq='M')
+                              freq='ME', inclusive='left')
 
         # Get all variables but the constant variables
         source_dataset = ds.drop_vars(drop_vars, errors='ignore')
+
+        # Change the integration_length for accumulated variables
+        for cvar in source_dataset.variables:
+            if 'integration_length' in source_dataset[cvar].attrs:
+                if source_dataset[cvar].attrs['integration_length'] == '24-hour accumulation':
+                    source_dataset[cvar].attrs['integration_length'] = 'month accumulation'
 
         print('    --- Create template', end=' ')
         template = (source_dataset.chunk(dst_chunks).pipe(xr.zeros_like).isel(time=0, drop=True).expand_dims(time=len(dates)))

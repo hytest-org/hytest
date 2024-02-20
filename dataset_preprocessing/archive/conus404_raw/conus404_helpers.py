@@ -49,6 +49,9 @@ def apply_metadata(ds, rename_dims, rename_vars, remove_attrs, var_metadata):
     if len(rename_vars) > 0:
         ds = ds.rename_vars(rename_vars)
     ds = ds.assign_coords({'time': ds.XTIME})
+    # 2024-01-22 PAN: Something changed and now XTIME still has to be dropped from the dataset, whereas before it
+    #                 was renamed to 'time'
+    ds = ds.drop_vars(['XTIME'])
 
     # Modify the attributes
     for cvar in ds.variables:
@@ -60,7 +63,11 @@ def apply_metadata(ds, rename_dims, rename_vars, remove_attrs, var_metadata):
         # Apply new/updated metadata
         if cvar in var_metadata.index:
             for kk, vv in var_metadata.loc[cvar].dropna().to_dict().items():
-                ds[cvar].attrs[kk] = vv
+                if kk in ['coordinates']:
+                    # Add/modify encoding
+                    ds[cvar].encoding.update({kk: vv})
+                else:
+                    ds[cvar].attrs[kk] = vv
 
     return ds
 
@@ -165,9 +172,9 @@ def read_metadata(filename):
         df['coordinates'].mask(df['coordinates'] == kk, vv, inplace=True)
 
     # Add a few empty attributes, in the future these may already exist
-    df['grid_mapping'] = np.nan
-    df['axis'] = np.nan
-    df['standard_name'] = np.nan
+    df['grid_mapping'] = ''
+    df['axis'] = ''
+    df['standard_name'] = ''
 
     # Set grid_mapping attribute for variables with non-empty coordinates attribute
     df['grid_mapping'].mask(df['coordinates'].notnull(), 'crs', inplace=True)

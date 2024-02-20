@@ -100,7 +100,6 @@ def main():
 
     accum_type_map = {'cum60': 'accumulated over prior 60 minutes',
                       'cum_sim': 'accumulated since 1979-10-01 00:00:00',
-                      # 'cum_sim_bucket': 'accumulated since 1979-10-01 00:00:00 bucket',
                       'instant': 'instantaneous'}
 
     # Amount in minutes to adjust the daily time
@@ -148,7 +147,7 @@ def main():
         var_list = accum_types[accum_type_map[args.type]]
 
         # Can remove either T2D or RAINRATE to limit which variables are computed for daily
-        var_list.remove('T2D')
+        # var_list.remove('T2D')
 
         var_list.sort()
         print(f'    --- Number of variables of type, {args.type}: {len(var_list)}')
@@ -159,6 +158,7 @@ def main():
             loop_start = time.time()
             print(f'--- Index {c_idx:04d} ---', flush=True)
 
+            # Get the index range for the hourly zarr store
             c_st = c_idx * hrly_step_idx
             c_en = c_st + hrly_step_idx
 
@@ -177,48 +177,8 @@ def main():
             # print('    --- call compute()', flush=True)
             ds_daily.compute()
 
-            # ds_daily['crs'] = ds['crs']
-
             # print('    --- adjust_time()', flush=True)
             ds_daily = adjust_time(ds_daily, time_adj=adj_val[args.type])
-
-            # var_attrs = dict(T2MAX=dict(coordinates='x y',
-            #                             grid_mapping='crs',
-            #                             long_name='Daily maximum temperature at 2 meters',
-            #                             units='K'),
-            #                  T2MIN=dict(coordinates='x y',
-            #                             grid_mapping='crs',
-            #                             long_name='Daily minimum temperature at 2 meters',
-            #                             units='K'),
-            #                  RAIN=dict(coordinates='x y',
-            #                            grid_mapping='crs',
-            #                            long_name='Daily accumulated precipitation',
-            #                            units='mm',
-            #                            integration_length='24-hour accumulation'))
-            #
-            # # Attributes to remove from variables
-            # remove_attrs = ['esri_pe_string', 'proj4', 'remap']
-            #
-            # remove_global_attrs = ['cell_methods', 'esri_pe_string', 'grid_mapping',
-            #                        'long_name', 'proj4', 'standard_name', 'units']
-            #
-            # for cvar in ds_daily.variables:
-            #     # Remove unneeded attributes, update the coordinates attribute
-            #
-            #     # Add/modify attributes for current variable
-            #     if cvar in var_attrs:
-            #         for kk, vv in var_attrs[cvar].items():
-            #             ds_daily[cvar].attrs[kk] = vv
-            #
-            #     # Remove attributes we don't want
-            #     for cattr in list(ds_daily[cvar].attrs.keys()):
-            #         if cattr in remove_attrs:
-            #             del ds_daily[cvar].attrs[cattr]
-            #
-            # # Remove unnecessary global attributes
-            # for cattr in list(ds_daily.attrs.keys()):
-            #     if cattr in remove_global_attrs:
-            #         del ds_daily.attrs[cattr]
 
             # print('    --- remove_chunk_encoding()', flush=True)
             ds_daily = remove_chunk_encoding(ds_daily)
@@ -232,8 +192,13 @@ def main():
             # Get the daily output index positions
             daily_st = int(c_st / 24)
             daily_en = int(c_en / 24)
+            if (daily_en - daily_st) < ds_daily.time.size:
+                print(f'    time interval changed from {daily_en - daily_st} to {ds_daily.time.size}')
+                daily_en += 1
+
             print(f'    daily range: {daily_st} ({ds_daily.time.dt.strftime("%Y-%m-%d %H:%M:%S")[0].values}) to '
-                  f'{daily_en} ({ds_daily.time.dt.strftime("%Y-%m-%d %H:%M:%S")[-1].values})')
+                  f'{daily_en} ({ds_daily.time.dt.strftime("%Y-%m-%d %H:%M:%S")[-1].values})'
+                  f'  timesteps: {daily_en-daily_st}')
 
             # print('    --- write to zarr store', flush=True)
             # NOTE: Make sure the arrays that are written have the correct chunk sizes or they will be
