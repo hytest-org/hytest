@@ -136,6 +136,7 @@ def main():
         print('    --- Write constant variables', end=' ')
         drop_vars.remove('T2D')
         drop_vars.remove('RAINRATE')
+
         ds[drop_vars].chunk(daily_chunks).to_zarr(dst_zarr, mode='a')
         print(f'       {time.time() - start_time:0.3f} s', flush=True)
 
