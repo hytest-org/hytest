@@ -1,0 +1,64 @@
+metadata:
+  description: Catalog containing datasets used for the CONUS404 forcings evaluation
+    notebooks.
+  version: 1
+sources:
+  ceres-drb-OSN:
+    args:
+      chunks: {}
+      consolidated: true
+      decode_coords: true
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/ceres_drb.zarr
+    description: CERES-EBAF Delaware River Basin subset, 40 years of monthly data
+      for CONUS404 forcings evaluation
+    driver: intake_xarray.xzarr.ZarrSource
+    metadata: {}
+  conus404-drb-OSN:
+    args:
+      chunks: {}
+      consolidated: true
+      decode_coords: true
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_drb.zarr
+    description: CONUS404 Delaware River Basin subset, 40 years of monthly data for
+      CONUS404 forcings evaluation
+    driver: intake_xarray.xzarr.ZarrSource
+    metadata: {}
+  crn-drb-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/crn_drb.parquet
+    description: Climate Reference Network subset, 40 years of monthly data for CONUS404
+      forcings evaluation
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
+  hcn-drb-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/hcn_drb.parquet
+    description: Historical Climate Network subset, 40 years of monthly data for CONUS404
+      forcings evaluation
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
+  prism-drb-OSN:
+    args:
+      chunks: {}
+      consolidated: true
+      decode_coords: true
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/prism_drb.zarr
+    description: PRISM Delaware River Basin subset, 40 years of monthly data for CONUS404
+      forcings evaluation
+    driver: intake_xarray.xzarr.ZarrSource
+    metadata: {}
