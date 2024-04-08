@@ -3,11 +3,56 @@ metadata:
     notebooks.
   version: 1
 sources:
+  c404-ceres-drb-desc-stats-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_ceres_drb_descriptive_stats.parquet
+    description: Descriptive statistics for the comparison of CONUS404 to CERES-EBAF
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
+  c404-crn-drb-desc-stats-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_crn_drb_descriptive_stats.parquet
+    description: Descriptive statistics for the comparison of CONUS404 to CRN
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
+  c404-drb-zonal-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_drb_zonal_stats.parquet
+    description: CONUS404 zonal statistics of Delware River Basin
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
+  c404-hcn-drb-desc-stats-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_hcn_drb_descriptive_stats.parquet
+    description: Descriptive statistics for the comparison of CONUS404 to HCN
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
+  c404-prism-drb-desc-stats-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_prism_drb_descriptive_stats.parquet
+    description: Descriptive statistics for the comparison of CONUS404 to PRISM
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
   ceres-drb-OSN:
     args:
       chunks: {}
       consolidated: true
-      decode_coords: true
+      decode_coords: all
       storage_options:
         anon: true
         endpoint_url: https://usgs.osn.mghpcc.org/
@@ -16,11 +61,20 @@ sources:
       for CONUS404 forcings evaluation
     driver: intake_xarray.xzarr.ZarrSource
     metadata: {}
+  ceres-drb-zonal-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/ceres_drb_zonal_stats.parquet
+    description: CERES-EBAF zonal statistics of Delware River Basin
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
   conus404-drb-OSN:
     args:
       chunks: {}
       consolidated: true
-      decode_coords: true
+      decode_coords: all
       storage_options:
         anon: true
         endpoint_url: https://usgs.osn.mghpcc.org/
@@ -39,6 +93,15 @@ sources:
       forcings evaluation
     driver: intake_parquet.source.ParquetSource
     metadata: {}
+  crn-drb-point-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_crn_drb_point_values.parquet
+    description: CRN and CONUS404 point statistics of Delware River Basin
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
   hcn-drb-OSN:
     args:
       storage_options:
@@ -49,11 +112,20 @@ sources:
       forcings evaluation
     driver: intake_parquet.source.ParquetSource
     metadata: {}
+  hcn-drb-point-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/c404_hcn_drb_point_values.parquet
+    description: HCN and CONUS404 point statistics of Delware River Basin
+    driver: intake_parquet.source.ParquetSource
+    metadata: {}
   prism-drb-OSN:
     args:
       chunks: {}
       consolidated: true
-      decode_coords: true
+      decode_coords: all
       storage_options:
         anon: true
         endpoint_url: https://usgs.osn.mghpcc.org/
@@ -61,4 +133,13 @@ sources:
     description: PRISM Delaware River Basin subset, 40 years of monthly data for CONUS404
       forcings evaluation
     driver: intake_xarray.xzarr.ZarrSource
+    metadata: {}
+  prism-drb-zonal-OSN:
+    args:
+      storage_options:
+        anon: true
+        endpoint_url: https://usgs.osn.mghpcc.org/
+      urlpath: s3://hytest/tutorials/evaluation/conus404/prism_drb_zonal_stats.parquet
+    description: PRISM zonal statistics of Delware River Basin
+    driver: intake_parquet.source.ParquetSource
     metadata: {}
