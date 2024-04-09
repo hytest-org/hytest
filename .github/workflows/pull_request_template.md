@@ -31,4 +31,4 @@ What peer reviewer needs to know to run the code. For example, do they need to c
 
 - [ ] List from peer reviewer of what needs to be done before branch can be merged
 
-After author has addressed next steps peer reviewer must approve request and than branch can be merge.
+After author has addressed next steps peer reviewer must approve request and then branch can be merge.
