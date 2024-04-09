@@ -1,4 +1,3 @@
-
 ## Jupyterbook and sphinx build space
 _build
 
@@ -36,3 +35,4 @@ dask-worker-space
 mydask.png
 dask-report.html
 
+ruff.toml
