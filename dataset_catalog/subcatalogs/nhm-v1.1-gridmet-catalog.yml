@@ -7,7 +7,7 @@ sources:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
-        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/gm_byHRU/nhm_v1.1_gm_byHRU_combined.json'
+        fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHRU/nhm_v1.1_gm_byHRU_combined.json'
 
   nhm-v1.1-gridmet-byHW-onprem:
     driver: intake_xarray.xzarr.ZarrSource
@@ -16,7 +16,7 @@ sources:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
-        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/gm_byHW/nhm_v1.1_gm_byHW_combined.json'
+        fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHW/nhm_v1.1_gm_byHW_combined.json'
 
   nhm-v1.1-gridmet-byHWobs-onprem:
     driver: intake_xarray.xzarr.ZarrSource
@@ -25,4 +25,4 @@ sources:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
-        fo: '/caldera/hytest_scratch/scratch/nhm/nhm_v1.1/gm_byHWobs/nhm_v1.1_gm_byHWobs_combined.json'
+        fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHWobs/nhm_v1.1_gm_byHWobs_combined.json'
