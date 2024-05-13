@@ -119,7 +119,6 @@ sources:
       urlpath: 's3://hytest-internal/conus404/conus404_hourly_bc.zarr'
       consolidated: true
       storage_options:
-        anon: true
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
     
@@ -130,6 +129,5 @@ sources:
       urlpath: 's3://hytest-internal/conus404/conus404_daily_bc.zarr'
       consolidated: true
       storage_options:
-        anon: true
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
