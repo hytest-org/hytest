@@ -121,6 +121,8 @@ sources:
       storage_options:
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
+          profile: osn-hytest-internal
+
     
   conus404-daily-ba-osn:
     driver: zarr
@@ -131,3 +133,5 @@ sources:
       storage_options:
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
+          profile: osn-hytest-internal
+
