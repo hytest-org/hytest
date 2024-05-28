@@ -1,24 +1,27 @@
 Traceback (most recent call last):
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
     return future.result()
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+           ^^^^^^^^^^^^^^^
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-ds_var = var_regridded.sel(name=['Delaware Bay-Deep', 'Black Creek']).resample(time="MS").mean().to_dataset(region_name)
+ds = cat['conus404-daily-osn'].to_dask()
 ------------------
 
 
-[0;31mTypeError[0m[0;31m:[0m Grouper.__init__() got an unexpected keyword argument 'base'
+[0;31mProfileNotFound[0m[0;31m:[0m The config profile (default) could not be found
 
 

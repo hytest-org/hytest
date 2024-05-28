@@ -1,43 +1,50 @@
 Traceback (most recent call last):
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 778, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 188, in ensure_async
-    result = await obj
-             ^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/jupyter_client/channels.py", line 230, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 172, in wrapped
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1001, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 802, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/9764ad0fe205ee3ccb00b4474c3e6708e73fb3a628843d562645d7d1e21ccb8d-20231221-205006-476455-52-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 852, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-%%time
-ds_save.to_netcdf(local_file)
--------------------
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# get projection info
+ds = ds.metpy.parse_cf()
+crs = ds[var[0]].metpy.cartopy_crs
+#crs
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[10], line 3[0m
+[1;32m      1[0m [38;5;66;03m# get projection info[39;00m
+[1;32m      2[0m ds [38;5;241m=[39m ds[38;5;241m.[39mmetpy[38;5;241m.[39mparse_cf()
+[0;32m----> 3[0m crs [38;5;241m=[39m [43mds[49m[43m[[49m[43mvar[49m[43m[[49m[38;5;241;43m0[39;49m[43m][49m[43m][49m[38;5;241;43m.[39;49m[43mmetpy[49m[38;5;241;43m.[39;49m[43mcartopy_crs[49m
+[1;32m      4[0m [38;5;66;03m#crs[39;00m
+
+File [0;32m/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/metpy/xarray.py:266[0m, in [0;36mMetPyDataArrayAccessor.cartopy_crs[0;34m(self)[0m
+[1;32m    263[0m [38;5;129m@property[39m
+[1;32m    264[0m [38;5;28;01mdef[39;00m [38;5;21mcartopy_crs[39m([38;5;28mself[39m):
+[1;32m    265[0m [38;5;250m    [39m[38;5;124;03m"""Return the coordinate reference system (CRS) as a cartopy object."""[39;00m
+[0;32m--> 266[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcrs[49m[38;5;241m.[39mto_cartopy()
+
+File [0;32m/home/conda/global/774f2bb1-1715626348-8-pangeo/lib/python3.11/site-packages/metpy/xarray.py:259[0m, in [0;36mMetPyDataArrayAccessor.crs[0;34m(self)[0m
+[1;32m    257[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mmetpy_crs[39m[38;5;124m'[39m [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39m_data_array[38;5;241m.[39mcoords:
+[1;32m    258[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_data_array[38;5;241m.[39mcoords[[38;5;124m'[39m[38;5;124mmetpy_crs[39m[38;5;124m'[39m][38;5;241m.[39mitem()
+[0;32m--> 259[0m [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([38;5;124m'[39m[38;5;124mcrs attribute is not available. You may need to use the[39m[38;5;124m'[39m
+[1;32m    260[0m                      [38;5;124m'[39m[38;5;124m `parse_cf` or `assign_crs` methods. Consult the [39m[38;5;124m"[39m[38;5;124mxarray[39m[38;5;124m'[39m
+[1;32m    261[0m                      [38;5;124m'[39m[38;5;124m with MetPy Tutorial[39m[38;5;124m"[39m[38;5;124m for more details.[39m[38;5;124m'[39m)
+
+[0;31mAttributeError[0m: crs attribute is not available. You may need to use the `parse_cf` or `assign_crs` methods. Consult the "xarray with MetPy Tutorial" for more details.
 
