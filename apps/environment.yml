@@ -1,0 +1,31 @@
+name: panel_app
+channels:
+  - conda-forge
+dependencies:
+  - aiohttp
+  - bokeh
+  - cf_xarray
+  - dask
+  - datashader
+  - fsspec
+  - geoviews
+  - hvplot
+  - intake
+  - intake-parquet
+  - intake-xarray
+  - jupyter
+  - metpy
+  - netcdf4
+  - nodejs
+  - panel
+  - python=3.11
+  - pyyaml
+  - requests
+  - s3fs
+  - xarray
+  - zarr
+  - ca-certificates
+  - certifi
+  - openssl
+  - truststore
+  - watchfiles
