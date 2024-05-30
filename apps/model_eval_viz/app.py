@@ -31,8 +31,7 @@ template = pn.template.FastGridTemplate(
     sidebar=[freq, phase],
     
 )
-footer = pn.pane.Markdown(""""### Link
-[Hytest Repo](https://github.com/hytest-org/hytest/issues) """ ,width=500)
+footer = pn.pane.Markdown("""[Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500)
 
 
 # Populate the main area with plots, to demonstrate the grid-like API
