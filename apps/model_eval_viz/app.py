@@ -36,7 +36,7 @@ footer = pn.pane.Markdown(""""### Link
 
 
 # Populate the main area with plots, to demonstrate the grid-like API
-template.main[:3, :6] = dfi_sine.hvplot(title='Sine', **plot_opts).output()
-template.main[:3, 6:] = dfi_cosine.hvplot(title='Cosine', **plot_opts).output()
-template.show()
-footer.show()
+template.main[0:3, 0:6] = dfi_sine.hvplot(title='Sine', **plot_opts).output()
+template.main[0:3, 6:12] = dfi_cosine.hvplot(title='Cosine', **plot_opts).output()
+template.main[4:, 0:12] = footer # unpack footer onto template
+template.servable() # use servable() rather than show() to allow CLI command `panel serve`
