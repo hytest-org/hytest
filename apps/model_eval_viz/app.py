@@ -1,24 +1,24 @@
 import hvplot.pandas
 import numpy as np
-import panel as pn
 import pandas as pd
+import panel as pn
+
+# Initialize setup for the panels
 pn.extension("plotly", "vega")
-
-
 xs = np.linspace(0, np.pi)
-
 freq = pn.widgets.FloatSlider(name="Frequency", start=0, end=10, value=2)
 phase = pn.widgets.FloatSlider(name="Phase", start=0, end=np.pi)
 
+# Define data frames 
 def sine(freq, phase):
     return pd.DataFrame(dict(y=np.sin(xs*freq+phase)), index=xs)
 
 def cosine(freq, phase):
     return pd.DataFrame(dict(y=np.cos(xs*freq+phase)), index=xs)
-
 dfi_sine = hvplot.bind(sine, freq, phase).interactive()
 dfi_cosine = hvplot.bind(cosine, freq, phase).interactive()
 
+# Plotting configurations
 plot_opts = dict(
     responsive=True, min_height=400,
     # Align the curves' color with the template's color
@@ -31,7 +31,7 @@ template = pn.template.FastGridTemplate(
     sidebar=[freq, phase],
     
 )
-footer = pn.pane.Markdown("""[Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500)
+footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500)
 
 
 # Populate the main area with plots, to demonstrate the grid-like API
