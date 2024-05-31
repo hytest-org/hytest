@@ -1,22 +1,38 @@
+import geopandas as gpd
 import hvplot.pandas
 import numpy as np
 import pandas as pd
 import panel as pn
 
-# Initialize setup for the panels
+# Initialize setup for below functions
 pn.extension("plotly", "vega")
 xs = np.linspace(0, np.pi)
 freq = pn.widgets.FloatSlider(name="Frequency", start=0, end=10, value=2)
 phase = pn.widgets.FloatSlider(name="Phase", start=0, end=np.pi)
+path = 'data/steamflow_gages_v1_n5390.csv'
 
-# Define data frames 
-def sine(freq, phase):
-    return pd.DataFrame(dict(y=np.sin(xs*freq+phase)), index=xs)
+# Read in the dataframe 
 
-def cosine(freq, phase):
-    return pd.DataFrame(dict(y=np.cos(xs*freq+phase)), index=xs)
-dfi_sine = hvplot.bind(sine, freq, phase).interactive()
-dfi_cosine = hvplot.bind(cosine, freq, phase).interactive()
+def _get_data(_filepath:str)->gpd.dataframe:
+    '''
+    Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'.
+    Args:
+        _filepath (str): Path to the .csv file 
+    Returns:
+        gpd.dataframe: the filtered geopandas data file
+    '''
+    read_data = geopandas.read_file(_filepath)
+    filtered_data = read_data[read_data['gagesII_class'] == 'Ref']
+    return filtered_data
+
+
+# def sine(freq, phase):
+#     return pd.DataFrame(dict(y=np.sin(xs*freq+phase)), index=xs)
+
+# def cosine(freq, phase):
+#     return pd.DataFrame(dict(y=np.cos(xs*freq+phase)), index=xs)
+# dfi_sine = hvplot.bind(sine, freq, phase).interactive()
+# dfi_cosine = hvplot.bind(cosine, freq, phase).interactive()
 
 # Plotting configurations
 plot_opts = dict(
