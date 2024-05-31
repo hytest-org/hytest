@@ -24,21 +24,44 @@ dataset_select = pn.widgets.Select(
 
 @pn.cache(per_session=True)
 def _get_data(_dataset: str, _catalog: intake.Catalog = conus404_drb_cat) -> pd.DataFrame:
-    """Reaches and caches data from intake catalog."""
+    """
+    Fetch and cache data from an intake catalog.
 
+    Parameters:
+    _dataset (str): The name of the dataset to retrieve from the catalog.
+    _catalog (intake.Catalog, optional): The intake catalog object. Defaults to conus404_drb_cat.
+
+    Returns:
+    pd.DataFrame: The dataset read from the catalog as a pandas DataFrame.
+    """
     return _catalog[_dataset].read()
 
 
-def _get_description(_dataset: str, _catalog:intake.Catalog = conus404_drb_cat) -> str:
-    """Returns description of dataset."""
+def _get_description(_dataset: str, _catalog: intake.Catalog = conus404_drb_cat) -> str:
+    """
+    Retrieve the description of a dataset from an intake catalog.
 
+    Parameters:
+    _dataset (str): The name of the dataset whose description is to be retrieved.
+    _catalog (intake.Catalog, optional): The intake catalog object. Defaults to conus404_drb_cat.
+
+    Returns:
+    str: The description of the specified dataset.
+    """
     _description = _catalog[_dataset].description
 
     return _description
 
 def create_bokeh_formatters(column_dict: dict) -> dict:
-    """Create a dynamic list of formatted columns."""
+    """
+    Create a dictionary of Bokeh column formatters based on the column data types.
 
+    Parameters:
+    column_dict (dict): A dictionary where keys are column names and values are data types (e.g., "float", "str").
+
+    Returns:
+    dict: A dictionary of Bokeh formatters corresponding to the column data types.
+    """
     formatters = {}
 
     for column, dtype in column_dict.items():
@@ -49,9 +72,20 @@ def create_bokeh_formatters(column_dict: dict) -> dict:
 
     return formatters
 
+
 @pn.depends(dataset_select)
 def construct_tabulator(dataset: str, catalog:intake.Catalog = conus404_drb_cat) -> pn.Column:
-    """Create tabulator object based on changes to selected dataset."""
+    """
+    Create a pn.Column containing a description and pn.Tabulator widget for a given dataset.
+
+    Parameters:
+    dataset (str): The name of the dataset to retrieve and display.
+    catalog (intake.Catalog, optional): The intake catalog object to fetch the dataset from. Defaults to conus404_drb_cat.
+
+    Returns:
+    pn.Column: A Panel Column object containing a Markdown pane with the dataset description and a Tabulator widget 
+               with the dataset contents.
+    """
 
     # create dataframe
     _df = _get_data(dataset)
