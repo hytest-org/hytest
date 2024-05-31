@@ -38,4 +38,4 @@ footer = pn.pane.Markdown("""For questions about this application, please visit 
 template.main[0:3, 0:6] = dfi_sine.hvplot(title='Sine', **plot_opts).output()
 template.main[0:3, 6:12] = dfi_cosine.hvplot(title='Cosine', **plot_opts).output()
 template.main[4:, 0:12] = footer # unpack footer onto template
-template.servable() # use servable() rather than show() to allow CLI command `panel serve`
+template.servable() 
