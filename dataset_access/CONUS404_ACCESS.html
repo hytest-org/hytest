@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>CONUS404 Access &#8212; HyTEST Project</title>
+    <title>CONUS404 and CONUS404 Bias-Adjusted Data Access &#8212; HyTEST Project</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">CONUS404 Access</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">CONUS404 and CONUS404 Bias-Adjusted Data Access</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conus404_explore.html">Explore CONUS404 Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
@@ -395,7 +395,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -406,11 +408,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>CONUS404 Access</h1>
+    <h1>CONUS404 and CONUS404 Bias-Adjusted Data Access</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-data">CONUS404 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-bias-adjusted-data">CONUS404 Bias-Adjusted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-notebooks">Example Notebooks</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -420,11 +432,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="conus404-access">
-<h1>CONUS404 Access<a class="headerlink" href="#conus404-access" title="Link to this heading">#</a></h1>
-<p>This section contains notebooks that demonstrate how to access and perform basic data manipulation for the <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 dataset</a>.</p>
-<p>In the CONUS404 intake sub-catalog (see <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">here</span></a> for an explainer of our intake data catalog), you will see entries for four CONUS404 datasets: conus404-hourly, conus404-daily, conus404-monthly, and conus404-daily-diagnostic data. Each of these datasets is duplicated in three different storage locations (as the <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">intake catalog section</span></a> also describes). The conus404-hourly data is a subset of the wrfout model output and conus404-daily-diagnostic is a subset from the wrfxtrm model output, both of which are described in the official <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 data release</a>. We also have conus404-daily and conus404-monthly files, which are just resampled from the conus404-hourly data.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="conus404-and-conus404-bias-adjusted-data-access">
+<h1>CONUS404 and CONUS404 Bias-Adjusted Data Access<a class="headerlink" href="#conus404-and-conus404-bias-adjusted-data-access" title="Link to this heading">#</a></h1>
+<p>This section contains notebooks that demonstrate how to access and perform basic data manipulation for the <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 dataset</a>. The examples can also be applied to the <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias-adjusted dataset</a>.</p>
+<p>In the CONUS404 intake sub-catalog (see <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">here</span></a> for an explainer of our intake data catalog), you will see entries for four CONUS404 datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code>, and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> data, as well as two CONUS404 bias-adjusted datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code>. Each of these datasets is duplicated in up to three different storage locations (as the <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">intake catalog section</span></a> also describes).</p>
+<section id="conus404-data">
+<h2>CONUS404 Data<a class="headerlink" href="#conus404-data" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data is a subset of the wrfout model output and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> is a subset from the wrfxtrm model output, both of which are described in the official <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 data release</a>. We also have <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> and <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code> files, which are just resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data.</p>
 <p><strong>Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.</strong> These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable.</p>
+<p><strong>We recommend that you regularly check our <a class="reference internal" href="CONUS404_CHANGELOG.html"><span class="doc std std-doc">CONUS404 changelog</span></a> to see any updates that have been made to the zarr stores.</strong> We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.</p>
+</section>
+<section id="conus404-bias-adjusted-data">
+<h2>CONUS404 Bias-Adjusted Data<a class="headerlink" href="#conus404-bias-adjusted-data" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data contains bias-adjusted temperature and precipiation data from the CONUS404 dataset, which is described in the official <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias adjusted data release</a>. The <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code> files are resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data.</p>
+</section>
+<section id="example-notebooks">
+<h2>Example Notebooks<a class="headerlink" href="#example-notebooks" title="Link to this heading">#</a></h2>
 <p>We currently have five notebooks to help demonstrate how to work with these datasets in a python workflow:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="conus404_explore.html"><span class="std std-doc">Explore CONUS404 Dataset</span></a>: opens the CONUS404 dataset, loads and plots the entire spatial
@@ -434,9 +457,9 @@ domain of a specified variable at a specfic time step, and loads and plots a tim
 <li><p><a class="reference internal" href="conus404_point_selection.html"><span class="std std-doc">CONUS404 Point Selection</span></a>: samples the CONUS404 data at a selection of gage locations using their lat/lon point coordinates.</p></li>
 <li><p><a class="reference internal" href="conus404_regrid.html"><span class="std std-doc">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</span></a>: regrids a subset of the CONUS404 dataset from a curvilinear grid to a rectilinear grid and saves the output to a netcdf file. The package used in this demo is not compatible with Windows. We hope to improve upon this methodology, and will likely update the package/technique used in the future.</p></li>
 </ul>
-<p><strong>We recommend that you regularly check our <a class="reference internal" href="CONUS404_CHANGELOG.html"><span class="doc std std-doc">CONUS404 changelog</span></a> to see any updates that have been made to the zarr stores.</strong> We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.</p>
 <p>These methods are likely applicable to many of the other key HyTEST datasets that can be opened with xarray.</p>
 <p><em>Note: If you need help setting up a computing environment where you can run these notebooks, you should review the <a class="reference internal" href="../environment_set_up/README.html"><span class="std std-doc">Computing Environments</span></a> section of the documentation.</em></p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -496,7 +519,22 @@ domain of a specified variable at a specfic time step, and loads and plots a tim
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-data">CONUS404 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-bias-adjusted-data">CONUS404 Bias-Adjusted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-notebooks">Example Notebooks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

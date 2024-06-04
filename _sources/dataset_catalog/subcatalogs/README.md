@@ -14,14 +14,28 @@ produces a list of datasets and sub-catalogs in the main HyTEST data catalog, fo
  'nhm-v1.0-daymet-catalog',
  'nhm-v1.1-c404-bc-catalog',
  'nhm-v1.1-gridmet-catalog',
+ 'trends-and-drivers-catalog',
+ 'nhm-prms-v1.1-gridmet-format-testing-catalog',
  'nwis-streamflow-usgs-gages-onprem',
- 'nwis-streamflow-usgs-gages-cloud',
+ 'nwis-streamflow-usgs-gages-osn',
  'nwm21-streamflow-usgs-gages-onprem',
- 'nwm21-streamflow-usgs-gages-cloud',
+ 'nwm21-streamflow-usgs-gages-osn',
  'nwm21-streamflow-cloud',
+ 'geofabric_v1_1-zip-osn',
+ 'geofabric_v1_1_POIs_v1_1-osn',
+ 'geofabric_v1_1_TBtoGFv1_POIs-osn',
+ 'geofabric_v1_1_nhru_v1_1-osn',
+ 'geofabric_v1_1_nhru_v1_1_simp-osn',
+ 'geofabric_v1_1_nsegment_v1_1-osn',
+ 'gages2_nndar-osn',
+ 'wbd-zip-osn',
+ 'huc12-geoparquet-osn',
+ 'huc12-gpkg-osn',
  'nwm21-scores',
  'lcmap-cloud',
- 'rechunking-tutorial-cloud']
+ 'rechunking-tutorial-osn',
+ 'pointsample-tutorial-sites-osn',
+ 'pointsample-tutorial-output-osn']
 
 ```
 We can then open the CONUS404 sub-catalog with:
@@ -42,7 +56,11 @@ producing a list of all the CONUS404 dataset versions:
  'conus404-daily-osn',
  'conus404-monthly-onprem',
  'conus404-monthly-cloud',
- 'conus404-monthly-osn']
+ 'conus404-monthly-osn',
+ 'conus404-hourly-ba-onprem',
+ 'conus404-hourly-ba-osn',
+ 'conus404-daily-ba-onprem',
+ 'conus404-daily-ba-osn']
 ```
 
 The characteristics of indivdual datasets can be explored:
