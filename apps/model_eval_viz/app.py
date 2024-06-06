@@ -1,57 +1,69 @@
+import cartopy
+import cartopy.feature as cf
+from cartopy import crs as ccrs
+import dask
 import geopandas as gpd
+import geoviews as gv
+import geoviews.feature as gf
+from geoviews import opts
+import holoviews as hv
 import hvplot.pandas
 import numpy as np
 import pandas as pd
 import panel as pn
 
+
 # Initialize setup for below functions
+hv.extension('bokeh')
+path = "./data/streamflow_gages_v1_n5390.csv"
 pn.extension("plotly", "vega")
-xs = np.linspace(0, np.pi)
-freq = pn.widgets.FloatSlider(name="Frequency", start=0, end=10, value=2)
-phase = pn.widgets.FloatSlider(name="Phase", start=0, end=np.pi)
-path = 'data/steamflow_gages_v1_n5390.csv'
+
+# Create a map template including rough borders for a start 
+# TODO change later 
+gv_us = cf.NaturalEarthFeature(category='cultural', 
+    name='admin_1_states_provinces_lines', scale='50m', facecolor='none')
+gv_us = gv.Feature(gv_us).geoms().opts(
+    line_color="black", line_width=1, line_dash='dashed')
 
 # Read in the dataframe 
-
-def _get_data(_filepath:str)->gpd.dataframe:
+def _get_data(_filepath:str)->gpd.GeoDataFrame:
     '''
     Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'.
     Args:
         _filepath (str): Path to the .csv file 
     Returns:
-        gpd.dataframe: the filtered geopandas data file
+        gpd.GeoDataFrame: the filtered geopandas data file
     '''
-    read_data = geopandas.read_file(_filepath)
+    read_data = gpd.read_file(_filepath)
     filtered_data = read_data[read_data['gagesII_class'] == 'Ref']
+    # clean up long, and lat data
+    filtered_data['dec_lat_va'] = filtered_data['dec_lat_va'].str.replace('lat', '').astype(float)
+    filtered_data['dec_long_va'] = filtered_data['dec_long_va'].str.replace('long', '').astype(float)
     return filtered_data
 
-
-# def sine(freq, phase):
-#     return pd.DataFrame(dict(y=np.sin(xs*freq+phase)), index=xs)
-
-# def cosine(freq, phase):
-#     return pd.DataFrame(dict(y=np.cos(xs*freq+phase)), index=xs)
-# dfi_sine = hvplot.bind(sine, freq, phase).interactive()
-# dfi_cosine = hvplot.bind(cosine, freq, phase).interactive()
+# Define data frames 
+gv_us_map = gv.Polygons(gv_us)
 
 # Plotting configurations
 plot_opts = dict(
-    responsive=True, min_height=400,
-    # Align the curves' color with the template's color
-    color=pn.template.FastGridTemplate.accent_base_color
+    #Dimensions, and UI setup
+    responsive=True, projection = ccrs.PlateCarree(), width=800, height=600, xlim=(-175, -50), ylim=(5, 80),
+    #title
+    title='United States StreamGage Map'
 )
 
 # Instantiate the template with widgets displayed in the sidebar
 template = pn.template.FastGridTemplate(
-    title="HyTEST Model Evaluation",
-    sidebar=[freq, phase],
-    
+    title="HyTEST Model Evaluation",  
 )
-footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500)
 
-
-# Populate the main area with plots, to demonstrate the grid-like API
-template.main[0:3, 0:6] = dfi_sine.hvplot(title='Sine', **plot_opts).output()
-template.main[0:3, 6:12] = dfi_cosine.hvplot(title='Cosine', **plot_opts).output()
-template.main[4:, 0:12] = footer # unpack footer onto template
+# Plotting and Servable execution 
+stream_gage = _get_data(path)
+features = gv.Overlay([gf.ocean, gf.land, gf.rivers, gf.lakes, gf.borders, gf.coastline])
+us_map = (gv_us_map*features).opts(**plot_opts)
+points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightblue', size=5)
+footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =200)
+us_map_panel = pn.panel(us_map)
+template.main[0:4, 0:7] = us_map*points # unpack us map onto template
+template.main[4:, 0:7] = footer # unpack footer onto template
 template.servable() 
