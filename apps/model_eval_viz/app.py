@@ -7,10 +7,33 @@ import geoviews as gv
 import geoviews.feature as gf
 from geoviews import opts
 import holoviews as hv
+import httpx
 import hvplot.pandas
 import numpy as np
 import pandas as pd
 import panel as pn
+import ssl
+import truststore
+
+# create SSL context for internal intranet and read file
+# this is a method used when calling a library like httpx, urllib3, or requests directly rather than `truststore.inject_into_ssl()`
+ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/", verify=ctx)
+
+
+# get GeoJSON link
+states_json = (states_request.json()
+               .get('simplifiedGeometryGeoJSON'))
+
+# read GeoJSON file
+states = gpd.read_file(states_json)
+print(states)
+states = states[~states['shapeName'].isin(['Alaska', 'Hawaii', 'Puerto Rico'])]
+
+
+# set crs
+mapproj = ccrs.PlateCarree()
+
 
 
 # Initialize setup for below functions
@@ -47,7 +70,7 @@ gv_us_map = gv.Polygons(gv_us)
 # Plotting configurations
 plot_opts = dict(
     #Dimensions, and UI setup
-    responsive=True, projection = ccrs.PlateCarree(), width=800, height=600, xlim=(-175, -50), ylim=(5, 80),
+    responsive=True, projection = ccrs.PlateCarree(), width=800, height=600, xlim=(-125, -50), ylim=(5, 50),
     #title
     title='United States StreamGage Map'
 )
@@ -59,11 +82,14 @@ template = pn.template.FastGridTemplate(
 
 # Plotting and Servable execution 
 stream_gage = _get_data(path)
-features = gv.Overlay([gf.ocean, gf.land, gf.rivers, gf.lakes, gf.borders, gf.coastline])
+# features = gv.Overlay([gf.ocean, gf.land, gf.rivers, gf.lakes, gf.borders, gf.coastline])
+features = gv.Polygons(states, crs=mapproj)
+
 us_map = (gv_us_map*features).opts(**plot_opts)
-points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightblue', size=5)
+points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightgreen', size=5)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =200)
 us_map_panel = pn.panel(us_map)
 template.main[0:4, 0:7] = us_map*points # unpack us map onto template
 template.main[4:, 0:7] = footer # unpack footer onto template
 template.servable() 
+
