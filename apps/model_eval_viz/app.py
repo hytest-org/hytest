@@ -97,7 +97,19 @@ state_selector = pn.widgets.MultiSelect(
     value=list(states['shapeName'].unique())
 
 )
- 
+@pn.depends(state=state_selector.param.value)
+
+def update_map(state):
+
+    sel_states = states[states['shapeName'].isin(state)]
+    sel_features = gv.Polygons(sel_states, crs=mapproj)
+
+    sel_stream_gages = stream_gage[stream_gage['state'].isin(state)]
+    points=hv.Points(sel_stream_gages, kdims=['dec_long_va', 'dec_lat_va'])
+    map_overlay = sel_features * gv.tile_sources.CartoDark * gv.feature.rivers * gv.feature.coastline * points.opts(plot=plot_opts, color='blue', size=4)
+    
+    return map_overlay
+
 
 us_map = (gv_us_map*features).opts(**plot_opts)
 points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightgreen', size=5)
