@@ -104,7 +104,6 @@ def update_map(state):
     sel_states = states[states['shapeName'].isin(state)]
     sel_features = gv.Polygons(sel_states, crs=mapproj)
 
-    sel_stream_gages = stream_gage[stream_gage['state'].isin(state)]
     points=hv.Points(sel_stream_gages, kdims=['dec_long_va', 'dec_lat_va'])
     map_overlay = sel_features * gv.tile_sources.CartoDark * gv.feature.rivers * gv.feature.coastline * points.opts(plot=plot_opts, color='blue', size=4)
     
