@@ -1,6 +1,7 @@
 import cartopy
 import cartopy.feature as cf
 from cartopy import crs as ccrs
+from config import *
 import dask
 import geopandas as gpd
 import geoviews as gv
@@ -16,18 +17,21 @@ import ssl
 import truststore
 
 # create SSL context for internal intranet and read file
-ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/", verify=ctx)
-
+# this is a method used when calling a library like httpx, urllib3, or requests directly rather than `truststore.inject_into_ssl()`
+# ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+# states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/", verify=ctx)
+# truststore.inject_into_ssl()
+# states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/")
 
 # get GeoJSON link
-states_json = (states_request.json()
-               .get('simplifiedGeometryGeoJSON'))
-
+# states_json = (states_request.json()
+#                .get('simplifiedGeometryGeoJSON'))
+states_path = "./data/geoBoundaries-USA-ADM1_simplified.geojson"
 # read GeoJSON file
-states = gpd.read_file(states_json)
-print(states)
-states = states[~states['shapeName'].isin(['Alaska', 'Hawaii', 'Puerto Rico'])]
+# states = gpd.read_file(states_json)
+states = gpd.read_file(states_path)
+
+states = states[~states['shapeName'].isin(EX_STATES)]
 
 
 # set crs
@@ -87,13 +91,14 @@ features = gv.Polygons(states, crs=mapproj)
 state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
-    options=[
 
-"AL   Alabama", "AZ   Arizona", "AR   Arkansas", "CA   California", "CO   Colorado", "CT   Connecticut", "DE   Delaware", "FL   Florida", "GA   Georgia", 
-"ID   Idaho", "IL   Illinois", "IN   Indiana", "IA   Iowa", "KS   Kansas", "KY   Kentucky", "LA   Louisiana", "ME   Maine", "MD   Maryland", "MA   Massachusetts", "MI   Michigan", "MN   Minnesota", "MS   Mississippi", "MO   Missouri", "MT   Montana", "NE   Nebraska", "NV   Nevada", "NH   New Hampshire", "NJ   New Jersey", "NM   New Mexico", "NY   New York", "NC   North Carolina", "ND   North Dakota", "OH   Ohio", "OK   Oklahoma", "OR   Oregon", "PA   Pennsylvania", "RI   Rhode Island", "SC   South Carolina", "SD   South Dakota", "TN   Tennessee", "TX   Texas", "UT   Utah", "VT   Vermont", "VA   Virginia", "WA   Washington", "WV   West Virginia", "WI   Wisconsin", "WY   Wyoming"],
+    options=list(states['shapeName'].unique()), 
+
+    value=list(states['shapeName'].unique())
+
 )
  
-# Page setup and servables
+
 us_map = (gv_us_map*features).opts(**plot_opts)
 points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightgreen', size=5)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =200)
