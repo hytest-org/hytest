@@ -1,6 +1,7 @@
 import cartopy
 import cartopy.feature as cf
 from cartopy import crs as ccrs
+from config import *
 import dask
 import geopandas as gpd
 import geoviews as gv
@@ -26,8 +27,7 @@ states_json = (states_request.json()
 
 # read GeoJSON file
 states = gpd.read_file(states_json)
-print(states)
-states = states[~states['shapeName'].isin(['Alaska', 'Hawaii', 'Puerto Rico'])]
+states = states[~states['shapeName'].isin(EX_STATES)]
 
 
 # set crs
@@ -84,13 +84,11 @@ stream_gage = _get_data(path)
 features = gv.Polygons(states, crs=mapproj)
 
 # Widget setup to select multiple states
+state_list = list(states['shapeName'].unique())
 state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
-    options=[
-
-"AL   Alabama", "AZ   Arizona", "AR   Arkansas", "CA   California", "CO   Colorado", "CT   Connecticut", "DE   Delaware", "FL   Florida", "GA   Georgia", 
-"ID   Idaho", "IL   Illinois", "IN   Indiana", "IA   Iowa", "KS   Kansas", "KY   Kentucky", "LA   Louisiana", "ME   Maine", "MD   Maryland", "MA   Massachusetts", "MI   Michigan", "MN   Minnesota", "MS   Mississippi", "MO   Missouri", "MT   Montana", "NE   Nebraska", "NV   Nevada", "NH   New Hampshire", "NJ   New Jersey", "NM   New Mexico", "NY   New York", "NC   North Carolina", "ND   North Dakota", "OH   Ohio", "OK   Oklahoma", "OR   Oregon", "PA   Pennsylvania", "RI   Rhode Island", "SC   South Carolina", "SD   South Dakota", "TN   Tennessee", "TX   Texas", "UT   Utah", "VT   Vermont", "VA   Virginia", "WA   Washington", "WV   West Virginia", "WI   Wisconsin", "WY   Wyoming"],
+    options=state_list,
 )
  
 # Page setup and servables
