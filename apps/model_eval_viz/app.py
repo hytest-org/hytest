@@ -1,6 +1,7 @@
 import cartopy
 import cartopy.feature as cf
 from cartopy import crs as ccrs
+from config import *
 import dask
 import geopandas as gpd
 import geoviews as gv
@@ -16,7 +17,6 @@ import ssl
 import truststore
 
 # create SSL context for internal intranet and read file
-# this is a method used when calling a library like httpx, urllib3, or requests directly rather than `truststore.inject_into_ssl()`
 ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/", verify=ctx)
 
@@ -27,8 +27,7 @@ states_json = (states_request.json()
 
 # read GeoJSON file
 states = gpd.read_file(states_json)
-print(states)
-states = states[~states['shapeName'].isin(['Alaska', 'Hawaii', 'Puerto Rico'])]
+states = states[~states['shapeName'].isin(EX_STATES)]
 
 
 # set crs
@@ -42,7 +41,6 @@ path = "./data/streamflow_gages_v1_n5390.csv"
 pn.extension("plotly", "vega")
 
 # Create a map template including rough borders for a start 
-# TODO change later 
 gv_us = cf.NaturalEarthFeature(category='cultural', 
     name='admin_1_states_provinces_lines', scale='50m', facecolor='none')
 gv_us = gv.Feature(gv_us).geoms().opts(
@@ -72,24 +70,34 @@ plot_opts = dict(
     #Dimensions, and UI setup
     responsive=True, projection = ccrs.PlateCarree(), width=800, height=600, xlim=(-125, -50), ylim=(5, 50),
     #title
-    title='United States StreamGage Map'
+    title='United States Streamgage Map'
 )
 
-# Instantiate the template with widgets displayed in the sidebar
-template = pn.template.FastGridTemplate(
+# Instantiate template
+model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
 )
 
 # Plotting and Servable execution 
 stream_gage = _get_data(path)
-# features = gv.Overlay([gf.ocean, gf.land, gf.rivers, gf.lakes, gf.borders, gf.coastline])
+# Features = gv.Overlay([gf.ocean, gf.land, gf.rivers, gf.lakes, gf.borders, gf.coastline])
 features = gv.Polygons(states, crs=mapproj)
 
+# Widget setup to select multiple states
+state_list = list(states['shapeName'].unique())
+state_selector = pn.widgets.MultiSelect(
+    description="Hold ctrl to toggle multiple states",
+    name="Select a state",
+    options=state_list,
+)
+ 
+# Page setup and servables
 us_map = (gv_us_map*features).opts(**plot_opts)
 points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightgreen', size=5)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =200)
 us_map_panel = pn.panel(us_map)
-template.main[0:4, 0:7] = us_map*points # unpack us map onto template
-template.main[4:, 0:7] = footer # unpack footer onto template
-template.servable() 
+model_eval.main[0:1,0:7] = state_selector # unpack state selector onto model_eval
+model_eval.main[1:4, 0:7] = us_map*points # unpack us map onto model_eval
+model_eval.main[4:, 0:7] = footer # unpack footer onto model_eval
+model_eval.servable() 
 
