@@ -94,11 +94,21 @@ state_selector = pn.widgets.MultiSelect(
     name="Select a state",
     options=state_list,
 )
-@pn.depends(state=state_selector.param.value)
+@pn.depends(state=' '.join(state_selector.param.value))
 
-def update_map(state):
+def state_filter(state:str):
 
-    return map_overlay
+    filtered_states = state.split(' ')
+
+    return filtered_states
+
+def display_states(state_list:list)->gv.polygons:
+    
+    return displayed_states
+
+def display_points(state_list:list)->gv.Points:
+
+    return displayed_points
 
 
 us_map = (gv_us_map*features).opts(**plot_opts)
