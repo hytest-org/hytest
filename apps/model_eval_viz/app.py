@@ -28,9 +28,9 @@ import truststore
 #                .get('simplifiedGeometryGeoJSON'))
 states_path = "./data/geoBoundaries-USA-ADM1_simplified.geojson"
 # read GeoJSON file
-# states = gpd.read_file(states_json)
 states = gpd.read_file(states_path)
 
+# states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
 
 
@@ -88,14 +88,11 @@ stream_gage = _get_data(path)
 features = gv.Polygons(states, crs=mapproj)
 
 # Widget setup to select multiple states
+state_list = list(states['shapeName'].unique())
 state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
-
-    options=list(states['shapeName'].unique()), 
-
-    value=list(states['shapeName'].unique())
-
+    options=state_list,
 )
 @pn.depends(state=state_selector.param.value)
 

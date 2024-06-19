@@ -134,11 +134,9 @@ sources:
   conus404-daily-ba-onprem:
     driver: zarr
     description: "CONUS404 bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P9JE61P7). 43 years of daily values derived from hourly dataset. This dataset is stored on USGS on-premise disk storage for the Hovenweep supercomputer, and is only accessible in that computing environment."
-      storage_options:
-        anon: true
-        requester_pays: false
-        client_kwargs:
-          endpoint_url: https://usgs.osn.mghpcc.org/
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-biasadjusted/conus404_daily_bc.zarr'
+      consolidated: true
           
     
   conus404-daily-ba-osn:
