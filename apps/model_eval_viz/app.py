@@ -85,7 +85,7 @@ model_eval = pn.template.FastGridTemplate(
 # Plotting and Servable execution 
 stream_gage = _get_data(path)
 # Features = gv.Overlay([gf.ocean, gf.land, gf.rivers, gf.lakes, gf.borders, gf.coastline])
-features = gv.Polygons(states, crs=mapproj)
+# features = gv.Polygons(states, crs=mapproj)
 
 # Widget setup to select multiple states
 state_list = list(states['shapeName'].unique())
@@ -93,26 +93,26 @@ state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
     options=state_list,
+    value=state_list,
 )
 @pn.depends(state=' '.join(state_selector.param.value))
 
 def state_filter(state:str):
-
     filtered_states = state.split(' ')
-
     return filtered_states
 
 def display_states(state_list:list)->gv.polygons:
-    
-    return displayed_states
+    states = states[states['shapeName'].isin(state_list)]
+    features = gv.Polygons(states, crs=mapproj)
+    return features
 
 def display_points(state_list:list)->gv.Points:
-
+    displayed_points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightgreen', size=5)
     return displayed_points
 
 
 us_map = (gv_us_map*features).opts(**plot_opts)
-points = gv.Points((stream_gage['dec_long_va'],stream_gage['dec_lat_va'])).opts(**plot_opts,color='lightgreen', size=5)
+
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =200)
 us_map_panel = pn.panel(us_map)
 model_eval.main[0:1,0:7] = state_selector # unpack state selector onto model_eval
