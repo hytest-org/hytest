@@ -81,9 +81,6 @@ plot_opts = dict(
 )
 
 # Instantiate template
-model_eval = pn.template.FastGridTemplate(
-    title="HyTEST Model Evaluation",  
-)
 
 # Plotting and Servable execution 
 stream_gage = _get_data(path)
@@ -164,23 +161,21 @@ def print_states(state_list:list):
 def reset_map(event):
     if not event:
         return
+    print("click")
     state_selector.value = []
-button = pn.widgets.Button(name='Reset Map', button_type='primary')
-pn.bind(reset_map, button, watch=True)
-# display_button = pn.Column(button, pn.bind(reset_map, button, watch=True))
-footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =200)
-model_eval.main[0:1,0:7] = state_selector # unpack state selector onto model_eval
-# model_eval[1:2, 0:7] = display_button
-model_eval.main[2:5, 0:7] =  pn.pane.HoloViews(displayed_states * displayed_points) # unpack us map onto model_eval
+
+reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
+pn.bind(reset_map, reset_button, watch=True)
+footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
+map_modifier = pn.Row(state_selector, reset_button, sizing_mode='stretch_width')
+
+model_eval = pn.template.FastGridTemplate(
+    title="HyTEST Model Evaluation",  
+     main=[
+        map_modifier,
+    ]
+)
+model_eval.main[1:5, 0:7] =  pn.pane.HoloViews(displayed_states * displayed_points) # unpack us map onto model_eval
 model_eval.main[5:6, 0:7] = footer # unpack footer onto model_eval
-
-# model_eval = pn.Column(
-#     pn.Row(state_selector),
-#     button = pn.widgets.Button(name='Reset Map', button_type='primary')
-
-#     pn.pane.HoloViews(displayed_states * displayed_points),
-#     pn.Row(footer),
-# )
-
 model_eval.servable() 
 
