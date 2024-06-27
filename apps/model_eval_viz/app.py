@@ -38,7 +38,6 @@ states = states[~states['shapeName'].isin(EX_STATES)]
 mapproj = ccrs.PlateCarree()
 
 
-
 # Initialize setup for below functions
 hv.extension('bokeh')
 path = "./data/streamflow_gages_v1_n5390.csv"
@@ -98,7 +97,35 @@ state_selector = pn.widgets.MultiSelect(
     options=state_list,
 )
 
-# @pn.depends(state=' '.join(state_selector.param.value))
+
+displayed_map = gv.tile_sources.OSM()
+base_map_options = {
+    'OpenStreetMap': gv.tile_sources.OSM,
+    'ESRI Imagery': gv.tile_sources.EsriImagery,
+    'ESRI World Street Map': gv.tile_sources.EsriWorldStreetMap,
+    'Stamen Terrain': gv.tile_sources.StamenTerrain,
+}
+
+map_selector = pn.widgets.Select(
+    description="Use to select Base Map",
+    name="Select a Base Map",
+    options=list(base_map_options.keys()),
+
+)
+
+
+def display_map(map:list=map_selector.value):
+
+    if len(map) > 0:
+        map = base_map_options[map_selector.value]
+    else:
+        map = gv.tile_sources.OSM
+    return map
+
+
+# displayed_map = pn.bind(display_map, map=map_selector)
+
+
 
 def display_states(state_list:list=state_selector.value)->gv.Polygons:
     """
@@ -113,6 +140,7 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
     if len(state_list) > 0:
         ############## if any states have been selected, narrow what is displayed
         filt_states = states[states['shapeName'].isin(state_list)]
+
         features = gv.Polygons(filt_states).opts(responsive=True, projection = mapproj, framewise = True )
         
     else:
@@ -160,7 +188,7 @@ def reset_map(event):
 reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, reset_button, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, reset_button, sizing_mode='stretch_width')
+map_modifier = pn.Row(state_selector, map_selector, reset_button, sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
@@ -168,7 +196,6 @@ model_eval = pn.template.FastGridTemplate(
         map_modifier,
     ]
 )
-model_eval.main[1:5, 0:7] =  pn.pane.HoloViews(displayed_states * displayed_points) # unpack us map onto model_eval
+model_eval.main[1:5, 0:7] = pn.pane.HoloViews(displayed_map*displayed_states * displayed_points) # unpack us map onto model_eval
 model_eval.main[5:6, 0:7] = footer # unpack footer onto model_eval
 model_eval.servable() 
-
