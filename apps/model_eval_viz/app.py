@@ -75,7 +75,10 @@ gv_us_map = gv.Polygons(gv_us)
 # Plotting configurations
 plot_opts = dict(
     #Dimensions, and UI setup
-    responsive=True, projection = ccrs.PlateCarree(), width=800, height=600, xlim=(-125, -50), ylim=(5, 50),
+    responsive=True, 
+    projection = ccrs.PlateCarree(), 
+    width=800, 
+    height=600,
     #title
     title='United States Streamgage Map'
 )
@@ -148,20 +151,10 @@ def display_points(state_list:list=state_selector.value)->gv.Points:
 # replaces @pn.depends
 displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector))
 
-@pn.depends(state_selector)
-def print_states(state_list:list):
-    """
-    Print the selected values from the state_selector widget.
-    Parameters:
-    state_list (list): A list of US states selected in the state_selector widget.
-    """
-    display_states(state_list)
-    print(state_list)
 
 def reset_map(event):
     if not event:
         return
-    print("click")
     state_selector.value = []
 
 reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
