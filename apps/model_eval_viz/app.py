@@ -32,10 +32,11 @@ states = gpd.read_file(states_path)
 
 # states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
+_states_bbox = states.geometry.total_bounds
+print(_states_bbox)
+# set ccrs
+mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
 
-
-# set crs
-mapproj = ccrs.PlateCarree()
 
 
 # Initialize setup for below functions
@@ -75,8 +76,8 @@ gv_us_map = gv.Polygons(gv_us)
 plot_opts = dict(
     #Dimensions, and UI setup
     responsive=True, 
-    projection = ccrs.PlateCarree(), 
-    width=800, 
+    projection = mapproj,
+    width=1200, 
     height=600,
     #title
     title='United States Streamgage Map'
@@ -98,12 +99,10 @@ state_selector = pn.widgets.MultiSelect(
 )
 
 
-displayed_map = gv.tile_sources.OSM()
 base_map_options = {
     'OpenStreetMap': gv.tile_sources.OSM,
     'ESRI Imagery': gv.tile_sources.EsriImagery,
     'ESRI World Street Map': gv.tile_sources.EsriWorldStreetMap,
-    'Stamen Terrain': gv.tile_sources.StamenTerrain,
 }
 
 map_selector = pn.widgets.Select(
@@ -114,21 +113,31 @@ map_selector = pn.widgets.Select(
 )
 
 
-def display_map(map:list=map_selector.value):
+def display_map(map:list=map_selector.value)->gv.tile_sources:
+    '''
+    Display a map from a selected tile source or an initial extent.
+
+    Parameters:
+        map (list, optional): List of tile sources to select from. Defaults to `map_selector.value`.
+
+    Returns:
+        gv.tile_sources: A Tile source from the GeoViews library.
+    '''
 
     if len(map) > 0:
         map = base_map_options[map_selector.value]
     else:
+        #TODO find initial extent states.geometry.total_bounds
         map = gv.tile_sources.OSM
     return map
 
-
-# displayed_map = pn.bind(display_map, map=map_selector)
+# create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
+displayed_map = hv.DynamicMap(pn.bind(display_map, map=map_selector))
 
 
 
 def display_states(state_list:list=state_selector.value)->gv.Polygons:
-    """
+    '''
     Create a GeoViews Polygons object from a GeoDataFrame of US states.
     
     Parameters:
@@ -136,11 +145,11 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
     
     Returns:
     A GeoViews Polygons object containing the selected US states.
-    """    
+    '''  
     if len(state_list) > 0:
         ############## if any states have been selected, narrow what is displayed
         filt_states = states[states['shapeName'].isin(state_list)]
-
+        # filt_states = filt_states.to_crs(mapproj)
         features = gv.Polygons(filt_states).opts(responsive=True, projection = mapproj, framewise = True )
         
     else:
@@ -153,7 +162,7 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
 displayed_states = hv.DynamicMap(pn.bind(display_states, state_list=state_selector))
 
 def display_points(state_list:list=state_selector.value)->gv.Points:
-    """
+    '''
     Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
     
     Parameters:
@@ -161,7 +170,7 @@ def display_points(state_list:list=state_selector.value)->gv.Points:
     
     Returns:
     A GeoViews Points object containing the streamflow gages.
-    """
+    '''
     if len(state_list) > 0:
         ############## if any states have been selected, narrow what is displayed
         filt_states = states[states['shapeName'].isin(state_list)]
@@ -180,7 +189,15 @@ def display_points(state_list:list=state_selector.value)->gv.Points:
 displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector))
 
 
-def reset_map(event):
+def reset_map(event:bool)-> None:
+    '''
+    Reset the state selector when an event is triggered.
+    Args:
+        event (bool): A boolean flag to trigger the function.
+
+    Returns:
+        None.
+    '''
     if not event:
         return
     state_selector.value = []
@@ -196,6 +213,6 @@ model_eval = pn.template.FastGridTemplate(
         map_modifier,
     ]
 )
-model_eval.main[1:5, 0:7] = pn.pane.HoloViews(displayed_map*displayed_states * displayed_points) # unpack us map onto model_eval
-model_eval.main[5:6, 0:7] = footer # unpack footer onto model_eval
+model_eval.main[1:5, 0:9] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
+model_eval.main[5:6, 0:9] = footer # unpack footer onto model_eval
 model_eval.servable() 
