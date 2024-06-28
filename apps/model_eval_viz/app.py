@@ -33,7 +33,7 @@ states = gpd.read_file(states_path)
 # states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
 _states_bbox = states.geometry.total_bounds
-print(_states_bbox)
+
 # set ccrs
 mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
 
@@ -92,6 +92,14 @@ stream_gage = _get_data(path)
 state_list = list(states['shapeName'].unique())
 #sort alphabetically
 state_list.sort()
+streamgage_input = pn.widgets.TextInput(
+    name='Streamgage Site ID', 
+    placeholder='Streamgage Site ID #',
+    
+    )
+
+
+
 state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
@@ -161,7 +169,7 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
 # replaces @pn.depends
 displayed_states = hv.DynamicMap(pn.bind(display_states, state_list=state_selector))
 
-def display_points(state_list:list=state_selector.value)->gv.Points:
+def display_points(state_list:list=state_selector.value,ids:str=streamgage_input.value)->gv.Points:
     '''
     Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
     
@@ -176,17 +184,23 @@ def display_points(state_list:list=state_selector.value)->gv.Points:
         filt_states = states[states['shapeName'].isin(state_list)]
         # clip stream_gage to the filtered states
         filt_points = stream_gage.clip(filt_states)
-        # create a gv.Points
-        displayed_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)
-                                     
     else:
-        displayed_points = gv.Points(stream_gage).opts(**plot_opts,color='lightgreen', size=5)
+        filt_points = stream_gage
+    if ids:
+        print(streamgage_input.value)
+        # filter stream_gage to only include the specified IDs
+        id_list = ids.split(",")
+        filt_points = filt_points[filt_points['stream_gage'].isin(site_no)]
+
+    displayed_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)\
+    
+
 
     return displayed_points
 
 # create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
 # replaces @pn.depends
-displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector))
+displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector, ids = streamgage_input))
 
 
 def reset_map(event:bool)-> None:
@@ -205,7 +219,7 @@ def reset_map(event:bool)-> None:
 reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, reset_button, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, map_selector, reset_button, sizing_mode='stretch_width')
+map_modifier = pn.Row(state_selector, map_selector, reset_button, streamgage_input ,sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
