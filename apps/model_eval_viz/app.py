@@ -108,6 +108,7 @@ map_selector = pn.widgets.Select(
     description="Use to select Base Map",
     name="Select a Base Map",
     options=list(base_map_options.keys()),
+    value = 'OpenStreetMap',
 
 )
 
