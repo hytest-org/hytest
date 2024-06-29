@@ -33,7 +33,6 @@ states = gpd.read_file(states_path)
 # states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
 _states_bbox = states.geometry.total_bounds
-print(_states_bbox)
 # set ccrs
 mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
 
