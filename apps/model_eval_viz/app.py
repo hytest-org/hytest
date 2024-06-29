@@ -202,10 +202,10 @@ def reset_map(event:bool)-> None:
         return
     state_selector.value = []
 
-reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
-pn.bind(reset_map, reset_button, watch=True)
+clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
+pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, map_selector, reset_button, sizing_mode='stretch_width')
+map_modifier = pn.Row(state_selector, map_selector, clear_map, sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
