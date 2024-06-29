@@ -113,24 +113,20 @@ map_selector = pn.widgets.Select(
 )
 
 
-def display_map(map:list=map_selector.value)->gv.tile_sources:
+def display_map(map: str) -> gv.WMTS:
     '''
-    Display a map from a selected tile source or an initial extent.
+    Display a map, based on the string input to select a base input to overlay beneath the state boundaries polygons object. 
 
     Parameters:
-        map (list, optional): List of tile sources to select from. Defaults to `map_selector.value`.
+        map(str): A string for a base map Defaults to `map_selector.value`.
 
     Returns:
-        gv.tile_sources: A Tile source from the GeoViews library.
+        gv.WMTS: A Tile source type from the GeoViews library.
     '''
 
-    if len(map) > 0:
-        map = base_map_options[map_selector.value]
-    else:
-        #TODO find initial extent states.geometry.total_bounds
-        map = gv.tile_sources.OSM
-    return map
-
+    basemap = base_map_options[map]
+    return basemap
+    
 # create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
 displayed_map = hv.DynamicMap(pn.bind(display_map, map=map_selector))
 
