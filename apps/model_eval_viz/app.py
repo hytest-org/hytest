@@ -32,10 +32,9 @@ states = gpd.read_file(states_path)
 
 # states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
-
-
-# set crs
-mapproj = ccrs.PlateCarree()
+_states_bbox = states.geometry.total_bounds
+# set ccrs
+mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
 
 
 
@@ -76,8 +75,8 @@ gv_us_map = gv.Polygons(gv_us)
 plot_opts = dict(
     #Dimensions, and UI setup
     responsive=True, 
-    projection = ccrs.PlateCarree(), 
-    width=800, 
+    projection = mapproj,
+    width=1200, 
     height=600,
     #title
     title='United States Streamgage Map'
@@ -98,10 +97,43 @@ state_selector = pn.widgets.MultiSelect(
     options=state_list,
 )
 
-# @pn.depends(state=' '.join(state_selector.param.value))
+
+base_map_options = {
+    'OpenStreetMap': gv.tile_sources.OSM,
+    'ESRI Imagery': gv.tile_sources.EsriImagery,
+    'ESRI World Street Map': gv.tile_sources.EsriWorldStreetMap,
+}
+
+map_selector = pn.widgets.Select(
+    description="Use to select Base Map",
+    name="Select a Base Map",
+    options=list(base_map_options.keys()),
+    value = 'OpenStreetMap',
+
+)
+
+
+def display_map(map: str) -> gv.WMTS:
+    '''
+    Display a map, based on the string input to select a base input to overlay beneath the state boundaries polygons object. 
+
+    Parameters:
+        map(str): A string for a base map Defaults to `map_selector.value`.
+
+    Returns:
+        gv.WMTS: A Tile source type from the GeoViews library.
+    '''
+
+    basemap = base_map_options[map]
+    return basemap
+    
+# create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
+displayed_map = hv.DynamicMap(pn.bind(display_map, map=map_selector))
+
+
 
 def display_states(state_list:list=state_selector.value)->gv.Polygons:
-    """
+    '''
     Create a GeoViews Polygons object from a GeoDataFrame of US states.
     
     Parameters:
@@ -109,10 +141,11 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
     
     Returns:
     A GeoViews Polygons object containing the selected US states.
-    """    
+    '''  
     if len(state_list) > 0:
         ############## if any states have been selected, narrow what is displayed
         filt_states = states[states['shapeName'].isin(state_list)]
+        # filt_states = filt_states.to_crs(mapproj)
         features = gv.Polygons(filt_states).opts(responsive=True, projection = mapproj, framewise = True )
         
     else:
@@ -125,7 +158,7 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
 displayed_states = hv.DynamicMap(pn.bind(display_states, state_list=state_selector))
 
 def display_points(state_list:list=state_selector.value)->gv.Points:
-    """
+    '''
     Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
     
     Parameters:
@@ -133,7 +166,7 @@ def display_points(state_list:list=state_selector.value)->gv.Points:
     
     Returns:
     A GeoViews Points object containing the streamflow gages.
-    """
+    '''
     if len(state_list) > 0:
         ############## if any states have been selected, narrow what is displayed
         filt_states = states[states['shapeName'].isin(state_list)]
@@ -152,15 +185,23 @@ def display_points(state_list:list=state_selector.value)->gv.Points:
 displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector))
 
 
-def reset_map(event):
+def reset_map(event:bool)-> None:
+    '''
+    Reset the state selector when an event is triggered.
+    Args:
+        event (bool): A boolean flag to trigger the function.
+
+    Returns:
+        None.
+    '''
     if not event:
         return
     state_selector.value = []
 
-reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
-pn.bind(reset_map, reset_button, watch=True)
+clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
+pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, reset_button, sizing_mode='stretch_width')
+map_modifier = pn.Row(state_selector, map_selector, clear_map, sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
@@ -168,7 +209,6 @@ model_eval = pn.template.FastGridTemplate(
         map_modifier,
     ]
 )
-model_eval.main[1:5, 0:7] =  pn.pane.HoloViews(displayed_states * displayed_points) # unpack us map onto model_eval
-model_eval.main[5:6, 0:7] = footer # unpack footer onto model_eval
+model_eval.main[1:5, 0:9] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
+model_eval.main[5:6, 0:9] = footer # unpack footer onto model_eval
 model_eval.servable() 
-
