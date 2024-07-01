@@ -189,6 +189,7 @@ def display_points(state_list:list=state_selector.value,ids:str=streamgage_input
     if ids:
         print(streamgage_input.value)
         # filter stream_gage to only include the specified IDs
+        
         id_list = ids.split(",")
         filt_points = filt_points[filt_points['stream_gage'].isin(site_no)]
 
@@ -227,6 +228,6 @@ model_eval = pn.template.FastGridTemplate(
         map_modifier,
     ]
 )
-model_eval.main[1:5, 0:9] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
-model_eval.main[5:6, 0:9] = footer # unpack footer onto model_eval
+model_eval.main[1:5, 0:12] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
+model_eval.main[5:6, 0:12] = footer # unpack footer onto model_eval
 model_eval.servable() 
