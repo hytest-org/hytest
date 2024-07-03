@@ -33,7 +33,6 @@ states = gpd.read_file(states_path)
 # states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
 _states_bbox = states.geometry.total_bounds
-
 # set ccrs
 mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
 
@@ -117,28 +116,25 @@ map_selector = pn.widgets.Select(
     description="Use to select Base Map",
     name="Select a Base Map",
     options=list(base_map_options.keys()),
+    value = 'OpenStreetMap',
 
 )
 
 
-def display_map(map:list=map_selector.value)->gv.tile_sources:
+def display_map(map: str) -> gv.WMTS:
     '''
-    Display a map from a selected tile source or an initial extent.
+    Display a map, based on the string input to select a base input to overlay beneath the state boundaries polygons object. 
 
     Parameters:
-        map (list, optional): List of tile sources to select from. Defaults to `map_selector.value`.
+        map(str): A string for a base map Defaults to `map_selector.value`.
 
     Returns:
-        gv.tile_sources: A Tile source from the GeoViews library.
+        gv.WMTS: A Tile source type from the GeoViews library.
     '''
 
-    if len(map) > 0:
-        map = base_map_options[map_selector.value]
-    else:
-        #TODO find initial extent states.geometry.total_bounds
-        map = gv.tile_sources.OSM
-    return map
-
+    basemap = base_map_options[map]
+    return basemap
+    
 # create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
 displayed_map = hv.DynamicMap(pn.bind(display_map, map=map_selector))
 
@@ -216,10 +212,10 @@ def reset_map(event:bool)-> None:
         return
     state_selector.value = []
 
-reset_button = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
-pn.bind(reset_map, reset_button, watch=True)
+clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
+pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, map_selector, reset_button, streamgage_input ,sizing_mode='stretch_width')
+map_modifier = pn.Row(state_selector, map_selector, clear_map, sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
