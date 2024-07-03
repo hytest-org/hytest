@@ -33,10 +33,9 @@ states = gpd.read_file(states_path)
 # states = gpd.read_file(states_json)
 states = states[~states['shapeName'].isin(EX_STATES)]
 _states_bbox = states.geometry.total_bounds
+
 # set ccrs
 mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
-
-
 
 # Initialize setup for below functions
 hv.extension('bokeh')
@@ -97,14 +96,11 @@ streamgage_input = pn.widgets.TextInput(
     
     )
 
-
-
 state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
     options=state_list,
 )
-
 
 base_map_options = {
     'OpenStreetMap': gv.tile_sources.OSM,
@@ -119,7 +115,6 @@ map_selector = pn.widgets.Select(
     value = 'OpenStreetMap',
 
 )
-
 
 def display_map(map: str) -> gv.WMTS:
     '''
@@ -137,8 +132,6 @@ def display_map(map: str) -> gv.WMTS:
     
 # create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
 displayed_map = hv.DynamicMap(pn.bind(display_map, map=map_selector))
-
-
 
 def display_states(state_list:list=state_selector.value)->gv.Polygons:
     '''
@@ -187,17 +180,12 @@ def display_points(state_list:list=state_selector.value,ids:str=streamgage_input
         # filter stream_gage to only include the specified IDs
         id_list = ids.split(",")
         filt_points = filt_points[filt_points['stream_gage'].isin(site_no)]
-
-    displayed_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)\
-    
-
-
-    return displayed_points
+    selected_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)
+    return selected_points
 
 # create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
 # replaces @pn.depends
 displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector, ids = streamgage_input))
-
 
 def reset_map(event:bool)-> None:
     '''
@@ -211,11 +199,11 @@ def reset_map(event:bool)-> None:
     if not event:
         return
     state_selector.value = []
-
+# Template Setup 
 clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, map_selector, clear_map, sizing_mode='stretch_width')
+map_modifier = pn.Row(state_selector, map_selector, streamgage_input, clear_map,sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
@@ -223,6 +211,6 @@ model_eval = pn.template.FastGridTemplate(
         map_modifier,
     ]
 )
-model_eval.main[1:5, 0:9] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
-model_eval.main[5:6, 0:9] = footer # unpack footer onto model_eval
+model_eval.main[1:5, 0:12] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
+model_eval.main[5:6, 0:12] = footer # unpack footer onto model_eval
 model_eval.servable() 
