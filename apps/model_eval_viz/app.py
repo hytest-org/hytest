@@ -1,216 +1,117 @@
-import cartopy
-import cartopy.feature as cf
-from cartopy import crs as ccrs
-from config import *
-import dask
-import geopandas as gpd
-import geoviews as gv
-import geoviews.feature as gf
-from geoviews import opts
-import holoviews as hv
-import httpx
-import hvplot.pandas
-import numpy as np
+from bokeh.models.widgets.tables import NumberFormatter, StringFormatter
+import intake
 import pandas as pd
 import panel as pn
-import ssl
-import truststore
+import truststore # needed on DOI internal network
 
-# create SSL context for internal intranet and read file
-# this is a method used when calling a library like httpx, urllib3, or requests directly rather than `truststore.inject_into_ssl()`
-# ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-# states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/", verify=ctx)
-# truststore.inject_into_ssl()
-# states_request = httpx.get("https://www.geoboundaries.org/api/current/gbOpen/USA/ADM1/")
+truststore.inject_into_ssl()
+pn.extension("tabulator")
 
-# get GeoJSON link
-# states_json = (states_request.json()
-#                .get('simplifiedGeometryGeoJSON'))
-states_path = "./data/geoBoundaries-USA-ADM1_simplified.geojson"
-# read GeoJSON file
-states = gpd.read_file(states_path)
+url = "https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml"
+cat = intake.open_catalog(url)
 
-# states = gpd.read_file(states_json)
-states = states[~states['shapeName'].isin(EX_STATES)]
-_states_bbox = states.geometry.total_bounds
+# access tutorial catalog
+conus404_drb_cat = cat["conus404-drb-eval-tutorial-catalog"]
 
-# set ccrs
-mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=84.0, globe=None, latitude_true_scale=0.0)
+# get list of datasets for descriptive statistics
+datasets = [dataset for dataset in list(conus404_drb_cat) if "desc" in dataset]
 
-# Initialize setup for below functions
-hv.extension('bokeh')
-path = "./data/streamflow_gages_v1_n5390.csv"
-pn.extension("plotly", "vega")
-
-# Create a map template including rough borders for a start 
-gv_us = cf.NaturalEarthFeature(category='cultural', 
-    name='admin_1_states_provinces_lines', scale='50m', facecolor='none')
-gv_us = gv.Feature(gv_us).geoms().opts(
-    line_color="black", line_width=1, line_dash='dashed')
-
-# Read in the dataframe 
-def _get_data(_filepath:str)->gpd.GeoDataFrame:
-    '''
-    Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'.
-    Args:
-        _filepath (str): Path to the .csv file 
-    Returns:
-        gpd.GeoDataFrame: the filtered geopandas data file
-    '''
-    # read lat-long or xy data using pandas read_csv
-    read_data = pd.read_csv(_filepath)
-    # filter
-    filtered_data = read_data[read_data['gagesII_class'] == 'Ref']
-    # now turn into a geodataframe
-    filtered_gdf = gpd.GeoDataFrame(filtered_data, 
-                                    geometry=gpd.points_from_xy(filtered_data.dec_long_va, filtered_data.dec_lat_va), 
-                                    crs="EPSG:4326") # most data is exported in EPSG:4326
-    return filtered_gdf
-
-# Define data frames 
-gv_us_map = gv.Polygons(gv_us)
-
-# Plotting configurations
-plot_opts = dict(
-    #Dimensions, and UI setup
-    responsive=True, 
-    projection = mapproj,
-    width=1200, 
-    height=600,
-    #title
-    title='United States Streamgage Map'
+dataset_select = pn.widgets.Select(
+    description = "Select a Dataset",
+    name="Dataset",
+    options=datasets
 )
 
-# Instantiate template
-
-# Plotting and Servable execution 
-stream_gage = _get_data(path)
-
-# Widget setup to select multiple states
-state_list = list(states['shapeName'].unique())
-#sort alphabetically
-state_list.sort()
-streamgage_input = pn.widgets.TextInput(
-    name='Streamgage Site ID', 
-    placeholder='Streamgage Site ID #',
-    
-    )
-
-state_selector = pn.widgets.MultiSelect(
-    description="Hold ctrl to toggle multiple states",
-    name="Select a state",
-    options=state_list,
-)
-
-base_map_options = {
-    'OpenStreetMap': gv.tile_sources.OSM,
-    'ESRI Imagery': gv.tile_sources.EsriImagery,
-    'ESRI World Street Map': gv.tile_sources.EsriWorldStreetMap,
-}
-
-map_selector = pn.widgets.Select(
-    description="Use to select Base Map",
-    name="Select a Base Map",
-    options=list(base_map_options.keys()),
-    value = 'OpenStreetMap',
-
-)
-
-def display_map(map: str) -> gv.WMTS:
-    '''
-    Display a map, based on the string input to select a base input to overlay beneath the state boundaries polygons object. 
+@pn.cache(per_session=True)
+def _get_data(_dataset: str, _catalog: intake.Catalog = conus404_drb_cat) -> pd.DataFrame:
+    """
+    Fetch and cache data from an intake catalog.
 
     Parameters:
-        map(str): A string for a base map Defaults to `map_selector.value`.
+    _dataset (str): The name of the dataset to retrieve from the catalog.
+    _catalog (intake.Catalog, optional): The intake catalog object. Defaults to conus404_drb_cat.
 
     Returns:
-        gv.WMTS: A Tile source type from the GeoViews library.
-    '''
+    pd.DataFrame: The dataset read from the catalog as a pandas DataFrame.
+    """
+    return _catalog[_dataset].read()
 
-    basemap = base_map_options[map]
-    return basemap
-    
-# create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
-displayed_map = hv.DynamicMap(pn.bind(display_map, map=map_selector))
 
-def display_states(state_list:list=state_selector.value)->gv.Polygons:
-    '''
-    Create a GeoViews Polygons object from a GeoDataFrame of US states.
-    
+def _get_description(_dataset: str, _catalog: intake.Catalog = conus404_drb_cat) -> str:
+    """
+    Retrieve the description of a dataset from an intake catalog.
+
     Parameters:
-    state_list (list): A list of US states to display on the map.
-    
-    Returns:
-    A GeoViews Polygons object containing the selected US states.
-    '''  
-    if len(state_list) > 0:
-        ############## if any states have been selected, narrow what is displayed
-        filt_states = states[states['shapeName'].isin(state_list)]
-        # filt_states = filt_states.to_crs(mapproj)
-        features = gv.Polygons(filt_states).opts(responsive=True, projection = mapproj, framewise = True )
-        
-    else:
-        ############## else return all states
-        features = gv.Polygons(states).opts(responsive=True, projection = mapproj, framewise = True )
-    return features
-    
-# create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
-# replaces @pn.depends
-displayed_states = hv.DynamicMap(pn.bind(display_states, state_list=state_selector))
+    _dataset (str): The name of the dataset whose description is to be retrieved.
+    _catalog (intake.Catalog, optional): The intake catalog object. Defaults to conus404_drb_cat.
 
-def display_points(state_list:list=state_selector.value,ids:str=streamgage_input.value)->gv.Points:
-    '''
-    Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
-    
+    Returns:
+    str: The description of the specified dataset.
+    """
+    _description = _catalog[_dataset].description
+
+    return _description
+
+def create_bokeh_formatters(column_dict: dict) -> dict:
+    """
+    Create a dictionary of Bokeh column formatters based on the column data types.
+
     Parameters:
-    state_list (list): A list of US states to display on the map.
+    column_dict (dict): A dictionary where keys are column names and values are data types (e.g., "float", "str").
+
+    Returns:
+    dict: A dictionary of Bokeh formatters corresponding to the column data types.
+    """
+    formatters = {}
+
+    for column, dtype in column_dict.items():
+        if dtype == "float":
+            formatters[column] = NumberFormatter(format="0.00")
+        if dtype == "str":
+            formatters[column] = StringFormatter()
+
+    return formatters
+
+
+@pn.depends(dataset_select)
+def construct_tabulator(dataset: str, catalog:intake.Catalog = conus404_drb_cat) -> pn.Column:
+    """
+    Create a pn.Column containing a description and pn.Tabulator widget for a given dataset.
+
+    Parameters:
+    dataset (str): The name of the dataset to retrieve and display.
+    catalog (intake.Catalog, optional): The intake catalog object to fetch the dataset from. Defaults to conus404_drb_cat.
+
+    Returns:
+    pn.Column: A Panel Column object containing a Markdown pane with the dataset description and a Tabulator widget 
+               with the dataset contents.
+    """
+
+    # create dataframe
+    _df = _get_data(dataset)
+
+    # create column formatters
+    _column_formatters = create_bokeh_formatters(_df.dtypes.to_dict())
+
+    _df_tabulator = pn.widgets.Tabulator(_df, 
+                                  name="Tabulator",
+                                  hidden_columns=["index"],
+                                  disabled=True,
+                                  theme="modern",
+                                  formatters=_column_formatters
+                                  )
     
-    Returns:
-    A GeoViews Points object containing the streamflow gages.
-    '''
-    if len(state_list) > 0:
-        ############## if any states have been selected, narrow what is displayed
-        filt_states = states[states['shapeName'].isin(state_list)]
-        # clip stream_gage to the filtered states
-        filt_points = stream_gage.clip(filt_states)
-    else:
-        filt_points = stream_gage
-    if ids:
-        print(streamgage_input.value)
-        # filter stream_gage to only include the specified IDs
-        id_list = ids.split(",")
-        filt_points = filt_points[filt_points['stream_gage'].isin(site_no)]
-    selected_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)
-    return selected_points
+    # get description for each dataset and render as html h2
+    _df_description = _get_description(dataset)
 
-# create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
-# replaces @pn.depends
-displayed_points = hv.DynamicMap(pn.bind(display_points, state_list=state_selector, ids = streamgage_input))
+    _description_display = pn.pane.Markdown(f"## {_df_description}")
 
-def reset_map(event:bool)-> None:
-    '''
-    Reset the state selector when an event is triggered.
-    Args:
-        event (bool): A boolean flag to trigger the function.
+    # create a column
+    _df_display = pn.Column(_description_display, _df_tabulator)
+    
+    return _df_display
 
-    Returns:
-        None.
-    '''
-    if not event:
-        return
-    state_selector.value = []
-# Template Setup 
-clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
-pn.bind(reset_map, clear_map, watch=True)
-footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, map_selector, streamgage_input, clear_map,sizing_mode='stretch_width')
 
-model_eval = pn.template.FastGridTemplate(
-    title="HyTEST Model Evaluation",  
-     main=[
-        map_modifier,
-    ]
-)
-model_eval.main[1:5, 0:12] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
-model_eval.main[5:6, 0:12] = footer # unpack footer onto model_eval
-model_eval.servable() 
+pn.Column(dataset_select,
+        construct_tabulator
+          ).servable()
