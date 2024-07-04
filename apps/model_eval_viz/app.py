@@ -114,7 +114,6 @@ map_selector = pn.widgets.Select(
     name="Select a Base Map",
     options=list(base_map_options.keys()),
     value = 'OpenStreetMap',
-
 )
 
 def display_map(map: str) -> gv.WMTS:
@@ -180,6 +179,7 @@ def display_points(state_list:list=state_selector.value,ids:str=streamgage_input
         # filter stream_gage to only include the specified IDs
         id_list = [pid.strip() for pid in ids.split(",")]
         filt_points = filt_points[filt_points['site_no'].isin(id_list)]
+     
     selected_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)
     return selected_points
 
@@ -199,6 +199,8 @@ def reset_map(event:bool)-> None:
     if not event:
         return
     state_selector.value = []
+    streamgage_input.value = ''
+    
 # Template Setup 
 clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, clear_map, watch=True)
