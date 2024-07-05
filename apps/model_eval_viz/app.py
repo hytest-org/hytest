@@ -158,7 +158,18 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
 # replaces @pn.depends
 displayed_states = pn.rx(display_states)(state_selector)
 
-def display_points(state_list:list=state_selector.value,ids:str=streamgage_input.value)->gv.Points:
+def enter_event(event):
+    entered_points.value = streamgage_input.value 
+
+Enter_id = pn.panel(pn.widgets.Button(name='Enter', button_type='primary'))
+
+
+Enter_id.on_click(enter_event)
+
+
+
+
+def display_points(state_list:list=state_selector.value,ids:str=entered_points)->gv.Points:
     '''
     Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
     
@@ -185,7 +196,11 @@ def display_points(state_list:list=state_selector.value,ids:str=streamgage_input
 
 # create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
 # replaces @pn.depends
-displayed_points =pn.rx(display_points)(state_selector,streamgage_input)
+if streamgage_input.value == '':
+    displayed_points =pn.rx(display_points)(state_selector,streamgage_input)
+else:
+    displayed_points =pn.rx(display_points)(state_selector,entered_points)
+
 
 def reset_map(event:bool)-> None:
     '''
@@ -205,14 +220,16 @@ def reset_map(event:bool)-> None:
 clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-map_modifier = pn.Row(state_selector, map_selector, streamgage_input, clear_map,sizing_mode='stretch_width')
+
+
+map_modifier = pn.Column(state_selector, map_selector, streamgage_input, Enter_id, clear_map,sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
     title="HyTEST Model Evaluation",  
-     main=[
+     sidebar=[
         map_modifier,
-    ]
+    ],
 )
-model_eval.main[1:5, 0:12] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
+model_eval.main[0:5, 0:12] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
 model_eval.main[5:6, 0:12] = footer # unpack footer onto model_eval
 model_eval.servable() 
