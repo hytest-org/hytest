@@ -12,6 +12,7 @@ import hvplot.pandas
 import numpy as np
 import pandas as pd
 import panel as pn
+import re
 import truststore
 from cartopy import crs as ccrs
 from config import *
@@ -159,8 +160,13 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
 displayed_states = pn.rx(display_states)(state_selector)
 
 def enter_event(event):
-    entered_points.value = streamgage_input.value 
-
+    sg_value = streamgage_input.value 
+    if re.search('[^0-9, ]',sg_value):
+        streamgage_input.value = '' 
+        entered_points.value = ''
+        streamgage_input.placeholder ="Expected Format:[id_no], [id_no2]..."
+    else:
+        entered_points.value = sg_value
 Enter_id = pn.panel(pn.widgets.Button(name='Enter', button_type='primary'))
 
 
@@ -215,6 +221,7 @@ def reset_map(event:bool)-> None:
         return
     state_selector.value = []
     streamgage_input.value = ''
+    entered_points.value = ''
     
 # Template Setup 
 clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
