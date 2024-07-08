@@ -140,7 +140,7 @@ def display_map(map: str) -> gv.WMTS:
     basemap = base_map_options[map]
     return basemap
     
-# create a .rx to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
+# create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
 displayed_map = pn.rx(display_map)(map_selector)
 
 def display_states(state_list:list=state_selector.value)->gv.Polygons:
@@ -164,8 +164,11 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
         features = gv.Polygons(states).opts(responsive=True, projection = mapproj, framewise = True )
     return features
     
-# create a .rx to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
+# create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
+# replaces @pn.depends
 displayed_states = pn.rx(display_states)(state_selector)
+
+
 
 def enter_event(event):
     '''
@@ -188,9 +191,13 @@ def enter_event(event):
     else:
         entered_points.value = sg_value
 enter_id = pn.panel(pn.widgets.Button(name='Enter', button_type='primary'))
+
 enter_id.on_click(enter_event)
 
-def display_points(state_list:list=state_selector.value,ids:str=entered_points.value, data_sets:list=subset_selector.value)->gv.Points:
+
+
+
+def display_points(state_list:list=state_selector.value,ids:str=entered_points.value, data_set:str=subset_selector.value)->gv.Points:
     '''
     Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
     
@@ -200,7 +207,7 @@ def display_points(state_list:list=state_selector.value,ids:str=entered_points.v
     Returns:
     A GeoViews Points object containing the streamflow gages.
     '''
-    data_sets = subset_selector.value
+    data_set = subset_selector.value
     if len(state_list) > 0:
         ############## if any states have been selected, narrow what is displayed
         filt_states = states[states['shapeName'].isin(state_list)]
@@ -213,17 +220,20 @@ def display_points(state_list:list=state_selector.value,ids:str=entered_points.v
         id_list = [pid.strip() for pid in ids.split(",")]
         if (id_list != []):
             filt_points = filt_points[filt_points['site_no'].isin(id_list)]
-    if len(data_sets) > 0:
-        #TODO: Clarify if OR logic/AND logic desired 
-        filt_points = filt_points[(filt_points[data_sets]==1).all(axis=1)] 
+    if data_set != "":
+        filt_points = filt_points[(filt_points[data_set]==1).all(axis=1)] 
     selected_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)
+
+
     return selected_points
 
-# create a .rx to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
+# create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
+# replaces @pn.depends
 if streamgage_input.value == '':
     displayed_points =pn.rx(display_points)(state_selector,streamgage_input,subset_selector)
 else:
     displayed_points =pn.rx(display_points)(state_selector,entered_points,subset_selector)
+
 
 def reset_map(event:bool)-> None:
     '''
@@ -245,6 +255,7 @@ clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
 
+
 map_modifier = pn.Column(state_selector, map_selector, subset_selector, streamgage_input, enter_id, clear_map,sizing_mode='stretch_width')
 
 model_eval = pn.template.FastGridTemplate(
@@ -253,6 +264,7 @@ model_eval = pn.template.FastGridTemplate(
         map_modifier,
     ],
 )
+
 
 subset_selector.param.watch(display_points, 'value')
 model_eval.main[0:5, 0:12] = pn.pane.HoloViews(displayed_map * displayed_states * displayed_points) # unpack us map onto model_eval
