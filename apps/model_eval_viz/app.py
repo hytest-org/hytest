@@ -104,9 +104,6 @@ base_map_options = {
     'ESRI World Street Map': gv.tile_sources.EsriWorldStreetMap,
 }
 
-subset = ['nldi','swim','gfv1d1','camels']
-
-
 map_selector = pn.widgets.Select(
     description="Use to select Base Map",
     name="Select a Base Map",
@@ -117,7 +114,7 @@ map_selector = pn.widgets.Select(
 subset_selector = pn.widgets.MultiSelect(
     description="Use to select subset",
     name="Select a subset",
-    options=subset,
+    options=STREAMGAGE_SUBSET,
 )
 
 def display_map(map: str) -> gv.WMTS:
