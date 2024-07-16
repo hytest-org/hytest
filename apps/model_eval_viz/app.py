@@ -95,6 +95,7 @@ state_selector = pn.widgets.MultiSelect(
 streamgage_input = pn.widgets.TextInput(
     name='Streamgage Site ID', 
     placeholder='Streamgage Site ID #',
+    description='Enter a column delimited list e.g. 01022500, 01022502',
     
     )
 base_map_options = {
