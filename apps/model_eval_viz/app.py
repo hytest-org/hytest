@@ -45,11 +45,6 @@ mapproj = ccrs.Mercator(central_longitude=0.0, min_latitude=-80.0, max_latitude=
 hv.extension('bokeh')
 pn.extension("plotly", "vega")
 
-# Create a map template including rough borders for a start 
-gv_us = cf.NaturalEarthFeature(category='cultural', 
-    name='admin_1_states_provinces_lines', scale='50m', facecolor='none')
-gv_us = gv.Feature(gv_us).geoms().opts(
-    line_color="black", line_width=1, line_dash='dashed')
 
 # Read in the dataframe 
 def _get_data(_filepath:str)->gpd.GeoDataFrame:
