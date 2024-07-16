@@ -87,18 +87,16 @@ state_list = list(states['shapeName'].unique())
 #sort alphabetically
 state_list.sort()
 
-streamgage_input = pn.widgets.TextInput(
-    name='Streamgage Site ID', 
-    placeholder='Streamgage Site ID #',
-    
-    )
-
 state_selector = pn.widgets.MultiSelect(
     description="Hold ctrl to toggle multiple states",
     name="Select a state",
     options=state_list,
 )
-
+streamgage_input = pn.widgets.TextInput(
+    name='Streamgage Site ID', 
+    placeholder='Streamgage Site ID #',
+    
+    )
 base_map_options = {
     'OpenStreetMap': gv.tile_sources.OSM,
     'ESRI Imagery': gv.tile_sources.EsriImagery,
