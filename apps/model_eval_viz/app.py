@@ -163,7 +163,7 @@ displayed_states = pn.rx(display_states)(state_selector)
 
 
 
-def enter_event(event):
+def enter_event(event)->None:
     '''
     Event handler function for the 'Enter' button widget.
 
