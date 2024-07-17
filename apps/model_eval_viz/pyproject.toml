@@ -18,7 +18,9 @@ ignore = [
   "D400", # first line should end with a period
   "D105", # missing docstring in magic method
   "D107", # missing docstring in __init__
+  "F401", # unused import which interferes with hvplot.xarray
 ]
+preview = true
 
 [tool.ruff.lint.per-file-ignores]
 # tests can do some things that are not desirable in production code
