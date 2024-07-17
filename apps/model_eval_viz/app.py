@@ -65,8 +65,6 @@ def _get_data(_filepath:str)->gpd.GeoDataFrame:
                                     crs="EPSG:4326") # most data is exported in EPSG:4326
     return filtered_gdf
 
-# Define data frames 
-gv_us_map = gv.Polygons(gv_us)
 
 # Plotting configurations
 plot_opts = dict(
