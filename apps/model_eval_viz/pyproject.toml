@@ -1,0 +1,31 @@
+[tool.ruff]
+fix = true
+line-length = 120
+# extend-include = ["*.ipynb"] # to include notebooks....
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+select = ["N", "D", "I", "E", "W", "S"]
+extend-safe-fixes = ["D200"]
+pydocstyle = { convention = "pep257" }
+ignore = [
+  "S311",
+  "E501", # line too long
+  "D211", # no blank line before section
+  "D212", # no blank line after section
+  "D400", # first line should end with a period
+  "D105", # missing docstring in magic method
+  "D107", # missing docstring in __init__
+  "F401", # unused import which interferes with hvplot.xarray
+  "D100", # missing docstring in a public module
+]
+preview = true
+
+[tool.ruff.lint.per-file-ignores]
+# tests can do some things that are not desirable in production code
+"tests/*" = [
+  "S101", # allowed to use asserts
+]
+
