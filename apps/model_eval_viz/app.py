@@ -129,7 +129,7 @@ def display_map(map: str) -> gv.WMTS:
     basemap = base_map_options[map]
     return basemap
     
-# create a DynamicMap to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
+# create a pn.rx() to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
 displayed_map = pn.rx(display_map)(map_selector)
 
 def display_states(state_list:list=state_selector.value)->gv.Polygons:
@@ -153,7 +153,7 @@ def display_states(state_list:list=state_selector.value)->gv.Polygons:
         features = gv.Polygons(states).opts(responsive=True, projection = mapproj, framewise = True )
     return features
     
-# create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
+# create a pn.rx() to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
 # replaces @pn.depends
 displayed_states = pn.rx(display_states)(state_selector)
 
@@ -216,7 +216,7 @@ def display_points(state_list:list=state_selector.value,ids:str=entered_points.v
 
     return selected_points
 
-# create a DynamicMap to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
+# create a pn.rx() to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
 # replaces @pn.depends
 if streamgage_input.value == '':
     displayed_points =pn.rx(display_points)(state_selector,streamgage_input,subset_selector)
