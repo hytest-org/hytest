@@ -132,7 +132,7 @@ def display_map(map: str) -> gv.WMTS:
 # create a pn.rx() to allow Panel to link map_selector with a Geoviews(Holoviews under the hood) object
 displayed_map = pn.rx(display_map)(map_selector)
 
-def display_states(state_list:list=state_selector.value)->gv.Polygons:
+def display_states(state_list:list)->gv.Polygons:
     '''
     Create a GeoViews Polygons object from a GeoDataFrame of US states.
     
@@ -186,7 +186,7 @@ enter_id.on_click(enter_event)
 
 
 
-def display_points(state_list:list=state_selector.value,ids:str=entered_points.value, data_set:str=subset_selector.value)->gv.Points:
+def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
     '''
     Create a GeoViews Points object from a GeoDataFrame of streamflow gages.
     
