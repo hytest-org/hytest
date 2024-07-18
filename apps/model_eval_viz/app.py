@@ -96,7 +96,7 @@ state_list.sort()
 start_date = pn.widgets.DatePicker(
     # description = "select start date",
     name = "select start date",
-    value = dt.date(2001,1,1),
+    value = dt.date.today,
     start = dt.date(2001,1,1),
     end = dt.date(2015,12,31),
 
@@ -105,7 +105,7 @@ start_date = pn.widgets.DatePicker(
 end_date = pn.widgets.DatePicker(
     # description = "select start date",
     name = "select end date",
-    value = dt.datetime.now(),
+    value = dt.date.today(),
     start = dt.date(2001,1,1),
     end = dt.date(2015,12,31),
 
