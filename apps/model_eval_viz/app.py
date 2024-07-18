@@ -96,9 +96,9 @@ state_list.sort()
 start_date = pn.widgets.DatePicker(
     # description = "select start date",
     name = "select start date",
-    value = dt.date.today,
+    value = dt.date(2001,1,1),
     start = dt.date(2001,1,1),
-    end = dt.date(2015,12,31),
+    end = dt.date.today(),
 
 
 )
@@ -107,7 +107,7 @@ end_date = pn.widgets.DatePicker(
     name = "select end date",
     value = dt.date.today(),
     start = dt.date(2001,1,1),
-    end = dt.date(2015,12,31),
+    end = dt.date.today(),
 
 )
 state_selector = pn.widgets.MultiSelect(
@@ -139,6 +139,23 @@ subset_selector = pn.widgets.MultiSelect(
     name="Select a subset",
     options=STREAMGAGE_SUBSET,
 )
+
+def display_streamstats(ids:str) -> pd.DataFrame:
+    '''
+    display the means stream flow given a set of dates 
+    
+    Parameters: string of Id's, start and end dates
+    Returns: return a pandas dataframe
+    '''
+    id_list = [pid.strip() for pid in ids.split(",")]
+    site_no = id_list[0]
+    dates = (start_date.value,end_date.value)
+    qobs = nwis.get_streamflow(site_no, dates)
+    return qobs 
+# create a pn.rx() to allow Panel to link display_streamstats, and streamgage_input
+if streamgage_input.value != '':
+    displayed_streamstats = pn.rx(display_streamstats)(streamgage_input)
+
 
 def display_map(map: str) -> gv.WMTS:
     '''
@@ -233,12 +250,6 @@ def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
     if ids:
         # filter stream_gage to only include the specified IDs
         id_list = [pid.strip() for pid in ids.split(",")]
-
-        site_no = id_list[0]
-        dates = (start_date.value,end_date.value)
-        qobs = nwis.get_streamflow(site_no, dates)
-        print(qobs)
-
         if (id_list != []):
             filt_points = filt_points[filt_points['site_no'].isin(id_list)]
     if data_set != "":
