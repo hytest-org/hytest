@@ -140,7 +140,7 @@ subset_selector = pn.widgets.MultiSelect(
     options=STREAMGAGE_SUBSET,
 )
 
-def display_streamstats(ids:str) -> pd.DataFrame:
+def display_streamflow(ids:str) -> pd.DataFrame:
     '''
     display the means stream flow given a set of dates 
     
@@ -152,9 +152,9 @@ def display_streamstats(ids:str) -> pd.DataFrame:
     dates = (start_date.value,end_date.value)
     qobs = nwis.get_streamflow(site_no, dates)
     return qobs 
-# create a pn.rx() to allow Panel to link display_streamstats, and streamgage_input
+# create a pn.rx() to allow Panel to link display_streamflow, and streamgage_input
 if streamgage_input.value != '':
-    displayed_streamstats = pn.rx(display_streamstats)(streamgage_input)
+    displayed_streamflow = pn.rx(display_streamflow)(streamgage_input)
 
 
 def display_map(map: str) -> gv.WMTS:
