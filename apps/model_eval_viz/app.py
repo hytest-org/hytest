@@ -236,7 +236,7 @@ enter_id = pn.panel(pn.widgets.Button(name='Enter', button_type='primary'))
 enter_id.on_click(enter_event)
 
 
-tap = hv.streams.SingleTap()
+tap = hv.streams.SingleTap(x=1,y=1)
 
 
 def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
@@ -314,7 +314,15 @@ model_eval = pn.template.FastGridTemplate(
 
 subset_selector.param.watch(display_points, 'value')
 not_available = pn.pane.Alert('Cannot display please select a point', alert_type ='info')
-
+gray = """
+<style>
+.gray{
+    color: #ccc;
+    background: color #cacaca;
+    pointer-events: none;
+}
+</style>
+"""
 not_available = pn.pane.Markdown(
     gray + '<div class ="gray"> Not available </div>',
     sizing_mode = 'stretch_width'
@@ -322,8 +330,10 @@ not_available = pn.pane.Markdown(
 
 )
 def tap_info(x,y):
-    
-    return print("click")
+    if x and y is None:
+        return hv.Overlay()
+    else:
+        return hv.Text(x,y,"selected").opts(color='red')
 
 tap_map = hv.DynamicMap(tap_info, streams=[tap])
 initial_load = pn.Tabs(pn.pane.HoloViews(displayed_map * displayed_states * displayed_points*tap_map),not_available)
