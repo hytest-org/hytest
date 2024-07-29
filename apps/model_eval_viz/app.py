@@ -314,15 +314,7 @@ model_eval = pn.template.FastGridTemplate(
 
 subset_selector.param.watch(display_points, 'value')
 not_available = pn.pane.Alert('Cannot display please select a point', alert_type ='info')
-gray = """
-<style>
-.gray{
-    color: #ccc;
-    background: color #cacaca;
-    pointer-events: none;
-}
-</style>
-"""
+
 not_available = pn.pane.Markdown(
     gray + '<div class ="gray"> Not available </div>',
     sizing_mode = 'stretch_width'
@@ -330,10 +322,10 @@ not_available = pn.pane.Markdown(
 
 )
 def tap_info(x,y):
+    
+    return print("click")
 
-    return hv.text(x,y,f'({x:.2f}, {y:.2f})')
-
-tap_map = (tap_info, streams==[tap])
+tap_map = hv.DynamicMap(tap_info, streams=[tap])
 initial_load = pn.Tabs(pn.pane.HoloViews(displayed_map * displayed_states * displayed_points*tap_map),not_available)
 model_eval.main[0:5, 0:12] = initial_load # unpack us map onto model_eval
 model_eval.main[5:6, 0:12] = footer # unpack footer onto model_eval
