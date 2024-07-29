@@ -9,6 +9,7 @@ import geoviews as gv
 import geoviews.feature as gf
 from geoviews import opts
 import holoviews as hv
+from holoviews import streams
 import httpx
 import hvplot.pandas
 import nest_asyncio 
@@ -19,7 +20,6 @@ from pygeohydro import NWIS
 import re
 import truststore
 import ssl
-
 nest_asyncio.apply()
 # create SSL context for internal intranet and read file
 # this is a method used when calling a library like httpx, urllib3, or requests directly rather than `truststore.inject_into_ssl()`
@@ -236,6 +236,7 @@ enter_id = pn.panel(pn.widgets.Button(name='Enter', button_type='primary'))
 enter_id.on_click(enter_event)
 
 
+tap = hv.streams.SingleTap()
 
 
 def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
@@ -265,7 +266,7 @@ def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
         filt_points = filt_points[(filt_points[data_set]==1).all(axis=1)] 
     
     selected_points = gv.Points(filt_points).opts(**plot_opts,color='lightgreen', size=5)
-
+    tap.source = selected_points
 
     return selected_points
 
@@ -311,8 +312,29 @@ model_eval = pn.template.FastGridTemplate(
     header_background = "#92ED84"
 )
 
-
 subset_selector.param.watch(display_points, 'value')
-model_eval.main[0:5, 0:12] = pn.Tabs(pn.pane.HoloViews(displayed_map * displayed_states * displayed_points),displayed_streamflow.hvplot.line(x='datetime',y='0060_Mean',title='Daily Mean Streamflow',xlabel='Date',ylabel='Streamflow(cfs)')) # unpack us map onto model_eval
+not_available = pn.pane.Alert('Cannot display please select a point', alert_type ='info')
+gray = """
+<style>
+.gray{
+    color: #ccc;
+    background: color #cacaca;
+    pointer-events: none;
+}
+</style>
+"""
+not_available = pn.pane.Markdown(
+    gray + '<div class ="gray"> Not available </div>',
+    sizing_mode = 'stretch_width'
+
+
+)
+def tap_info(x,y):
+
+    return hv.text(x,y,f'({x:.2f}, {y:.2f})')
+
+tap_map = (tap_info, streams==[tap])
+initial_load = pn.Tabs(pn.pane.HoloViews(displayed_map * displayed_states * displayed_points*tap_map),not_available)
+model_eval.main[0:5, 0:12] = initial_load # unpack us map onto model_eval
 model_eval.main[5:6, 0:12] = footer # unpack footer onto model_eval
 model_eval.servable() 
