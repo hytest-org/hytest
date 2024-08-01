@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=1:mem=1gb
+#PBS -l walltime=00:10:00
+#PBS -A something
+#PBS -N test
+#PBS -J 0-12:3
+#PBS -q casper
+#PBS -j oe
+#PBS -o /home/pnorton/test.out
+
+echo "PBS Job Id PBS_JOBID is ${PBS_JOBID}"
+echo "PBS job array index PBS_ARRAY_INDEX value is ${PBS_ARRAY_INDEX}"
