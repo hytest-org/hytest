@@ -99,8 +99,6 @@ start_date = pn.widgets.DatePicker(
     value = dt.date(2001,1,1),
     start = dt.date(2001,1,1),
     end = dt.date.today(),
-
-
 )
 end_date = pn.widgets.DatePicker(
     # description = "select start date",
@@ -119,7 +117,6 @@ streamgage_input = pn.widgets.TextInput(
     name='Streamgage Site ID', 
     placeholder='Streamgage Site ID #',
     description='Enter a column delimited list e.g. 01022500, 01022502',
-    
     )
 base_map_options = {
     'OpenStreetMap': gv.tile_sources.OSM,
@@ -152,11 +149,13 @@ def display_streamflow(ids:str) -> pd.DataFrame:
     Parameters: string of Id's, start and end dates
     Returns: return a pandas dataframe
     '''
-    id_list = [pid.strip() for pid in ids.split(",")]
-    site_no = id_list[0]
-    dates = (start_date.value,end_date.value)
-    qobs = nwis.get_streamflow(site_no, dates)
-    return qobs
+    if isinstance(ids, str):
+        id_list = [pid.strip() for pid in ids.split(",")]
+        site_no = id_list[0]
+        dates = (start_date.value,end_date.value)
+        qobs = nwis.get_streamflow(site_no, dates)
+        return qobs
+    return 
 # create a pn.rx() to allow Panel to link display_streamflow, and streamgage_input
 if streamgage_input.value != '':
     displayed_streamflow = pn.rx(display_streamflow)(streamgage_input)
@@ -174,7 +173,6 @@ def display_map(map: str) -> gv.WMTS:
     Returns:
         gv.WMTS: A Tile source type from the GeoViews library.
     '''
-
     basemap = base_map_options[map]
     return basemap
     
@@ -236,7 +234,6 @@ enter_id = pn.panel(pn.widgets.Button(name='Enter', button_type='primary'))
 enter_id.on_click(enter_event)
 
 
-tap = hv.streams.SingleTap(x=1,y=1)
 
 
 def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
@@ -272,6 +269,7 @@ def display_points(state_list:list,ids:str, data_set:str)->gv.Points:
 
 # create a pn.rx() to allow Panel to link state_selector with a Geoviews(Holoviews under the hood) object
 # replaces @pn.depends
+
 if streamgage_input.value == '':
     displayed_points =pn.rx(display_points)(state_selector,streamgage_input,subset_selector)
 else:
@@ -297,7 +295,6 @@ def reset_map(event:bool)-> None:
 clear_map = pn.panel(pn.widgets.Button(name='Reset Map', button_type='primary'))
 pn.bind(reset_map, clear_map, watch=True)
 footer = pn.pane.Markdown("""For questions about this application, please visit the [Hytest Repo](https://github.com/hytest-org/hytest/issues)""" ,width=500, height =20)
-
 
 map_modifier = pn.Column(state_selector, map_selector, subset_selector,streamgage_input, pn.Row(enter_id, clear_map), start_date, end_date,sizing_mode='stretch_width')
 
@@ -326,14 +323,27 @@ gray = """
 not_available = pn.pane.Markdown(
     gray + '<div class ="gray"> Not available </div>',
     sizing_mode = 'stretch_width'
-
-
 )
+popup = pn.pane.Markdown(sizing_mode='stretch_width')
 def tap_info(x,y):
-    if x and y is None:
-        return hv.Overlay()
-    else:
-        return hv.Text(x,y,"selected").opts(color='red')
+    site_no = site_finder(y,x, stream_gage)
+    return show_stream_box(site_no)
+
+def site_finder(x,y, data):
+    point = gpd.GeoSeries([gpd.points_from_xy([x],[y])[0]], crs = "EPSG:4326")
+    distances = data.geometry.apply(lambda p: p.distance(point))
+    idx = distances.idxmin()
+    print(x,y)
+    print(data.iloc[idx]['site_no'])
+    point = data.iloc[idx]['site_no']
+    return data.iloc[idx]['site_no']
+
+
+def show_stream_box(site_no):
+    data = display_streamflow(site_no)
+    return hv.Curve(data,kdims='date',vdims='streamflow',label=f'Site: {site_no}')
+tap = hv.streams.SingleTap(source = display_points, x =0, y= 0)
+
 
 tap_map = hv.DynamicMap(tap_info, streams=[tap])
 initial_load = pn.Tabs(pn.pane.HoloViews(displayed_map * displayed_states * displayed_points*tap_map),not_available)
