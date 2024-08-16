@@ -6,4 +6,4 @@ entered_points = pn.widgets.TextInput(
     description='Enter a column delimited list e.g. 01022500, 01022502',
     
     )
-STREAMGAGE_SUBSET = ['nldi','swim','gfv1d1','camels']
+STREAMGAGE_SUBSET = dict(All="all", NLDI='nldi',SWIM='swim',GFV1D1='gfv1d1', CAMELS='camels')

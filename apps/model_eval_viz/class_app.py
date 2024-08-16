@@ -7,10 +7,8 @@ import param
 
 from config import EX_STATES, STREAMGAGE_SUBSET
 
-# pn.extension("bokeh")
 pn.extension()
 hv.extension("bokeh")
-# hv.extension('bokeh')
 
 ### PATHS  # noqa: E266
 states_path = "./data/geoBoundaries-USA-ADM1_simplified.geojson"
@@ -35,25 +33,26 @@ plot_opts = dict(
     title='United States Streamgage Map'
 )
 
-
+ 
 class Map(param.Parameterized):
     """Instantiate map of CONUS."""
 
     state_select = param.ListSelector(objects=states_list, default=[], label="Select a State(s)", doc="Press the Ctrl button and left-click to select/deselect multiple states")
     basemap_select = param.Selector(default="OSM", objects=gv.tile_sources.tile_sources.keys(), label="Select a Basemap")
-    streamgage_type_filter = param.ListSelector(objects=STREAMGAGE_SUBSET, default=[], label="Filter Streamgages by Type", doc="Press the Ctrl button and left-click to select/deselect multiple types")
+    streamgage_type_filter = param.Selector(objects=STREAMGAGE_SUBSET, default="all", label="Filter Streamgages by Type")
 
     def __init__(self, **params):
         super().__init__(**params)
         self.streamgages = self._get_data(streamgages_path)
         self._filtered_states = gpd.GeoDataFrame()
+        self._filtered_streamgages = gpd.GeoDataFrame()
 
     @param.depends("state_select", watch=True)
-    def _filter_states(self):
+    def _filter_state_selection(self):
         """Filter state geometries."""
         self._filtered_states = states[states['shapeName'].isin(self.state_select)]
+        self._filtered_streamgages = self.streamgages.clip(self._filtered_states)
 
-    # @param.depends("_filter_states")
     def display_states(self):
         """Display map of states."""
         if not self._filtered_states.empty:
@@ -67,15 +66,27 @@ class Map(param.Parameterized):
         """Display basemap."""
         return gv.tile_sources.tile_sources[self.basemap_select]
 
-    # @param.depends("state_select")
     def display_streamgages(self):
         """Display points."""
         if not self._filtered_states.empty:
-            streamgages_to_display = self.streamgages.clip(self._filtered_states)
+            streamgages_to_display = self._filtered_streamgages
         else:
             streamgages_to_display = self.streamgages
 
-        return gv.Points(streamgages_to_display).options(color="green", size=5)
+        return gv.Points(streamgages_to_display, vdims=["camels"]).options(
+            # color="green", 
+            size=5)
+
+    @param.depends("streamgage_type_filter")
+    def _filter_streamgages_by_type(self):
+        """Filter streamgages by type selected."""
+        if not self.streamgage_type_filter == "all":
+            column = self.streamgage_type_filter
+            print(f"COLUMN = {column}")
+            self._filtered_streamgages = self._filtered_streamgages[self._filtered_streamgages[column] == 1]
+        else:
+            return
+
 
     @param.depends("display_states", "display_basemap")
     def view(self):
@@ -97,4 +108,4 @@ class Map(param.Parameterized):
 
 
 map = Map()
-pn.Row(map.param, map.view).servable()
+pn.Column(pn.Row(map.param, map.view), map.streamgage_type_filter).servable()
