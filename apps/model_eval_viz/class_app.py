@@ -33,7 +33,7 @@ plot_opts = dict(
     title='United States Streamgage Map'
 )
 
- 
+
 class Map(param.Parameterized):
     """Instantiate map of CONUS."""
 
@@ -43,22 +43,29 @@ class Map(param.Parameterized):
 
     def __init__(self, **params):
         super().__init__(**params)
-        self.streamgages = self._get_data(streamgages_path)
-        self._filtered_states = gpd.GeoDataFrame()
-        self._filtered_streamgages = gpd.GeoDataFrame()
+        self.streamgages = self._get_streamgage_data(streamgages_path)
+        # self._filtered_states = gpd.GeoDataFrame()
+        # self._filtered_streamgages = gpd.GeoDataFrame()
+        self.states = self._get_state_data(states_path)
+
+    # @param.depends("state_select", watch=True)
+    # def _filter_state_selection(self):
+    #     """Filter state geometries."""
+    #     if self.state_select:
+    #         self._filtered_states = self.states[self.states['shapeName'].isin(self.state_select)]
+    #         self.streamgages = self.streamgages.clip(self.states)
+    #     else:
+    #         self.streamgages = self._get_streamgage_data(streamgages_path)
+    #         self.states = self._get_state_data(states_path)
 
     @param.depends("state_select", watch=True)
-    def _filter_state_selection(self):
-        """Filter state geometries."""
-        self._filtered_states = states[states['shapeName'].isin(self.state_select)]
-        self._filtered_streamgages = self.streamgages.clip(self._filtered_states)
-
     def display_states(self):
         """Display map of states."""
-        if not self._filtered_states.empty:
-            _states = gv.Polygons(self._filtered_states)
+        # if not self._filtered_states.empty:
+        if self.state_select:
+            _states = gv.Polygons(self.states[self.states['shapeName'].isin(self.state_select)])
         else:
-            _states = gv.Polygons(states)
+            _states = gv.Polygons(self.states)
         return _states
 
     @param.depends("basemap_select")
@@ -66,34 +73,65 @@ class Map(param.Parameterized):
         """Display basemap."""
         return gv.tile_sources.tile_sources[self.basemap_select]
 
+    @param.depends("state_select", "streamgage_type_filter", watch=True)
     def display_streamgages(self):
         """Display points."""
-        if not self._filtered_states.empty:
-            streamgages_to_display = self._filtered_streamgages
+        if self.state_select:
+            if not self.streamgage_type_filter == "all":
+                column = self.streamgage_type_filter
+                print("column: ", column)
+                streamgages_to_display = self.streamgages.clip(self.states[self.states['shapeName'].isin(self.state_select)])
+                print("Is change from all firing?")
+                print("Before")
+                print(streamgages_to_display.shape)
+                streamgages_to_display = streamgages_to_display[streamgages_to_display[column] == 1]
+                print("After")
+                print(streamgages_to_display.shape)
+                return gv.Points(streamgages_to_display).options(
+            cmap="Plasma",
+            color="camels",
+            size=5)
+            else:
+                print("is all firing")
+                streamgages_to_display = self.streamgages.clip(self.states[self.states['shapeName'].isin(self.state_select)])
+                return gv.Points(streamgages_to_display).options(
+            cmap="Plasma",
+            color="camels",
+            size=5)
         else:
             streamgages_to_display = self.streamgages
-
-        return gv.Points(streamgages_to_display, vdims=["camels"]).options(
-            # color="green", 
+            return gv.Points(streamgages_to_display).options(
+            cmap="Plasma",
+            color="camels",
             size=5)
 
-    @param.depends("streamgage_type_filter")
-    def _filter_streamgages_by_type(self):
-        """Filter streamgages by type selected."""
-        if not self.streamgage_type_filter == "all":
-            column = self.streamgage_type_filter
-            print(f"COLUMN = {column}")
-            self._filtered_streamgages = self._filtered_streamgages[self._filtered_streamgages[column] == 1]
-        else:
-            return
+        # return gv.Points(streamgages_to_display).options(
+        #     cmap="Plasma",
+        #     color="camels",
+        #     size=5)
 
+    # @param.depends("streamgage_type_filter", watch=True)
+    # def _filter_streamgages_by_type(self):
+    #     """Filter streamgages by type selected."""
+    #     if not self.streamgage_type_filter == "all":
+    #         column = self.streamgage_type_filter
+    #         if self._filtered_streamgages.empty:
+    #             self._filtered_streamgages = self.streamgages[self.streamgages[column] == 1]
+    #         else:
+                # print(f"COLUMN = {column}")
+                # print("filtered streamgages columsn", self._filtered_streamgages.columns)
+                # print(f"Filterd Streamgages", self._filtered_streamgages)
+                # self._filtered_streamgages = self._filtered_streamgages[self._filtered_streamgages[column] == 1]
+        # else:
+        #     if 
+        #     return
 
     @param.depends("display_states", "display_basemap")
     def view(self):
         """Merge map components into display."""
-        return pn.pane.HoloViews((self.display_basemap() * self.display_states() * self.display_streamgages()).options(**plot_opts))
+        return pn.pane.HoloViews(self.display_basemap() * self.display_states() * self.display_streamgages().options(**plot_opts))
 
-    def _get_data(self, _filepath: str) -> gpd.GeoDataFrame:
+    def _get_streamgage_data(self, _filepath: str) -> gpd.GeoDataFrame:
         """Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'."""  # noqa: D401
         # read lat-long or xy data using pandas read_csv
         read_data = pd.read_csv(_filepath, dtype=dict(site_no=str))
@@ -106,6 +144,32 @@ class Map(param.Parameterized):
         )
         return filtered_gdf
 
+    def _get_state_data(self, _filepath: str) -> gpd.GeoDataFrame:
+        """Read in state geographies."""
+        _states = gpd.read_file(_filepath)
+        _states = _states[~_states['shapeName'].isin(EX_STATES)]
+
+        return _states
+
 
 map = Map()
-pn.Column(pn.Row(map.param, map.view), map.streamgage_type_filter).servable()
+# pn.Column(pn.Row(map.param, map.view), map.streamgage_type_filter).servable()
+
+model_eval = pn.template.MaterialTemplate(
+    title="HyTEST Model Evaluation",
+    sidebar=[
+        map.param,
+    ],
+    # main=[pn.pane.HoloViews(map.view)],
+)
+# model_eval = pn.template.FastGridTemplate(
+#     title="HyTEST Model Evaluation",
+#     sidebar=[
+#         map.param,
+#     ],
+#     # main=[pn.pane.HoloViews(map.view)],
+# )
+
+model_eval.main.append(map.view)
+model_eval.servable()
+# print(help(pn.template.FastGridTemplate))
