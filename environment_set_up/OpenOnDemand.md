@@ -7,7 +7,7 @@ This is a custom service provided by the USGS ARC team. It is the easiest to use
 * Fill in the form to customize the allocation in which the Jupyter Server will execute.
   * You may want to consider adding the git and/or aws modules if you plan to use them during your session. You will just need to type `module load git` and/or `module load aws` in the `Module loads` section.
   * If you expect to run code in parallel on multiple compute nodes, you have two options. (1) You can use the form to request the number of cores you need and then run a [Dask Local Cluster](./Start_Dask_Cluster_Denali.ipynb) on those cores, or (2) you can request the standard 2 cores, and then use a [Dask SLURMCluster](./Start_Dask_Cluster_Tallgrass.ipynb) to submit new jobs to the SLURM scheduler, giving you access to additional compute nodes.
-* Submit
+* Click Submit
 * Once your server is ready, a `Connect to Jupyter` button will appear that you can click to start your session.
 
 The Jupyter Server will run in an allocation on `tallgrass` or `hovenweep`. This server will have access to your home
