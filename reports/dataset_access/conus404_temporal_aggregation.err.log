@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/users/envs/users-pangeo/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+ds_subset_daily = ds_subset.resample(time="24H", loffset="12H").mean()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[11], line 1[0m
+[0;32m----> 1[0m ds_subset_daily [38;5;241m=[39m [43mds_subset[49m[38;5;241;43m.[39;49m[43mresample[49m[43m([49m[43mtime[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m24H[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mloffset[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m12H[39;49m[38;5;124;43m"[39;49m[43m)[49m[38;5;241m.[39mmean()
+
+File [0;32m/home/conda/users/82d08ac5660990df618fbe5040c1dbbb785c9d7e29eaf47f7e09d93d653ee764-20230628-201746-939865-211-pangeo/lib/python3.10/site-packages/xarray/core/dataset.py:9172[0m, in [0;36mDataset.resample[0;34m(self, indexer, skipna, closed, label, base, keep_attrs, loffset, restore_coord_dims, **indexer_kwargs)[0m
+[1;32m   9123[0m [38;5;250m[39m[38;5;124;03m"""Returns a Resample object for performing resampling operations.[39;00m
+[1;32m   9124[0m 
+[1;32m   9125[0m [38;5;124;03mHandles both downsampling and upsampling. The resampled[39;00m
+[0;32m   (...)[0m
+[1;32m   9168[0m [38;5;124;03m.. [1] http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases[39;00m
+[1;32m   9169[0m [38;5;124;03m"""[39;00m
+[1;32m   9170[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mresample[39;00m [38;5;28;01mimport[39;00m DatasetResample
+[0;32m-> 9172[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_resample[49m[43m([49m
+[1;32m   9173[0m [43m    [49m[43mresample_cls[49m[38;5;241;43m=[39;49m[43mDatasetResample[49m[43m,[49m
+[1;32m   9174[0m [43m    [49m[43mindexer[49m[38;5;241;43m=[39;49m[43mindexer[49m[43m,[49m
+[1;32m   9175[0m [43m    [49m[43mskipna[49m[38;5;241;43m=[39;49m[43mskipna[49m[43m,[49m
+[1;32m   9176[0m [43m    [49m[43mclosed[49m[38;5;241;43m=[39;49m[43mclosed[49m[43m,[49m
+[1;32m   9177[0m [43m    [49m[43mlabel[49m[38;5;241;43m=[39;49m[43mlabel[49m[43m,[49m
+[1;32m   9178[0m [43m    [49m[43mbase[49m[38;5;241;43m=[39;49m[43mbase[49m[43m,[49m
+[1;32m   9179[0m [43m    [49m[43mkeep_attrs[49m[38;5;241;43m=[39;49m[43mkeep_attrs[49m[43m,[49m
+[1;32m   9180[0m [43m    [49m[43mloffset[49m[38;5;241;43m=[39;49m[43mloffset[49m[43m,[49m
+[1;32m   9181[0m [43m    [49m[43mrestore_coord_dims[49m[38;5;241;43m=[39;49m[43mrestore_coord_dims[49m[43m,[49m
+[1;32m   9182[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mindexer_kwargs[49m[43m,[49m
+[1;32m   9183[0m [43m[49m[43m)[49m
+
+File [0;32m/home/conda/users/82d08ac5660990df618fbe5040c1dbbb785c9d7e29eaf47f7e09d93d653ee764-20230628-201746-939865-211-pangeo/lib/python3.10/site-packages/xarray/core/common.py:965[0m, in [0;36mDataWithCoords._resample[0;34m(self, resample_cls, indexer, skipna, closed, label, base, keep_attrs, loffset, restore_coord_dims, **indexer_kwargs)[0m
+[1;32m    963[0m         grouper [38;5;241m=[39m CFTimeGrouper(freq, closed, label, base, loffset)
+[1;32m    964[0m     [38;5;28;01melse[39;00m:
+[0;32m--> 965[0m         grouper [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mGrouper[49m[43m([49m
+[1;32m    966[0m [43m            [49m[43mfreq[49m[38;5;241;43m=[39;49m[43mfreq[49m[43m,[49m[43m [49m[43mclosed[49m[38;5;241;43m=[39;49m[43mclosed[49m[43m,[49m[43m [49m[43mlabel[49m[38;5;241;43m=[39;49m[43mlabel[49m[43m,[49m[43m [49m[43mbase[49m[38;5;241;43m=[39;49m[43mbase[49m[43m,[49m[43m [49m[43mloffset[49m[38;5;241;43m=[39;49m[43mloffset[49m
+[1;32m    967[0m [43m        [49m[43m)[49m
+[1;32m    968[0m group [38;5;241m=[39m DataArray(
+[1;32m    969[0m     dim_coord, coords[38;5;241m=[39mdim_coord[38;5;241m.[39mcoords, dims[38;5;241m=[39mdim_coord[38;5;241m.[39mdims, name[38;5;241m=[39mRESAMPLE_DIM
+[1;32m    970[0m )
+[1;32m    971[0m [38;5;28;01mreturn[39;00m resample_cls(
+[1;32m    972[0m     [38;5;28mself[39m,
+[1;32m    973[0m     group[38;5;241m=[39mgroup,
+[0;32m   (...)[0m
+[1;32m    977[0m     restore_coord_dims[38;5;241m=[39mrestore_coord_dims,
+[1;32m    978[0m )
+
+File [0;32m/home/conda/users/82d08ac5660990df618fbe5040c1dbbb785c9d7e29eaf47f7e09d93d653ee764-20230628-201746-939865-211-pangeo/lib/python3.10/site-packages/pandas/core/resample.py:1663[0m, in [0;36mTimeGrouper.__init__[0;34m(self, freq, closed, label, how, axis, fill_method, limit, kind, convention, origin, offset, group_keys, **kwargs)[0m
+[1;32m   1660[0m [38;5;66;03m# always sort time groupers[39;00m
+[1;32m   1661[0m kwargs[[38;5;124m"[39m[38;5;124msort[39m[38;5;124m"[39m] [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m-> 1663[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mfreq[49m[38;5;241;43m=[39;49m[43mfreq[49m[43m,[49m[43m [49m[43maxis[49m[38;5;241;43m=[39;49m[43maxis[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+[0;31mTypeError[0m: Grouper.__init__() got an unexpected keyword argument 'base'
+
