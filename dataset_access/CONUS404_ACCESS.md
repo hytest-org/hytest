@@ -5,7 +5,13 @@ This section contains notebooks that demonstrate how to access and perform basic
 In the CONUS404 intake sub-catalog (see [here](../dataset_catalog/README.md) for an explainer of our intake data catalog), you will see entries for four CONUS404 datasets: `conus404-hourly`, `conus404-daily`, `conus404-monthly`, and `conus404-daily-diagnostic` data, as well as two CONUS404 bias-adjusted datasets: `conus404-hourly-ba`, `conus404-daily-ba`. Each of these datasets is duplicated in up to three different storage locations (as the [intake catalog section](../dataset_catalog/README.md) also describes).
 
 ## CONUS404 Data
-The `conus404-hourly` data is a subset of the wrfout model output and `conus404-daily-diagnostic` is a subset from the wrfxtrm model output, both of which are described in the official [CONUS404 data release](https://doi.org/10.5066/P9PHPK4F). We also have `conus404-daily` and `conus404-monthly` files, which are just resampled from the `conus404-hourly` data.
+The `conus404-hourly` data is a subset of the `wrfout` model output. For instantaneous variables, the data value at each time step represents the instantaneous value at the timestep. For accumulated variables, the data value represents the accumulated value up to the timestep (see the `integration_length` attribute attached to each accumulated variable for more details on the accumulation period).
+
+The `conus404-daily-diagnostic` data is a subset from the `wrfxtrm` model output. These data represent the results of the past 24 hours, with the timestamp corresponding to the end time of the 24 hour period. Because the CONUS404 started at 1979-10-01_00:00:00, the first timestep (1979-10-01_00:00:00) for each variable is all zeros. 
+ 
+Both of these datasets are described in the official [CONUS404 data release](https://doi.org/10.5066/P9PHPK4F).
+
+We also have `conus404-daily` and `conus404-monthly` files, which are just resampled from the `conus404-hourly` data. To create the `conus404-daily` zarr, instantaneous variables are aggregated from 00:00:00 UTC to 11:00:00 UTC, while accumulated variables are aggregated from 01:00:00 UTC to 12:00:00 UTC of the next day.
 
 **Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.** These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable. 
 
