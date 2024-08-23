@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HPC Server: Open OnDemand Quick-Start &#8212; HyTEST Project</title>
+    <title>CONUS404 and CONUS404 Bias-Adjusted Data Access &#8212; HyTEST Project</title>
   
   
   
@@ -57,13 +57,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'environment_set_up/OpenOnDemand';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_access/CONUS404_ACCESS';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HPC Server: Jupyter Forward Quick-Start" href="JupyterForward.html" />
-    <link rel="prev" title="Cloud: Nebari Quick-Start" href="QuickStart-Cloud-Nebari.html" />
+    <link rel="next" title="CONUS404 Zarr Changelog" href="CONUS404_CHANGELOG.html" />
+    <link rel="prev" title="HyTEST Intake Sub-Catalogs" href="../dataset_catalog/subcatalogs/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,23 +177,23 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Compute Environments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">HPC Server: Open OnDemand Quick-Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="Help_AWS_Credentials.html">AWS Credentials</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
 </ul>
@@ -211,18 +211,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 and CONUS404 Bias-Adjusted Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_spatial_aggregation.html">CONUS404 Spatial Aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">CONUS404 and CONUS404 Bias-Adjusted Data Access</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_explore.html">Explore CONUS404 Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_spatial_aggregation.html">CONUS404 Spatial Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -324,7 +324,7 @@
       
       
       
-      <li><a href="../_sources/environment_set_up/OpenOnDemand.md" target="_blank"
+      <li><a href="../_sources/dataset_access/CONUS404_ACCESS.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -408,7 +408,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>HPC Server: Open OnDemand Quick-Start</h1>
+    <h1>CONUS404 and CONUS404 Bias-Adjusted Data Access</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -418,10 +418,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-environment-set-up">Conda Environment Set Up</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-the-code-to-build-the-hytest-jupyter-app-is-in-this-repository-however-this-repo-is-only-visible-on-the-internal-usgs-network">Note: The code to build the HyTEST Jupyter app is in this repository; however, this repo is only visible on the internal USGS network.</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-data">CONUS404 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-bias-adjusted-data">CONUS404 Bias-Adjusted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-notebooks">Example Notebooks</a></li>
 </ul>
             </nav>
         </div>
@@ -433,39 +432,39 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hpc-server-open-ondemand-quick-start">
-<h1>HPC Server: Open OnDemand Quick-Start<a class="headerlink" href="#hpc-server-open-ondemand-quick-start" title="Link to this heading">#</a></h1>
-<p>This is a custom service provided by the USGS ARC team. It is the easiest to use (no configuration needed on your part), and provides reasonable compute resources via the <code class="docutils literal notranslate"><span class="pre">tallgrass</span></code> and <code class="docutils literal notranslate"><span class="pre">hovenweep</span></code> hosts:</p>
-<ul class="simple">
-<li><p>To log in to OnDemand, select the appropriate login link from the <code class="docutils literal notranslate"><span class="pre">OnDemand</span></code> section of <code class="docutils literal notranslate"><span class="pre">https://hpcportal.cr.usgs.gov/</span></code>. Note that you must be on the VPN to access this host. Denali/Tallgrass share one disk for data storage and Hovenweep has a different disk. If you have data stored on the HPCs, you will want to choose whichever resource is attached to where your data is stored. If you are accessing data from a different, publicly accessible storage location, you can choose either option.</p></li>
-<li><p>From the OnDemand landing page, choose <code class="docutils literal notranslate"><span class="pre">Interactive</span> <span class="pre">Apps</span></code>. If you are using <code class="docutils literal notranslate"><span class="pre">Hovenweep</span></code>, select the <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> option from this dropdown. If you are using <code class="docutils literal notranslate"><span class="pre">Tallgrass</span></code>, you can either select <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> or you can launch the <code class="docutils literal notranslate"><span class="pre">HyTEST</span> <span class="pre">Jupyter</span></code> server app, which will include a conda environment pre-configured with the packages you need to run the workflows in this JupyterBook. If you do not use our pre-configured environment (if you selected <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code>), you will need to build your own once your connect to the HPC. This process is described below in <a class="reference internal" href="#conda-environment-set-up"><span class="xref myst">Conda Environment Set Up</span></a></p></li>
-<li><p>Fill in the form to customize the allocation in which the Jupyter Server will execute.</p>
-<ul>
-<li><p>For light duty work (i.e. tutorials), a <code class="docutils literal notranslate"><span class="pre">Viz</span></code> node is likely adequate in your allocation request.  If you
-will be doing heavier processing, you may want to request a compute node.  None of the HyTEST tutorials
-utilize GPU code; a GPU-enabled node is not necessary.</p></li>
-<li><p>You may want to consider adding the git and/or aws modules if you plan to use them during your session. You will just need to type <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">git</span></code> and/or <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">aws</span></code> in the <code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">loads</span></code> section.</p></li>
-<li><p>If you expect to run code in parallel on multiple compute nodes, you have two options. (1) You can use the form to request the number of cores you need and then run a <a class="reference internal" href="Start_Dask_Cluster_Denali.html"><span class="std std-doc">Dask Local Cluster</span></a> on those cores, or (2) you can request the standard 2 cores, and then use a <a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html"><span class="std std-doc">Dask SLURMCluster</span></a> to submit new jobs to the SLURM scheduler, giving you access to additional compute nodes.</p></li>
-</ul>
-</li>
-<li><p>Click Submit</p></li>
-<li><p>Once your server is ready, a <code class="docutils literal notranslate"><span class="pre">Connect</span> <span class="pre">to</span> <span class="pre">Jupyter</span></code> button will appear that you can click to start your session.</p></li>
-</ul>
-<p>The Jupyter Server will run in an allocation on <code class="docutils literal notranslate"><span class="pre">tallgrass</span></code> or <code class="docutils literal notranslate"><span class="pre">hovenweep</span></code>. This server will have access to your home
-directory/folder on that host, which is where your notebooks will reside.</p>
-<section id="conda-environment-set-up">
-<h2>Conda Environment Set Up<a class="headerlink" href="#conda-environment-set-up" title="Link to this heading">#</a></h2>
-<p>If you need to set up your own conda environment on the HPCs, please refer to the <a class="reference external" href="https://hpcportal.cr.usgs.gov/hpc-user-docs/guides/software/environments/python/Python_Environment_Setup_with_Conda.html">HPC User Docs</a>. You can stop right before they create the sample python environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">env</span> <span class="pre">--name</span> <span class="pre">py310</span> <span class="pre">python=3.10</span></code> and instead create whatever conda environment you need to use for your work. Once you have created your conda environment, you will need to take one additional step to make this conda environment visible as a kernel in your Jupyter Notebook:</p>
-<ul class="simple">
-<li><p>activate your environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">your_environment_name</span></code></p></li>
-<li><p>make sure <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> is installed in your conda environment</p></li>
-<li><p>run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name</span> <span class="pre">your_environment_name</span> <span class="pre">--display-name</span> <span class="pre">&quot;your_environment_name&quot;</span></code></p></li>
-</ul>
-<p>Now, you will be able to see the environment you just built as an available kernel from your Jupyter notebook.</p>
-<section id="note-the-code-to-build-the-hytest-jupyter-app-is-in-this-repository-however-this-repo-is-only-visible-on-the-internal-usgs-network">
-<h3>Note: The code to build the HyTEST Jupyter app is in <a class="reference external" href="https://code.chs.usgs.gov/sas/arc/arc-software/ood/bc_jupyter_hytest">this repository</a>; however, this repo is only visible on the internal USGS network.<a class="headerlink" href="#note-the-code-to-build-the-hytest-jupyter-app-is-in-this-repository-however-this-repo-is-only-visible-on-the-internal-usgs-network" title="Link to this heading">#</a></h3>
+  <section class="tex2jax_ignore mathjax_ignore" id="conus404-and-conus404-bias-adjusted-data-access">
+<h1>CONUS404 and CONUS404 Bias-Adjusted Data Access<a class="headerlink" href="#conus404-and-conus404-bias-adjusted-data-access" title="Link to this heading">#</a></h1>
+<p>This section contains notebooks that demonstrate how to access and perform basic data manipulation for the <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 dataset</a>. The examples can also be applied to the <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias-adjusted dataset</a>.</p>
+<p>In the CONUS404 intake sub-catalog (see <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">here</span></a> for an explainer of our intake data catalog), you will see entries for four CONUS404 datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code>, and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> data, as well as two CONUS404 bias-adjusted datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code>. Each of these datasets is duplicated in up to three different storage locations (as the <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">intake catalog section</span></a> also describes).</p>
+<section id="conus404-data">
+<h2>CONUS404 Data<a class="headerlink" href="#conus404-data" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data is a subset of the <code class="docutils literal notranslate"><span class="pre">wrfout</span></code> model output. For instantaneous variables, the data value at each time step represents the instantaneous value at the timestep. For accumulated variables, the data value represents the accumulated value up to the timestep (see the <code class="docutils literal notranslate"><span class="pre">integration_length</span></code> attribute attached to each accumulated variable for more details on the accumulation period).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> data is a subset from the <code class="docutils literal notranslate"><span class="pre">wrfxtrm</span></code> model output. These data represent the results of the past 24 hours, with the timestamp corresponding to the end time of the 24 hour period. Because the CONUS404 started at 1979-10-01_00:00:00, the first timestep (1979-10-01_00:00:00) for each variable is all zeros.</p>
+<p>Both of these datasets are described in the official <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 data release</a>.</p>
+<p>We also have <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> and <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code> files, which are just resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data. To create the <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> zarr, instantaneous variables are aggregated from 00:00:00 UTC to 11:00:00 UTC, while accumulated variables are aggregated from 01:00:00 UTC to 12:00:00 UTC of the next day.</p>
+<p><strong>Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.</strong> These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable.</p>
+<p><strong>We recommend that you regularly check our <a class="reference internal" href="CONUS404_CHANGELOG.html"><span class="doc std std-doc">CONUS404 changelog</span></a> to see any updates that have been made to the zarr stores.</strong> We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.</p>
 </section>
+<section id="conus404-bias-adjusted-data">
+<h2>CONUS404 Bias-Adjusted Data<a class="headerlink" href="#conus404-bias-adjusted-data" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data contains bias-adjusted temperature and precipiation data from the CONUS404 dataset, which is described in the official <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias adjusted data release</a>. The <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code> files are resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data.</p>
 </section>
+<section id="example-notebooks">
+<h2>Example Notebooks<a class="headerlink" href="#example-notebooks" title="Link to this heading">#</a></h2>
+<p>We currently have five notebooks to help demonstrate how to work with these datasets in a python workflow:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="conus404_explore.html"><span class="std std-doc">Explore CONUS404 Dataset</span></a>: opens the CONUS404 dataset, loads and plots the entire spatial
+domain of a specified variable at a specfic time step, and loads and plots a time series of a variable at a specified coordinate pair.</p></li>
+<li><p><a class="reference internal" href="conus404_temporal_aggregation.html"><span class="std std-doc">CONUS404 Temporal Aggregation</span></a>: calculates a daily average of the CONUS404 hourly data.</p></li>
+<li><p><a class="reference internal" href="conus404_spatial_aggregation.html"><span class="std std-doc">CONUS404 Spatial Aggregation</span></a>: calculates the area-weighted mean of the CONUS404 data for all HUC12s in the Delaware River Basin.</p></li>
+<li><p><a class="reference internal" href="conus404_point_selection.html"><span class="std std-doc">CONUS404 Point Selection</span></a>: samples the CONUS404 data at a selection of gage locations using their lat/lon point coordinates.</p></li>
+<li><p><a class="reference internal" href="conus404_regrid.html"><span class="std std-doc">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</span></a>: regrids a subset of the CONUS404 dataset from a curvilinear grid to a rectilinear grid and saves the output to a netcdf file. The package used in this demo is not compatible with Windows. We hope to improve upon this methodology, and will likely update the package/technique used in the future.</p></li>
+</ul>
+<p>These methods are likely applicable to many of the other key HyTEST datasets that can be opened with xarray.</p>
+<p><em>Note: If you need help setting up a computing environment where you can run these notebooks, you should review the <a class="reference internal" href="../environment_set_up/README.html"><span class="std std-doc">Computing Environments</span></a> section of the documentation.</em></p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -481,7 +480,7 @@ directory/folder on that host, which is where your notebooks will reside.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./environment_set_up"
+            path: "./dataset_access"
         },
         predefinedOutput: true
     }
@@ -499,20 +498,20 @@ directory/folder on that host, which is where your notebooks will reside.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="QuickStart-Cloud-Nebari.html"
+       href="../dataset_catalog/subcatalogs/README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Cloud: Nebari Quick-Start</p>
+        <p class="prev-next-title">HyTEST Intake Sub-Catalogs</p>
       </div>
     </a>
     <a class="right-next"
-       href="JupyterForward.html"
+       href="CONUS404_CHANGELOG.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">HPC Server: Jupyter Forward Quick-Start</p>
+        <p class="prev-next-title">CONUS404 Zarr Changelog</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -532,10 +531,9 @@ directory/folder on that host, which is where your notebooks will reside.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-environment-set-up">Conda Environment Set Up</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-the-code-to-build-the-hytest-jupyter-app-is-in-this-repository-however-this-repo-is-only-visible-on-the-internal-usgs-network">Note: The code to build the HyTEST Jupyter app is in this repository; however, this repo is only visible on the internal USGS network.</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-data">CONUS404 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-bias-adjusted-data">CONUS404 Bias-Adjusted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-notebooks">Example Notebooks</a></li>
 </ul>
   </nav></div>
 
