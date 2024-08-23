@@ -1,17 +1,16 @@
 # HPC Server: Open OnDemand Quick-Start
 
-This is a custom service provided by the ARC team and customized for use in HyTEST workflows. It is the easiest
-to use (no configuration needed on your part), and provides reasonable compute resources via the `tallgrass`
-host:
+This is a custom service provided by the USGS ARC team. It is the easiest to use (no configuration needed on your part), and provides reasonable compute resources via the `tallgrass` and `hovenweep` hosts:
 
-* Go to `https://tg-ood.cr.usgs.gov/pun/sys/dashboard` in your web browser.
-  Note that you must be on the VPN to access this host. You will be prompted to log in to the server, and you should use your AD username and password here.
-* Launch the HyTEST Jupyter Server app under the Interactive Apps dropdown menu.
-* Fill in the form to customize the allocation in which the Jupyter Server will execute. You may want to consider adding the git and/or aws modules if you plan to use them during your session. You will just need to type `module load git` and/or `module load aws` in the `Module loads` section.
-* Submit
+* To log in to OnDemand, select the appropriate login link from the `OnDemand` section of `https://hpcportal.cr.usgs.gov/`. Note that you must be on the VPN to access this host. Denali/Tallgrass share one disk for data storage and Hovenweep has a different disk. If you have data stored on the HPCs, you will want to choose whichever resource is attached to where your data is stored. If you are accessing data from a different, publicly accessible storage location, you can choose either option.
+* From the OnDemand landing page, choose `Interactive Apps`. If you are using `Hovenweep`, select the `Jupyter` option from this dropdown. If you are using `Tallgrass`, you can either select `Jupyter` or you can launch the `HyTEST Jupyter` server app, which will include a conda environment pre-configured with the packages you need to run the workflows in this JupyterBook. If you do not use our pre-configured environment (if you selected `Jupyter`), you will need to build your own. You can learn more about how to set up your own conda environment [here](https://hpcportal.cr.usgs.gov/hpc-user-docs/guides/software/environments/python/Python_Environment_Setup_with_Conda.html) in the HPC user docs.
+* Fill in the form to customize the allocation in which the Jupyter Server will execute.
+  * You may want to consider adding the git and/or aws modules if you plan to use them during your session. You will just need to type `module load git` and/or `module load aws` in the `Module loads` section.
+  * If you expect to run code in parallel on multiple compute nodes, you have two options. (1) You can use the form to request the number of cores you need and then run a [Dask Local Cluster](./Start_Dask_Cluster_Denali.ipynb) on those cores, or (2) you can request the standard 2 cores, and then use a [Dask SLURMCluster](./Start_Dask_Cluster_Tallgrass.ipynb) to submit new jobs to the SLURM scheduler, giving you access to additional compute nodes.
+* Click Submit
 * Once your server is ready, a `Connect to Jupyter` button will appear that you can click to start your session.
 
-The Jupyter Server will run in an allocation on `tallgrass`. This server will have access to your home
+The Jupyter Server will run in an allocation on `tallgrass` or `hovenweep`. This server will have access to your home
 directory/folder on that host, which is where your notebooks will reside.
 
 For light duty work (i.e. tutorials), a `Viz` node is likely adequate in your allocation request.  If you
