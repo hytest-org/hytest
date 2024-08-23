@@ -11,7 +11,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_ceres_drb_descriptive_stats.parquet
     description: Descriptive statistics for the comparison of CONUS404 to CERES-EBAF
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   c404-crn-drb-desc-stats-OSN:
     args:
       storage_options:
@@ -20,7 +22,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_crn_drb_descriptive_stats.parquet
     description: Descriptive statistics for the comparison of CONUS404 to CRN
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   c404-drb-zonal-OSN:
     args:
       storage_options:
@@ -29,7 +33,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_drb_zonal_stats.parquet
     description: CONUS404 zonal statistics of Delware River Basin
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   c404-hcn-drb-desc-stats-OSN:
     args:
       storage_options:
@@ -38,7 +44,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_hcn_drb_descriptive_stats.parquet
     description: Descriptive statistics for the comparison of CONUS404 to HCN
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   c404-prism-drb-desc-stats-OSN:
     args:
       storage_options:
@@ -47,7 +55,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_prism_drb_descriptive_stats.parquet
     description: Descriptive statistics for the comparison of CONUS404 to PRISM
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   ceres-drb-OSN:
     args:
       chunks: {}
@@ -60,7 +70,9 @@ sources:
     description: CERES-EBAF Delaware River Basin subset, 40 years of monthly data
       for CONUS404 forcings evaluation
     driver: intake_xarray.xzarr.ZarrSource
-    metadata: {}
+    metadata: {
+      gridded: true
+    }
   ceres-drb-zonal-OSN:
     args:
       storage_options:
@@ -69,7 +81,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/ceres_drb_zonal_stats.parquet
     description: CERES-EBAF zonal statistics of Delware River Basin
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   conus404-drb-OSN:
     args:
       chunks: {}
@@ -82,7 +96,9 @@ sources:
     description: CONUS404 Delaware River Basin subset, 40 years of monthly data for
       CONUS404 forcings evaluation
     driver: intake_xarray.xzarr.ZarrSource
-    metadata: {}
+    metadata: {
+      gridded: true
+    }
   crn-drb-OSN:
     args:
       storage_options:
@@ -92,7 +108,9 @@ sources:
     description: Climate Reference Network subset, 40 years of monthly data for CONUS404
       forcings evaluation
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   crn-drb-point-OSN:
     args:
       storage_options:
@@ -101,7 +119,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_crn_drb_point_values.parquet
     description: CRN and CONUS404 point statistics of Delware River Basin
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   hcn-drb-OSN:
     args:
       storage_options:
@@ -111,7 +131,9 @@ sources:
     description: Historical Climate Network subset, 40 years of monthly data for CONUS404
       forcings evaluation
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   hcn-drb-point-OSN:
     args:
       storage_options:
@@ -120,7 +142,9 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/c404_hcn_drb_point_values.parquet
     description: HCN and CONUS404 point statistics of Delware River Basin
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
   prism-drb-OSN:
     args:
       chunks: {}
@@ -133,7 +157,9 @@ sources:
     description: PRISM Delaware River Basin subset, 40 years of monthly data for CONUS404
       forcings evaluation
     driver: intake_xarray.xzarr.ZarrSource
-    metadata: {}
+    metadata: {
+      gridded: true
+    }
   prism-drb-zonal-OSN:
     args:
       storage_options:
@@ -142,4 +168,6 @@ sources:
       urlpath: s3://hytest/tutorials/evaluation/conus404/prism_drb_zonal_stats.parquet
     description: PRISM zonal statistics of Delware River Basin
     driver: intake_parquet.source.ParquetSource
-    metadata: {}
+    metadata: {
+      gridded: false
+    }
