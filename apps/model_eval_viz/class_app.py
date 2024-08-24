@@ -16,13 +16,41 @@ streamgages_path = "./data/streamflow_gages_v1_n5390.csv"
 
 ### DATA  # noqa: E266
 # read GeoJSON file
-states = gpd.read_file(states_path)
-states = states[~states['shapeName'].isin(EX_STATES)]
+def _get_state_data(_filepath: str) -> tuple[gpd.GeoDataFrame, list]:
+    """Read in state geographies."""
+    # create 
+    _states = gpd.read_file(_filepath)
+    _states = _states[~_states['shapeName'].isin(EX_STATES)]
+
+    _states_list = list(_states['shapeName'].unique())
+    _states_list.sort()
+
+    return _states, _states_list
+
+states_data, states_list = _get_state_data(states_path)
+
+# states = gpd.read_file(states_path)
+# states = states[~states['shapeName'].isin(EX_STATES)]
+
+def _get_streamgage_data(_filepath: str) -> gpd.GeoDataFrame:
+    """Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'."""  # noqa: D401
+    # read lat-long or xy data using pandas read_csv
+    read_data = pd.read_csv(_filepath, dtype=dict(site_no=str))
+    # filter
+    filtered_data = read_data[read_data['gagesII_class'] == 'Ref']
+    # now turn into a geodataframe
+    filtered_gdf = gpd.GeoDataFrame(filtered_data,  # noqa: W291
+                                    geometry=gpd.points_from_xy(filtered_data.dec_long_va, filtered_data.dec_lat_va),
+                                    crs="EPSG:4326"  # most data is exported in EPSG:4326
+    )
+    return filtered_gdf
+
+streamgage_data = _get_streamgage_data(streamgages_path)
 
 ### WIDGET OPTIONS  # noqa: E266
 # list of states for selector
-states_list = list(states['shapeName'].unique())
-states_list.sort()
+# states_list = list(states['shapeName'].unique())
+# states_list.sort()
 
 ### Plot opts  # noqa: E266
 plot_opts = dict(
@@ -37,16 +65,18 @@ plot_opts = dict(
 class Map(param.Parameterized):
     """Instantiate map of CONUS."""
 
+    states = param.DataFrame(precedence=-1)
+    streamgages = param.DataFrame(precedence=-1)
     state_select = param.ListSelector(objects=states_list, default=[], label="Select a State(s)", doc="Press the Ctrl button and left-click to select/deselect multiple states")
     basemap_select = param.Selector(default="OSM", objects=gv.tile_sources.tile_sources.keys(), label="Select a Basemap")
     streamgage_type_filter = param.Selector(objects=STREAMGAGE_SUBSET, default="all", label="Filter Streamgages by Type")
 
     def __init__(self, **params):
         super().__init__(**params)
-        self.streamgages = self._get_streamgage_data(streamgages_path)
+        # self.streamgages = self._get_streamgage_data(streamgages_path)
         # self._filtered_states = gpd.GeoDataFrame()
-        # self._filtered_streamgages = gpd.GeoDataFrame()
-        self.states = self._get_state_data(states_path)
+        # # self._filtered_streamgages = gpd.GeoDataFrame()
+        # self.states = self._get_state_data(states_path)
 
     # @param.depends("state_select", watch=True)
     # def _filter_state_selection(self):
@@ -131,28 +161,28 @@ class Map(param.Parameterized):
         """Merge map components into display."""
         return pn.pane.HoloViews(self.display_basemap() * self.display_states() * self.display_streamgages().options(**plot_opts))
 
-    def _get_streamgage_data(self, _filepath: str) -> gpd.GeoDataFrame:
-        """Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'."""  # noqa: D401
-        # read lat-long or xy data using pandas read_csv
-        read_data = pd.read_csv(_filepath, dtype=dict(site_no=str))
-        # filter
-        filtered_data = read_data[read_data['gagesII_class'] == 'Ref']
-        # now turn into a geodataframe
-        filtered_gdf = gpd.GeoDataFrame(filtered_data,  # noqa: W291
-                                        geometry=gpd.points_from_xy(filtered_data.dec_long_va, filtered_data.dec_lat_va),
-                                        crs="EPSG:4326"  # most data is exported in EPSG:4326
-        )
-        return filtered_gdf
+    # def _get_streamgage_data(self, _filepath: str) -> gpd.GeoDataFrame:
+    #     """Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'."""  # noqa: D401
+    #     # read lat-long or xy data using pandas read_csv
+    #     read_data = pd.read_csv(_filepath, dtype=dict(site_no=str))
+    #     # filter
+    #     filtered_data = read_data[read_data['gagesII_class'] == 'Ref']
+    #     # now turn into a geodataframe
+    #     filtered_gdf = gpd.GeoDataFrame(filtered_data,  # noqa: W291
+    #                                     geometry=gpd.points_from_xy(filtered_data.dec_long_va, filtered_data.dec_lat_va),
+    #                                     crs="EPSG:4326"  # most data is exported in EPSG:4326
+    #     )
+    #     return filtered_gdf
 
-    def _get_state_data(self, _filepath: str) -> gpd.GeoDataFrame:
-        """Read in state geographies."""
-        _states = gpd.read_file(_filepath)
-        _states = _states[~_states['shapeName'].isin(EX_STATES)]
+    # def _get_state_data(self, _filepath: str) -> gpd.GeoDataFrame:
+    #     """Read in state geographies."""
+    #     _states = gpd.read_file(_filepath)
+    #     _states = _states[~_states['shapeName'].isin(EX_STATES)]
 
-        return _states
+    #     return _states
 
 
-map = Map()
+map = Map(states = states_data, streamgages = streamgage_data)
 # pn.Column(pn.Row(map.param, map.view), map.streamgage_type_filter).servable()
 
 model_eval = pn.template.MaterialTemplate(
