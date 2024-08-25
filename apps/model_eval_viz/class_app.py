@@ -130,7 +130,7 @@ class Map(param.Parameterized):
     def _reset_map(self):
         # loop through all params
         for par in self.param:
-            # reset those have inputs
+            # reset params with inputs
             if par not in ["name", "streamgages", "states", "search_streamgage_id_input", "clear_streamgage_id_input", "reset_map"]:
                 setattr(self, par, self.param[par].default)
 
