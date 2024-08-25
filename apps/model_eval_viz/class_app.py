@@ -48,18 +48,18 @@ def _get_streamgage_data(_filepath: str) -> gpd.GeoDataFrame:
 
 streamgage_data = _get_streamgage_data(streamgages_path)
 
-
-
 ### WIDGET OPTIONS  # noqa: E266
 
 
 ### Plot opts  # noqa: E266
-plot_opts = dict(
+map_plot_opts = dict(
     # Dimensions, and UI setup
     # responsive=True,
     width=1200,
     height=600,
-    title='United States Streamgage Map'
+    title='United States Streamgage Map',
+    xaxis=None,
+    yaxis=None
 )
 
 
@@ -75,7 +75,7 @@ class Map(param.Parameterized):
     def __init__(self, **params):
         super().__init__(**params)
 
-    @param.depends("state_select", watch=True)
+    @param.depends("state_select")
     def display_states(self):
         """Display map of states."""
         if self.state_select:
@@ -89,7 +89,7 @@ class Map(param.Parameterized):
         """Display basemap."""
         return gv.tile_sources.tile_sources[self.basemap_select]
 
-    @param.depends("state_select", "streamgage_type_filter", watch=True)
+    @param.depends("state_select", "streamgage_type_filter")
     def display_streamgages(self):
         """Display points."""
         column = self.streamgage_type_filter
@@ -104,14 +104,14 @@ class Map(param.Parameterized):
 
         return gv.Points(streamgages_to_display).options(
             cmap="Plasma",
-            color="camels",
+            color="complete_yrs",
             size=5)
 
 
     @param.depends("display_states", "display_basemap", "display_streamgages")
     def view(self):
         """Merge map components into display."""
-        return pn.pane.HoloViews(self.display_basemap() * self.display_states() * self.display_streamgages().options(**plot_opts))
+        return pn.pane.HoloViews(self.display_basemap() * self.display_states() * self.display_streamgages().options(**map_plot_opts))
 
 
 map = Map(states = states_data, streamgages = streamgage_data)
@@ -121,7 +121,7 @@ model_eval = pn.template.MaterialTemplate(
     sidebar=[
         map.param,
     ],
-    # main=[pn.pane.HoloViews(map.view)],
+    main=map.view,
 )
 # model_eval = pn.template.FastGridTemplate(
 #     title="HyTEST Model Evaluation",
@@ -131,7 +131,5 @@ model_eval = pn.template.MaterialTemplate(
 #     # main=[pn.pane.HoloViews(map.view)],
 # )
 
-model_eval.main.append(map.view)
-model_eval.main.append(pn.pane.DataFrame(streamgage_data))
+# model_eval.main.append(map.view)
 model_eval.servable()
-# print(help(pn.template.FastGridTemplate))
