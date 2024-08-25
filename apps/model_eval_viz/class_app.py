@@ -7,7 +7,7 @@ import param
 
 from config import EX_STATES, STREAMGAGE_SUBSET
 
-pn.extension("bokeh")
+pn.extension()
 hv.extension("bokeh")
 
 ### PATHS  # noqa: E266
@@ -28,9 +28,6 @@ def _get_state_data(_filepath: str) -> tuple[gpd.GeoDataFrame, list]:
     return _states, _states_list
 
 states_data, states_list = _get_state_data(states_path)
-
-# states = gpd.read_file(states_path)
-# states = states[~states['shapeName'].isin(EX_STATES)]
 
 def _get_streamgage_data(_filepath: str) -> gpd.GeoDataFrame:
     """Reads streamflow data from a .csv and filters it based on the 'gagesII_class==ref'."""  # noqa: D401
@@ -53,8 +50,6 @@ streamgage_data = _get_streamgage_data(streamgages_path)
 
 ### Plot opts  # noqa: E266
 map_plot_opts = dict(
-    # Dimensions, and UI setup
-    # responsive=True,
     width=1200,
     height=600,
     title='United States Streamgage Map',
