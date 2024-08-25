@@ -70,6 +70,7 @@ class Map(param.Parameterized):
     streamgage_id_string = param.String(precedence=-1, default="")
     search_streamgage_id_input = param.Event(label="Search IDs")
     clear_streamgage_id_input = param.Event(label="Clear IDs")
+    reset_map = param.Event(label="Reset Map")
 
     def __init__(self, **params):
         super().__init__(**params)
@@ -115,6 +116,7 @@ class Map(param.Parameterized):
         """Merge map components into display."""
         return pn.pane.HoloViews(self.display_basemap() * self.display_states() * self.display_streamgages().options(**map_plot_opts))
     
+    # buttons
     @param.depends("search_streamgage_id_input", watch=True)
     def _update_streamgage_input(self):
         self.streamgage_id_string = self.streamgage_id_input
@@ -122,7 +124,16 @@ class Map(param.Parameterized):
     @param.depends("clear_streamgage_id_input", watch=True)
     def _clear_streamgage_input(self):
         self.streamgage_id_string = ""
-        self.streamgage_id_input = ""      
+        self.streamgage_id_input = ""   
+
+    @param.depends("reset_map", watch=True)
+    def _reset_map(self):
+        # loop through all params
+        for par in self.param:
+            # reset those have inputs
+            if par not in ["name", "streamgages", "states", "search_streamgage_id_input", "clear_streamgage_id_input", "reset_map"]:
+                setattr(self, par, self.param[par].default)
+
 
 map = Map(states = states_data, streamgages = streamgage_data)
 
