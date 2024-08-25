@@ -71,6 +71,10 @@ class Map(param.Parameterized):
     state_select = param.ListSelector(objects=states_list, default=[], label="Select a State(s)", doc="Press the Ctrl button and left-click to select/deselect multiple states")
     basemap_select = param.Selector(default="OSM", objects=gv.tile_sources.tile_sources.keys(), label="Select a Basemap")
     streamgage_type_filter = param.Selector(objects=STREAMGAGE_SUBSET, default="all", label="Filter Streamgages by Type")
+    streamgage_id_input = param.String(doc='Enter a column delimited list e.g. 01022500, 01022502', label='Streamgage Site ID')
+    streamgage_id_string = param.String(precedence=-1, default="")
+    search_streamgage_id_input = param.Event(label="Search IDs")
+    clear_streamgage_id_input = param.Event(label="Clear IDs")
 
     def __init__(self, **params):
         super().__init__(**params)
@@ -89,30 +93,41 @@ class Map(param.Parameterized):
         """Display basemap."""
         return gv.tile_sources.tile_sources[self.basemap_select]
 
-    @param.depends("state_select", "streamgage_type_filter")
+    @param.depends("state_select", "streamgage_type_filter", "streamgage_id_string", watch=True)
     def display_streamgages(self):
         """Display points."""
-        column = self.streamgage_type_filter
-
-        if column != "all":
-            streamgages_to_display = self.streamgages[self.streamgages[column] == 1]
+        # give precedence to streamgage_id_input search
+        if len(self.streamgage_id_string) > 0:
+            id_list = [pid.strip() for pid in self.streamgage_id_string.split(",")]
+            streamgages_to_display = self.streamgages[self.streamgages['site_no'].isin(id_list)]
         else:
-            streamgages_to_display = self.streamgages
+            column = self.streamgage_type_filter
+            if column != "all":
+                streamgages_to_display = self.streamgages[self.streamgages[column] == 1]
+            else:
+                streamgages_to_display = self.streamgages
 
-        if len(self.state_select) > 0: 
-                streamgages_to_display = (streamgages_to_display.clip(self.states[self.states['shapeName'].isin(self.state_select)]))
+            if len(self.state_select) > 0: 
+                    streamgages_to_display = (streamgages_to_display.clip(self.states[self.states['shapeName'].isin(self.state_select)]))
 
         return gv.Points(streamgages_to_display).options(
-            cmap="Plasma",
-            color="complete_yrs",
-            size=5)
-
+            cmap="Plasma", # stand in and will be changed later
+            color="complete_yrs", # stand in and will be changed later
+            size=5) # stand in and will be changed later
 
     @param.depends("display_states", "display_basemap", "display_streamgages")
     def view(self):
         """Merge map components into display."""
         return pn.pane.HoloViews(self.display_basemap() * self.display_states() * self.display_streamgages().options(**map_plot_opts))
+    
+    @param.depends("search_streamgage_id_input", watch=True)
+    def _update_streamgage_input(self):
+        self.streamgage_id_string = self.streamgage_id_input
 
+    @param.depends("clear_streamgage_id_input", watch=True)
+    def _clear_streamgage_input(self):
+        self.streamgage_id_string = ""
+        self.streamgage_id_input = ""      
 
 map = Map(states = states_data, streamgages = streamgage_data)
 
@@ -121,7 +136,7 @@ model_eval = pn.template.MaterialTemplate(
     sidebar=[
         map.param,
     ],
-    main=map.view,
+    main=[map.view],
 )
 # model_eval = pn.template.FastGridTemplate(
 #     title="HyTEST Model Evaluation",
