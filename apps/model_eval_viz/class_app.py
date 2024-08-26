@@ -3,13 +3,15 @@ import geoviews as gv
 import holoviews as hv
 import pandas as pd
 import panel as pn
-import param
 
 from config import EX_STATES
 from map import Map
 
 pn.extension(notifications=True)
 hv.extension("bokeh")
+
+# notifications
+pn.state.notifications.position = 'top-center'
 
 ### PATHS  # noqa: E266
 states_path = "./data/geoBoundaries-USA-ADM1_simplified.geojson"

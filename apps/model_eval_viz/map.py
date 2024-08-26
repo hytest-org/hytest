@@ -75,8 +75,9 @@ class Map(param.Parameterized):
     @param.depends("search_streamgage_id_input", watch=True)
     def _update_streamgage_input(self):
         if re.search('[^0-9, ]',self.streamgage_id_input):
-            pn.state.notifications.warning("Search included invalid characters. Please see the tooltip for correct formatting.", duration=5000)
-        self.streamgage_id_string = self.streamgage_id_input
+            pn.state.notifications.warning("Search included invalid characters. Please see the tooltip (?) for correct formatting.", duration=5000)
+        else:
+            self.streamgage_id_string = self.streamgage_id_input
 
     @param.depends("clear_streamgage_id_input", watch=True)
     def _clear_streamgage_input(self):
