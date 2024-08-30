@@ -2,7 +2,7 @@ sources:
 
   nhm-v1.0-daymet-byHRU-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings"
+    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
@@ -11,7 +11,7 @@ sources:
 
   nhm-v1.0-daymet-byHW-musk-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings"
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
@@ -20,7 +20,7 @@ sources:
 
   nhm-v1.0-daymet-byHW-musk-obs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings"
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
@@ -29,7 +29,7 @@ sources:
 
   nhm-v1.0-daymet-byHW-noroute-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing calibrated parameters with Daymet version 3 forcings"
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
@@ -38,7 +38,7 @@ sources:
 
   nhm-v1.0-daymet-byHW-noroute_obs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings"
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false

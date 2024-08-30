@@ -2,7 +2,7 @@ sources:
 
   nhm-v1.1-gridmet-byHRU-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with gridmet forcings"
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with gridmet forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
@@ -11,7 +11,7 @@ sources:
 
   nhm-v1.1-gridmet-byHW-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with gridmet forcings"
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with gridmet forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
@@ -20,7 +20,7 @@ sources:
 
   nhm-v1.1-gridmet-byHWobs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with gridmet forcings"
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with gridmet forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
