@@ -18,6 +18,7 @@ flow_plot_opts = dict(
 
 class FlowPlot(param.Parameterized):
     """Instantiate flow map """
+    flow_data = param.DataFrame(precedence=-1)
     site_ids = param.ListSelector(default=[], label = "select site ids")
     start_date = param.Date(default =  dt.date.today(), label = "start date")
     end_date = param.Date(default =  dt.date.today(),label = "End Date")
@@ -33,8 +34,6 @@ class FlowPlot(param.Parameterized):
     def view(self):
         return pn.pane.HoloViews(self.plot_streamflow())
 
-
-    
     def getflow(self,site_ids, dates):
         nwis = NWIS()
         dfs = []
@@ -50,7 +49,13 @@ class FlowPlot(param.Parameterized):
         if not dfs:
             return pd.DataFrame()
         return pd.concat(dfs)
-
+    
+    @param.depends("site_ids", "start_date", "end_date")
+    def update_flow_data(self, site_ids: list, start_date: dt.date, end_date: dt.date):
+        dates = (start_date, end_date)
+        self.flow_data = self.getflow(site_ids, dates)
+    
+    @param.depends("flow_data")
     def plot_streamflow(self,flow_data):
         curves = []
         for site_id in flow_data['site_no'].unique():
