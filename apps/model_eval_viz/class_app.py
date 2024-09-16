@@ -6,7 +6,7 @@ import panel as pn
 
 from config import EX_STATES
 from map import Map
-
+from flow import FlowPlot
 pn.extension(notifications=True)
 hv.extension("bokeh")
 
@@ -52,15 +52,16 @@ streamgage_data = _get_streamgage_data(streamgages_path)
 
 
 map = Map(states = states_data, streamgages = streamgage_data)
-
+flow = FlowPlot()
+flow.plot_streamflow()
 map.param.state_select.objects = states_list
 
 model_eval = pn.template.MaterialTemplate(
     title="HyTEST Model Evaluation",
     sidebar=[
-        map.param,
+        map.param, flow.param
     ],
-    main=[map.view],
+    main=[map.view, flow.view],
 )
 # model_eval = pn.template.FastGridTemplate(
 #     title="HyTEST Model Evaluation",
