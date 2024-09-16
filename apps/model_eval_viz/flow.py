@@ -27,12 +27,7 @@ class FlowPlot(param.Parameterized):
     #same logic
     def __init__(self, **params):
         super().__init__(**params)
-
-
-    @param.depends("plot_streamflow")
-
-    def view(self):
-        return pn.pane.HoloViews(self.plot_streamflow())
+        self.update_flow_data()
 
     def getflow(self,site_ids, dates):
         nwis = NWIS()
@@ -50,18 +45,26 @@ class FlowPlot(param.Parameterized):
             return pd.DataFrame()
         return pd.concat(dfs)
     
-    @param.depends("site_ids", "start_date", "end_date")
+    @param.depends("site_ids", "start_date", "end_date", watch = True)
     def update_flow_data(self, site_ids: list, start_date: dt.date, end_date: dt.date):
+        if not self.site_ids or self.start_date or self.end_date:
+            return
         dates = (start_date, end_date)
         self.flow_data = self.getflow(site_ids, dates)
+    
+
     
     @param.depends("flow_data")
     def plot_streamflow(self,flow_data):
         curves = []
-        for site_id in flow_data['site_no'].unique():
-            site_data = flow_data[flow_data['site_no']== site_id]
-            append(curve)
+
+        ########### FIGURE OUT how to integrate the flow ##########################
+        
         return hv.Overlay(curves).opts(
             width=800, height=800, xlabel="Date", ylabel="Streamflow (cfs)", tools=["hover"], legend_position="top_left"
         )
-flow_plot = FlowPlot()
+    
+    @param.depends("plot_streamflow")
+    def view(self):
+        return pn.pane.HoloViews(self.plot_streamflow(), sizing_mode = 'stretch_width')
+
