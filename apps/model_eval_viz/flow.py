@@ -27,7 +27,7 @@ class FlowPlot(param.Parameterized):
     #same logic
     def __init__(self, **params):
         super().__init__(**params)
-        self.update_flow_data()
+        # self.update_flow_data()
 
     def getflow(self,site_ids, dates):
         nwis = NWIS()
@@ -54,10 +54,9 @@ class FlowPlot(param.Parameterized):
     
 
     
-    @param.depends("flow_data")
+    @param.depends("flow_data", watch = True)
     def plot_streamflow(self,flow_data):
         curves = []
-
         ########### FIGURE OUT how to integrate the flow ##########################
         
         return hv.Overlay(curves).opts(
@@ -67,4 +66,11 @@ class FlowPlot(param.Parameterized):
     @param.depends("plot_streamflow")
     def view(self):
         return pn.pane.HoloViews(self.plot_streamflow(), sizing_mode = 'stretch_width')
+    
+flow = FlowPlot()
+flow.param.site_ids.objects = ['01021480','01021470']
+pn.Row(flow.param,
+flow.view
 
+
+).servable()
