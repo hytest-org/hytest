@@ -69,7 +69,8 @@ class FlowPlot(param.Parameterized):
             return
         dates = (start_date, end_date)
         self.flow_data = self.getflow(site_ids, dates)
-    
+        print(f"Updated flow data:{self.flow_data}")
+        
 
     
     @param.depends("flow_data", watch = True)
