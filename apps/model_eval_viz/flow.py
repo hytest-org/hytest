@@ -1,4 +1,6 @@
 import holoviews as hv
+hv.extension("bokeh")
+
 import pandas as pd
 
 from pygeohydro import NWIS
@@ -51,9 +53,17 @@ class FlowPlot(param.Parameterized):
     
     @param.depends("site_ids", "start_date", "end_date", watch = True)
     def update_flow_data(self):
+        start_date = self.start_date
+        end_date = self.end_date
 
+        if isinstance(start_date, dt.date) and not isinstance(start_date, dt.datetime):
+            start_date = dt.datetime.combine(start_date, dt.datetime.min.time())
+        if isinstance(end_date, dt.date) and not isinstance(end_date, dt.datetime):
+            end_date = dt.datetime.combine(end_date, dt.datetime.min.time())
+        dates = (start_date, end_date)
         print(f"selected Ids: {self.site_ids}")
-        print(f"selected dates: {self.start_date,} to {self.end_date}")
+        print(f"seperate dates: {start_date} to {end_date}")
+        print(f"selected dates: {dates}")
 
         if not self.site_ids or self.start_date or self.end_date:
             return
@@ -65,16 +75,24 @@ class FlowPlot(param.Parameterized):
     @param.depends("flow_data", watch = True)
     def plot_streamflow(self):
         if self.flow_data is None:
-            return
+            return hv.Curve([]).opts(**flow_plot_opts)
         if self.flow_data.empty:
-            return 
+            return hv.Curve([]).opts(**flow_plot_opts)
         curves = []
-        ########### FIGURE OUT how to integrate the flow ##########################
         for site_id in self.flow_data['site_no'].unique():
             site_data = self.flow_data[self.flow_data['site_no']== site_id]
-            curve = hv.Curve((site_data['datetime'], site_data['value']), label =f"Site {site_id}")
-            curves.append(curve)
-        return bars
+            if not site_data.empty():
+                site_data = site_data.copy()
+                site_data.index = pd.to_datetime(site_data.index)
+                curve = hv.Curve((site_data.index, 
+                site_data['value']), 
+                label =f"Site {site_id}").opts(**flow_plot_opts)
+                curves.append(curve)
+        if curves:
+            return hv.Overlay(curves).opts(legend_position='right')
+        else:
+            return hv.Curve([]).opts(**flow_plot_opts)
+
     
     @param.depends("plot_streamflow")
     def view(self):
