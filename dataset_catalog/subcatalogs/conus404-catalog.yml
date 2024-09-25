@@ -151,21 +151,40 @@ sources:
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
 
-  conus404-pgw-hourly-onprem:
+  conus404-pgw-hourly-onprem-hw:
     driver: zarr
-    description: "CONUS404 pseudo-global warming (PGW) Hydro Variable subset, hourly values. Available for internal USGS staff while data release is in progress. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This dataset is stored on USGS on-premise Caldera storage and is only accessible through USGS on-premise Hovenweep computing resources."
+    description: "CONUS404 pseudo-global warming (PGW) Hydro Variable subset, hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
-      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw/conus-pgw_hourly.zarr/'
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw/conus-pgw_hourly.zarr'
       consolidated: true      
 
   conus404-pgw-hourly-osn:
     driver: zarr
-    description: "CONUS404 pseudo-global warming (PGW) Hydro Variable subset, hourly values. Available for internal USGS staff while data release is in progress. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    description: "CONUS404 pseudo-global warming (PGW) Hydro Variable subset, hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
     args:
-      urlpath: 's3://hytest-internal/conus404-pgw/conus404-pgw_hourly.zarr'
+      urlpath: 's3://hytest/conus404-pgw/conus404-pgw_hourly.zarr'
       consolidated: true
       storage_options:
-        profile: osn-hytest-internal
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  conus404-daily-diagnostic-onprem-hw:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10). These files were created wrfxtrm model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw/conus404-pgw_xtrm_daily.zarr'
+      consolidated: true  
+
+  conus404-daily-diagnostic-osn:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10). These files were created wrfxtrm model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/conus404-pgw/conus404-pgw_xtrm_daily.zarr'
+      consolidated: true
+      storage_options:
+        anon: true
         requester_pays: false
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
