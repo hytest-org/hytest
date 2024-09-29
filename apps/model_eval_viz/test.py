@@ -1,7 +1,32 @@
+
 import pandas as pd
-streamgages_path = "./data/streamflow_gages_v1_n5390.csv"
-df = pd.read_csv(streamgages_path)
-print("shape df", df.shape)
-print(df.columns)
-filt_df = df.loc[df.swim == 1]
-print("shape filt_df", filt_df.shape)
+import datetime as dt
+from pygeohydro import NWIS
+import nest_asyncio
+nest_asyncio.apply()
+
+
+site_ids = ['01021480']
+start_date = dt.datetime(2020,1,1)
+end_date = dt.datetime(2020,1,10)
+dates = (start_date, end_date)
+def getflow(site_ids, dates):
+        nwis = NWIS()
+        dfs = []
+        for site_id in site_ids:
+            try:
+                data = nwis.getstreanflow(site_id, dates, mmd= True)
+                if data.empty:
+                    continue
+                if data is None:
+                    continue 
+                data['site_no'] = site_id
+                dfs.append(data)
+            except Exception as e:
+                print(f"bug")
+        if not dfs:
+            return pd.DataFrame()
+        return pd.concat(dfs)
+print(f"Dates {dates}")
+flow_data = getflow(site_ids, dates)
+print(flow_data)
