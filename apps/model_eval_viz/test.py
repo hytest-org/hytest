@@ -15,7 +15,7 @@ def getflow(site_ids, dates):
         dfs = []
         for site_id in site_ids:
             try:
-                data = nwis.getstreanflow(site_id, dates, mmd= True)
+                data = nwis.get_streamflow(site_id, dates)
                 if data.empty:
                     continue
                 if data is None:
