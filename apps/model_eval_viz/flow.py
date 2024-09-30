@@ -38,7 +38,8 @@ class FlowPlot(param.Parameterized):
         dfs = []
         for site_id in site_ids:
             try:
-                data = nwis.getflow(site_id, dates)
+                data = nwis.get_streamflow(site_id, dates)
+
                 if data.empty:
                     continue
                 if data is None:
