@@ -25,7 +25,7 @@ class FlowPlot(param.Parameterized):
     """Instantiate flow map """
     flow_data = param.DataFrame(precedence=-1)
     site_ids = param.ListSelector(default=[], label = "select site ids")
-    start_date = param.Date(default =  dt.date.fromisoformat("2020-05-01"),label = "End Date")
+    start_date = param.Date(default =  dt.date.fromisoformat("2020-05-01"),label = "Start Date")
     end_date = param.Date(default =  dt.date.fromisoformat("2020-05-02"),label = "End Date")
 
     #same logic
@@ -55,8 +55,8 @@ class FlowPlot(param.Parameterized):
     
     @param.depends("site_ids", "start_date", "end_date", watch = True)
     def update_flow_data(self):
-        start_date = self.start_date
-        end_date = self.end_date
+        start_date = self.start_date.strftime("%Y-%m-%d")
+        end_date = self.end_date.strftime("%Y-%m-%d")
 
         if isinstance(start_date, dt.date) and not isinstance(start_date, dt.datetime):
             start_date = dt.datetime.combine(start_date, dt.datetime.min.time())
@@ -66,11 +66,12 @@ class FlowPlot(param.Parameterized):
         print(f"selected Ids: {self.site_ids}")
         print(f"seperate dates: {start_date} to {end_date}")
         print(f"selected dates: {dates}")
+        print(type(start_date))
 
         if not self.site_ids or self.start_date or self.end_date:
             return
         dates = (start_date, end_date)
-        self.flow_data = self.getflow(site_ids, dates)
+        self.flow_data = self.get_streamflow(self.site_ids, dates)
         print(f"Updated flow data:{self.flow_data}")
         
 
