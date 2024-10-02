@@ -57,7 +57,7 @@ class FlowPlot(param.Parameterized):
     def update_flow_data(self):
         start_date = self.start_date.strftime("%Y-%m-%d")
         end_date = self.end_date.strftime("%Y-%m-%d")
-
+        nwis = NWIS()
         if isinstance(start_date, dt.date) and not isinstance(start_date, dt.datetime):
             start_date = dt.datetime.combine(start_date, dt.datetime.min.time())
         if isinstance(end_date, dt.date) and not isinstance(end_date, dt.datetime):
@@ -67,11 +67,24 @@ class FlowPlot(param.Parameterized):
         print(f"seperate dates: {start_date} to {end_date}")
         print(f"selected dates: {dates}")
         print(type(start_date))
+        id = self.site_ids[0]
+        print(id)
 
-        if not self.site_ids or self.start_date or self.end_date:
+        if not self.site_ids:
+            print("site_id")  
             return
+        if not self.start_date:
+            print("start date")
+            return
+        if not self.end_date:
+            print("end date")
+            return
+        
+        print(id)
         dates = (start_date, end_date)
-        self.flow_data = self.get_streamflow(self.site_ids, dates)
+        print(type(dates))
+        print(self.site_ids)
+        self.flow_data = nwis.get_streamflow(self.site_ids, dates)
         print(f"Updated flow data:{self.flow_data}")
         
 
