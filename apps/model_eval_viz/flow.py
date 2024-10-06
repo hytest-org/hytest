@@ -39,12 +39,13 @@ class FlowPlot(param.Parameterized):
         for site_id in site_ids:
             try:
                 data = nwis.get_streamflow(site_id, dates)
-
+                print("Data Head: " + data.head())
+                print("Data Column: " + data.columns)
                 if data.empty:
                     continue
                 if data is None:
                     continue 
-                data = site_id
+                data['site_no'] = site_id
                 print(f"IDS{site_id}, {data.columns}")
                 dfs.append(data)
             except Exception as e:
@@ -84,9 +85,10 @@ class FlowPlot(param.Parameterized):
         dates = (start_date, end_date)
         print(type(dates))
         print(self.site_ids)
-        
-        self.flow_data = nwis.get_streamflow(self.site_ids, dates)
-        print(f"Updated flow data:{self.flow_data}")
+        self.flow_data = self.getflow(self.site_ids, dates)
+        print(f"Updated flow data Head:{self.flow_data.head()}")
+        print(f"Updated flow data Columns :{self.flow_data.columns}")
+
         
 
     
@@ -97,8 +99,8 @@ class FlowPlot(param.Parameterized):
         if self.flow_data.empty:
             return hv.Curve([]).opts(**flow_plot_opts)
         curves = []
-        for site_id in self.flow_data.unique():
-            site_data = self.flow_data[self.flow_data==site_id]
+        for site_id in self.flow_data['site_no'].unique():
+            site_data = self.flow_data[self.flow_data['site_no']== site_id]
             if not site_data.empty():
                 site_data = site_data.copy()
                 site_data.index = pd.to_datetime(site_data.index)
