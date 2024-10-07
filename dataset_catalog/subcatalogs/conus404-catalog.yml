@@ -162,7 +162,7 @@ sources:
     driver: zarr
     description: "CONUS404 pseudo-global warming (PGW) Hydro Variable subset, hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9HH85UU). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
     args:
-      urlpath: 's3://hytest/conus404-pgw/conus404-pgw_hourly.zarr'
+      urlpath: 's3://hytest/conus404-pgw/conus-pgw_hourly.zarr'
       consolidated: true
       storage_options:
         anon: true
