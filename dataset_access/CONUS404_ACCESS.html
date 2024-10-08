@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CONUS404 and CONUS404 Bias-Adjusted Data Access &#8212; HyTEST Project</title>
+    <title>CONUS404 Products Data Access &#8212; HyTEST Project</title>
   
   
   
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">CONUS404 and CONUS404 Bias-Adjusted Data Access</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">CONUS404 Products Data Access</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conus404_explore.html">Explore CONUS404 Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
@@ -408,7 +408,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>CONUS404 and CONUS404 Bias-Adjusted Data Access</h1>
+    <h1>CONUS404 Products Data Access</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -420,6 +420,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-data">CONUS404 Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-bias-adjusted-data">CONUS404 Bias-Adjusted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-pgw-data">CONUS404 PGW Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-notebooks">Example Notebooks</a></li>
 </ul>
             </nav>
@@ -432,22 +433,34 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="conus404-and-conus404-bias-adjusted-data-access">
-<h1>CONUS404 and CONUS404 Bias-Adjusted Data Access<a class="headerlink" href="#conus404-and-conus404-bias-adjusted-data-access" title="Link to this heading">#</a></h1>
-<p>This section contains notebooks that demonstrate how to access and perform basic data manipulation for the <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 dataset</a>. The examples can also be applied to the <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias-adjusted dataset</a>.</p>
-<p>In the CONUS404 intake sub-catalog (see <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">here</span></a> for an explainer of our intake data catalog), you will see entries for four CONUS404 datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code>, and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> data, as well as two CONUS404 bias-adjusted datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code>. Each of these datasets is duplicated in up to three different storage locations (as the <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">intake catalog section</span></a> also describes).</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="conus404-products-data-access">
+<h1>CONUS404 Products Data Access<a class="headerlink" href="#conus404-products-data-access" title="Link to this heading">#</a></h1>
+<p>This section contains notebooks that demonstrate how to access and perform basic data manipulation for the <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 dataset</a>. The examples can also be applied to the <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias-adjusted dataset</a> and the <a class="reference external" href="https://doi.org/10.5066/10.5066/P9HH85UU">CONUS404 psuedo global warming (PGW) dataset</a>.</p>
+<p>In the CONUS404 intake sub-catalog (see <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">here</span></a> for an explainer of our intake data catalog), you will see entries for:</p>
+<ul class="simple">
+<li><p>four CONUS404 datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code>, and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> data</p></li>
+<li><p>two CONUS404 bias-adjusted datasets: <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code>, <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code></p></li>
+<li><p>two CONUS404 PGW datasets: <code class="docutils literal notranslate"><span class="pre">conus404-pgw-hourly</span></code> and <code class="docutils literal notranslate"><span class="pre">conus404-pgw-daily-diagnostic</span></code></p></li>
+</ul>
+<p>Each of these datasets is duplicated in up to three different storage locations (as the <a class="reference internal" href="../dataset_catalog/README.html"><span class="std std-doc">intake catalog section</span></a> also describes).</p>
+<p><strong>We recommend that you regularly check our <a class="reference internal" href="CONUS404_CHANGELOG.html"><span class="doc std std-doc">CONUS404 changelog</span></a> to see any updates that have been made to the zarr stores.</strong> We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.</p>
 <section id="conus404-data">
 <h2>CONUS404 Data<a class="headerlink" href="#conus404-data" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data is a subset of the <code class="docutils literal notranslate"><span class="pre">wrfout</span></code> model output. For instantaneous variables, the data value at each time step represents the instantaneous value at the timestep. For accumulated variables, the data value represents the accumulated value up to the timestep (see the <code class="docutils literal notranslate"><span class="pre">integration_length</span></code> attribute attached to each accumulated variable for more details on the accumulation period).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> data is a subset from the <code class="docutils literal notranslate"><span class="pre">wrfxtrm</span></code> model output. These data represent the results of the past 24 hours, with the timestamp corresponding to the end time of the 24 hour period. Because the CONUS404 started at 1979-10-01_00:00:00, the first timestep (1979-10-01_00:00:00) for each variable is all zeros.</p>
-<p>Both of these datasets are described in the official <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 data release</a>.</p>
-<p>We also have <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> and <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code> files, which are just resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data. To create the <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> zarr, instantaneous variables are aggregated from 00:00:00 UTC to 11:00:00 UTC, while accumulated variables are aggregated from 01:00:00 UTC to 12:00:00 UTC of the next day.</p>
+<p>CONUS404 is a unique, high-resolution hydro-climate dataset appropriate for forcing hydrological models and conducting meteorological analysis over the contiguous United States. Users should review the official <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 data release</a> to understand the dataset before working with the zarr stores provided in our intake catalog.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data is a subset of the wrfout model output and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> is a subset from the wrfxtrm model output, both of which are described in the official data release. We also provide <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> and <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code> files, which are just resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data.</p>
 <p><strong>Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.</strong> These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable.</p>
 <p><strong>We recommend that you regularly check our <a class="reference internal" href="CONUS404_CHANGELOG.html"><span class="doc std std-doc">CONUS404 changelog</span></a> to see any updates that have been made to the zarr stores.</strong> We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.</p>
 </section>
 <section id="conus404-bias-adjusted-data">
 <h2>CONUS404 Bias-Adjusted Data<a class="headerlink" href="#conus404-bias-adjusted-data" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data contains bias-adjusted temperature and precipiation data from the CONUS404 dataset, which is described in the official <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias adjusted data release</a>. The <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code> files are resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data contains bias-adjusted temperature and precipiation data from the CONUS404 dataset, which is described in the official <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias adjusted data release</a>. Users should review the official data release to understand the dataset before working with the zarr stores provided in our intake catalog.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code> files are resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data.</p>
+</section>
+<section id="conus404-pgw-data">
+<h2>CONUS404 PGW Data<a class="headerlink" href="#conus404-pgw-data" title="Link to this heading">#</a></h2>
+<p>The CONUS404 pseudo-global warming (PGW) dataset is a future-perturbed hydro-climate dataset, created as a follow on to the CONUS404 dataset. The CONUS404 PGW dataset represents the weather from 1980 to 2021 under a warmer and wetter climate environment and provides an opportunity to explore the event-based climate change impacts when used with the CONUS404 historical data. Users should review the official <a class="reference external" href="https://doi.org/10.5066/10.5066/P9HH85UU">CONUS404 PGW data release</a> to understand the dataset before working with the zarr stores provided in our intake catalog.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-pgw-hourly</span></code> data is a subset of the wrfout model output and <code class="docutils literal notranslate"><span class="pre">conus404-pgw-daily-diagnostic</span></code> is a subset from the wrfxtrm model output, both of which are described in the official data release.</p>
+<p><strong>Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.</strong> These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable.</p>
 </section>
 <section id="example-notebooks">
 <h2>Example Notebooks<a class="headerlink" href="#example-notebooks" title="Link to this heading">#</a></h2>
@@ -533,6 +546,7 @@ domain of a specified variable at a specfic time step, and loads and plots a tim
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-data">CONUS404 Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-bias-adjusted-data">CONUS404 Bias-Adjusted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conus404-pgw-data">CONUS404 PGW Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-notebooks">Example Notebooks</a></li>
 </ul>
   </nav></div>

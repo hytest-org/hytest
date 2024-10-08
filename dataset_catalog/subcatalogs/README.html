@@ -62,7 +62,7 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="CONUS404 and CONUS404 Bias-Adjusted Data Access" href="../../dataset_access/CONUS404_ACCESS.html" />
+    <link rel="next" title="CONUS404 Products Data Access" href="../../dataset_access/CONUS404_ACCESS.html" />
     <link rel="prev" title="HyTEST Data Catalog (Intake)" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -216,7 +216,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">HyTEST Intake Sub-Catalogs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataset_access/CONUS404_ACCESS.html">CONUS404 and CONUS404 Bias-Adjusted Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dataset_access/conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
@@ -465,22 +465,26 @@ document.write(`
 </pre></div>
 </div>
 <p>producing a list of all the CONUS404 dataset versions:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;conus404-hourly-onprem&#39;</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;conus404-hourly-onprem-hw&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-hourly-cloud&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-hourly-osn&#39;</span><span class="p">,</span>
- <span class="s1">&#39;conus404-daily-diagnostic-onprem&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-daily-diagnostic-onprem-hw&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-daily-diagnostic-cloud&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-daily-diagnostic-osn&#39;</span><span class="p">,</span>
- <span class="s1">&#39;conus404-daily-onprem&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-daily-onprem-hw&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-daily-cloud&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-daily-osn&#39;</span><span class="p">,</span>
- <span class="s1">&#39;conus404-monthly-onprem&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-monthly-onprem-hw&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-monthly-cloud&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-monthly-osn&#39;</span><span class="p">,</span>
- <span class="s1">&#39;conus404-hourly-ba-onprem&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-hourly-ba-onprem-hw&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-hourly-ba-osn&#39;</span><span class="p">,</span>
  <span class="s1">&#39;conus404-daily-ba-onprem&#39;</span><span class="p">,</span>
- <span class="s1">&#39;conus404-daily-ba-osn&#39;</span><span class="p">]</span>
+ <span class="s1">&#39;conus404-daily-ba-osn&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-pgw-hourly-onprem-hw&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-pgw-hourly-osn&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-daily-diagnostic-onprem-hw&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;conus404-daily-diagnostic-osn&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The characteristics of indivdual datasets can be explored:</p>
@@ -494,14 +498,14 @@ document.write(`
 <span class="w">    </span><span class="nt">storage_options</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">anon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">      </span><span class="nt">client_kwargs</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">endpoint_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://renc.osn.xsede.org</span>
+<span class="w">        </span><span class="nt">endpoint_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://usgs.osn.mghpcc.org/</span>
 <span class="w">      </span><span class="nt">requester_pays</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="nt">urlpath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3://rsignellbucket2/hytest/conus404/conus404_hourly_202302.zarr</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;CONUS404</span><span class="nv"> </span><span class="s">Hydro</span><span class="nv"> </span><span class="s">Variable</span><span class="nv"> </span><span class="s">subset,</span><span class="nv"> </span><span class="s">40</span><span class="nv"> </span><span class="s">years</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">hourly</span><span class="nv"> </span><span class="s">values.</span><span class="nv"> </span><span class="s">These</span><span class="nv"> </span><span class="s">files</span>
-<span class="w">    </span><span class="s">were</span><span class="nv"> </span><span class="s">created</span><span class="nv"> </span><span class="s">wrfout</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">files</span><span class="nv"> </span><span class="s">(see</span><span class="nv"> </span><span class="s">ScienceBase</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">release</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">more</span>
-<span class="w">    </span><span class="s">details:</span><span class="nv"> </span><span class="s">https://www.sciencebase.gov/catalog/item/6372cd09d34ed907bf6c6ab1).</span><span class="nv"> </span><span class="s">This</span>
-<span class="w">    </span><span class="s">dataset</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stored</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">AWS</span><span class="nv"> </span><span class="s">S3</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">storage</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">requester-pays</span><span class="nv"> </span><span class="s">bucket.</span><span class="nv"> </span><span class="s">You</span><span class="nv"> </span><span class="s">can</span>
-<span class="w">    </span><span class="s">work</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">free</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">environment</span><span class="nv"> </span><span class="s">(there</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">egress</span><span class="nv"> </span><span class="s">fees).&#39;</span>
+<span class="w">    </span><span class="nt">urlpath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3://hytest/conus404/conus404_hourly.zarr</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CONUS404</span><span class="nv"> </span><span class="s">Hydro</span><span class="nv"> </span><span class="s">Variable</span><span class="nv"> </span><span class="s">subset,</span><span class="nv"> </span><span class="s">43</span><span class="nv"> </span><span class="s">years</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">hourly</span><span class="nv"> </span><span class="s">values.</span><span class="nv"> </span><span class="s">These</span><span class="nv"> </span><span class="s">files\</span>
+<span class="w">    </span><span class="s">\ were</span><span class="nv"> </span><span class="s">created</span><span class="nv"> </span><span class="s">wrfout</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">files</span><span class="nv"> </span><span class="s">(see</span><span class="nv"> </span><span class="s">ScienceBase</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">release</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">more\</span>
+<span class="w">    </span><span class="s">\ details:</span><span class="nv"> </span><span class="s">https://doi.org/10.5066/P9PHPK4F).</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stored</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">HyTEST</span><span class="se">\u2019</span><span class="s">\</span>
+<span class="w">    </span><span class="s">s</span><span class="nv"> </span><span class="s">Open</span><span class="nv"> </span><span class="s">Storage</span><span class="nv"> </span><span class="s">Network</span><span class="nv"> </span><span class="s">(OSN)</span><span class="nv"> </span><span class="s">pod.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">S3</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">is\</span>
+<span class="w">    </span><span class="s">\ free</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">work</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">computing</span><span class="nv"> </span><span class="s">environment</span><span class="nv"> </span><span class="s">(there</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">egress</span><span class="nv"> </span><span class="s">fees).&quot;</span>
 <span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">intake_xarray.xzarr.ZarrSource</span>
 <span class="w">  </span><span class="nt">metadata</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">catalog_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs</span>
@@ -553,7 +557,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">CONUS404 and CONUS404 Bias-Adjusted Data Access</p>
+        <p class="prev-next-title">CONUS404 Products Data Access</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
