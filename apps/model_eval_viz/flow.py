@@ -25,8 +25,8 @@ class FlowPlot(param.Parameterized):
     """Instantiate flow map """
     flow_data = param.DataFrame(precedence=-1)
     site_ids = param.ListSelector(default=[], label = "select site ids")
-    start_date = param.Date(default =  dt.date.fromisoformat("2020-05-01"),label = "Start Date")
-    end_date = param.Date(default =  dt.date.fromisoformat("2020-05-02"),label = "End Date")
+    start_date = param.Date(default =  dt.datetime(2020,1,1) ,label = "Start Date")
+    end_date = param.Date(default =  dt.datetime(2020,1,10),label = "End Date")
 
     #same logic
     def __init__(self, **params):
@@ -49,7 +49,7 @@ class FlowPlot(param.Parameterized):
                 print(f"IDS{site_id}, {data.columns}")
                 dfs.append(data)
             except Exception as e:
-                print(f"bug")
+                print(f"exception")
         if not dfs:
             return pd.DataFrame()
         return pd.concat(dfs)
@@ -88,6 +88,7 @@ class FlowPlot(param.Parameterized):
         self.flow_data = self.getflow(self.site_ids, dates)
         print(f"Updated flow data Head:{self.flow_data.head()}")
         print(f"Updated flow data Columns :{self.flow_data.columns}")
+        print(self.flow_data)
 
         
 
