@@ -63,8 +63,8 @@ producing a list of all the CONUS404 dataset versions:
  'conus404-daily-ba-osn',
  'conus404-pgw-hourly-onprem-hw',
  'conus404-pgw-hourly-osn',
- 'conus404-daily-diagnostic-onprem-hw',
- 'conus404-daily-diagnostic-osn']
+ 'conus404-pgw-daily-diagnostic-onprem-hw',
+ 'conus404-pgw-daily-diagnostic-osn']
 ```
 
 The characteristics of indivdual datasets can be explored:
