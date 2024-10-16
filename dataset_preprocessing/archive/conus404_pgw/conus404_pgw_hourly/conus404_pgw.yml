@@ -1,0 +1,27 @@
+num_chunks_per_job: 1
+wrf_dir: /caldera/hovenweep/projects/usgs/water/impd/hytest/wrfconus404-pgw
+wrf_file_pat: '{wrf_dir}/{wy_dir}/wrf2d_d01_{fdate.strftime("%Y-%m-%d_%H:%M:%S")}'
+target_dir: /caldera/hovenweep/projects/usgs/water/impd/pnorton/target_tmp
+target_pat: target_
+temp_dir: /caldera/hovenweep/projects/usgs/water/impd/pnorton/rechunk_tmp
+constants_file: wrf_constants_conus404_final.nc
+metadata_file: wrfout_metadata.csv
+vars_file: 2022-08-15_wrf2d_var_list.csv
+dst_zarr: /caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw/conus-pgw_hourly.zarr
+base_date: '1979-10-01 00:00:00'
+end_date: '2022-10-01'
+num_days: 6
+chunk_plan:
+  time: 144
+  x: 175
+  y: 175
+  x_stag: 175
+  y_stag: 175
+queue: cpu
+account: mappnat
+interface: ib0
+cores_per_job: 2
+processes: 2
+memory_per_job: 30
+max_jobs: 16
+walltime: '00:30:00'
