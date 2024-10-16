@@ -1,1 +1,2 @@
-The contents of this folder contain demos of building panel apps.
+The contents of this folder contain demos of building panel apps. We currently have one app demo:
+- [selector_tabulator](./demos/selector_tabulator/): This is a demo that shows how to use the python panel package with dataframes to display data, apply custom formatters to how fields are formatted, and cache data.
