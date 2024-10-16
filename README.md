@@ -8,5 +8,5 @@ If you do need to navigate this repository, the contents are organized as follow
 - [dataset_access](./dataset_access): demonstrations of how to access and explore some key datasets
 - [dataset_preprocessing](./dataset_preprocessing): code used to create, restructure, or optimize data formats as preparation for ingestion into scientific workflows
 - [evaluation](./evaluation): code used to evaluate model results compared to observation data and benchmark it against reference model results
-- [apps](./apps): scripts to develop applications that facilitate the exploration of key datasets
+- [apps](./apps): demos of panel app codes that facilitate the exploration of datasets
 - [doc](./doc): documentation related to the management of this repository, including information such as a license and how to contribute
