@@ -31,8 +31,7 @@ class FlowPlot(param.Parameterized):
     #same logic
     def __init__(self, **params):
         super().__init__(**params)
-        # self.update_flow_data()
-    #Want a single id at a time. 
+
     #Destroy for loop just do a single ID
     def getflow(self, site_ids, dates):
         nwis = NWIS()
@@ -41,36 +40,12 @@ class FlowPlot(param.Parameterized):
     
     @param.depends("site_ids", "start_date", "end_date", watch = True)
     def update_flow_data(self):
-        print("=============start=============")
         start_date = self.start_date
         end_date = self.end_date
-        # nwis = NWIS()
         dates = (start_date, end_date)
-        print(f"selected Ids: {self.site_ids}")
-        print(f"seperate dates: {start_date} to {end_date}")
-        print(f"selected dates: {dates}")
-        print(type(start_date))
         id = self.site_ids[0]
-        print(id)
-
-        if not self.site_ids:
-            print("site_id")  
-            return
-        if not self.start_date:
-            print("start date")
-            return
-        if not self.end_date:
-            print("end date")
-            return
-        
-        print("current id: "+ id)
         dates = (start_date, end_date)
-        print(type(dates))
-        print(self.site_ids)
         self.flow_data = self.getflow(id, dates)
-        print(type(self.flow_data))
-        print(self.flow_data)
-        print("===========end===============")
 
     
     @param.depends("flow_data", watch = True)
@@ -89,8 +64,3 @@ class FlowPlot(param.Parameterized):
     def view(self):
         return pn.pane.HoloViews(self.plot_streamflow(), sizing_mode = 'stretch_width')
     
-flow = FlowPlot()
-flow.param.site_ids.objects = ['01021480','01021470']
-pn.Row(flow.param,
-flow.view
-).servable()
