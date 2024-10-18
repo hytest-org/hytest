@@ -32,37 +32,19 @@ class FlowPlot(param.Parameterized):
     def __init__(self, **params):
         super().__init__(**params)
         # self.update_flow_data()
-
-    def getflow(self,site_ids, dates):
+    #Want a single id at a time. 
+    #Destroy for loop just do a single ID
+    def getflow(self, site_ids, dates):
         nwis = NWIS()
-        dfs = []
-        for site_id in site_ids:
-            try:
-                data = nwis.get_streamflow(site_id, dates)
-                print("Data Head: " + data.head())
-                print("Data Column: " + data.columns)
-                if data.empty:
-                    continue
-                if data is None:
-                    continue 
-                data['site_no'] = site_id
-                print(f"IDS{site_id}, {data.columns}")
-                dfs.append(data)
-            except Exception as e:
-                print(f"exception")
-        if not dfs:
-            return pd.DataFrame()
-        return pd.concat(dfs)
+        data = nwis.get_streamflow(site_ids, dates)
+        return data
     
     @param.depends("site_ids", "start_date", "end_date", watch = True)
     def update_flow_data(self):
-        start_date = self.start_date.strftime("%Y-%m-%d")
-        end_date = self.end_date.strftime("%Y-%m-%d")
-        nwis = NWIS()
-        if isinstance(start_date, dt.date) and not isinstance(start_date, dt.datetime):
-            start_date = dt.datetime.combine(start_date, dt.datetime.min.time())
-        if isinstance(end_date, dt.date) and not isinstance(end_date, dt.datetime):
-            end_date = dt.datetime.combine(end_date, dt.datetime.min.time())
+        print("=============start=============")
+        start_date = self.start_date
+        end_date = self.end_date
+        # nwis = NWIS()
         dates = (start_date, end_date)
         print(f"selected Ids: {self.site_ids}")
         print(f"seperate dates: {start_date} to {end_date}")
@@ -81,40 +63,28 @@ class FlowPlot(param.Parameterized):
             print("end date")
             return
         
-        print(id)
+        print("current id: "+ id)
         dates = (start_date, end_date)
         print(type(dates))
         print(self.site_ids)
-        self.flow_data = self.getflow(self.site_ids, dates)
-        print(f"Updated flow data Head:{self.flow_data.head()}")
-        print(f"Updated flow data Columns :{self.flow_data.columns}")
+        self.flow_data = self.getflow(id, dates)
+        print(type(self.flow_data))
         print(self.flow_data)
-
-        
+        print("===========end===============")
 
     
     @param.depends("flow_data", watch = True)
     def plot_streamflow(self):
-        if self.flow_data is None:
-            return hv.Curve([]).opts(**flow_plot_opts)
-        if self.flow_data.empty:
-            return hv.Curve([]).opts(**flow_plot_opts)
-        curves = []
-        for site_id in self.flow_data['site_no'].unique():
-            site_data = self.flow_data[self.flow_data['site_no']== site_id]
-            if not site_data.empty():
-                site_data = site_data.copy()
-                site_data.index = pd.to_datetime(site_data.index)
-                curve = hv.Curve((site_data.index, 
-                site_data['value']), 
-                label =f"Site {site_id}").opts(**flow_plot_opts)
-                curves.append(curve)
-        if curves:
-            return hv.Overlay(curves).opts(legend_position='right')
-        else:
+        if self.flow_data is None or self.flow_data.empty:
             return hv.Curve([]).opts(**flow_plot_opts)
 
-    
+        curves = []
+        for column in self.flow_data.columns:
+            curve = hv.Curve(self.flow_data[column]).opts(title=f"Streamflow for {column}", xlabel='Date', ylabel='Flow Value')
+            curves.append(curve)
+
+        return hv.Overlay(curves).opts(legend_position='right')
+
     @param.depends("plot_streamflow")
     def view(self):
         return pn.pane.HoloViews(self.plot_streamflow(), sizing_mode = 'stretch_width')
@@ -123,6 +93,4 @@ flow = FlowPlot()
 flow.param.site_ids.objects = ['01021480','01021470']
 pn.Row(flow.param,
 flow.view
-
-
 ).servable()
