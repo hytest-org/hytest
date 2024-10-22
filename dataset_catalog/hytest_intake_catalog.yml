@@ -5,7 +5,13 @@ sources:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-catalog.yml'
     description: 'Catalog for CONUS404 datasets'
     driver: intake.catalog.local.YAMLFileCatalog
-    
+
+  benchmarks-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/benchmarks-catalog.yml'
+    description: 'Catalog for model benchmarking datasets'
+    driver: intake.catalog.local.YAMLFileCatalog
+        
   conus404-drb-eval-tutorial-catalog:
     args:
       path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/conus404-drb-eval-tutorial-catalog.yml'
