@@ -45,17 +45,27 @@ def _get_streamgage_data(_filepath: str) -> gpd.GeoDataFrame:
                                     crs="EPSG:4326"  # most data is exported in EPSG:4326
     )
     return filtered_gdf
-
 streamgage_data = _get_streamgage_data(streamgages_path)
+map = Map(states = states_data, streamgages = streamgage_data)
+flow = FlowPlot()
+# def show_flow_plot(event):
+#     x, y = map.stream.x, map.stream.y
+#     print(x,y)
+#     if not(pd.isna(x) or pd.isna(y)):
+#         nearest_point = streamgage_data.geometry.distance(gpd.points_from_xy([x],[y])).idxmin()
+#         site_id = streamgage_data.loc(nearest_point,['site_no'])
+#         flow.site_id = site_id
+#         print(x,y)
+# def show_flow_plot(x,y):
+#     print(x,y)
+#     return pn.pane.Str('Click at %0.3f, %0.3f' % (x, y), width=200)
 
 ### WIDGET OPTIONS  # noqa: E266
 
-
-map = Map(states = states_data, streamgages = streamgage_data)
-flow = FlowPlot()
-flow.plot_streamflow()
+# tap_map = hv.DynamicMap(show_flow_plot, streams=[map.stream])
+# flow = FlowPlot()
+# flow.plot_streamflow()
 map.param.state_select.objects = states_list
-
 model_eval = pn.template.MaterialTemplate(
     title="HyTEST Model Evaluation",
     sidebar=[
@@ -63,6 +73,8 @@ model_eval = pn.template.MaterialTemplate(
     ],
     main=[map.view, flow.view],
 )
+
+
 # model_eval = pn.template.FastGridTemplate(
 #     title="HyTEST Model Evaluation",
 #     sidebar=[
