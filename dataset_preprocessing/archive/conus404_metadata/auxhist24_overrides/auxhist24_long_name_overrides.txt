@@ -1,3 +1,0 @@
-varname	long_name
-PREC_ACC_NC	Accumulated grid scale precipitation
-Times	Model time in string format (YYYY-MM-DD_hh:mm:ss)

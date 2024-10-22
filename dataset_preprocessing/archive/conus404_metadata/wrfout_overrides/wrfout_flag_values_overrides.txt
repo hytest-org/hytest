@@ -1,9 +1,0 @@
-varname	flag_values
-ISLTYP	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
-IVGTYP	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
-LAKEMASK	0.0, 1.0
-LANDMASK	0.0, 1.0
-LU_INDEX	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
-SAVE_TOPO_FROM_REAL	0, 1
-THIS_IS_AN_IDEAL_RUN	0, 1
-XLAND	1, 2
