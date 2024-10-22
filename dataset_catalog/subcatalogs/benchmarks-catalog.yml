@@ -1,0 +1,6 @@
+sources:
+  streamflow-benchmarks-catalog:
+    args:
+      path: 'https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/subcatalogs/streamflow-benchmarks-catalog.yml'
+    description: 'Catalog for streamflow model benchmarking datasets'
+    driver: intake.catalog.local.YAMLFileCatalog

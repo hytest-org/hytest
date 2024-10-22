@@ -1,0 +1,67 @@
+sources:
+
+  nhmv1-standardsuite-osn:
+    driver: csv
+    description: "Daily streamflow performance benchmark defined by the standard statistical suite (v1.0) for the National Hydrologic Model application of the Precipitation-Runoff Modeling System (v1 byObs Muskingum) at benchmark streamflow locations in the conterminous United States (ver 3.0, March 2023). See ScienceBase data release for more details: https://doi.org/10.5066/P9DKA9KQ. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarks/streamflow/nhmv1/standard_suite_v1_nhmv1_V2.csv'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhmv1-standardsuite-KGE-uncertainty-osn:
+    driver: csv
+    description: "Daily streamflow performance benchmark defined by the standard statistical suite (v1.0) for the National Hydrologic Model application of the Precipitation-Runoff Modeling System (v1 byObs Muskingum) at benchmark streamflow locations in the conterminous United States (ver 3.0, March 2023) - KGE Uncertainty. See ScienceBase data release for more details: https://doi.org/10.5066/P9DKA9KQ. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarks/streamflow/nhmv1/KGE_gumbootStats_nhmv1.csv'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhmv1-dscore-osn:
+    driver: csv
+    description: "Daily streamflow performance benchmark defined by D-score (v0.1) for the National Hydrologic Model application of the Precipitation-Runoff Modeling System (v1 byObs Muskingum) at benchmark streamflow locations. See ScienceBase data release for more details: https://doi.org/10.5066/P9PZLHYZ. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarks/streamflow/nhmv1/streamflow_nhm_v1_byObs_musk-dscore_v0.1-benchmark_v1.csv'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nwm2d1-standardsuite-osn:
+    driver: csv
+    description: "Daily streamflow performance benchmark defined by the standard statistical suite (v1.0) for the National Water Model Retrospective (v2.1) at benchmark streamflow locations for the conterminous United States (ver 3.0, March 2023). See ScienceBase data release for more details: https://doi.org/10.5066/P9QT1KV7. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarks/streamflow/nwmv2d1/standard_suite_v1_nwmv2d1_V2.csv'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nwm2d1-standardsuite-KGE-uncertainty-osn:
+    driver: csv
+    description: "Daily streamflow performance benchmark defined by the standard statistical suite (v1.0) for the National Water Model Retrospective (v2.1) at benchmark streamflow locations for the conterminous United States (ver 3.0, March 2023) - KGE Uncertainty. See ScienceBase data release for more details: https://doi.org/10.5066/P9QT1KV7. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarks/streamflow/nwmv2d1/KGE_gumbootStats_nwmv21.csv'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nwm2d1-dscore-osn:
+    driver: csv
+    description: "Daily streamflow performance benchmark defined by D-score (v0.1) for the National Water Model Retrospective (v2.1) at benchmark streamflow locations. See ScienceBase data release for more details: https://doi.org/10.5066/P9MJDNRL. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarks/streamflow/nwmv2d1/streamflow_nwm_v2.1-dscore_v0.1-benchmark_v1.csv'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
