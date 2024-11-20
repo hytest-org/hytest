@@ -1,2 +1,2 @@
-The contents of this folder contain notebooks that contain code used to build apps used by the HyTEST project. Currently, we only have one example app, but additional apps may be added in the future. Descriptions of the what each of the current notebooks demonstrate are provided below:
-- `CONUS404_Panel_App.ipynb`: builds a panel app that visualizes a map of the CONUS404 daily dataset with a dropdown picker to select the data variable, time step, and basemap
+The contents of this folder contain demos of building panel apps. We currently have one app demo:
+- [selector_tabulator](./demos/selector_tabulator/): This is a demo that shows how to use the python panel package with dataframes to display data, apply custom formatters to how fields are formatted, and cache data.

@@ -1,2 +1,0 @@
-varname	scale_factor
-I_RAINNC	100
