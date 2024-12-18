@@ -143,9 +143,9 @@ For storage operations, the S3 API needs the web address of the access point, or
 fs_osn = fsspec.filesystem(
     's3',
     anon=True,   # Does not require credentials
-    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
+    client_kwargs={'endpoint_url': 'https://usgs.osn.mghpcc.org'}
 )
-fs_osn.ls('s3://usgs-scratch')
+fs_osn.ls('s3://hytest')
 ```
 
 ## Credentialed Access
@@ -155,10 +155,10 @@ Permissions are set by the owners of that data, and the rules governing your abi
 
 Profile credentials are usually stored outside of the Python program, typically in a file in your `HOME` folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the `aws` [command line interface](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html).
 
-To create a new AWS profile, which we will name `osn-renci`:
+To create a new AWS profile, which we will name `osn-hytest`:
 
 ```sh
-> aws configure --profile osn-renci
+> aws configure --profile osn-hytest
 AWS Access Key ID :
 AWS Secret Access Key :
 Default region name : us-east-1
@@ -171,13 +171,13 @@ The default region for the OSN pod should be "us-east-1" because this is the reg
 Note that this configuration is specific to the OSN 'pod' storage.
 Your profile name and region may be different if you are setting up your credentials for an AWS S3 object storage bucket.
 
-We can now set up a virtual filesystem to access the OSN pod with the credentials stored in the `osn-renci` profile you just created. This credentialed access will grant you additional permissions that you did not have with the anonymous access we used above.
+We can now set up a virtual filesystem to access the OSN pod with the credentials stored in the `osn-hytest` profile you just created. This credentialed access will grant you additional permissions that you did not have with the anonymous access we used above.
 
 ```python
 fs_osn = fsspec.filesystem(
     's3',
-    profile='osn-renci',  ## This is the profile name you configured above.
-    client_kwargs={'endpoint_url': 'https://renc.osn.xsede.org'}
+    profile='osn-hytest',  ## This is the profile name you configured above.
+    client_kwargs={'endpoint_url': 'https://usgs.osn.mghpcc.org'}
 )
 ```
 
@@ -214,7 +214,7 @@ From within your Python program, writes to object storage can be achieved a few 
 If you have a file saved on your local file system, and you would like to upload it directly to object storage, you can use the `upload` method.
 
 ```python
-fs_osn.upload('outfile.nc', 'usgs-scratch/testing/outfile.nc')
+fs_osn.upload('outfile.nc', 'hytest-scratch/testing/outfile.nc')
 ```
 
 ### Writing a Pandas Dataframe to a CSV File on S3
@@ -222,7 +222,7 @@ fs_osn.upload('outfile.nc', 'usgs-scratch/testing/outfile.nc')
 If you would like to write a pandas dataframe object directly to a csv file on object storage, you can do something like:
 
 ```python
-with fs_osn.open("usgs-scratch/testing/outfile.csv", mode='wt') as f:
+with fs_osn.open("hytest-scratch/testing/outfile.csv", mode='wt') as f:
     pandas_df.to_csv(f)
 ```
 
@@ -232,7 +232,7 @@ For zarr data, the most convenient way to write data to object storage is to use
 the object storage location:
 
 ```python
-fname='s3://usgs-scratch/testing/outfile.zarr'
+fname='s3://hytest-scratch/testing/outfile.zarr'
 outfile=fs_osn.get_mapper(fname)
 xarray_dataset.to_zarr(outfile, mode='w', consolidated=True)
 ```

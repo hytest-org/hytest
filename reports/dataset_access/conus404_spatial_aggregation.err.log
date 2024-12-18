@@ -1,28 +1,27 @@
 Traceback (most recent call last):
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1314, in execute
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/conda/global/16102bfe-1721228674-152-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "/home/conda/global/16102bfe-1731002172-4-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-merged_geo.hvplot(c=var, geo=True, cmap='viridis_r', frame_width=600, tiles='StamenTerrain', 
-               title='CONUS404', alpha=0.7)
+ds = cat['conus404-daily-osn'].to_dask()
 ------------------
 
 
-[0;31mValueError[0m[0;31m:[0m StamenTerrain tiles not recognized. tiles must be either True, a xyzservices.TileProvider instance, a HoloViews or Geoviews basemap string (one of CartoDark, CartoEco, CartoLight, CartoMidnight, EsriAntarcticImagery, EsriArcticImagery, EsriArcticOceanBase, EsriArcticOceanReference, EsriDelormeWorldBaseMap, EsriImagery, EsriNatGeo, EsriOceanBase, EsriOceanReference, EsriReference, EsriTerrain, EsriUSATopo, EsriWorldBoundariesAndPlaces, EsriWorldBoundariesAndPlacesAlternate, EsriWorldDarkGrayBase, EsriWorldDarkGrayReference, EsriWorldHillshade, EsriWorldHillshadeDark, EsriWorldLightGrayBase, EsriWorldLightGrayReference, EsriWorldNavigationCharts, EsriWorldPhysical, EsriWorldShadedRelief, EsriWorldStreetMap, EsriWorldTopo, EsriWorldTransportation, OSM, OpenTopoMap), a HoloViews Tiles instance, a Geoviews WMTS instance.
+[0;31mProfileNotFound[0m[0;31m:[0m The config profile (default) could not be found
 
 
