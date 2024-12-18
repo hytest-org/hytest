@@ -1,6 +1,6 @@
 # CONUS404 Products Data Access
 
-*Before working with the CONUS404 data, you may want to consider reviewing [NCAR's Climate Primer for Water Availability Assessments](https://ncar.github.io/climate-primer-water/index.html) to learn more about how to apply this dataset in studies focues on water availability.*
+*Before working with the CONUS404 data, you may want to consider reviewing [NCAR's Climate Primer for Water Availability Assessments](https://ncar.github.io/climate-primer-water/index.html) to learn more about how to apply this dataset in studies focused on water availability.*
 
 This section of our JupyterBook contains notebooks that demonstrate how to access and perform basic data manipulation for the [CONUS404 dataset](https://doi.org/10.5066/P9PHPK4F). The examples can also be applied to the [CONUS404 bias-adjusted dataset](https://doi.org/10.5066/P9JE61P7) and the [CONUS404 psuedo global warming (PGW) dataset](https://doi.org/10.5066/P9HH85UU). 
 
