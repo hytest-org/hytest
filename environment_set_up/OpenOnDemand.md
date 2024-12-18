@@ -26,4 +26,4 @@ If you need to set up your own conda environment on the HPCs, please refer to th
 
 Now, you will be able to see the environment you just built as an available kernel from your Jupyter notebook.
 
-##### Note: The code to build the HyTEST Jupyter app is in [this repository](https://code.chs.usgs.gov/sas/arc/arc-software/ood/bc_jupyter_hytest); however, this repo is only visible on the internal USGS network.
+*Note: The code to build the HyTEST Jupyter app is in [this repository](https://code.chs.usgs.gov/sas/arc/arc-software/ood/bc_jupyter_hytest); however, this repo is only visible on the internal USGS network.*
