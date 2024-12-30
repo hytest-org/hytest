@@ -65,3 +65,36 @@ sources:
         requester_pays: false
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhmprms-conus-v1_0-daymetv3-byhrumuskobs-osn:
+    driver: parquet
+    description: "Daily streamflow values at benchmark locations, pulled from NHM-PRMS version 1.0 forced with Daymet version 3, at the byObs Muskingum calibration level. See ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarking_data/streamflow/simulated_streamflow_nhmprms_v1_daymet_byHRU_musk_obs.parquet'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhmprms-conus-v1_1-gridmet-byhwobs-osn:
+    driver: parquet
+    description: "Daily streamflow values at benchmark locations, pulled from NHM-PRMS version 1.1 forced with gridMET, at the byHWObs calibration level. See ScienceBase data release for more details: https://doi.org/10.5066/P9J1LY80. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarking_data/streamflow/simulated_streamflow_nhmprms_v1_1_gridmet_byHWobs.parquet'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhmprms-conus-v1_1-conus404ba-byhwobs-osn:
+    driver: parquet
+    description: "Daily streamflow values at benchmark locations, pulled from NHM-PRMS version 1.1 forced with CONUS404BA, at the byHWObs calibration level. See ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/benchmarking_data/streamflow/simulated_streamflow_nhmprms_v1_1_conus404ba_byHWobs.parquet'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
