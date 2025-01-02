@@ -68,7 +68,7 @@ sources:
 
   nhmprms-conus-v1_0-daymetv3-byhrumuskobs-osn:
     driver: parquet
-    description: "Daily streamflow values at benchmark locations, pulled from NHM-PRMS version 1.0 forced with Daymet version 3, at the byObs Muskingum calibration level. See ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    description: "Daily streamflow values at benchmark locations (https://doi.org/10.5066/P972P42Z), pulled from NHM-PRMS version 1.0 forced with Daymet version 3, at the byObs Muskingum calibration level. See ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
     args:
       urlpath: 's3://hytest/benchmarking_data/streamflow/simulated_streamflow_nhmprms_v1_daymet_byHRU_musk_obs.parquet'
       storage_options:
