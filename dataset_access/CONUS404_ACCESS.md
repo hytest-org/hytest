@@ -1,6 +1,8 @@
 # CONUS404 Products Data Access
 
-This section contains notebooks that demonstrate how to access and perform basic data manipulation for the [CONUS404 dataset](https://doi.org/10.5066/P9PHPK4F). The examples can also be applied to the [CONUS404 bias-adjusted dataset](https://doi.org/10.5066/P9JE61P7) and the [CONUS404 psuedo global warming (PGW) dataset](https://doi.org/10.5066/10.5066/P9HH85UU).
+*Before working with the CONUS404 data, you may want to consider reviewing [NCAR's Climate Primer for Water Availability Assessments](https://ncar.github.io/climate-primer-water/index.html) to learn more about how to apply this dataset in studies focused on water availability.*
+
+This section of our JupyterBook contains notebooks that demonstrate how to access and perform basic data manipulation for the [CONUS404 dataset](https://doi.org/10.5066/P9PHPK4F). The examples can also be applied to the [CONUS404 bias-adjusted dataset](https://doi.org/10.5066/P9JE61P7) and the [CONUS404 psuedo global warming (PGW) dataset](https://doi.org/10.5066/P9HH85UU). 
 
 In the CONUS404 intake sub-catalog (see [here](../dataset_catalog/README.md) for an explainer of our intake data catalog), you will see entries for:
 - four CONUS404 datasets: `conus404-hourly`, `conus404-daily`, `conus404-monthly`, and `conus404-daily-diagnostic` data
