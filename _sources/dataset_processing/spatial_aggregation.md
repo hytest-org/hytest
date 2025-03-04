@@ -15,4 +15,4 @@ If you plan to use `gdptools` at spatial scales larger than the Delaware River B
 - [Geospatial Fabric v1.1](./tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.ipynb)
 - [NHDPlusV2 snapshot of the Watershed Boundary Dataset HUC12 boundaries](./tutorials/spatial_aggregation/conus404_spatial_aggregation_WBD12.ipynb)
 
-Please note that these last two notebooks have not bee executed in our JupyterBook because they are configured to run a large computation on a specific computing environment (USGS on-prem Hovenweep supercomputer), so they cannot be executed win the context that builds this book.
+Please note that these last two notebooks have not been executed in our JupyterBook because they are configured to run a large computation on a specific computing environment (USGS on-prem Hovenweep supercomputer), so they cannot be executed within the context that builds this book.
