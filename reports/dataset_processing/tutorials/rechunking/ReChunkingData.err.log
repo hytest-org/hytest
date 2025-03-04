@@ -1,0 +1,110 @@
+Traceback (most recent call last):
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import rechunker
+outfile = r"/tmp/outfile.zarr"
+result = rechunker.rechunk(
+    sampleData,
+    chunk_plan,
+    "2GB",                #<--- Max Memory
+    outfile ,
+    temp_store="/tmp/scratch.zarr" 
+)
+_ = result.execute() # Note that we must specifically direct rechunk to calculate.
+# without the call to execute(), the zarr dataset will be empty, and result will hold only
+# a 'task graph' outlining the calculation steps.
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[6], line 3[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mrechunker[39;00m
+[1;32m      2[0m outfile [38;5;241m=[39m [38;5;124mr[39m[38;5;124m"[39m[38;5;124m/tmp/outfile.zarr[39m[38;5;124m"[39m
+[0;32m----> 3[0m result [38;5;241m=[39m [43mrechunker[49m[38;5;241;43m.[39;49m[43mrechunk[49m[43m([49m
+[1;32m      4[0m [43m    [49m[43msampleData[49m[43m,[49m
+[1;32m      5[0m [43m    [49m[43mchunk_plan[49m[43m,[49m
+[1;32m      6[0m [43m    [49m[38;5;124;43m"[39;49m[38;5;124;43m2GB[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m                [49m[38;5;66;43;03m#<--- Max Memory[39;49;00m
+[1;32m      7[0m [43m    [49m[43moutfile[49m[43m [49m[43m,[49m
+[1;32m      8[0m [43m    [49m[43mtemp_store[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m/tmp/scratch.zarr[39;49m[38;5;124;43m"[39;49m[43m [49m
+[1;32m      9[0m [43m)[49m
+[1;32m     10[0m _ [38;5;241m=[39m result[38;5;241m.[39mexecute() [38;5;66;03m# Note that we must specifically direct rechunk to calculate.[39;00m
+[1;32m     11[0m [38;5;66;03m# without the call to execute(), the zarr dataset will be empty, and result will hold only[39;00m
+[1;32m     12[0m [38;5;66;03m# a 'task graph' outlining the calculation steps.[39;00m
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/rechunker/api.py:303[0m, in [0;36mrechunk[0;34m(source, target_chunks, max_mem, target_store, target_options, temp_store, temp_options, executor, array_name)[0m
+[1;32m    300[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(executor, [38;5;28mstr[39m):
+[1;32m    301[0m     executor [38;5;241m=[39m _get_executor(executor)
+[0;32m--> 303[0m copy_spec, intermediate, target [38;5;241m=[39m [43m_setup_rechunk[49m[43m([49m
+[1;32m    304[0m [43m    [49m[43msource[49m[38;5;241;43m=[39;49m[43msource[49m[43m,[49m
+[1;32m    305[0m [43m    [49m[43mtarget_chunks[49m[38;5;241;43m=[39;49m[43mtarget_chunks[49m[43m,[49m
+[1;32m    306[0m [43m    [49m[43mmax_mem[49m[38;5;241;43m=[39;49m[43mmax_mem[49m[43m,[49m
+[1;32m    307[0m [43m    [49m[43mtarget_store[49m[38;5;241;43m=[39;49m[43mtarget_store[49m[43m,[49m
+[1;32m    308[0m [43m    [49m[43mtarget_options[49m[38;5;241;43m=[39;49m[43mtarget_options[49m[43m,[49m
+[1;32m    309[0m [43m    [49m[43mtemp_store[49m[38;5;241;43m=[39;49m[43mtemp_store[49m[43m,[49m
+[1;32m    310[0m [43m    [49m[43mtemp_options[49m[38;5;241;43m=[39;49m[43mtemp_options[49m[43m,[49m
+[1;32m    311[0m [43m    [49m[43marray_name[49m[38;5;241;43m=[39;49m[43marray_name[49m[43m,[49m
+[1;32m    312[0m [43m[49m[43m)[49m
+[1;32m    313[0m plan [38;5;241m=[39m executor[38;5;241m.[39mprepare_plan(copy_spec)
+[1;32m    314[0m [38;5;28;01mreturn[39;00m Rechunked(executor, plan, source, intermediate, target)
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/rechunker/api.py:447[0m, in [0;36m_setup_rechunk[0;34m(source, target_chunks, max_mem, target_store, target_options, temp_store, temp_options, array_name)[0m
+[1;32m    442[0m variable [38;5;241m=[39m encode_zarr_variable(variable)
+[1;32m    444[0m [38;5;66;03m# Extract the array encoding to get a default chunking, a step[39;00m
+[1;32m    445[0m [38;5;66;03m# which will also ensure that the target chunking is compatible[39;00m
+[1;32m    446[0m [38;5;66;03m# with the current chunking (only necessary for on-disk arrays)[39;00m
+[0;32m--> 447[0m variable_encoding [38;5;241m=[39m [43mextract_zarr_variable_encoding[49m[43m([49m
+[1;32m    448[0m [43m    [49m[43mvariable[49m[43m,[49m[43m [49m[43mraise_on_invalid[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43mname[49m[38;5;241;43m=[39;49m[43mname[49m
+[1;32m    449[0m [43m[49m[43m)[49m
+[1;32m    450[0m variable_chunks [38;5;241m=[39m target_chunks[38;5;241m.[39mget(name, variable_encoding[[38;5;124m"[39m[38;5;124mchunks[39m[38;5;124m"[39m])
+[1;32m    451[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(variable_chunks, [38;5;28mdict[39m):
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/xarray/backends/zarr.py:471[0m, in [0;36mextract_zarr_variable_encoding[0;34m(variable, raise_on_invalid, name, safe_chunks, region, mode, shape)[0m
+[1;32m    468[0m         [38;5;28;01mif[39;00m k [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m valid_encodings:
+[1;32m    469[0m             [38;5;28;01mdel[39;00m encoding[k]
+[0;32m--> 471[0m chunks [38;5;241m=[39m [43m_determine_zarr_chunks[49m[43m([49m
+[1;32m    472[0m [43m    [49m[43menc_chunks[49m[38;5;241;43m=[39;49m[43mencoding[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mchunks[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m
+[1;32m    473[0m [43m    [49m[43mvar_chunks[49m[38;5;241;43m=[39;49m[43mvariable[49m[38;5;241;43m.[39;49m[43mchunks[49m[43m,[49m
+[1;32m    474[0m [43m    [49m[43mndim[49m[38;5;241;43m=[39;49m[43mvariable[49m[38;5;241;43m.[39;49m[43mndim[49m[43m,[49m
+[1;32m    475[0m [43m    [49m[43mname[49m[38;5;241;43m=[39;49m[43mname[49m[43m,[49m
+[1;32m    476[0m [43m    [49m[43msafe_chunks[49m[38;5;241;43m=[39;49m[43msafe_chunks[49m[43m,[49m
+[1;32m    477[0m [43m    [49m[43mregion[49m[38;5;241;43m=[39;49m[43mregion[49m[43m,[49m
+[1;32m    478[0m [43m    [49m[43mmode[49m[38;5;241;43m=[39;49m[43mmode[49m[43m,[49m
+[1;32m    479[0m [43m    [49m[43mshape[49m[38;5;241;43m=[39;49m[43mshape[49m[43m,[49m
+[1;32m    480[0m [43m[49m[43m)[49m
+[1;32m    481[0m [38;5;28;01mif[39;00m _zarr_v3() [38;5;129;01mand[39;00m chunks [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    482[0m     chunks [38;5;241m=[39m [38;5;124m"[39m[38;5;124mauto[39m[38;5;124m"[39m
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/xarray/backends/zarr.py:325[0m, in [0;36m_determine_zarr_chunks[0;34m(enc_chunks, var_chunks, ndim, name, safe_chunks, region, mode, shape)[0m
+[1;32m    314[0m allow_partial_chunks [38;5;241m=[39m mode [38;5;241m!=[39m [38;5;124m"[39m[38;5;124mr+[39m[38;5;124m"[39m
+[1;32m    316[0m base_error [38;5;241m=[39m (
+[1;32m    317[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;124mSpecified zarr chunks encoding[[39m[38;5;124m'[39m[38;5;124mchunks[39m[38;5;124m'[39m[38;5;124m]=[39m[38;5;132;01m{[39;00menc_chunks_tuple[38;5;132;01m!r}[39;00m[38;5;124m for [39m[38;5;124m"[39m
+[1;32m    318[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;124mvariable named [39m[38;5;132;01m{[39;00mname[38;5;132;01m!r}[39;00m[38;5;124m would overlap multiple dask chunks [39m[38;5;132;01m{[39;00mvar_chunks[38;5;132;01m!r}[39;00m[38;5;124m [39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m    322[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;124mor modifying `encoding[[39m[38;5;124m'[39m[38;5;124mchunks[39m[38;5;124m'[39m[38;5;124m]`, or specify `safe_chunks=False`.[39m[38;5;124m"[39m
+[1;32m    323[0m )
+[0;32m--> 325[0m [38;5;28;01mfor[39;00m zchunk, dchunks, interval, size [38;5;129;01min[39;00m [38;5;28;43mzip[39;49m[43m([49m
+[1;32m    326[0m [43m    [49m[43menc_chunks_tuple[49m[43m,[49m[43m [49m[43mvar_chunks[49m[43m,[49m[43m [49m[43mregion[49m[43m,[49m[43m [49m[43mshape[49m[43m,[49m[43m [49m[43mstrict[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m
+[1;32m    327[0m [43m[49m[43m)[49m:
+[1;32m    328[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m safe_chunks:
+[1;32m    329[0m         [38;5;28;01mcontinue[39;00m
+
+[0;31mTypeError[0m: 'NoneType' object is not iterable
+

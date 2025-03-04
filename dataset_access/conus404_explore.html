@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,10 +27,10 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -65,7 +65,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CONUS404 Temporal Aggregation" href="conus404_temporal_aggregation.html" />
+    <link rel="next" title="CONUS404 Temporal Aggregation" href="../dataset_processing/tutorials/conus404_temporal_aggregation.html" />
     <link rel="prev" title="CONUS404 Zarr Changelog" href="CONUS404_CHANGELOG.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -208,18 +208,25 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Explore CONUS404 Dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conus404_spatial_aggregation.html">CONUS404 Spatial Aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
 </ul>
 </details></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Preprocessing</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_preprocessing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_preprocessing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_preprocessing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
 </ul>
 </details></li>
 </ul>
@@ -252,9 +259,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -422,15 +434,15 @@
 <p>This dataset was created by extracting specified variables from a collection of wrf2d output files, rechunking to better facilitate data extraction for a variety of use cases, and adding CF conventions to allow easier analysis, visualization and data extraction using Xarray and Holoviz.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USE_PYGEOS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
 
-<span class="kn">import</span> <span class="nn">fsspec</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">hvplot.xarray</span>
-<span class="kn">import</span> <span class="nn">intake</span>
-<span class="kn">import</span> <span class="nn">metpy</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fsspec</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.xarray</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">metpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
 </pre></div>
 </div>
 </div>
@@ -23540,7 +23552,7 @@ Wall time: 3.59 s
       </div>
     </a>
     <a class="right-next"
-       href="conus404_temporal_aggregation.html"
+       href="../dataset_processing/tutorials/conus404_temporal_aggregation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -23620,8 +23632,8 @@ By The Jupyter Book community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

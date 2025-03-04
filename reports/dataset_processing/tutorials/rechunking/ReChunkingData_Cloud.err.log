@@ -1,0 +1,144 @@
+Traceback (most recent call last):
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import rechunker
+## Recall that merely invoking rechunker does not do any work... just sorts out 
+## the rechunking plan and writes metadata.
+result = rechunker.rechunk(
+    smplData,
+    chunk_plan,
+    "16GB",
+    outfile, 
+    temp_store=staging, 
+)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[12], line 4[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mrechunker[39;00m
+[1;32m      2[0m [38;5;66;03m## Recall that merely invoking rechunker does not do any work... just sorts out [39;00m
+[1;32m      3[0m [38;5;66;03m## the rechunking plan and writes metadata.[39;00m
+[0;32m----> 4[0m result [38;5;241m=[39m [43mrechunker[49m[38;5;241;43m.[39;49m[43mrechunk[49m[43m([49m
+[1;32m      5[0m [43m    [49m[43msmplData[49m[43m,[49m
+[1;32m      6[0m [43m    [49m[43mchunk_plan[49m[43m,[49m
+[1;32m      7[0m [43m    [49m[38;5;124;43m"[39;49m[38;5;124;43m16GB[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      8[0m [43m    [49m[43moutfile[49m[43m,[49m[43m [49m
+[1;32m      9[0m [43m    [49m[43mtemp_store[49m[38;5;241;43m=[39;49m[43mstaging[49m[43m,[49m[43m [49m
+[1;32m     10[0m [43m)[49m
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/rechunker/api.py:303[0m, in [0;36mrechunk[0;34m(source, target_chunks, max_mem, target_store, target_options, temp_store, temp_options, executor, array_name)[0m
+[1;32m    300[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(executor, [38;5;28mstr[39m):
+[1;32m    301[0m     executor [38;5;241m=[39m _get_executor(executor)
+[0;32m--> 303[0m copy_spec, intermediate, target [38;5;241m=[39m [43m_setup_rechunk[49m[43m([49m
+[1;32m    304[0m [43m    [49m[43msource[49m[38;5;241;43m=[39;49m[43msource[49m[43m,[49m
+[1;32m    305[0m [43m    [49m[43mtarget_chunks[49m[38;5;241;43m=[39;49m[43mtarget_chunks[49m[43m,[49m
+[1;32m    306[0m [43m    [49m[43mmax_mem[49m[38;5;241;43m=[39;49m[43mmax_mem[49m[43m,[49m
+[1;32m    307[0m [43m    [49m[43mtarget_store[49m[38;5;241;43m=[39;49m[43mtarget_store[49m[43m,[49m
+[1;32m    308[0m [43m    [49m[43mtarget_options[49m[38;5;241;43m=[39;49m[43mtarget_options[49m[43m,[49m
+[1;32m    309[0m [43m    [49m[43mtemp_store[49m[38;5;241;43m=[39;49m[43mtemp_store[49m[43m,[49m
+[1;32m    310[0m [43m    [49m[43mtemp_options[49m[38;5;241;43m=[39;49m[43mtemp_options[49m[43m,[49m
+[1;32m    311[0m [43m    [49m[43marray_name[49m[38;5;241;43m=[39;49m[43marray_name[49m[43m,[49m
+[1;32m    312[0m [43m[49m[43m)[49m
+[1;32m    313[0m plan [38;5;241m=[39m executor[38;5;241m.[39mprepare_plan(copy_spec)
+[1;32m    314[0m [38;5;28;01mreturn[39;00m Rechunked(executor, plan, source, intermediate, target)
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/rechunker/api.py:410[0m, in [0;36m_setup_rechunk[0;34m(source, target_chunks, max_mem, target_store, target_options, temp_store, temp_options, array_name)[0m
+[1;32m    408[0m         temp_group [38;5;241m=[39m temp_store
+[1;32m    409[0m     [38;5;28;01melse[39;00m:
+[0;32m--> 410[0m         temp_group [38;5;241m=[39m [43mzarr[49m[38;5;241;43m.[39;49m[43mgroup[49m[43m([49m[43mtemp_store[49m[43m)[49m
+[1;32m    411[0m [38;5;28;01melse[39;00m:
+[1;32m    412[0m     temp_group [38;5;241m=[39m [38;5;28;01mNone[39;00m
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/zarr/_compat.py:43[0m, in [0;36m_deprecate_positional_args.<locals>._inner_deprecate_positional_args.<locals>.inner_f[0;34m(*args, **kwargs)[0m
+[1;32m     41[0m extra_args [38;5;241m=[39m [38;5;28mlen[39m(args) [38;5;241m-[39m [38;5;28mlen[39m(all_args)
+[1;32m     42[0m [38;5;28;01mif[39;00m extra_args [38;5;241m<[39m[38;5;241m=[39m [38;5;241m0[39m:
+[0;32m---> 43[0m     [38;5;28;01mreturn[39;00m [43mf[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m     45[0m [38;5;66;03m# extra_args > 0[39;00m
+[1;32m     46[0m args_msg [38;5;241m=[39m [
+[1;32m     47[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[38;5;124m=[39m[38;5;132;01m{[39;00marg[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m     48[0m     [38;5;28;01mfor[39;00m name, arg [38;5;129;01min[39;00m [38;5;28mzip[39m(kwonly_args[:extra_args], args[[38;5;241m-[39mextra_args:], strict[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+[1;32m     49[0m ]
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/zarr/api/synchronous.py:429[0m, in [0;36mgroup[0;34m(store, overwrite, chunk_store, cache_attrs, synchronizer, path, zarr_version, zarr_format, meta_array, attributes, storage_options)[0m
+[1;32m    379[0m [38;5;129m@_deprecate_positional_args[39m
+[1;32m    380[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mgroup[39m(
+[1;32m    381[0m     store: StoreLike [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[0;32m   (...)[0m
+[1;32m    392[0m     storage_options: [38;5;28mdict[39m[[38;5;28mstr[39m, Any] [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[1;32m    393[0m ) [38;5;241m-[39m[38;5;241m>[39m Group:
+[1;32m    394[0m [38;5;250m    [39m[38;5;124;03m"""Create a group.[39;00m
+[1;32m    395[0m 
+[1;32m    396[0m [38;5;124;03m    Parameters[39;00m
+[0;32m   (...)[0m
+[1;32m    426[0m [38;5;124;03m        The new group.[39;00m
+[1;32m    427[0m [38;5;124;03m    """[39;00m
+[1;32m    428[0m     [38;5;28;01mreturn[39;00m Group(
+[0;32m--> 429[0m         [43msync[49m[43m([49m
+[1;32m    430[0m [43m            [49m[43masync_api[49m[38;5;241;43m.[39;49m[43mgroup[49m[43m([49m
+[1;32m    431[0m [43m                [49m[43mstore[49m[38;5;241;43m=[39;49m[43mstore[49m[43m,[49m
+[1;32m    432[0m [43m                [49m[43moverwrite[49m[38;5;241;43m=[39;49m[43moverwrite[49m[43m,[49m
+[1;32m    433[0m [43m                [49m[43mchunk_store[49m[38;5;241;43m=[39;49m[43mchunk_store[49m[43m,[49m
+[1;32m    434[0m [43m                [49m[43mcache_attrs[49m[38;5;241;43m=[39;49m[43mcache_attrs[49m[43m,[49m
+[1;32m    435[0m [43m                [49m[43msynchronizer[49m[38;5;241;43m=[39;49m[43msynchronizer[49m[43m,[49m
+[1;32m    436[0m [43m                [49m[43mpath[49m[38;5;241;43m=[39;49m[43mpath[49m[43m,[49m
+[1;32m    437[0m [43m                [49m[43mzarr_version[49m[38;5;241;43m=[39;49m[43mzarr_version[49m[43m,[49m
+[1;32m    438[0m [43m                [49m[43mzarr_format[49m[38;5;241;43m=[39;49m[43mzarr_format[49m[43m,[49m
+[1;32m    439[0m [43m                [49m[43mmeta_array[49m[38;5;241;43m=[39;49m[43mmeta_array[49m[43m,[49m
+[1;32m    440[0m [43m                [49m[43mattributes[49m[38;5;241;43m=[39;49m[43mattributes[49m[43m,[49m
+[1;32m    441[0m [43m                [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m,[49m
+[1;32m    442[0m [43m            [49m[43m)[49m
+[1;32m    443[0m [43m        [49m[43m)[49m
+[1;32m    444[0m     )
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/zarr/core/sync.py:142[0m, in [0;36msync[0;34m(coro, loop, timeout)[0m
+[1;32m    139[0m return_result [38;5;241m=[39m [38;5;28mnext[39m([38;5;28miter[39m(finished))[38;5;241m.[39mresult()
+[1;32m    141[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(return_result, [38;5;167;01mBaseException[39;00m):
+[0;32m--> 142[0m     [38;5;28;01mraise[39;00m return_result
+[1;32m    143[0m [38;5;28;01melse[39;00m:
+[1;32m    144[0m     [38;5;28;01mreturn[39;00m return_result
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/zarr/core/sync.py:98[0m, in [0;36m_runner[0;34m(coro)[0m
+[1;32m     93[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
+[1;32m     94[0m [38;5;124;03mAwait a coroutine and return the result of running it. If awaiting the coroutine raises an[39;00m
+[1;32m     95[0m [38;5;124;03mexception, the exception will be returned.[39;00m
+[1;32m     96[0m [38;5;124;03m"""[39;00m
+[1;32m     97[0m [38;5;28;01mtry[39;00m:
+[0;32m---> 98[0m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m coro
+[1;32m     99[0m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m ex:
+[1;32m    100[0m     [38;5;28;01mreturn[39;00m ex
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/zarr/api/asynchronous.py:636[0m, in [0;36mgroup[0;34m(store, overwrite, chunk_store, cache_attrs, synchronizer, path, zarr_version, zarr_format, meta_array, attributes, storage_options)[0m
+[1;32m    634[0m [38;5;28;01melse[39;00m:
+[1;32m    635[0m     mode [38;5;241m=[39m [38;5;124m"[39m[38;5;124mr+[39m[38;5;124m"[39m
+[0;32m--> 636[0m store_path [38;5;241m=[39m [38;5;28;01mawait[39;00m make_store_path(store, path[38;5;241m=[39mpath, mode[38;5;241m=[39mmode, storage_options[38;5;241m=[39mstorage_options)
+[1;32m    638[0m [38;5;28;01mif[39;00m chunk_store [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    639[0m     warnings[38;5;241m.[39mwarn([38;5;124m"[39m[38;5;124mchunk_store is not yet implemented[39m[38;5;124m"[39m, [38;5;167;01mRuntimeWarning[39;00m, stacklevel[38;5;241m=[39m[38;5;241m2[39m)
+
+File [0;32m/home/conda/global/75e44cfd-1739550182-21-pangeo/lib/python3.11/site-packages/zarr/storage/_common.py:316[0m, in [0;36mmake_store_path[0;34m(store_like, path, mode, storage_options)[0m
+[1;32m    314[0m     [38;5;28;01melse[39;00m:
+[1;32m    315[0m         msg [38;5;241m=[39m [38;5;124mf[39m[38;5;124m"[39m[38;5;124mUnsupported type for store_like: [39m[38;5;124m'[39m[38;5;132;01m{[39;00m[38;5;28mtype[39m(store_like)[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m'[39m[38;5;124m"[39m  [38;5;66;03m# type: ignore[unreachable][39;00m
+[0;32m--> 316[0m         [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(msg)
+[1;32m    318[0m     result [38;5;241m=[39m [38;5;28;01mawait[39;00m StorePath[38;5;241m.[39mopen(store, path[38;5;241m=[39mpath_normalized, mode[38;5;241m=[39mmode)
+[1;32m    320[0m [38;5;28;01mif[39;00m storage_options [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m used_storage_options:
+
+[0;31mTypeError[0m: Unsupported type for store_like: 'FSMap'
+
