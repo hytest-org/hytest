@@ -1,0 +1,12 @@
+The contents of this folder contains demos and tutorials of how HyTEST prepares datasets. Descriptions of the what each of the current notebooks demonstrate are provided below:
+- `demos`: notebooks that demonstrate a concept or package usage, without fully developed instructional materials
+  - `era5-land-bitinfo.ipynb`: reduces file size substantially with [xbitinfo](https://xbitinfo.readthedocs.io/en/latest/)
+  - `era5-land_api_dask.ipynb`: parallelizes many API requests with [dask](https://www.dask.org/)
+  - `era5-land_kerchunk.ipynb`: updates an existing [kerchunk](https://github.com/fsspec/kerchunk) reference file with any new ERA5 netCDF files
+  - `gridmet_processing_with_pynco.ipynb`: demonstrates an alternative method to rechunking netCDF data files using [pynco](https://pynco.readthedocs.io/en/latest/), a python module to access the NCO command-line too for processing netCDFs
+  - `nwis_to_nwm_gages_rechunking.ipynb`: uses pyriver geohydro package to extract streamflow from NWIS, subset to the gages used by the National Water Model, and implement a chunking scheme to create a more optimal zarr dataset
+  - `nwm_rechunking.md`: links to the NCAR repository with code that was used to rechunk the National Water Model v2.1 output into a more optimal zarr dataset that is [currently available through the Registry of Open Data on AWS](https://noaa-nwm-retrospective-2-1-zarr-pds.s3.amazonaws.com/index.html)
+  - `asynchronous_download/PRISM_async_download_process.ipynb`: demos using asynchronous code along with Dask, Xarray, and Rioxarray to download and extract daily PRISM data over an HTTP connection. This notebook focuses on downloading multiple years of data, creating a single zarr file from that data, appending to that zarr file, and downloading multiple years and variables to create a merge zarr file. The asynchronous download is accomplished by running the `async_PRISM_download.py` file in the notebook. This file handles the asynchronous code using async-await syntax.
+  - `pyPRISM_daily_byYear.ipynb` explores a synchronous method of downloading PRISM data using the [`pyPRISMClimate` package](https://github.com/sdtaylor/pyPRISMClimate). This package serves as a user-friendly way of interacting with the PRISM API.
+- `tutorials`: formal tutorials with instruction (likely published in the HyTEST JB) of dataset processing methods
+  - `rechunking`: tutorial on how to rechunk data to a zarr store
