@@ -188,3 +188,22 @@ sources:
         requester_pays: false
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
+
+  conus404-pgw-daily-onprem-hw:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) daily values for subset of model output variables derived from hourly values. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw/conus404-pgw_daily.zarr'
+      consolidated: true  
+
+  conus404-pgw-daily-osn:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) daily values for subset of model output variables derived from hourly values. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/conus404-pgw/conus404-pgw_daily.zarr'
+      consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
