@@ -28,7 +28,7 @@ The `conus404-hourly-ba` data contains bias-adjusted temperature and precipiatio
 The `conus404-daily-ba` files are resampled from the `conus404-hourly-ba` data.
 
 ## CONUS404 PGW Data
-The CONUS404 pseudo-global warming (PGW) dataset is a future-perturbed hydro-climate dataset, created as a follow on to the CONUS404 dataset. The CONUS404 PGW dataset represents the weather from 1980 to 2021 under a warmer and wetter climate environment and provides an opportunity to explore the event-based climate change impacts when used with the CONUS404 historical data. Users should review the official [CONUS404 PGW data release](https://doi.org/10.5066/10.5066/P9HH85UU) to understand the dataset before working with the zarr stores provided in our intake catalog.
+The CONUS404 pseudo-global warming (PGW) dataset is a future-perturbed hydro-climate dataset, created as a follow on to the CONUS404 dataset. The CONUS404 PGW dataset represents the weather from 1980 to 2021 under a warmer and wetter climate environment and provides an opportunity to explore the event-based climate change impacts when used with the CONUS404 historical data. Users should review the official [CONUS404 PGW data release](https://doi.org/10.5066/P9HH85UU) to understand the dataset before working with the zarr stores provided in our intake catalog.
 
 The `conus404-pgw-hourly` data is a subset of the wrfout model output and `conus404-pgw-daily-diagnostic` is a subset from the wrfxtrm model output, both of which are described in the official data release.
 
