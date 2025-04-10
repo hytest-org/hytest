@@ -25,7 +25,6 @@ The [Merge 1-D and 2-D jupyter notebook](01_Merge_1D_and_2D_files.ipynb) combine
 
 ### 2. Finalize
 The [Format jupyter notebook](02_Format.ipynb) takes the merged output from step 1 and clarifies variable names, adds character HUCID's, and modifies data types. A 'yrmo' variable is added as a place for year/month information to be stored and to provide an efficient way for R users to access the final datasets. The output from this script is 1 netCDF file containing the monthly WRF-Hydro modeling application outputs aggregated to HUC12s for the years 2011-2013 that is comparable to the netCDF stored on this [Science Base](https://www.sciencebase.gov/catalog/item/6411fd40d34eb496d1cdc99d) page where the original outputs of this workflow are stored. 
-  
 
 ## Variable Table
 <table>
