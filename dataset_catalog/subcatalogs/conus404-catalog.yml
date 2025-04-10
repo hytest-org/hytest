@@ -7,15 +7,6 @@ sources:
       urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404/conus404_hourly.zarr'
       consolidated: true      
 
-  conus404-hourly-cloud:
-    driver: zarr
-    description: "CONUS404 Hydro Variable subset, hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9PHPK4F). This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free if your workflow is running in the us-west-2 region, but you will be charged according to AWS S3 pricing (https://aws.amazon.com/s3/pricing/) to read the data into a workflow running outside of the cloud or in a different AWS cloud region."
-    args:
-      urlpath: 's3://nhgf-development/conus404/conus404_hourly_202209.zarr'
-      consolidated: true
-      storage_options:
-        requester_pays: true
-
   conus404-hourly-osn:
     driver: zarr
     description: "CONUS404 Hydro Variable subset, hourly values. These files were created wrfout model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9PHPK4F). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
@@ -33,16 +24,7 @@ sources:
     description: "CONUS404 daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10). These files were created wrfxtrm model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9PHPK4F). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404/conus404_daily_xtrm.zarr'
-      consolidated: true  
-
-  conus404-daily-diagnostic-cloud:
-    driver: zarr
-    description: "CONUS404 daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10). These files were created wrfxtrm model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9PHPK4F). This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free if your workflow is running in the us-west-2 region, but you will be charged according to AWS S3 pricing (https://aws.amazon.com/s3/pricing/) to read the data into a workflow running outside of the cloud or in a different AWS cloud region."
-    args:
-      urlpath: 's3://nhgf-development/conus404/conus404_daily_xtrm.zarr/'
       consolidated: true
-      storage_options:
-        requester_pays: true
 
   conus404-daily-diagnostic-osn:
     driver: zarr
@@ -61,16 +43,7 @@ sources:
     description: "CONUS404 daily values for subset of model output variables derived from hourly values. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404/conus404_daily.zarr'
-      consolidated: true  
-
-  conus404-daily-cloud:
-    driver: zarr
-    description: "CONUS404 daily values for subset of model output variables derived from hourly values. This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free if your workflow is running in the us-west-2 region, but you will be charged according to AWS S3 pricing (https://aws.amazon.com/s3/pricing/) to read the data into a workflow running outside of the cloud or in a different AWS cloud region."
-    args:
-      urlpath: 's3://nhgf-development/conus404/conus404_daily_202210.zarr/'
       consolidated: true
-      storage_options:
-        requester_pays: true
 
   conus404-daily-osn:
     driver: zarr
@@ -89,16 +62,7 @@ sources:
     description: "CONUS404 monthly values for subset of model output variables derived from daily values. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404/conus404_monthly.zarr'
-      consolidated: true  
-
-  conus404-monthly-cloud:
-    driver: zarr
-    description: "CONUS404 monthly values for subset of model output variables derived from daily values. This dataset is stored on AWS S3 cloud storage in a requester-pays bucket. You can work with this data for free if your workflow is running in the us-west-2 region, but you will be charged according to AWS S3 pricing (https://aws.amazon.com/s3/pricing/) to read the data into a workflow running outside of the cloud or in a different AWS cloud region."
-    args:
-      urlpath: 's3://nhgf-development/conus404/conus404_monthly_202210.zarr'
       consolidated: true
-      storage_options:
-        requester_pays: true
 
   conus404-monthly-osn:
     driver: zarr
