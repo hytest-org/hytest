@@ -36,3 +36,8 @@ mydask.png
 dask-report.html
 
 ruff.toml
+
+# NIWAA tutorial outputs
+*.out
+tmp*
+checkpoints*
