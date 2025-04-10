@@ -1,0 +1,58 @@
+name: "wrfhydro_huc12_agg"
+channels:
+  - conda-forge
+  - defaults
+  - r
+dependencies:
+  - python
+  - python-dateutil=2.9.0=pyhd8ed1ab_0
+  - python-fastjsonschema=2.19.1=pyhd8ed1ab_0
+  - python-graphviz=0.20.3=pyh717bed2_0
+  - python-gssapi=1.8.2=py311ha54f867_2
+  - python-hdfs=2.7.3=pyhd8ed1ab_0
+  - python-json-logger=2.0.7=pyhd8ed1ab_0
+  - python-tzdata=2024.1=pyhd8ed1ab_0
+  - python_abi=3.11=4_cp311
+  - numba=0.59.1=py311h96b013e_0
+  - numcodecs=0.12.1=py311h4332511_1
+  - numpy=1.24.4=py311h64a7726_0
+  - numpy-indexed=0.3.7=pyhd8ed1ab_0
+  - numpy_groupies=0.11.1=pyhd8ed1ab_0
+  - pandas=2.2.2=py311h14de704_1
+  - pandoc=3.2=ha770c72_0
+  - pandocfilters=1.5.0=pyhd8ed1ab_0
+  - xarray=2024.5.0=pyhd8ed1ab_0
+  - zarr=2.18.2=pyhd8ed1ab_0
+  - flox=0.9.8=pyhd8ed1ab_0
+  - uxarray=2024.05.0=pyhd8ed1ab_0
+  - aws-c-auth=0.6.26=h2c7c9e7_6
+  - aws-c-cal=0.5.26=h71eb795_0
+  - aws-c-common=0.8.17=hd590300_0
+  - aws-c-compression=0.2.16=h4f47f36_6
+  - aws-c-event-stream=0.2.20=h69ce273_6
+  - aws-c-http=0.7.7=h7b8353a_3
+  - aws-c-io=0.13.21=hcccde9c_3
+  - aws-c-mqtt=0.8.6=h3a1964a_15
+  - aws-c-s3=0.2.8=h0933b68_4
+  - aws-c-sdkutils=0.1.9=h4f47f36_1
+  - aws-checksums=0.1.14=h4f47f36_6
+  - aws-crt-cpp=0.19.9=h85076f6_5
+  - aws-sdk-cpp=1.10.57=hf40e4db_10
+  - awscli=2.13.39=py311h38be061_0
+  - awscrt=0.16.17=py311h28c49da_0
+  - dask=2024.5.2=pyhd8ed1ab_0
+  - dask-core=2024.5.2=pyhd8ed1ab_0
+  - dask-expr=1.1.2=pyhd8ed1ab_0
+  - dask-jobqueue=0.8.5=pyhd8ed1ab_0
+  - dask_labextension
+  - pip
+  - jupyterlab
+  - ipykernel
+  - jupytext
+  - plotly
+  - shapely
+  - gdal=3.5.3=py311hadb6153_11
+  - fiona
+
+
+
