@@ -77,5 +77,5 @@ parts:
 
   - caption: Back Matter
     chapters:
-    - file: doc/CONTRIBUTING
-    - file: doc/LICENSE
+    - file: CONTRIBUTING
+    - file: LICENSE

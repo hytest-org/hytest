@@ -1,5 +1,5 @@
 # HyTEST
-This repository contains code and documentation for the HyTEST project. Most users will find that this content is easier to navigate from our [JupyterBook](https://hytest-org.github.io/hytest/doc/About.html#).
+This repository contains code and documentation curated for the [HyTEST project](https://github.com/hytest-org). Most users will find that this content is easier to navigate from our [JupyterBook](https://hytest-org.github.io/hytest/doc/About.html#).
 
 If you do need to navigate this repository, the contents are organized as follows:
 - [essential_reading](./essential_reading): background reading material on key concepts and packages used in our workflows
