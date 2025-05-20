@@ -29,7 +29,7 @@ body:
   - type: textarea
     attributes:
       label: Peer-review
-      description: Has the methodology in your workflow been peer reviewed (if scientific)? Or for technical workflows that are not scientific, is the workflow widely used by the community? Please explain the level of community use or review your workflow has received. This could include any of the following: formal publication with peer-review, informal colleague review, endorsement by a community leader, or a demonstration of significant community adoption.
+      description: "Has the methodology in your workflow been peer reviewed (if scientific)? Or for technical workflows that are not scientific, is the workflow widely used by the community? Please explain the level of community use or review your workflow has received. This could include any of the following: formal publication with peer-review, informal colleague review, endorsement by a community leader, or a demonstration of significant community adoption."
     validations:
       required: true
   - type: input
