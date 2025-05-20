@@ -1,0 +1,57 @@
+title: "JupyterBook Submissions"
+labels: ["JupyterBook Submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # HyTEST JupyterBook Submission
+        We are always looking for new contributions to the [HyTEST JupyterBook](https://hytest-org.github.io/hytest/doc/About.html)!
+
+        # Scope of Content
+        Submissions should be relevant to the hydro-terrestrial modeling community, though they can cover a variety of topics tangential to modeling, such as: access to or preprocessing of important modeling input datasets, evaluating modeling outputs, or even setting up a computing environment in which you can run your model. Please note - we do not intend to include content that fully teaches people how to model. This is more aimed at equipping experienced modelers with new tools to improve their workflows.
+
+        We expect all workflows that are submitted to be widely useful to/used by the hydro-terrestrial modeling community. We want to be a curated space of some of the most useful methods and data, rather than a comprehensive resource. Any method that makes it into our JupyterBook should be either widely used within the community already, or have the potential to be. For workflows demonstrating scientific methods, we expect an appropriate level of peer review to have been conducted before we will showcase the methods in our book.
+
+        # Benefits of submission
+        Why should you take the time to submit?
+        - Visibility: If you submit to our JupyterBook, we will make sure to cite you as an author and link to any publications that your work is derived from.
+        - To help the community! Your contribution can make our community a more useful space. By contributing new tutorials, you can help equip our community with new tools to improve their modeling and make sure we as a community are doing quality science (and doing it efficiently!).
+
+        If you think you have a workflow that you would like to share with our community, please fill out the form below to start the conversation.
+  - type: textarea
+    attributes:
+      label: Description of Workflow
+      description: "Please provide a brief (1-5 sentences) description of what your workflow does."
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Peer-review
+      description: Has the methodology in your workflow been peer reviewed (if scientific)? Or for technical workflows that are not scientific, is the workflow widely used or widely useful? Please explain how you feel your workflow meets this criteria.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Link to Workflow
+      description: If you already have your workflow stored in a location that can be shared, please provide a link.
+    validations:
+      required: true
+  - type: input
+    id: has-id
+    attributes:
+      label: Contributor
+      description: We want to know who our users and contributors are! Where are you currently working or studying? (if you produced this workflow as part of your professional duties)
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Category
+      description: What category does your workflow best fit in?
+      options:
+        - Computing Environment Set Up
+        - Data Access
+        - Data Preprocessing
+        - Model Evalution
+        - Other
+    validations:
+      required: true
