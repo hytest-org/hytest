@@ -241,8 +241,8 @@ sources:
     driver: netcdf
     description: "Output point sampled CONUS404 data from CONUS404 point sampling tutorial"
     args:
-      urlpath: 's3://hytest/tutorials/data_access/daily_skintemp_at_filtered_temperature_sites.nc'
+      urlpath: "s3://hytest/tutorials/data_access/daily_skintemp_at_filtered_temperature_sites.nc"
       storage_options:
         anon: true
         client_kwargs:
-          endpoint_url: https://usgs.osn.mghpcc.org
+          endpoint_url: "https://usgs.osn.mghpcc.org"
