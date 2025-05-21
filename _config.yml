@@ -27,8 +27,8 @@ execute:
     "environment_set_up/Start_Dask_Cluster_**",
     "dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.ipynb",
     "dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_WBD12.ipynb",
-    "dataset_processing/tutorials/rechunking/ReChunkingData",
-    "dataset_processing/tutorials/rechunking/ReChunkingData_Cloud"
+    "dataset_processing/tutorials/rechunking/ReChunkingData.ipynb",
+    "dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.ipynb"
     ]
 
 # Add a few extensions to help with parsing content
