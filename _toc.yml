@@ -64,15 +64,15 @@ parts:
     - file: evaluation/metrics
       sections:
       - file: evaluation/Metrics_DScore_Suite_v1
-      - file: evaluation/tutorials/stats/Usage_DScore_Suite_v1
+      - file: evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1
       - file: evaluation/Metrics_StdSuite_v1
-      - file: evaluation/tutorials/stats/Usage_StdSuite_v1
-    - file: evaluation/tutorials/nwm_streamflow/00_Overview
+      - file: evaluation/tutorials/stats_demos/Usage_StdSuite_v1
+    - file: evaluation/tutorials/streamflow/00_Overview
       sections:
-      - file: evaluation/tutorials/nwm_streamflow/01_Data_Prep
-      - file: evaluation/tutorials/nwm_streamflow/02_Analysis_StdSuite
-      - file: evaluation/tutorials/nwm_streamflow/02_Analysis_DScore
-      - file: evaluation/tutorials/nwm_streamflow/03_Vizualization
+      - file: evaluation/tutorials/streamflow/01_Data_Prep
+      - file: evaluation/tutorials/streamflow/02_Analysis_StdSuite
+      - file: evaluation/tutorials/streamflow/02_Analysis_DScore
+      - file: evaluation/tutorials/streamflow/03_Vizualization
 
 
   - caption: Back Matter
