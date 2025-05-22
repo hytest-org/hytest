@@ -20,7 +20,7 @@ html:
 # Execute the notebooks upon build
 execute:
   execute_notebooks: cache
-  timeout: 900
+  timeout: 600
   allow_errors: False
   ## Some notebooks demonstrate workflows for non-nebari systems; but we build on nebari, so these noteboooks are excluded from execution.
   exclude_patterns: [
