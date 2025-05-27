@@ -1,0 +1,3150 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Re-Chunking Data &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/rechunking/ReChunkingData';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Re-Chunking Larger Datasets" href="ReChunkingData_Cloud.html" />
+    <link rel="prev" title="Chunking Data" href="../../chunk.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../../../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../essential_reading/README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../essential_reading/ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../essential_reading/DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../essential_reading/DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../essential_reading/DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../chunk.html">Chunking Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Re-Chunking Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/dataset_processing/tutorials/rechunking/ReChunkingData.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Re-Chunking Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-chunking-and-why-should-you-care">What is chunking and why should you care?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-cons">Pros &amp; Cons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-a-small-dataset">Examining a Small Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-chunking-the-sample-data">Re-Chunking the Sample Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-re-chunking">Before Re-Chunking:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-re-chunking">After re-chunking:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up">Cleaning Up</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="re-chunking-data">
+<h1>Re-Chunking Data<a class="headerlink" href="#re-chunking-data" title="Link to this heading">#</a></h1>
+<p>Re-organizing stored data such that it matches the analysis use-case.</p>
+<p>Inspiration from:
+<a class="github reference external" href="https://github.com/NCAR/rechunk_retro_nwm_v21/blob/main/notebooks/usage_example_rerechunk_chrtout.ipynb">NCAR/rechunk_retro_nwm_v21</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://rechunker.readthedocs.io/en/latest/index.html"><code class="docutils literal notranslate"><span class="pre">rechunker</span></code> documentation</a> contains several
+examples and a tutorial covering how to re-chunk data.  Much of what is here replicates concepts covered
+in that material.  This document uses data that <em>looks</em> like <code class="docutils literal notranslate"><span class="pre">HyTest</span></code> data (variable names, extent, etc),
+so may offer a smoother intro to the concepts using familiar data.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">zarr</span></code> data standard has a nice tutorial also which covers details of
+<a class="reference external" href="https://zarr.readthedocs.io/en/stable/tutorial.html#changing-chunk-shapes-rechunking">optimizing chunking strategies</a>.</p></li>
+</ul>
+</div>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Link to this heading">#</a></h2>
+<section id="what-is-chunking-and-why-should-you-care">
+<h3>What is chunking and why should you care?<a class="headerlink" href="#what-is-chunking-and-why-should-you-care" title="Link to this heading">#</a></h3>
+<p>The idea of data ‘<em>chunks</em>’ is closely aligned with the NetCDF and <a class="reference external" href="https://zarr.dev/">zarr</a> standards for storing N-dimensional arrays of typed data.</p>
+<p>Chunks become more important as the size of the array increases.  For very large arrays, it is helpful to organize the memory it occupies  into sub-units.  These sub-units are the chunks – note that this is not another dimension to the array, but merely a map to how the large array is partitioned into more palatable sized units for manipulation in memory. Array-handling libraries (numpy, xarray, pandas, and others) will handle all of the record-keeping to know which chunk holds a given unit of the array.</p>
+<p>A quick side-bar to illustrate two chunking patterns for a simple 2D array.  This is a simplified use-case.  Consider a square array of integer values. Just for exposition, let’s use a small array 10x10.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">illustration</span>
+</pre></div>
+</div>
+<p>That array can be organized in memory in a few ways… two common options are <strong>row-major</strong> order, and <strong>column-major</strong> order:</p>
+<ul class="simple">
+<li><p>Row-Major – A row of data occupies a contiguous block of memory. This implies that cells which are logicall adjacent vertically are not physicall near one another in memory. The ‘distance’ from <code class="docutils literal notranslate"><span class="pre">r0c0</span></code> to <code class="docutils literal notranslate"><span class="pre">r0c1</span></code> (a one-cell logical move within the row) is short, while the ‘distance’ to <code class="docutils literal notranslate"><span class="pre">r1c0</span></code> (a one-cell logical move within the column) is long.</p></li>
+<li><p>Column-Major – A column of the array occupies a contiguious block of memory. This implies that cells which are adjacent horizontally are not near one another physically in memory.</p></li>
+</ul>
+<p>In either chunk mapping, <code class="docutils literal notranslate"><span class="pre">r3c5</span></code> (for example) still fetches the same value – the array still indexes/addresses in the same way – but the chunking plan determines how nearby an ‘adjacent’ index is.</p>
+<p>As the size of the array increases, the chunk pattern becomes more relevant. Suppose your data is chunked by <strong>rows</strong>, and you need to process a <strong>column</strong> of data – your process will need to read a lot of data, skipping most of it (possibly going to disk to read more data if the dataset is very large), to get the <span class="math notranslate nohighlight">\(i^{th}\)</span> column value for each row. For this analysis, it would be better if the array could be ‘<em>re-chunked</em>’ from row-major order to column-major order.  This would favor column operations.</p>
+<p>Array size is important to the chunking plan… it could be that an entire row of data in a large 2D array won’t fit into memory (or it can’t fit into a contiguous block of memory).  This would require chunking each row of data, in addition to chunking rows over columns (for a row-major plan) As dimensions are added to the array, this chunk-mapping becomes more complex and it becomes much more relevant to chunk the data to match the analysis.</p>
+</section>
+<section id="pros-cons">
+<h3>Pros &amp; Cons<a class="headerlink" href="#pros-cons" title="Link to this heading">#</a></h3>
+<p>Data that is well-organized to optimize one kind of analysis may not suit another kind of analysis on the same data. Re-chunking is time-consuming, and it produces a separate copy of the dataset, increasing storage requirements. The initial time commitment is a one-time operation so that future analyses can run quickly. The space commitment can be substantial if a complex dataset needs to be organized for many different analyses.</p>
+</section>
+</section>
+<section id="examining-a-small-dataset">
+<h2>Examining a Small Dataset<a class="headerlink" href="#examining-a-small-dataset" title="Link to this heading">#</a></h2>
+<p>Let’s read a sample dataset and examine how it is chunked.</p>
+<p>As a test datasaet, we’ve taken a random sampling of 400 stream gages for
+the month of July, 2000 from the National Water Model Reanalysis Version 2.1.
+The full dataset is part of the
+<a class="reference external" href="https://aws.amazon.com/opendata/">AWS Open Data Program</a>,
+available via the S3 bucket at</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">noaa</span><span class="o">-</span><span class="n">nwm</span><span class="o">-</span><span class="n">retrospective</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">zarr</span><span class="o">-</span><span class="n">pds</span><span class="o">/</span><span class="n">noaa</span><span class="o">-</span><span class="n">nwm</span><span class="o">-</span><span class="n">retrospective</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">zarr</span><span class="o">-</span><span class="n">pds</span><span class="o">/</span><span class="n">chrtout</span><span class="o">.</span><span class="n">zarr</span>
+</pre></div>
+</div>
+<p>Our subset of that data for use in this tutorial is included in the HyTEST catalog:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># uncomment the lines below to read in your AWS credentials if you want to access data from a requester-pays bucket (-cloud)</span>
+<span class="c1">#os.environ[&#39;AWS_PROFILE&#39;] = &#39;osn-hytest-scratch&#39;</span>
+<span class="c1">#%run ../environment_set_up/Help_AWS_Credentials.ipynb</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml&#39;</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">sampleData</span> <span class="o">=</span> <span class="n">cat</span><span class="p">[</span><span class="s1">&#39;rechunking-tutorial-osn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dask</span><span class="p">()</span>
+<span class="n">sampleData</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 5MB
+Dimensions:     (feature_id: 400, time: 744)
+Coordinates:
+    elevation   (feature_id) float32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+  * feature_id  (feature_id) int32 2kB 3109 189899 ... 947070134 1010003783
+    gage_id     (feature_id) |S15 6kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    latitude    (feature_id) float32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    longitude   (feature_id) float32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    order       (feature_id) int32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+  * time        (time) datetime64[ns] 6kB 2000-07-01 ... 2000-07-31T23:00:00
+Data variables:
+    streamflow  (time, feature_id) float64 2MB dask.array&lt;chunksize=(256, 16), meta=np.ndarray&gt;
+    velocity    (time, feature_id) float64 2MB dask.array&lt;chunksize=(256, 16), meta=np.ndarray&gt;
+Attributes:
+    TITLE:                OUTPUT FROM WRF-Hydro v5.2.0-beta2
+    code_version:         v5.2.0-beta2
+    featureType:          timeSeries
+    model_configuration:  retrospective
+    proj4:                +proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-ec401a75-6fb4-4116-b5b9-90055a766c06' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ec401a75-6fb4-4116-b5b9-90055a766c06' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>feature_id</span>: 400</li><li><span class='xr-has-index'>time</span>: 744</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-266f4a07-0ef2-4332-909e-edc03dd03301' class='xr-section-summary-in' type='checkbox'  checked><label for='section-266f4a07-0ef2-4332-909e-edc03dd03301' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>elevation</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-6aebc845-686e-4113-b833-1a8371c4ed9a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6aebc845-686e-4113-b833-1a8371c4ed9a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-da71e845-3465-40e5-b550-879ab671b29f' class='xr-var-data-in' type='checkbox'><label for='data-da71e845-3465-40e5-b550-879ab671b29f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature elevation</dd><dt><span>units :</span></dt><dd>meters</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>3109 189899 ... 1010003783</div><input id='attrs-d1167e6a-e20b-4f5c-a513-7e35d06b98e5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d1167e6a-e20b-4f5c-a513-7e35d06b98e5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3d31379-b389-464d-bcc4-e7e25ed37b10' class='xr-var-data-in' type='checkbox'><label for='data-a3d31379-b389-464d-bcc4-e7e25ed37b10' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>NHDPlusv2 ComIDs within CONUS, arbitrary Reach IDs outside of CONUS</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([      3109,     189899,     239166, ...,  945010401,  947070134,
+       1010003783], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>gage_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>|S15</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-039f92eb-5fc1-4eaa-81a0-5abc99c2bd73' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-039f92eb-5fc1-4eaa-81a0-5abc99c2bd73' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-29c35b14-98dc-47d6-a43c-90b5136eb53d' class='xr-var-data-in' type='checkbox'><label for='data-29c35b14-98dc-47d6-a43c-90b5136eb53d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>NHD Gage Event ID from SOURCE_FEA field in Gages feature class</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 5.86 kiB </td>
+                        <td> 5.86 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> |S15 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-9db50a95-d2b2-4c63-9000-59da2e53d750' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9db50a95-d2b2-4c63-9000-59da2e53d750' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e1f568d-be75-4224-8bd6-4debc57444c0' class='xr-var-data-in' type='checkbox'><label for='data-8e1f568d-be75-4224-8bd6-4debc57444c0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-f1c42305-12ae-4bb6-b994-109e94d00929' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f1c42305-12ae-4bb6-b994-109e94d00929' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c845882e-ff6f-4bd2-a1ab-60c7bbd3a1cb' class='xr-var-data-in' type='checkbox'><label for='data-c845882e-ff6f-4bd2-a1ab-60c7bbd3a1cb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>order</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-b4d0b65e-2c3a-4540-b5ba-cb4e7d8b6403' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b4d0b65e-2c3a-4540-b5ba-cb4e7d8b6403' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-aa471b74-3cef-4749-aa06-960f548ebcd9' class='xr-var-data-in' type='checkbox'><label for='data-aa471b74-3cef-4749-aa06-960f548ebcd9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>stream order</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2000-07-01 ... 2000-07-31T23:00:00</div><input id='attrs-6b6b1f28-d5fb-4559-b130-c3c78f63e585' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6b6b1f28-d5fb-4559-b130-c3c78f63e585' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-759501b0-9b93-4d5f-840c-2cc05e54cdcd' class='xr-var-data-in' type='checkbox'><label for='data-759501b0-9b93-4d5f-840c-2cc05e54cdcd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2000-07-01T00:00:00.000000000&#x27;, &#x27;2000-07-01T01:00:00.000000000&#x27;,
+       &#x27;2000-07-01T02:00:00.000000000&#x27;, ..., &#x27;2000-07-31T21:00:00.000000000&#x27;,
+       &#x27;2000-07-31T22:00:00.000000000&#x27;, &#x27;2000-07-31T23:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-60207671-e7db-4a89-a33f-1bc6c76a0e1b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-60207671-e7db-4a89-a33f-1bc6c76a0e1b' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(256, 16), meta=np.ndarray&gt;</div><input id='attrs-61457f3a-6efc-4bf9-8001-4471210f60ed' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-61457f3a-6efc-4bf9-8001-4471210f60ed' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c4f28c59-1767-442e-80d8-ac7b7a63cb33' class='xr-var-data-in' type='checkbox'><label for='data-c4f28c59-1767-442e-80d8-ac7b7a63cb33' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 2.27 MiB </td>
+                        <td> 32.00 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (744, 400) </td>
+                        <td> (256, 16) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 75 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="114" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="64" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="41" x2="64" y2="41" />
+  <line x1="0" y1="82" x2="64" y2="82" />
+  <line x1="0" y1="120" x2="64" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="2" y1="0" x2="2" y2="120" />
+  <line x1="5" y1="0" x2="5" y2="120" />
+  <line x1="7" y1="0" x2="7" y2="120" />
+  <line x1="12" y1="0" x2="12" y2="120" />
+  <line x1="15" y1="0" x2="15" y2="120" />
+  <line x1="18" y1="0" x2="18" y2="120" />
+  <line x1="23" y1="0" x2="23" y2="120" />
+  <line x1="25" y1="0" x2="25" y2="120" />
+  <line x1="28" y1="0" x2="28" y2="120" />
+  <line x1="33" y1="0" x2="33" y2="120" />
+  <line x1="36" y1="0" x2="36" y2="120" />
+  <line x1="38" y1="0" x2="38" y2="120" />
+  <line x1="43" y1="0" x2="43" y2="120" />
+  <line x1="46" y1="0" x2="46" y2="120" />
+  <line x1="49" y1="0" x2="49" y2="120" />
+  <line x1="54" y1="0" x2="54" y2="120" />
+  <line x1="56" y1="0" x2="56" y2="120" />
+  <line x1="59" y1="0" x2="59" y2="120" />
+  <line x1="64" y1="0" x2="64" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 64.51612903225806,0.0 64.51612903225806,120.0 0.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="32.258065" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="84.516129" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,84.516129,60.000000)">744</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(256, 16), meta=np.ndarray&gt;</div><input id='attrs-92269e7f-83b2-4577-b345-8149a72a524f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-92269e7f-83b2-4577-b345-8149a72a524f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-68b3c2c5-f00c-4383-8b73-ff18ebde193f' class='xr-var-data-in' type='checkbox'><label for='data-68b3c2c5-f00c-4383-8b73-ff18ebde193f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>m s-1</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 2.27 MiB </td>
+                        <td> 32.00 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (744, 400) </td>
+                        <td> (256, 16) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 75 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="114" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="64" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="41" x2="64" y2="41" />
+  <line x1="0" y1="82" x2="64" y2="82" />
+  <line x1="0" y1="120" x2="64" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="2" y1="0" x2="2" y2="120" />
+  <line x1="5" y1="0" x2="5" y2="120" />
+  <line x1="7" y1="0" x2="7" y2="120" />
+  <line x1="12" y1="0" x2="12" y2="120" />
+  <line x1="15" y1="0" x2="15" y2="120" />
+  <line x1="18" y1="0" x2="18" y2="120" />
+  <line x1="23" y1="0" x2="23" y2="120" />
+  <line x1="25" y1="0" x2="25" y2="120" />
+  <line x1="28" y1="0" x2="28" y2="120" />
+  <line x1="33" y1="0" x2="33" y2="120" />
+  <line x1="36" y1="0" x2="36" y2="120" />
+  <line x1="38" y1="0" x2="38" y2="120" />
+  <line x1="43" y1="0" x2="43" y2="120" />
+  <line x1="46" y1="0" x2="46" y2="120" />
+  <line x1="49" y1="0" x2="49" y2="120" />
+  <line x1="54" y1="0" x2="54" y2="120" />
+  <line x1="56" y1="0" x2="56" y2="120" />
+  <line x1="59" y1="0" x2="59" y2="120" />
+  <line x1="64" y1="0" x2="64" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 64.51612903225806,0.0 64.51612903225806,120.0 0.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="32.258065" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="84.516129" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,84.516129,60.000000)">744</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-2bb44119-ebe9-48b5-bcc9-33ca4efd52b3' class='xr-section-summary-in' type='checkbox'  ><label for='section-2bb44119-ebe9-48b5-bcc9-33ca4efd52b3' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-7a8b2235-4f4f-49d0-8eeb-5dd07f808951' class='xr-index-data-in' type='checkbox'/><label for='index-7a8b2235-4f4f-49d0-8eeb-5dd07f808951' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([      3109,     189899,     239166,     334022,     397590,     418429,
+           481940,     591268,     682279,     734307,
+       ...
+         41027830,   41028190,   41039416,   41044540,  166743866,  932040162,
+        940080052,  945010401,  947070134, 1010003783],
+      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=400))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-741f0ebc-08d2-4efa-be56-aea349b70bb5' class='xr-index-data-in' type='checkbox'/><label for='index-741f0ebc-08d2-4efa-be56-aea349b70bb5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2000-07-01 00:00:00&#x27;, &#x27;2000-07-01 01:00:00&#x27;,
+               &#x27;2000-07-01 02:00:00&#x27;, &#x27;2000-07-01 03:00:00&#x27;,
+               &#x27;2000-07-01 04:00:00&#x27;, &#x27;2000-07-01 05:00:00&#x27;,
+               &#x27;2000-07-01 06:00:00&#x27;, &#x27;2000-07-01 07:00:00&#x27;,
+               &#x27;2000-07-01 08:00:00&#x27;, &#x27;2000-07-01 09:00:00&#x27;,
+               ...
+               &#x27;2000-07-31 14:00:00&#x27;, &#x27;2000-07-31 15:00:00&#x27;,
+               &#x27;2000-07-31 16:00:00&#x27;, &#x27;2000-07-31 17:00:00&#x27;,
+               &#x27;2000-07-31 18:00:00&#x27;, &#x27;2000-07-31 19:00:00&#x27;,
+               &#x27;2000-07-31 20:00:00&#x27;, &#x27;2000-07-31 21:00:00&#x27;,
+               &#x27;2000-07-31 22:00:00&#x27;, &#x27;2000-07-31 23:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=744, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-119dbbc2-a24a-4704-a6bc-2ff7a6829726' class='xr-section-summary-in' type='checkbox'  checked><label for='section-119dbbc2-a24a-4704-a6bc-2ff7a6829726' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>TITLE :</span></dt><dd>OUTPUT FROM WRF-Hydro v5.2.0-beta2</dd><dt><span>code_version :</span></dt><dd>v5.2.0-beta2</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>The critical items to notice in this output are highlighted here:</p>
+<pre>
+&lt;xarray.Dataset&gt;
+
+Dimensions:     (feature_id: 400, time: 744) <span style="color:red"> &lt;-- NOTE: Two dimensions</span>
+
+                 <span style="color:red">  +--- most coordinates are tied to feature_id dimension</span> 
+                 <span style="color:red">  |</span> 
+Coordinates:     <span style="color:red">  V</span>
+    elevation   (feature_id) float32 dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+  * feature_id  (feature_id) int32 3109 189899 239166 ... 947070134 1010003783
+    gage_id     (feature_id) |S15 dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    latitude    (feature_id) float32 dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    longitude   (feature_id) float32 dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    order       (feature_id) int32 dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+  * time        (time) datetime64[ns] 2000-07-01 ... 2000-07-31T23:00:00
+
+Data variables:
+    streamflow  (<span style="color:green">time, feature_id</span>) float64 dask.array&lt;<span style="color:green">chunksize=(256, 16)</span>, meta=np.ndarray&gt;
+    velocity    (time, feature_id) float64 dask.array&lt;chunksize=(256, 16), meta=np.ndarray&gt;
+                 <span style="color:red">^^^^  ^^^^^^^^^^</span>
+                 <span style="color:red">the data variables are addressed by both dimensions; this is 2D data.</span>
+</pre><p>This dataset is a ‘stack’ of two 2D arrays.  They are named ‘streamflow’ and ‘velocity’.  The indices
+into each of those 2D arrays are <code class="docutils literal notranslate"><span class="pre">time</span></code> on one axis, and <code class="docutils literal notranslate"><span class="pre">feature_id</span></code> on the other.  The feature id
+is bound to a number of other coordinates, so you can relate/refer to a given feature by its elevation,
+gage_id, latitude, longitude, or stream order.</p>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> highlighted in green. This says that the data is stored in blocks mapping to 256
+adjacent time-steps for 16 adjacent features. (<strong>NOTE</strong>: <em>The original data is not chunked this way; we’ve
+deliberately fiddled with the chunk configuration for this tutorial</em>)</p>
+<p>A time-series analysis (i.e. sampling all time-step values for a single <code class="docutils literal notranslate"><span class="pre">feature_id</span></code>) would require
+multiple chunks to be fetched.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch all the time values for a specific feature_id</span>
+<span class="n">sampleData</span><span class="p">[</span><span class="s1">&#39;streamflow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">feature_id</span><span class="o">=</span><span class="mi">1343034</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;streamflow&#x27; (time: 744)&gt; Size: 6kB
+dask.array&lt;getitem, shape=(744,), dtype=float64, chunksize=(256,), chunktype=numpy.ndarray&gt;
+Coordinates:
+    elevation   float32 4B dask.array&lt;chunksize=(), meta=np.ndarray&gt;
+    feature_id  int32 4B 1343034
+    gage_id     |S15 15B dask.array&lt;chunksize=(), meta=np.ndarray&gt;
+    latitude    float32 4B dask.array&lt;chunksize=(), meta=np.ndarray&gt;
+    longitude   float32 4B dask.array&lt;chunksize=(), meta=np.ndarray&gt;
+    order       int32 4B dask.array&lt;chunksize=(), meta=np.ndarray&gt;
+  * time        (time) datetime64[ns] 6kB 2000-07-01 ... 2000-07-31T23:00:00
+Attributes:
+    grid_mapping:  crs
+    long_name:     River Flow
+    units:         m3 s-1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'streamflow'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 744</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-2a8278b6-b74e-45a0-b0f4-468111fb8ceb' class='xr-array-in' type='checkbox' checked><label for='section-2a8278b6-b74e-45a0-b0f4-468111fb8ceb' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(256,), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 5.81 kiB </td>
+                        <td> 2.00 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (744,) </td>
+                        <td> (256,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 3 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="41" y1="0" x2="41" y2="25" />
+  <line x1="82" y1="0" x2="82" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >744</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-79c57b0c-eee9-4e6a-a6bb-9ee2376271af' class='xr-section-summary-in' type='checkbox'  checked><label for='section-79c57b0c-eee9-4e6a-a6bb-9ee2376271af' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>elevation</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</div><input id='attrs-02efec1a-b5be-43d0-8e11-8b784c8e98b3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-02efec1a-b5be-43d0-8e11-8b784c8e98b3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-94dadb00-c922-4e92-a833-f00aeabd1966' class='xr-var-data-in' type='checkbox'><label for='data-94dadb00-c922-4e92-a833-f00aeabd1966' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature elevation</dd><dt><span>units :</span></dt><dd>meters</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4 B </td>
+                        <td> 4 B </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> () </td>
+                        <td> () </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>feature_id</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>1343034</div><input id='attrs-888cdb40-7379-4f85-976d-03864423c859' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-888cdb40-7379-4f85-976d-03864423c859' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-68f54998-ed80-4e7f-970a-e2f96a377e19' class='xr-var-data-in' type='checkbox'><label for='data-68f54998-ed80-4e7f-970a-e2f96a377e19' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>NHDPlusv2 ComIDs within CONUS, arbitrary Reach IDs outside of CONUS</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array(1343034, dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>gage_id</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>|S15</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</div><input id='attrs-07a9ef53-963c-4ab5-b635-a7a146763941' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-07a9ef53-963c-4ab5-b635-a7a146763941' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-20b0eb81-8017-456a-8a60-c476ea3665eb' class='xr-var-data-in' type='checkbox'><label for='data-20b0eb81-8017-456a-8a60-c476ea3665eb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>NHD Gage Event ID from SOURCE_FEA field in Gages feature class</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 15 B </td>
+                        <td> 15 B </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> () </td>
+                        <td> () </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> |S15 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</div><input id='attrs-f4af3e89-5b41-4aa8-a700-af3e79db7413' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f4af3e89-5b41-4aa8-a700-af3e79db7413' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5acf9d65-8c84-4adc-8ed6-879b2ef213b1' class='xr-var-data-in' type='checkbox'><label for='data-5acf9d65-8c84-4adc-8ed6-879b2ef213b1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4 B </td>
+                        <td> 4 B </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> () </td>
+                        <td> () </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</div><input id='attrs-64d5e140-e4e5-4653-8352-1ba231007a2e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-64d5e140-e4e5-4653-8352-1ba231007a2e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d7d388da-7b76-4129-a113-588db7b4a377' class='xr-var-data-in' type='checkbox'><label for='data-d7d388da-7b76-4129-a113-588db7b4a377' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4 B </td>
+                        <td> 4 B </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> () </td>
+                        <td> () </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>order</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</div><input id='attrs-ae5f56bf-167b-4cec-baab-37b3913e7256' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ae5f56bf-167b-4cec-baab-37b3913e7256' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-655efcd3-d888-4f96-bc13-6050aba16602' class='xr-var-data-in' type='checkbox'><label for='data-655efcd3-d888-4f96-bc13-6050aba16602' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>stream order</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4 B </td>
+                        <td> 4 B </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> () </td>
+                        <td> () </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2000-07-01 ... 2000-07-31T23:00:00</div><input id='attrs-d338d337-d15d-46b4-ac3e-33f676581ed0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d338d337-d15d-46b4-ac3e-33f676581ed0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-41af8785-c737-43b3-b226-82a735bb1510' class='xr-var-data-in' type='checkbox'><label for='data-41af8785-c737-43b3-b226-82a735bb1510' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2000-07-01T00:00:00.000000000&#x27;, &#x27;2000-07-01T01:00:00.000000000&#x27;,
+       &#x27;2000-07-01T02:00:00.000000000&#x27;, ..., &#x27;2000-07-31T21:00:00.000000000&#x27;,
+       &#x27;2000-07-31T22:00:00.000000000&#x27;, &#x27;2000-07-31T23:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3c3ed864-40b6-4a9d-88de-02cd2e97b0cc' class='xr-section-summary-in' type='checkbox'  ><label for='section-3c3ed864-40b6-4a9d-88de-02cd2e97b0cc' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-4ea0d430-45f8-41b6-abed-71ef506caa21' class='xr-index-data-in' type='checkbox'/><label for='index-4ea0d430-45f8-41b6-abed-71ef506caa21' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2000-07-01 00:00:00&#x27;, &#x27;2000-07-01 01:00:00&#x27;,
+               &#x27;2000-07-01 02:00:00&#x27;, &#x27;2000-07-01 03:00:00&#x27;,
+               &#x27;2000-07-01 04:00:00&#x27;, &#x27;2000-07-01 05:00:00&#x27;,
+               &#x27;2000-07-01 06:00:00&#x27;, &#x27;2000-07-01 07:00:00&#x27;,
+               &#x27;2000-07-01 08:00:00&#x27;, &#x27;2000-07-01 09:00:00&#x27;,
+               ...
+               &#x27;2000-07-31 14:00:00&#x27;, &#x27;2000-07-31 15:00:00&#x27;,
+               &#x27;2000-07-31 16:00:00&#x27;, &#x27;2000-07-31 17:00:00&#x27;,
+               &#x27;2000-07-31 18:00:00&#x27;, &#x27;2000-07-31 19:00:00&#x27;,
+               &#x27;2000-07-31 20:00:00&#x27;, &#x27;2000-07-31 21:00:00&#x27;,
+               &#x27;2000-07-31 22:00:00&#x27;, &#x27;2000-07-31 23:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=744, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-36981387-887d-4f81-8c34-f2b7970115bc' class='xr-section-summary-in' type='checkbox'  checked><label for='section-36981387-887d-4f81-8c34-f2b7970115bc' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>This data has 744 time-steps available, chunked into chunks of 256 values each. Three chunks are needed to hold this time-series for one feature.  Not too bad, but not good either.</p>
+<p>On the other hand, an analysis which samples all locations for a single point in time would need
+to fetch multiple chunks also.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch all the gage values for a single day</span>
+<span class="n">sampleData</span><span class="p">[</span><span class="s1">&#39;streamflow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;07-01-2000&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;streamflow&#x27; (time: 24, feature_id: 400)&gt; Size: 77kB
+dask.array&lt;getitem, shape=(24, 400), dtype=float64, chunksize=(24, 16), chunktype=numpy.ndarray&gt;
+Coordinates:
+    elevation   (feature_id) float32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+  * feature_id  (feature_id) int32 2kB 3109 189899 ... 947070134 1010003783
+    gage_id     (feature_id) |S15 6kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    latitude    (feature_id) float32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    longitude   (feature_id) float32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+    order       (feature_id) int32 2kB dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;
+  * time        (time) datetime64[ns] 192B 2000-07-01 ... 2000-07-01T23:00:00
+Attributes:
+    grid_mapping:  crs
+    long_name:     River Flow
+    units:         m3 s-1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'streamflow'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 24</li><li><span class='xr-has-index'>feature_id</span>: 400</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ef97be0d-0079-4a62-a77a-042345614fb1' class='xr-array-in' type='checkbox' checked><label for='section-ef97be0d-0079-4a62-a77a-042345614fb1' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(24, 16), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 75.00 kiB </td>
+                        <td> 3.00 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (24, 400) </td>
+                        <td> (24, 16) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 25 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="85" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="35" x2="120" y2="35" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="35" style="stroke-width:2" />
+  <line x1="4" y1="0" x2="4" y2="35" />
+  <line x1="9" y1="0" x2="9" y2="35" />
+  <line x1="14" y1="0" x2="14" y2="35" />
+  <line x1="24" y1="0" x2="24" y2="35" />
+  <line x1="28" y1="0" x2="28" y2="35" />
+  <line x1="33" y1="0" x2="33" y2="35" />
+  <line x1="43" y1="0" x2="43" y2="35" />
+  <line x1="48" y1="0" x2="48" y2="35" />
+  <line x1="52" y1="0" x2="52" y2="35" />
+  <line x1="62" y1="0" x2="62" y2="35" />
+  <line x1="67" y1="0" x2="67" y2="35" />
+  <line x1="72" y1="0" x2="72" y2="35" />
+  <line x1="81" y1="0" x2="81" y2="35" />
+  <line x1="86" y1="0" x2="86" y2="35" />
+  <line x1="91" y1="0" x2="91" y2="35" />
+  <line x1="100" y1="0" x2="100" y2="35" />
+  <line x1="105" y1="0" x2="105" y2="35" />
+  <line x1="110" y1="0" x2="110" y2="35" />
+  <line x1="120" y1="0" x2="120" y2="35" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,35.61261971641668 0.0,35.61261971641668" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="55.612620" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="17.806310" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,17.806310)">24</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-5b2b4e72-75fc-4fa5-ac6e-6631f8d014a4' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5b2b4e72-75fc-4fa5-ac6e-6631f8d014a4' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>elevation</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-b89e6b06-ced9-4d33-a201-6c734943e74e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b89e6b06-ced9-4d33-a201-6c734943e74e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f4042ac6-2198-4beb-b505-f429e3a925ca' class='xr-var-data-in' type='checkbox'><label for='data-f4042ac6-2198-4beb-b505-f429e3a925ca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature elevation</dd><dt><span>units :</span></dt><dd>meters</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>3109 189899 ... 1010003783</div><input id='attrs-cd4bc9b9-644b-4527-b4d0-1706e562a1f9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cd4bc9b9-644b-4527-b4d0-1706e562a1f9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-30f04b9f-bf8b-448c-a6a2-b8abe3c06ce3' class='xr-var-data-in' type='checkbox'><label for='data-30f04b9f-bf8b-448c-a6a2-b8abe3c06ce3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>NHDPlusv2 ComIDs within CONUS, arbitrary Reach IDs outside of CONUS</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([      3109,     189899,     239166, ...,  945010401,  947070134,
+       1010003783], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>gage_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>|S15</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-15f37c66-3f29-462e-bc96-1c2d0424bf36' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-15f37c66-3f29-462e-bc96-1c2d0424bf36' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-01c610d2-6e65-43ec-b15d-f28d0ffb0437' class='xr-var-data-in' type='checkbox'><label for='data-01c610d2-6e65-43ec-b15d-f28d0ffb0437' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>NHD Gage Event ID from SOURCE_FEA field in Gages feature class</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 5.86 kiB </td>
+                        <td> 5.86 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> |S15 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-59830d76-98fa-46df-b277-df871e4f8384' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-59830d76-98fa-46df-b277-df871e4f8384' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f40207fb-549b-4447-8164-50b2333df2dd' class='xr-var-data-in' type='checkbox'><label for='data-f40207fb-549b-4447-8164-50b2333df2dd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-bc24fb5c-940b-491c-b4ba-3e0f2a3f757d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bc24fb5c-940b-491c-b4ba-3e0f2a3f757d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-059d1762-85c9-422a-8b1d-b3403ced5503' class='xr-var-data-in' type='checkbox'><label for='data-059d1762-85c9-422a-8b1d-b3403ced5503' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>order</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(400,), meta=np.ndarray&gt;</div><input id='attrs-fec1570c-f0d1-4a5b-a70a-8cb7043ec16e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fec1570c-f0d1-4a5b-a70a-8cb7043ec16e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f1f9f7b9-6189-4029-9589-a72f346f8a0e' class='xr-var-data-in' type='checkbox'><label for='data-f1f9f7b9-6189-4029-9589-a72f346f8a0e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>stream order</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.56 kiB </td>
+                        <td> 1.56 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (400,) </td>
+                        <td> (400,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >400</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2000-07-01 ... 2000-07-01T23:00:00</div><input id='attrs-0e865875-4599-408a-b0b1-6e5a32c48135' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0e865875-4599-408a-b0b1-6e5a32c48135' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-274a79d8-ae49-44be-941f-304df8260e76' class='xr-var-data-in' type='checkbox'><label for='data-274a79d8-ae49-44be-941f-304df8260e76' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2000-07-01T00:00:00.000000000&#x27;, &#x27;2000-07-01T01:00:00.000000000&#x27;,
+       &#x27;2000-07-01T02:00:00.000000000&#x27;, &#x27;2000-07-01T03:00:00.000000000&#x27;,
+       &#x27;2000-07-01T04:00:00.000000000&#x27;, &#x27;2000-07-01T05:00:00.000000000&#x27;,
+       &#x27;2000-07-01T06:00:00.000000000&#x27;, &#x27;2000-07-01T07:00:00.000000000&#x27;,
+       &#x27;2000-07-01T08:00:00.000000000&#x27;, &#x27;2000-07-01T09:00:00.000000000&#x27;,
+       &#x27;2000-07-01T10:00:00.000000000&#x27;, &#x27;2000-07-01T11:00:00.000000000&#x27;,
+       &#x27;2000-07-01T12:00:00.000000000&#x27;, &#x27;2000-07-01T13:00:00.000000000&#x27;,
+       &#x27;2000-07-01T14:00:00.000000000&#x27;, &#x27;2000-07-01T15:00:00.000000000&#x27;,
+       &#x27;2000-07-01T16:00:00.000000000&#x27;, &#x27;2000-07-01T17:00:00.000000000&#x27;,
+       &#x27;2000-07-01T18:00:00.000000000&#x27;, &#x27;2000-07-01T19:00:00.000000000&#x27;,
+       &#x27;2000-07-01T20:00:00.000000000&#x27;, &#x27;2000-07-01T21:00:00.000000000&#x27;,
+       &#x27;2000-07-01T22:00:00.000000000&#x27;, &#x27;2000-07-01T23:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-02292ac0-4cd5-43c0-8c0b-892cbf53d83e' class='xr-section-summary-in' type='checkbox'  ><label for='section-02292ac0-4cd5-43c0-8c0b-892cbf53d83e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-a52b7338-bd9c-4164-acef-47196a3d8ba6' class='xr-index-data-in' type='checkbox'/><label for='index-a52b7338-bd9c-4164-acef-47196a3d8ba6' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([      3109,     189899,     239166,     334022,     397590,     418429,
+           481940,     591268,     682279,     734307,
+       ...
+         41027830,   41028190,   41039416,   41044540,  166743866,  932040162,
+        940080052,  945010401,  947070134, 1010003783],
+      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=400))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-2ebf733e-bbd6-43f8-8811-7fe036e63c52' class='xr-index-data-in' type='checkbox'/><label for='index-2ebf733e-bbd6-43f8-8811-7fe036e63c52' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2000-07-01 00:00:00&#x27;, &#x27;2000-07-01 01:00:00&#x27;,
+               &#x27;2000-07-01 02:00:00&#x27;, &#x27;2000-07-01 03:00:00&#x27;,
+               &#x27;2000-07-01 04:00:00&#x27;, &#x27;2000-07-01 05:00:00&#x27;,
+               &#x27;2000-07-01 06:00:00&#x27;, &#x27;2000-07-01 07:00:00&#x27;,
+               &#x27;2000-07-01 08:00:00&#x27;, &#x27;2000-07-01 09:00:00&#x27;,
+               &#x27;2000-07-01 10:00:00&#x27;, &#x27;2000-07-01 11:00:00&#x27;,
+               &#x27;2000-07-01 12:00:00&#x27;, &#x27;2000-07-01 13:00:00&#x27;,
+               &#x27;2000-07-01 14:00:00&#x27;, &#x27;2000-07-01 15:00:00&#x27;,
+               &#x27;2000-07-01 16:00:00&#x27;, &#x27;2000-07-01 17:00:00&#x27;,
+               &#x27;2000-07-01 18:00:00&#x27;, &#x27;2000-07-01 19:00:00&#x27;,
+               &#x27;2000-07-01 20:00:00&#x27;, &#x27;2000-07-01 21:00:00&#x27;,
+               &#x27;2000-07-01 22:00:00&#x27;, &#x27;2000-07-01 23:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-27c6178e-803c-41d7-aabe-11e0fd179ab8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-27c6178e-803c-41d7-aabe-11e0fd179ab8' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>This dataset has 400 features, broken into chunks of 16 data values each. Many more chunks to fetch.  This is much worse: the I/O engine needs to find and retrieve 25 chunks vs 3 in the previous example.</p>
+<p>If we were going to do either of those analyses on a very large dataset with this pattern, we’d want to
+re-chunk the data to optimize for our read pattern.</p>
+</section>
+<section id="re-chunking-the-sample-data">
+<h2>Re-Chunking the Sample Data<a class="headerlink" href="#re-chunking-the-sample-data" title="Link to this heading">#</a></h2>
+<p>This is a trivial example, due to the small size of the dataset – It all fits in memory easily. But it is worth doing, as concepts will apply when we take this to the full-sized data.</p>
+<p>First thing we need is a chunk plan to describe the chunk layout we want. This can be generated using various methods.  For this dataset, it’s easy enough to write it manually:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numbers are *size* of the chunk. </span>
+<span class="n">chunk_plan</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;streamflow&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">744</span><span class="p">,</span> <span class="s1">&#39;feature_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="c1"># all time records in one chunk for each feature_id</span>
+    <span class="s1">&#39;velocity&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">744</span><span class="p">,</span> <span class="s1">&#39;feature_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,),</span>
+    <span class="s1">&#39;gage_id&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,),</span>
+    <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,),</span>
+    <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,),</span>    
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,),</span>    
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">744</span><span class="p">,),</span>
+    <span class="s1">&#39;feature_id&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this plan, we can ask <code class="docutils literal notranslate"><span class="pre">rechunker</span></code> to re-write the data using the prescribed chunking pattern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">show</span> <span class="n">xarray</span> <span class="n">rechunker</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: xarray
+Version: 2025.3.1
+Summary: N-D labeled arrays and datasets in Python
+Home-page: https://xarray.dev/
+Author: 
+Author-email: xarray Developers &lt;xarray@googlegroups.com&gt;
+License: Apache-2.0
+Location: /home/conda/hytest/4cf0eb80-1745589096-51-pangeo/lib/python3.12/site-packages
+Requires: numpy, packaging, pandas
+Required-by: #N/A
+---
+Name: rechunker
+Version: 0.5.3
+Summary: A library for rechunking arrays
+Home-page: https://pypi.org/project/rechunker/
+Author: 
+Author-email: Pangeo developers &lt;ryan.abernathey@gmail.com&gt;
+License: MIT License
+
+Copyright (c) 2020 Rechunker Developers
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Location: /home/conda/hytest/4cf0eb80-1745589096-51-pangeo/lib/python3.12/site-packages
+Requires: dask, mypy_extensions, zarr
+Required-by: #N/A
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rechunker</span>
+<span class="n">outfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;/tmp/outfile.zarr&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">rechunker</span><span class="o">.</span><span class="n">rechunk</span><span class="p">(</span>
+    <span class="n">sampleData</span><span class="p">,</span>
+    <span class="n">chunk_plan</span><span class="p">,</span>
+    <span class="s2">&quot;2GB&quot;</span><span class="p">,</span>                <span class="c1">#&lt;--- Max Memory</span>
+    <span class="n">outfile</span> <span class="p">,</span>
+    <span class="n">temp_store</span><span class="o">=</span><span class="s2">&quot;/tmp/scratch.zarr&quot;</span><span class="p">,</span>
+    <span class="n">zarr_version</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span> <span class="c1"># Note that we must specifically direct rechunk to calculate.</span>
+<span class="c1"># without the call to execute(), the zarr dataset will be empty, and result will hold only</span>
+<span class="c1"># a &#39;task graph&#39; outlining the calculation steps.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">rechunker</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">outfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;/tmp/outfile.zarr&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">result</span> <span class="o">=</span> <span class="n">rechunker</span><span class="o">.</span><span class="n">rechunk</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">sampleData</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">chunk_plan</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="s2">&quot;2GB&quot;</span><span class="p">,</span>                <span class="c1">#&lt;--- Max Memory</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">outfile</span> <span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">temp_store</span><span class="o">=</span><span class="s2">&quot;/tmp/scratch.zarr&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">zarr_version</span><span class="o">=</span><span class="mi">2</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">_</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span> <span class="c1"># Note that we must specifically direct rechunk to calculate.</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># without the call to execute(), the zarr dataset will be empty, and result will hold only</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># a &#39;task graph&#39; outlining the calculation steps.</span>
+
+<span class="ne">TypeError</span>: rechunk() got an unexpected keyword argument &#39;zarr_version&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">rechunker.rechunk</span></code> does not overwrite any data.  If it sees that <code class="docutils literal notranslate"><span class="pre">/tmp/outfile.zarr</span></code> or <code class="docutils literal notranslate"><span class="pre">/tmp/scratch.zarr</span></code> already exist, it will balk and likely raise an exception. Be sure that these locations do not exist.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">rechunker</span></code> also writes a minimalist data group.  Meaning that variable metadata is not consolidated. This is not a required step, but it will really spead up future workflows when the
+data is read back in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zarr</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">consolidate_metadata</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h2>
+<p>Let’s read in the resulting re-chunked dataset to see how it looks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reChunkedData</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+<span class="n">reChunkedData</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note here that for both <code class="docutils literal notranslate"><span class="pre">streamflow</span></code> and <code class="docutils literal notranslate"><span class="pre">velocity</span></code>, the chunksize in the <code class="docutils literal notranslate"><span class="pre">time</span></code> dimension is 744 (the total number of time steps). Analyses which favor fetching all time-step values for a given <code class="docutils literal notranslate"><span class="pre">facility_id</span></code> will prefer this chunking strategy.</p>
+<section id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">#</a></h3>
+</section>
+<section id="before-re-chunking">
+<h3>Before Re-Chunking:<a class="headerlink" href="#before-re-chunking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampleData</span><span class="p">[</span><span class="s1">&#39;streamflow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">feature_id</span><span class="o">=</span><span class="mi">1343034</span><span class="p">)</span>
+<span class="c1"># Note: three chunks needed to service a single feature_id</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="after-re-chunking">
+<h3>After re-chunking:<a class="headerlink" href="#after-re-chunking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reChunkedData</span><span class="p">[</span><span class="s1">&#39;streamflow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">feature_id</span><span class="o">=</span><span class="mi">1343034</span><span class="p">)</span> 
+<span class="c1"># All data for the specified feature_id is in a single chunk</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cleaning-up">
+<h2>Cleaning Up<a class="headerlink" href="#cleaning-up" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outfile</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;removing </span><span class="si">{</span><span class="n">outfile</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/tmp/scratch.zarr&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;removing scratch space&quot;</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/tmp/scratch.zarr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-hytest-hytest-pangeo-py"
+        },
+        kernelOptions: {
+            name: "conda-env-hytest-hytest-pangeo-py",
+            path: "./dataset_processing/tutorials/rechunking"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-hytest-hytest-pangeo-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../chunk.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chunking Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ReChunkingData_Cloud.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Re-Chunking Larger Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-chunking-and-why-should-you-care">What is chunking and why should you care?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-cons">Pros &amp; Cons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-a-small-dataset">Examining a Small Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-chunking-the-sample-data">Re-Chunking the Sample Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-re-chunking">Before Re-Chunking:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-re-chunking">After re-chunking:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up">Cleaning Up</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

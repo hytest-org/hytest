@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data/Cloud Storage &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'essential_reading/DataSources/Data_S3';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Parallelism with Dask" href="../Parallel_Dask.html" />
+    <link rel="prev" title="Data/APIs" href="Data_APIs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Data Sources</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../dataset_processing/tutorials/conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataset_processing/spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/essential_reading/DataSources/Data_S3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data/Cloud Storage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-reads-from-s3">Anonymous Reads from S3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-reads-from-endpoints-outside-of-s3-that-use-the-s3-api">Anonymous Reads from Endpoints Outside of S3 (that use the S3 API)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#credentialed-access">Credentialed Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-only-access-with-requester-pays">Read-only access with “requester pays”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-data-to-s3">Writing Data to S3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-a-local-file-to-s3">Uploading a Local File to S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-pandas-dataframe-to-a-csv-file-on-s3">Writing a Pandas Dataframe to a CSV File on S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-zarr-data-to-s3">Writing Zarr Data to S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-commands">Additional Commands</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-cloud-storage">
+<h1>Data/Cloud Storage<a class="headerlink" href="#data-cloud-storage" title="Link to this heading">#</a></h1>
+<p>One of the main storage locations for HyTest data is in ‘<em>The Cloud</em>’. This is sometimes referred to as <strong>‘Object Storage’</strong>.
+The data is kept in data centers operated by Amazon, Microsoft, or similar, which makes it easily available to network-connected devices.
+The main advantage of doing this is that if your compute engine is also in that same data center (or nearby, as is the case with many JupyterHub services), the data doesn’t have to go very far to get to the compute power. This brings the computation to the data, rather than shipping large datasets across the internet to get to the compute engine.</p>
+<p>The HyTEST project is collaborating with the <a class="reference external" href="https://www.whoi.edu/">Woods Hole Oceanographic Institution</a> to demonstrate the utility of using an <a class="reference external" href="https://www.openstoragenetwork.org/">Open Storage Network (OSN)</a> pod for providing access to data within scientific workflows. This OSN pod will provide 1 PB of usable <a class="reference external" href="https://docs.ceph.com/en/pacific/glossary/#term-Ceph-Object-Storage">Ceph Object Storage</a> and will be housed at the Massachusetts Green High Performance Computing Center on a high-speed (100+ GbE) network. This piece of hardware provides the opportunity to host data without the storage or egress fees that come along with other forms of cloud object storage, such as <a class="reference external" href="https://aws.amazon.com/s3/">Amazon S3 object storage</a>. Ceph object storage supports an <a class="reference external" href="https://docs.ceph.com/en/pacific/radosgw/s3/#">API that is compatible with the basic data access model of the Amazon S3 API</a>.</p>
+<p>What follows is a brief demo of how data can be read from or written to object storage through the S3 API and some pitfalls to watch out for. These methods should be generally applicable to both S3 object storage and the OSN pod object storage.</p>
+<p>The permissions scheme for S3 allows for anonymous/global read access, as well as secured access via specific credentials.
+We’ll look at generic workflows using an anonymous-access store, then finish off with some private/credentialed operations.</p>
+<p>The easiest way to access data with the S3 API through a Python program is via the
+<a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a> module.
+This is a layer of abstraction that lets us interact with arbitrary storage mechanisms as if
+they are conventional file systems. It makes this object storage ‘look’ like a conventional file system.</p>
+<section id="anonymous-reads-from-s3">
+<h2>Anonymous Reads from S3<a class="headerlink" href="#anonymous-reads-from-s3" title="Link to this heading">#</a></h2>
+<p>A lot of data is available for global read, which does not require credentials or a profile.
+In this case, we set <code class="docutils literal notranslate"><span class="pre">anon=True</span></code> when plumbing the <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> object. Here we demonstrate how to list the contents of an AWS S3 bucket with global read access:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span>
+    <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="n">anon</span><span class="o">=</span><span class="kc">True</span>   <span class="c1"># Does not require credentials</span>
+    <span class="p">)</span>
+<span class="c1"># &#39;fs&#39; is an object which provides methods access to the virtual filesystem</span>
+<span class="c1"># &#39;ls&#39; method == list ; list files in a virtual folder to test if we really have access</span>
+<span class="n">fs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;s3://noaa-nwm-retrospective-2-1-zarr-pds/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[&#39;noaa-nwm-retrospective-2-1-zarr-pds/chrtout.zarr&#39;,
+ &#39;noaa-nwm-retrospective-2-1-zarr-pds/gwout.zarr&#39;,
+ &#39;noaa-nwm-retrospective-2-1-zarr-pds/lakeout.zarr&#39;,
+ &#39;noaa-nwm-retrospective-2-1-zarr-pds/ldasout.zarr&#39;,
+ &#39;noaa-nwm-retrospective-2-1-zarr-pds/precip.zarr&#39;,
+ &#39;noaa-nwm-retrospective-2-1-zarr-pds/rtout.zarr&#39;]
+</pre></div>
+</div>
+<p>We can call other methods on the <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> object “<code class="docutils literal notranslate"><span class="pre">fs</span></code>” to interact with filesystem objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;s3://noaa-nwm-retrospective-2-1-zarr-pds/index.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;Key&#39;: &#39;noaa-nwm-retrospective-2-1-zarr-pds/index.html&#39;,
+&#39;LastModified&#39;: datetime.datetime(2021, 10, 1, 20, 48, 48, tzinfo=tzutc()),
+&#39;ETag&#39;: &#39;&quot;3b4b4277037c1127ed4ba68e26461b2e&quot;&#39;,
+&#39;Size&#39;: 32357,
+&#39;StorageClass&#39;: &#39;STANDARD&#39;,
+&#39;type&#39;: &#39;file&#39;,
+&#39;size&#39;: 32357,
+&#39;name&#39;: &#39;noaa-nwm-retrospective-2-1-zarr-pds/index.html&#39;}
+</pre></div>
+</div>
+<p>Low-level operations with <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> are designed to behave similarly to the ‘native’ file operations in Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use open() to get something that behaves like a file handle for</span>
+<span class="c1"># low-level Python read/write operations:</span>
+<span class="k">with</span> <span class="n">fs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;s3://noaa-nwm-retrospective-2-1-zarr-pds/index.html&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># print first 5 lines...</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;!DOCTYPE html&gt;\r\n&#39;
+b&#39;\r\n&#39;
+b&#39;&lt;!--\r\n&#39;
+b&#39;Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.\r\n&#39;
+b&#39;\r\n&#39;
+</pre></div>
+</div>
+<p>However – most of the time, we don’t need such low level access.
+A more general, and useful, mechanism is to ‘<em>map</em>’ an S3 object to a <em>virtual file</em> using <code class="docutils literal notranslate"><span class="pre">get_mapper()</span></code>.
+That <em>map</em> object can then be treated as if it is a local file – the <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> mapping mechanism handles
+all of the translation to interact with S3.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">get_mapper</span><span class="p">(</span><span class="s1">&#39;s3://noaa-nwm-retrospective-2-1-zarr-pds/chrtout.zarr&#39;</span><span class="p">)</span>
+<span class="c1"># &#39;m&#39; looks like a file as far as Python is concerned.</span>
+<span class="c1"># It is now a stand-in for those functions that require a file as argument.</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">open_consolidated</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="c1"># read zarr metadata for named file.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">tree</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/
+ ├── crs () |S1
+ ├── elevation (2776738,) float32
+ ├── feature_id (2776738,) int32
+ ├── gage_id (2776738,) |S15
+ ├── latitude (2776738,) float32
+ ├── longitude (2776738,) float32
+ ├── order (2776738,) int32
+ ├── streamflow (367439, 2776738) int32
+ ├── time (367439,) int64
+ └── velocity (367439, 2776738) int32
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We are deliberately demonstrating using commands that read <strong>only</strong> the zarr metadata from the
+object storage – <strong>not the full dataset</strong>.</p>
+<p>The above example is a very, <em>very</em>, <strong>very</strong> large dataset, which you don’t want to load over the network to your desktop.
+Execute full data read operations only if this notebook is being hosted and run out of the same AWS center where the data lives.</p>
+</div>
+<p>The good news about some of the larger science-oriented libraries (xarray, dask, pandas, zarr, etc), is that
+they can automatically handle the <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> operations for you <strong>IF YOUR ACCESS IS ANONYMOUS</strong>.
+This is a convenience, but is a special case for read-only data where <code class="docutils literal notranslate"><span class="pre">anon=True</span></code> and <code class="docutils literal notranslate"><span class="pre">requester_pays=False</span></code>.</p>
+<p>Note that this is a feature of
+<a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/#who-uses-fsspec">specific libraries</a>,
+and doesn’t work everywhere.</p>
+<p>Because it isn’t universally available, and only applies to anonymous reads, examples in HyTEST will
+always explicitly plumb <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> ‘longhand’ using <code class="docutils literal notranslate"><span class="pre">get_mapper()</span></code>. You may see example code elsewhere
+that takes the shortcut if it is available.</p>
+</section>
+<section id="anonymous-reads-from-endpoints-outside-of-s3-that-use-the-s3-api">
+<h2>Anonymous Reads from Endpoints Outside of S3 (that use the S3 API)<a class="headerlink" href="#anonymous-reads-from-endpoints-outside-of-s3-that-use-the-s3-api" title="Link to this heading">#</a></h2>
+<p>For storage operations, the S3 API needs the web address of the access point, or <em>endpoint</em> where it should address filesystem operations. If your storage is completely within the Amazon ecosystem, you will likely not need to specify an endpoint. However, for 3rd-party storage (such as the OSN pod), you will need to explicitly declare the endpoint when the filesystem is first referenced using <code class="docutils literal notranslate"><span class="pre">fsspec</span></code>. We can list the files stored in the <code class="docutils literal notranslate"><span class="pre">usgs-scratch</span></code> bucket of the OSN pod with the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs_osn</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span>
+    <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="n">anon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># Does not require credentials</span>
+    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;endpoint_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://usgs.osn.mghpcc.org&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">fs_osn</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;s3://hytest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="credentialed-access">
+<h2>Credentialed Access<a class="headerlink" href="#credentialed-access" title="Link to this heading">#</a></h2>
+<p>For some data storage within the HyTEST workflows, access will not be anonymous.
+Permissions are set by the owners of that data, and the rules governing your ability to read from or write to certain locations may be defined with a set of credentials assigned to an AWS ‘profile’.</p>
+<p>Profile credentials are usually stored outside of the Python program, typically in a file in your <code class="docutils literal notranslate"><span class="pre">HOME</span></code> folder on the compute/jupyter server. You need to have this credential file set up before you can work with data in buckets requiring credentialed access. This section will demonstrate how to configure your OSN pod credentials in the same way that we would configure an AWS account profile - with the <code class="docutils literal notranslate"><span class="pre">aws</span></code> <a class="reference external" href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/index.html">command line interface</a>.</p>
+<p>To create a new AWS profile, which we will name <code class="docutils literal notranslate"><span class="pre">osn-hytest</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>aws<span class="w"> </span>configure<span class="w"> </span>--profile<span class="w"> </span>osn-hytest
+AWS<span class="w"> </span>Access<span class="w"> </span>Key<span class="w"> </span>ID<span class="w"> </span>:
+AWS<span class="w"> </span>Secret<span class="w"> </span>Access<span class="w"> </span>Key<span class="w"> </span>:
+Default<span class="w"> </span>region<span class="w"> </span>name<span class="w"> </span>:<span class="w"> </span>us-east-1
+Default<span class="w"> </span>output<span class="w"> </span>format:<span class="w"> </span>json
+</pre></div>
+</div>
+<p>The first two prompts will ask for key/security information you were assigned for access to object storage. Credentials for the OSN pod should have been provided by the HyTEST team if you need credentialed access to the OSN pod.
+The default region for the OSN pod should be “us-east-1” because this is the region in which the pod is physically located, and default output format should be “json”.</p>
+<p>Note that this configuration is specific to the OSN ‘pod’ storage.
+Your profile name and region may be different if you are setting up your credentials for an AWS S3 object storage bucket.</p>
+<p>We can now set up a virtual filesystem to access the OSN pod with the credentials stored in the <code class="docutils literal notranslate"><span class="pre">osn-hytest</span></code> profile you just created. This credentialed access will grant you additional permissions that you did not have with the anonymous access we used above.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs_osn</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span>
+    <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="n">profile</span><span class="o">=</span><span class="s1">&#39;osn-hytest&#39;</span><span class="p">,</span>  <span class="c1">## This is the profile name you configured above.</span>
+    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;endpoint_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://usgs.osn.mghpcc.org&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="read-only-access-with-requester-pays">
+<h2>Read-only access with “requester pays”<a class="headerlink" href="#read-only-access-with-requester-pays" title="Link to this heading">#</a></h2>
+<p>Some datasets, such as the first example above (anonymous reading), are offered with ‘egress fees’ paid by the data owner.
+This means that all access is free to anybody.
+The cost of the network bandwidth used to serve the data is covered by the data’s host.
+Not all “public” data is offered this way: it is still available to anybody who wants to read it, but
+the access fees must be paid by the reader (i.e. the ‘requester’).</p>
+<p>When you access a requester-pays dataset, your profile identifies the account which will be
+billed for access.  Open such datasets with an extra option to <code class="docutils literal notranslate"><span class="pre">fsspec</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs_requesterpays</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span>
+    <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="n">profile</span><span class="o">=</span><span class="s1">&#39;profile_name&#39;</span><span class="p">,</span>
+    <span class="n">anon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">requester_pays</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> call identifies how you will be interacting with object storage (your identity and what
+you are willing to pay for).  File-system operations using that <code class="docutils literal notranslate"><span class="pre">fs</span></code> handle will be made using that
+configuration.</p>
+</section>
+<section id="writing-data-to-s3">
+<h2>Writing Data to S3<a class="headerlink" href="#writing-data-to-s3" title="Link to this heading">#</a></h2>
+<p>From within your Python program, writes to object storage can be achieved a few different ways, which we will demonstrate below. Writing data will typically require credentials. If this is the case, you should use an <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> filesystem with a profile defined, similar to the <code class="docutils literal notranslate"><span class="pre">fs_osn</span></code> object that we created in the Credentialed Access section above.</p>
+<section id="uploading-a-local-file-to-s3">
+<h3>Uploading a Local File to S3<a class="headerlink" href="#uploading-a-local-file-to-s3" title="Link to this heading">#</a></h3>
+<p>If you have a file saved on your local file system, and you would like to upload it directly to object storage, you can use the <code class="docutils literal notranslate"><span class="pre">upload</span></code> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs_osn</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="s1">&#39;outfile.nc&#39;</span><span class="p">,</span> <span class="s1">&#39;hytest-scratch/testing/outfile.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-a-pandas-dataframe-to-a-csv-file-on-s3">
+<h3>Writing a Pandas Dataframe to a CSV File on S3<a class="headerlink" href="#writing-a-pandas-dataframe-to-a-csv-file-on-s3" title="Link to this heading">#</a></h3>
+<p>If you would like to write a pandas dataframe object directly to a csv file on object storage, you can do something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">fs_osn</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hytest-scratch/testing/outfile.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pandas_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-zarr-data-to-s3">
+<h3>Writing Zarr Data to S3<a class="headerlink" href="#writing-zarr-data-to-s3" title="Link to this heading">#</a></h3>
+<p>For zarr data, the most convenient way to write data to object storage is to use a <code class="docutils literal notranslate"><span class="pre">mapper</span></code> to connect a file-like python object to
+the object storage location:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;s3://hytest-scratch/testing/outfile.zarr&#39;</span>
+<span class="n">outfile</span><span class="o">=</span><span class="n">fs_osn</span><span class="o">.</span><span class="n">get_mapper</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">xarray_dataset</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">outfile</span></code> variable can be used most anywhere that a file-like object is needed for
+writing.</p>
+</section>
+<section id="additional-commands">
+<h3>Additional Commands<a class="headerlink" href="#additional-commands" title="Link to this heading">#</a></h3>
+<p>With adequate permissions, you may be able to do more destructive activities to objects in a bucket (overwriting, removing, etc).
+Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> – makes a new directory / folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mv</span></code> – moves/renames a file or folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rm</span></code> – removes a file or folder</p></li>
+</ul>
+<p>See the <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/api.html">API documentation</a> for the full details of available operations.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./essential_reading/DataSources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Data_APIs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data/APIs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Parallel_Dask.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Parallelism with Dask</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-reads-from-s3">Anonymous Reads from S3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-reads-from-endpoints-outside-of-s3-that-use-the-s3-api">Anonymous Reads from Endpoints Outside of S3 (that use the S3 API)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#credentialed-access">Credentialed Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-only-access-with-requester-pays">Read-only access with “requester pays”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-data-to-s3">Writing Data to S3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-a-local-file-to-s3">Uploading a Local File to S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-pandas-dataframe-to-a-csv-file-on-s3">Writing a Pandas Dataframe to a CSV File on S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-zarr-data-to-s3">Writing Zarr Data to S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-commands">Additional Commands</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1091 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Standard Suite (v1) Metrics &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'evaluation/Metrics_StdSuite_v1';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Standard Suite (v1) Metrics – Usage Examples" href="tutorials/stats_demos/Usage_StdSuite_v1.html" />
+    <link rel="prev" title="D-Score Suite (v1) Benchmark – Usage Examples" href="tutorials/stats_demos/Usage_DScore_Suite_v1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essential_reading/README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essential_reading/ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essential_reading/DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essential_reading/DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essential_reading/DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="metrics.html">Evaluation Metrics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/evaluation/Metrics_StdSuite_v1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Standard Suite (v1) Metrics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metrics">The Metrics:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metric-definitions">Metric Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-square-error-mse">Mean Square Error (MSE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nash-sutcliffe-efficiency-nse">Nash-Sutcliffe efficiency (NSE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ratio-of-standard-deviations">Ratio of Standard Deviations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-coefficients-pearson-and-spearman">Correlation Coefficients: Pearson and Spearman</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kling-gupta-efficiency-kge">Kling-Gupta efficiency (KGE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lognse">logNSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-bias">Percent Bias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fdc-flow-duration-curves">FDC - Flow Duration Curves</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pbiasfms">pBiasFMS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pbiasflv">pBiasFLV</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pbiasfhv">pBiasFHV</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-duration-curve-plotting">Flow Duration Curve Plotting</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="standard-suite-v1-metrics">
+<h1>Standard Suite (v1) Metrics<a class="headerlink" href="#standard-suite-v1-metrics" title="Link to this heading">#</a></h1>
+<p>These are custom-defined Python functions to calculate metrics using timeseries data. These are mainly intended to be used with streamflow timeseries data, though may be applicable elsewhere.</p>
+<p>See <a class="reference external" href="https://doi.org/10.5194/hess-27-1809-2023">Towler et al 2023</a> for a published application.</p>
+<ul class="simple">
+<li><p>Towler, E., Foks, S.S., Dugger, A.L., Dickinson, J.E., Essaid, H.I., Gochis, D., Viger, R.J., and Zhang, Y. (2023). Benchmarking High-Resolution, Hydrologic Performance of Long-Term Retrospectives in the United States, Hydrology and Earth System Sciences.</p></li>
+</ul>
+<p>These functions have been adapted from the originals in <a class="github reference external" href="https://github.com/USGS-python/hytest-evaluation-workflows/blob/main/gallery/streamflow/02_nwm_benchmark_analysis.ipynb">USGS-python/hytest-evaluation-workflows</a></p>
+<section id="the-metrics">
+<h2>The Metrics:<a class="headerlink" href="#the-metrics" title="Link to this heading">#</a></h2>
+<p>This suite of metrics describes the Standard Suite v1 benchmarking metrics:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Used on these variables</p></th>
+<th class="head"><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nash-Sutcliffe efficiency (NSE)</p></td>
+<td><p>all</p></td>
+<td><p>Nash, J. E., &amp; Sutcliffe, J. V. (1970). River flow forecasting through conceptual models part I—A discussion of principles. Journal of hydrology, 10(3), 282-290. https://www.sciencedirect.com/science/article/pii/0022169470902556?via%3Dihub</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kling-Gupta efficiency (KGE)</p></td>
+<td><p>all</p></td>
+<td><p>Gupta, H. V., Kling, H., Yilmaz, K. K., &amp; Martinez, G. F. (2009).  Decomposition of the mean squared error and NSE performance criteria: Implications for improving hydrological modelling. Journal of hydrology, 377(1-2), 80-91. https://www.sciencedirect.com/science/article/pii/S0022169409004843</p></td>
+</tr>
+<tr class="row-even"><td><p>logNSE</p></td>
+<td><p>all</p></td>
+<td><p>Oudin, L., Andréassian, V., Mathevet, T., Perrin, C., &amp; Michel, C. (2006). Dynamic averaging of rainfall‐runoff model simulations from complementary model parameterizations. Water Resources  Research, 42(7).</p></td>
+</tr>
+<tr class="row-odd"><td><p>percent bias</p></td>
+<td><p>all</p></td>
+<td><p>A measure of the mean tendency of simulated values to be greater or less than associated observed values, units of percent</p></td>
+</tr>
+<tr class="row-even"><td><p>ratio of standard deviation</p></td>
+<td><p>all</p></td>
+<td><p>standard deviation of simulated values divided by the standard deviation of observed values</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pearson Correlation</p></td>
+<td><p>all</p></td>
+<td><p>K. Pearson (1896, 1900, 1920)</p></td>
+</tr>
+<tr class="row-even"><td><p>Spearman Correlation</p></td>
+<td><p>all</p></td>
+<td><p>Charles Spearman (1904, 1910)</p></td>
+</tr>
+<tr class="row-odd"><td><p>percent bias in midsegment slope of the flow-duration curve (FDC) between Q20-Q70</p></td>
+<td><p>streamflow</p></td>
+<td><p>Yilmaz, K. K., Gupta, H. V., &amp; Wagener, T. (2008). A process‐based diagnostic approach to model evaluation: Application to the NWS distributed hydrologic model. Water Resources Research, 44(9).</p></td>
+</tr>
+<tr class="row-even"><td><p>percent bias in FDC low-segment volume (Q0-Q30)</p></td>
+<td><p>streamflow</p></td>
+<td><p>Yilmaz, K. K., Gupta, H. V., &amp; Wagener, T. (2008). A process‐based diagnostic approach to model evaluation: Application to the NWS distributed hydrologic model. Water Resources Research, 44(9).</p></td>
+</tr>
+<tr class="row-odd"><td><p>percent bias in FDC high-segment volume (Q98-Q100)</p></td>
+<td><p>streamflow</p></td>
+<td><p>Yilmaz, K. K., Gupta, H. V., &amp; Wagener, T. (2008). A process‐based diagnostic approach to model evaluation: Application to the NWS distributed hydrologic model. Water Resources Research, 44(9).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This notebook will briefly describe each of the above metrics, and show some results using sample data.
+The specific code to implement each metric is included.  This notebook can be sourced into analysis notebooks
+to get access to these functions natively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metric-definitions">
+<h2>Metric Definitions<a class="headerlink" href="#metric-definitions" title="Link to this heading">#</a></h2>
+<section id="mean-square-error-mse">
+<h3>Mean Square Error (MSE)<a class="headerlink" href="#mean-square-error-mse" title="Link to this heading">#</a></h3>
+<p>Many subsequent functions rely on MSE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">MSE</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mean Square Error --   Compute MSE over all paired values obs (x) and sim (x_hat)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Mean square error</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">obs</span> <span class="o">-</span> <span class="n">sim</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">err</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nash-sutcliffe-efficiency-nse">
+<h3>Nash-Sutcliffe efficiency (NSE)<a class="headerlink" href="#nash-sutcliffe-efficiency-nse" title="Link to this heading">#</a></h3>
+<p>Nash, J. E., &amp; Sutcliffe, J. V. (1970). River flow forecasting through conceptual models part I—A discussion of principles. Journal of hydrology, 10(3), 282-290.
+<a class="reference external" href="https://www.sciencedirect.com/science/article/pii/0022169470902556?via%3Dihub">https://www.sciencedirect.com/science/article/pii/0022169470902556?via%3Dihub</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">NSE</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Nash-Sutcliffe efficiency (NSE)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: calculated NSE</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">MSE</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># See NOTE re:  ddof </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Special note on NSE &amp; variance</strong> — A component within the calculation of NSE is <em>variance</em> computed over the
+observed values. Different python libraries calculated this in different ways, so some of the details matter
+when calculating.  In particular, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> assumes that <code class="docutils literal notranslate"><span class="pre">ddof</span></code> (Delta Degrees of Freedom)
+is <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.var.html">zero</a>, while  <code class="docutils literal notranslate"><span class="pre">pandas</span></code>
+assumes a <code class="docutils literal notranslate"><span class="pre">ddof</span></code> of
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.var.html">one</a> (<a class="reference external" href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s Correction</a>).</p>
+<p>Without explicit instructions, these two common libraries will return different results for the ‘<em>same</em>’ calculation,
+so it is important not to inter-mix the libraries. If you should decide to build your own functions involving
+variance, it will matter how you calculate that value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>  <span class="c1"># using pandas</span>
+</pre></div>
+</div>
+<p>will yield a <strong>different</strong> result than</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">])</span> <span class="c1"># using numpy</span>
+</pre></div>
+</div>
+<p>The key (in either case) is to <strong>explicitly</strong> define the <code class="docutils literal notranslate"><span class="pre">ddof</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The original codespec for this benchmark series used numpy, with its default DDOF of 0 and explicit definition of DDOF to ensure compatibility with similar metrics.</p>
+</section>
+<section id="ratio-of-standard-deviations">
+<h3>Ratio of Standard Deviations<a class="headerlink" href="#ratio-of-standard-deviations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rSD</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ratio of standard deviation  -- standard deviation of simulated/modeled</span>
+<span class="sd">    values divided by the standard deviation of observed values</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: calculated ratio</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;std dev of observed is zero; ratio undefined&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="correlation-coefficients-pearson-and-spearman">
+<h3>Correlation Coefficients: Pearson and Spearman<a class="headerlink" href="#correlation-coefficients-pearson-and-spearman" title="Link to this heading">#</a></h3>
+<p>These standard measures are available in reliable and fast libraries from <a class="reference external" href="https://scipy.org/">SciPy</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span><span class="p">,</span> <span class="n">spearmanr</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pearson_r</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pearson Correlation -- Pearson&#39;s R, calculated using the scipi library method</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Pearson&#39;s R</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">spearman_r</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Spearman Correlation == Spearman&#39;s R, calcuated using the scipy method</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Calculated R                                 |</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kling-gupta-efficiency-kge">
+<h3>Kling-Gupta efficiency (KGE)<a class="headerlink" href="#kling-gupta-efficiency-kge" title="Link to this heading">#</a></h3>
+<p>Gupta, H. V., Kling, H., Yilmaz, K. K., &amp; Martinez, G. F. (2009).  Decomposition of the mean squared error and NSE performance criteria: Implications for improving hydrological modelling. Journal of hydrology, 377(1-2), 80-91. <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022169409004843">https://www.sciencedirect.com/science/article/pii/S0022169409004843</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">KGE</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Kling-Gupta efficiency (KGE)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Calculated KGE</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">rSD</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">beta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lognse">
+<h3>logNSE<a class="headerlink" href="#lognse" title="Link to this heading">#</a></h3>
+<p>Oudin, L., Andréassian, V., Mathevet, T., Perrin, C., &amp; Michel, C. (2006). Dynamic averaging of rainfall‐runoff model simulations from complementary model parameterizations. Water Resources  Research, 42(7).</p>
+<p>This is a NSE metric, run against log-transformed data.  Because we can’t have log work on zero values, the data must be sanitized to ensure only positive values are passed to <code class="docutils literal notranslate"><span class="pre">np.log()</span></code>. Of the various ways to treat zeros, we use a clipping function to ‘promote’ values below a small threshold up to that threshold value.  By default, any value below 0.01 is treated as 0.01 for purposes of the log transform.</p>
+<p>This data sanitization is handled differently within other libraries, notably <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code>.  That package uses a slightly more complex strategy to ensure that <code class="docutils literal notranslate"><span class="pre">log()</span></code> gets clean data to work on. The <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code> developer
+references <a class="reference external" href="https://doi.org/10.1016/j.jhydrol.2011.11.055">Pushpalatha et al. (2012)</a> regarding their strategy.  The details of that method are beyond scope here – just know that if you compare results with <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code>, this metric may yield very slightly different results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">logXform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1">### we are allowing for the possible future addition of other methods to treat zero values. &#39;clip&#39; is the default. </span>
+    <span class="k">if</span> <span class="s1">&#39;clip&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;clip&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;clip&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">logNSE</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    logNSE - computes NSE using the log of data (rather than data)</span>
+
+<span class="sd">        float: Calculated NSE of log(data)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">NSE</span><span class="p">(</span><span class="n">logXform</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">logXform</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="percent-bias">
+<h3>Percent Bias<a class="headerlink" href="#percent-bias" title="Link to this heading">#</a></h3>
+<p>A measure of the mean tendency of simulated values to be greater or less than associated observed values, units of percent</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pbias</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    percent bias -- a measure of the mean tendency of simulated values to be</span>
+<span class="sd">    greater than or less than associated observed values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: calculated percent bias / units = percent (i.e. 90 rather than 0.90)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sim</span> <span class="o">-</span> <span class="n">obs</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Special Note on pbias</strong> – as relates to <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code> and other libraries.</p>
+<ul class="simple">
+<li><p>The result we compute here mimics the behavior of the <code class="docutils literal notranslate"><span class="pre">hydroGOF</span></code> R package, and is the result of the code provided in
+the <a class="reference external" href="https://github.com/USGS-python/hytest-evaluation-workflows/blob/main/gallery/streamflow/02_nwm_benchmark_analysis.ipynb">model notebook</a>
+mentioned above.</p></li>
+<li><p>This differs from the <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code> Python package in an important way.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hydroGOF</span></code> (and this benchmark) returns:  <br> <span class="math notranslate nohighlight">\(100 × \frac{\displaystyle\sum_{i=1}^{n}(\hat{x}_{i} - x_{i})}{\displaystyle\sum_{i=1}^{n}x_{i}}\)</span> <br>where <span class="math notranslate nohighlight">\(x\)</span> is ‘observed’ and <span class="math notranslate nohighlight">\(\hat{x}\)</span> is ‘modeled’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hydroeval</span></code> on the other hand, returns:  <br> <span class="math notranslate nohighlight">\(100 × \frac{\displaystyle\sum_{i=1}^{n}(x_{i} - \hat{x}_{i})}{\displaystyle\sum_{i=1}^{n}x_{i}}\)</span><br>Note
+tht the numerator has switched the ordering of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(\hat{x}\)</span>.</p></li>
+</ul>
+<p>The end result is that these two libraries return values of different sign. <code class="docutils literal notranslate"><span class="pre">hydroGOF</span></code> returns a positive value if the ‘modeled’ tends to be higher than ‘observed’, while <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code> will return a negative number in this case. The absolute values of these calulations are the same.</p>
+<p>The developer for <code class="docutils literal notranslate"><span class="pre">hydroeval</span></code> points to <a class="reference external" href="https://elibrary.asabe.org/abstract.asp?aid=23153">this document</a> as the source of the math used in that package.</p>
+<p>This code library uses the same ordering as <code class="docutils literal notranslate"><span class="pre">hydroGOF</span></code>, which is describe in EQN A1 of Yilmaz et al. (2008)</p>
+</section>
+<section id="fdc-flow-duration-curves">
+<h3>FDC - Flow Duration Curves<a class="headerlink" href="#fdc-flow-duration-curves" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>percent bias in midsegment slope of the flow-duration curve (FDC) between Q20-Q70</p></td>
+<td><p>Yilmaz, K. K., Gupta, H. V., &amp; Wagener, T. (2008). A process‐based diagnostic approach to model evaluation: Application to the NWS distributed hydrologic model. Water Resources Research, 44(9).</p></td>
+</tr>
+<tr class="row-odd"><td><p>percent bias in FDC low-segment volume (Q0-Q30)</p></td>
+<td><p>Yilmaz, K. K., Gupta, H. V., &amp; Wagener, T. (2008). A process‐based diagnostic approach to model evaluation: Application to the NWS distributed hydrologic model. Water Resources Research, 44(9).</p></td>
+</tr>
+<tr class="row-even"><td><p>percent bias in FDC high-segment volume (Q98-Q100)</p></td>
+<td><p>Yilmaz, K. K., Gupta, H. V., &amp; Wagener, T. (2008). A process‐based diagnostic approach to model evaluation: Application to the NWS distributed hydrologic model. Water Resources Research, 44(9).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="pbiasfms">
+<h4>pBiasFMS<a class="headerlink" href="#pbiasfms" title="Link to this heading">#</a></h4>
+<p>This is the percent bias of the <strong>slope</strong> of the FDC in the mid-segment part of the curve. See equation A2 of Yilmaz</p>
+<p><span class="math notranslate nohighlight">\(\%BiasFMS = 100 × \cfrac{ [log(QS_{m1}) - log(QS_{m2})] - [log(QO_{m1}) - log(QO_{m2})] }{ [log(QO_{m1}) - log(QO_{m2})] }\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pBiasFMS</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculates percent bias of the slope the mid-segment of FDC.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: percent bias for values in exceedence probability range 0.2-0.7</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Exceedence = 1 - percentile  ;  percentile = 1 - exceedence</span>
+    <span class="c1"># mid-segment slope is defined as those observations with flow exceedence probabilities between 20% and 70%.</span>
+    <span class="c1"># This leads to percentiles/quantiles of 30% and 80% to establish the cut-offs</span>
+    <span class="n">QO_m1</span><span class="p">,</span> <span class="n">QO_m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">])</span>
+    <span class="n">QS_m1</span><span class="p">,</span> <span class="n">QS_m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">])</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QS_m1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QS_m2</span><span class="p">)</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QO_m1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QO_m2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">o</span> <span class="p">)</span> <span class="o">/</span> <span class="n">o</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pbiasflv">
+<h4>pBiasFLV<a class="headerlink" href="#pbiasflv" title="Link to this heading">#</a></h4>
+<p>Percent bias in low-flow segment <strong>volume</strong>.  Note that in low flow segment, a log transform is used to
+increase sensitivity to very low flows. See equation A4 from Yilmaz.</p>
+<p><span class="math notranslate nohighlight">\(\%BiasFLV = -100 × \cfrac{
+    \displaystyle\sum_{l=1}^L[log(QS_l) - log(QS_L)] - 
+    \displaystyle\sum_{l=1}^L[log(QO_l) - log(QO_l)]
+    }{
+        \displaystyle\sum_{l=1}^L[log(QO_l) - log(QO_L)]
+    }\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pBiasFLV</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculates percent bias over the low-flow segment volume.</span>
+<span class="sd">    Note that for low-flow observations a log transform is done before the</span>
+<span class="sd">    pbias calculation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: percent bias for values in exceedence probability range 0.7-1.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Exceedence = 1 - percentile  ;  percentile = 1 - exceedence</span>
+    <span class="c1"># Low-Volume is defined as those observations with flow exceedence probabilities between 70% and 100%.</span>
+    <span class="c1"># This leads to percentiles/quantiles of 0% and 30% to establish the cut-offs</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">QO_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">])</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">QS_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">])</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">obs</span> <span class="o">&lt;=</span> <span class="n">QO_L</span><span class="p">)</span> <span class="c1"># defines boolean selector index</span>
+    <span class="n">QS_l</span> <span class="o">=</span> <span class="n">sim</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">QO_l</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QS_l</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QS_L</span><span class="p">))</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QO_l</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">QO_L</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">100</span> <span class="o">*</span> <span class="p">((</span> <span class="n">m</span> <span class="o">-</span> <span class="n">o</span> <span class="p">)</span> <span class="o">/</span> <span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pbiasfhv">
+<h4>pBiasFHV<a class="headerlink" href="#pbiasfhv" title="Link to this heading">#</a></h4>
+<p>Percent bias in high-flow segment <strong>volume</strong>.  See equation A3 of Yilmaz</p>
+<p><span class="math notranslate nohighlight">\(\%BiasFHV = 100 × \cfrac{
+    \displaystyle\sum_{h=1}^H(QS_h - QO_h)
+    }{
+    \displaystyle\sum_{h=1}^H QO_h
+    }\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pBiasFHV</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculates percent bias over the high-flow segment volume.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Exceedence = 1 - percentile  ; percentile = 1 - exceedence</span>
+    <span class="c1"># &#39;High-Volume&#39; is defined as those observations with flow exceedence probabilities between 0 and 2%.</span>
+    <span class="c1"># This leads to percentiles/quantiles of 98% and 100% to establish the cut-offs</span>
+    <span class="c1">#</span>
+    <span class="n">minval</span><span class="p">,</span> <span class="n">maxval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">obs</span> <span class="o">&gt;=</span> <span class="n">minval</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">obs</span> <span class="o">&lt;=</span> <span class="n">maxval</span><span class="p">)</span>
+    <span class="n">QS_h</span> <span class="o">=</span> <span class="n">sim</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">QO_h</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="c1"># standard pbias over these observations</span>
+    <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="n">QS_h</span> <span class="o">-</span> <span class="n">QO_h</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">QO_h</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="flow-duration-curve-plotting">
+<h3>Flow Duration Curve Plotting<a class="headerlink" href="#flow-duration-curve-plotting" title="Link to this heading">#</a></h3>
+<p>We also allow for plots of the FDC, highlighting the segment-specific metric being calculated.
+See the <a class="reference internal" href="tutorials/stats_demos/Usage_StdSuite_v1.html"><span class="std std-doc">usage document</span></a> to see how this might be called.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">FDCplot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;mid&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an axes within a matplotlib.plot figure, populate it with</span>
+<span class="sd">    artists to show the FDC curves for this dataset (modeled and observed).</span>
+<span class="sd">    Optionally fills the space between curves.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obs : observed values</span>
+<span class="sd">    sim : simulated/modeled values</span>
+<span class="sd">    ax : Axes</span>
+<span class="sd">        The specific axes within a fig to draw upon</span>
+<span class="sd">    segment : str, optional</span>
+<span class="sd">        Which segment of the FDC do you want to highlight? [&#39;lo&#39;, &#39;mid&#39;, &#39;hi&#39;], by default &#39;mid&#39;</span>
+<span class="sd">    fill : bool, optional</span>
+<span class="sd">        : Do you want to &#39;fill_between&#39; the observed and modeled curves?. by default False</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Axes</span>
+<span class="sd">        The same axes we were passed in.  Likely ignored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">obs_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">obs</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mod_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sim</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">exceedence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">obs_sorted</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_sorted</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Exceedence [%]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Flow Rate&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="c1"># NOTE: no units are specified in this label -- because we don&#39;t know enough about</span>
+    <span class="c1"># the source data.  If the user wants units in the y axis labels, they can call</span>
+    <span class="c1"># ax.set_ylabel(&quot;Flow Rate $m^3 / s$&quot;) (or similar) afterwards to manipulate it.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">segment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mid&#39;</span><span class="p">,</span> <span class="s1">&#39;lo&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">]:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Invalid segment identifier &#39;</span><span class="si">%s</span><span class="s2">&#39;. Options are [&#39;mid&#39;, &#39;lo&#39;, &#39;hi&#39;]&quot;</span><span class="p">,</span> <span class="n">segment</span><span class="p">)</span>
+        <span class="n">segment</span> <span class="o">=</span> <span class="s1">&#39;mid&#39;</span>
+
+    <span class="k">if</span> <span class="n">segment</span> <span class="o">==</span> <span class="s1">&#39;mid&#39;</span><span class="p">:</span>
+        <span class="n">pb</span><span class="o">=</span><span class="n">pBiasFMS</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">70</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="mf">0.45</span> <span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;Mid-Segment&quot;</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="mf">0.45</span> <span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;pBiasFMS= </span><span class="si">{</span><span class="n">pb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">segment</span> <span class="o">==</span> <span class="s1">&#39;lo&#39;</span><span class="p">:</span>
+        <span class="n">pb</span><span class="o">=</span><span class="n">pBiasFLV</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">70</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="mf">0.99</span> <span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;Low-Flow&quot;</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="mf">0.99</span> <span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;pBiasFLV= </span><span class="si">{</span><span class="n">pb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">segment</span> <span class="o">==</span> <span class="s1">&#39;hi&#39;</span><span class="p">:</span>
+        <span class="n">pb</span><span class="o">=</span><span class="n">pBiasFHV</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="mf">0.02</span> <span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;High-Flow&quot;</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="mf">0.02</span> <span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;pBiasFHV= </span><span class="si">{</span><span class="n">pb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exceedence</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">mod_sorted</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exceedence</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">obs_sorted</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fill</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">exceedence</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">obs_sorted</span><span class="p">,</span> <span class="n">mod_sorted</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">hatch</span><span class="o">=</span><span class="s1">&#39;//////&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./evaluation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorials/stats_demos/Usage_DScore_Suite_v1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">D-Score Suite (v1) Benchmark – Usage Examples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tutorials/stats_demos/Usage_StdSuite_v1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Standard Suite (v1) Metrics – Usage Examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metrics">The Metrics:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metric-definitions">Metric Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-square-error-mse">Mean Square Error (MSE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nash-sutcliffe-efficiency-nse">Nash-Sutcliffe efficiency (NSE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ratio-of-standard-deviations">Ratio of Standard Deviations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-coefficients-pearson-and-spearman">Correlation Coefficients: Pearson and Spearman</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kling-gupta-efficiency-kge">Kling-Gupta efficiency (KGE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lognse">logNSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-bias">Percent Bias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fdc-flow-duration-curves">FDC - Flow Duration Curves</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pbiasfms">pBiasFMS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pbiasflv">pBiasFLV</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pbiasfhv">pBiasFHV</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-duration-curve-plotting">Flow Duration Curve Plotting</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

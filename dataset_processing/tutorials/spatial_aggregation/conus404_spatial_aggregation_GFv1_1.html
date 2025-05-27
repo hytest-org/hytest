@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1 &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s" href="conus404_spatial_aggregation_WBD12.html" />
+    <link rel="prev" title="gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s" href="conus404_spatial_aggregation_DRB.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../../../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../essential_reading/README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../essential_reading/ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../essential_reading/DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../essential_reading/DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../essential_reading/DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../spatial_aggregation.html">Spatial Aggregation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-with-hytest-intake-catalog">Access data with HyTest intake catalog.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-quick-plot-of-gfv11">Generate a quick plot of GFv11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-conus404-dataset-using-the-hytest-catalog">Load the conus404 dataset using the HyTest catalog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdptools-background">GDPTools Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiation-of-the-usercatdata-class">Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-generation-with-weightgen">Weight Generation with <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-and-dask-methods">Parallel and Dask Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-areal-weighted-spatial-interpolation">Compute the areal weighted spatial interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#areal-interpolation-with-the-agggen-class">Areal Interpolation with the <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> Class</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="gdptools-conus404-spatial-aggregation-over-conus-extent-gfv1-1">
+<h1>gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1<a class="headerlink" href="#gdptools-conus404-spatial-aggregation-over-conus-extent-gfv1-1" title="Link to this heading">#</a></h1>
+<p>This tutorial demonstrates the use of gdptools, a python package for area-weighted interpolation of <em>source</em> gridded datasets, such as conus404, to <em>target</em> polygonal geospatial fabrics.  Source datasets can be any gridded dataset that can be opened in XArray.  However it’s important to note that gdptools, operations on XArray Datasets or DataArrays with dimensions of (Y,X,Time) generally.  As such climate datasets that have ensemble dimensions will require subsetting by ensemble to obtain the a dataset with the proper dimensions.  The target dataset can be any polygonal dataset that can be read by GeoPandas.  GDPtools also has capabilities of interpolating gridded data to lines as well, but our focus here is interpolating to polygons.</p>
+<p>In this workflow, CONUS404 is aggregated to <a class="reference external" href="https://www.sciencebase.gov/catalog/item/5e29d1a0e4b0a79317cf7f63"><strong>GeoSpatialFabric v1.1</strong></a> (GFv1.1).  This is a CONUS scale spatial fabric with ~115,000 polygons. Access to this dataset is provided through a copy of the data release stored on the OSN pod (<code class="docutils literal notranslate"><span class="pre">geofabric_v1_1_nhru_v1_1_simp-osn</span></code>).</p>
+<p>We use the HyTest intake catalog to access the <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic-onprem-hw</span></code> version of CONUS404 on Hovenweep so that we could also run the workflow there to be co-located with the data. However, a user could adapt this workflow to run in other computing environments if they use the version of CONUS404 on the OSN pod instead.</p>
+<p>Compared to the <strong>gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</strong> tutorial, the main difference is that to manage file size and memory overhead we process CONUS404 by year, generating 43 annual netcdf files of the interpolated data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Common python packages</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.xarray</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.pandas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.dask</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake_xarray</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake_parquet</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake_geopandas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">holoviews</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+
+<span class="c1"># HyRiver packages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pynhd</span><span class="w"> </span><span class="kn">import</span> <span class="n">NLDI</span><span class="p">,</span> <span class="n">WaterData</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pygeohydro</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gh</span>
+<span class="c1"># GDPTools packages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gdptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">AggGen</span><span class="p">,</span> <span class="n">UserCatData</span><span class="p">,</span> <span class="n">WeightGen</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;HYRIVER_CACHE_DISABLE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span>
+
+<span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;bokeh&quot;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we setup a variable the sets our local context, working on the HPC or working locally on your Desktop.  This just modifies the access point of the conus404 data, using the Hovenweep access for HPC and the OSN pod access for the Desktop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_sys</span> <span class="o">=</span> <span class="s2">&quot;HPC&quot;</span>  <span class="c1"># &quot;HPC&quot; or &quot;Desktop&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="access-data-with-hytest-intake-catalog">
+<h2>Access data with HyTest intake catalog.<a class="headerlink" href="#access-data-with-hytest-intake-catalog" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">geofabric_v1_1-zip-osn</span></code> to read the Geospatial Fabric v1.1</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic-onprem-hw</span></code> to read conus404</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
+<span class="c1"># hytest_cat = intake.open_catalog(&quot;../dataset_catalog/hytest_intake_catalog.yml&quot;)</span>
+<span class="n">hytest_cat</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml&quot;</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">hytest_cat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the gfv1.1_simp file</span>
+<span class="n">gfv11_file</span> <span class="o">=</span> <span class="n">hytest_cat</span><span class="p">[</span><span class="s1">&#39;geofabric_v1_1_nhru_v1_1_simp-osn&#39;</span><span class="p">]</span>
+<span class="n">gfv11</span> <span class="o">=</span> <span class="n">gfv11_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">gfv11</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-a-quick-plot-of-gfv11">
+<h2>Generate a quick plot of GFv11<a class="headerlink" href="#generate-a-quick-plot-of-gfv11" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot using hvplot with datashading</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">gfv11</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span>
+    <span class="n">datashade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable datashading for large datasets</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Display the plot</span>
+<span class="n">plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-conus404-dataset-using-the-hytest-catalog">
+<h2>Load the conus404 dataset using the HyTest catalog<a class="headerlink" href="#load-the-conus404-dataset-using-the-hytest-catalog" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In this case we are running this notebook on Hovenweep.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
+<span class="n">hytest_cat</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml&quot;</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">hytest_cat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the conus404 sub-catalog</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">hytest_cat</span><span class="p">[</span><span class="s1">&#39;conus404-catalog&#39;</span><span class="p">]</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are a couple of options for accessing <strong>conus404</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>HPC Setting (<code class="docutils literal notranslate"><span class="pre">t_sys</span> <span class="pre">=</span> <span class="pre">HPC</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Assumption</strong>: The notebook is run on the USGS HPC Hovenweep.</p></li>
+<li><p><strong>Access Method</strong>: Utilizes the on-premises version of the data.</p></li>
+<li><p><strong>Benefits</strong>:</p>
+<ul>
+<li><p><strong>Workflow Association</strong>: The workflow is directly linked to the data.</p></li>
+<li><p><strong>Speed</strong>: Eliminates the need to download data, significantly reducing access and processing time.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Desktop Setting (<code class="docutils literal notranslate"><span class="pre">t_sys</span> <span class="pre">=</span> <span class="pre">Desktop</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Use Case</strong>: Suitable for workflows that do not require HPC resources or for developing workflows locally before deploying them to the HPC.</p></li>
+<li><p><strong>Access Method</strong>: Connects to the <strong>conus404</strong> data via the OSN pod.</p></li>
+<li><p><strong>Benefits</strong>:</p>
+<ul>
+<li><p><strong>Flexibility</strong>: Allows for local development and testing.</p></li>
+<li><p><strong>Performance</strong>: Provides a fast connection to the data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Select the dataset you want to read into your notebook and preview its metadata</span>
+<span class="k">if</span> <span class="n">t_sys</span> <span class="o">==</span> <span class="s2">&quot;HPC&quot;</span><span class="p">:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="s1">&#39;conus404-daily-diagnostic-onprem-hw&#39;</span>
+<span class="k">elif</span> <span class="n">t_sys</span> <span class="o">==</span> <span class="s2">&quot;Desktop&quot;</span><span class="p">:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="s1">&#39;conus404-daily-diagnostic-osn&#39;</span> 
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please set the variable t_sys above to one of &#39;HPC&#39; or &#39;Desktop&#39;&quot;</span><span class="p">)</span>        
+<span class="n">cat</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the dataset and use metpy to parse the crs information on the dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2"> metadata...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">cat</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span><span class="o">.</span><span class="n">to_dask</span><span class="p">()</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">()</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gdptools-background">
+<h2>GDPTools Background<a class="headerlink" href="#gdptools-background" title="Link to this heading">#</a></h2>
+<p>In this section, we utilize three data classes from the <code class="docutils literal notranslate"><span class="pre">gdptools</span></code> package: <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code>, <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code>, and <code class="docutils literal notranslate"><span class="pre">AggGen</span></code>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/user_input_data_classes.html"><strong>UserCatData</strong></a>:<br />
+Serves as a data container for both the source and target datasets, along with their associated metadata. The instantiated object <code class="docutils literal notranslate"><span class="pre">user_data</span></code> is employed by both the <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code> and <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> classes.</p></li>
+<li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/weight_gen_classes.html"><strong>WeightGen</strong></a>:<br />
+Responsible for calculating the intersected areas between the source and target datasets. It generates normalized area-weights, which are subsequently used by the <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> class to compute interpolated values between the datasets.</p></li>
+<li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/agg_gen_classes.html"><strong>AggGen</strong></a>:<br />
+Facilitates the interpolation of target data to match the source data using the areal weights calculated by <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code>. This process is conducted over the time period specified in the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> object.</p></li>
+</ul>
+</section>
+<section id="instantiation-of-the-usercatdata-class">
+<h2>Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.<a class="headerlink" href="#instantiation-of-the-usercatdata-class" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coordinate Reference System (CRS) of the conus404 dataset</span>
+<span class="n">source_crs</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">crs_wkt</span>
+
+<span class="c1"># Coordinate names of the conus404 dataset</span>
+<span class="n">x_coord</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+<span class="n">y_coord</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>
+<span class="n">t_coord</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+
+<span class="c1"># Time period of interest for areal interpolation of conus404 to DRB HUC12s</span>
+<span class="c1"># using the AggGen class below. Note: The dates follow the same format as the</span>
+<span class="c1"># time values in the conus404 dataset.</span>
+<span class="n">sdate</span> <span class="o">=</span> <span class="s2">&quot;1979-10-01T00:00:00.000000000&quot;</span>
+<span class="n">edate</span> <span class="o">=</span> <span class="s2">&quot;2022-10-01T00:00:00.000000000&quot;</span>
+
+<span class="c1"># Variables from the conus404 dataset used for areal interpolation</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;T2MIN&quot;</span><span class="p">,</span> <span class="s2">&quot;T2MAX&quot;</span><span class="p">,</span> <span class="s2">&quot;RAINNCVMEAN&quot;</span><span class="p">]</span>
+
+<span class="c1"># CRS of the DRB HUC12 polygons</span>
+<span class="n">target_crs</span> <span class="o">=</span> <span class="mi">5070</span>
+
+<span class="c1"># Column name for the unique identifier associated with target polygons.</span>
+<span class="c1"># This ID is used in both the generated weights file and the areal interpolated output.</span>
+<span class="n">target_poly_idx</span> <span class="o">=</span> <span class="s2">&quot;nhru_v1_1&quot;</span>
+
+<span class="c1"># Common equal-area CRS for reprojecting both source and target data.</span>
+<span class="c1"># This CRS is used for calculating areal weights in the WeightGen class.</span>
+<span class="n">weight_gen_crs</span> <span class="o">=</span> <span class="mi">5070</span>
+
+<span class="c1"># Instantiate the UserCatData class, which serves as a container for both</span>
+<span class="c1"># source and target datasets, along with associated metadata. The UserCatData</span>
+<span class="c1"># object provides methods used by the WeightGen and AggGen classes to subset</span>
+<span class="c1"># and reproject the data.</span>
+<span class="n">user_data</span> <span class="o">=</span> <span class="n">UserCatData</span><span class="p">(</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>  <span class="c1"># conus404 read from the intake catalog</span>
+    <span class="n">proj_ds</span><span class="o">=</span><span class="n">source_crs</span><span class="p">,</span>
+    <span class="n">x_coord</span><span class="o">=</span><span class="n">x_coord</span><span class="p">,</span>
+    <span class="n">y_coord</span><span class="o">=</span><span class="n">y_coord</span><span class="p">,</span>
+    <span class="n">t_coord</span><span class="o">=</span><span class="n">t_coord</span><span class="p">,</span>
+    <span class="n">var</span><span class="o">=</span><span class="n">variables</span><span class="p">,</span>
+    <span class="n">f_feature</span><span class="o">=</span><span class="n">gfv11</span><span class="p">,</span>  <span class="c1"># GFv1.1 read above from the intake catalog</span>
+    <span class="n">proj_feature</span><span class="o">=</span><span class="n">target_crs</span><span class="p">,</span>
+    <span class="n">id_feature</span><span class="o">=</span><span class="n">target_poly_idx</span><span class="p">,</span>
+    <span class="n">period</span><span class="o">=</span><span class="p">[</span><span class="n">sdate</span><span class="p">,</span> <span class="n">edate</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="weight-generation-with-weightgen">
+<h2>Weight Generation with <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code><a class="headerlink" href="#weight-generation-with-weightgen" title="Link to this heading">#</a></h2>
+<p>In this section, we utilize the <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code> class from the <code class="docutils literal notranslate"><span class="pre">gdptools</span></code> package to calculate the normalized areal weights necessary for interpolating the source gridded data (<code class="docutils literal notranslate"><span class="pre">conus404</span></code>) to the target polygonal boundaries (<code class="docutils literal notranslate"><span class="pre">DRB</span> <span class="pre">HUC12s</span></code>). The areal weights represent the proportion of each grid cell that overlaps with each polygon, facilitating accurate <strong>areal interpolation</strong> of the data. These weights are calculated using the <code class="docutils literal notranslate"><span class="pre">calculate_weights()</span></code> method.</p>
+<p><strong>Weight Calculation Process:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Subset Source Data</strong>: The source data is subset based on the bounds of the target data, with an additional small buffer to ensure coverage. The buffer size is determined based on [specific criteria or methodology].</p></li>
+<li><p><strong>Create cell boundary GeoDataFrame</strong>: A GeoDataFrame of the cell boundaries is created for each node in the subsetted source data, enabling spatial operations.</p></li>
+<li><p><strong>Validate Geometries</strong>: The target file is checked for invalid geometries, which can occur due to various reasons such as topology errors. Invalid geometries are fixed using Shapely’s <code class="docutils literal notranslate"><span class="pre">make_valid()</span></code> method to prevent failures during intersection calculations.</p></li>
+<li><p><strong>Calculate and Normalize Areas</strong>: For each polygon, <code class="docutils literal notranslate"><span class="pre">gdptools</span></code> calculates the area of each intersecting grid cell and normalizes it by the total area of the target polygon. This ensures that the weights for each polygon sum to 1, provided the polygon is entirely covered by the source data.</p>
+<ul class="simple">
+<li><p><strong>Validation</strong>: A quick check on the weights can be performed by grouping the resulting weights by the <code class="docutils literal notranslate"><span class="pre">target_poly_idx</span></code> and calculating the sum. For all polygons completely covered by the source data, the weights will sum to 1.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">method</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">calculate_weights()</span></code> can be set to one of <code class="docutils literal notranslate"><span class="pre">&quot;serial&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;parallel&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;dask&quot;</span></code>. Given the scale of the gridded <code class="docutils literal notranslate"><span class="pre">conus404</span></code> data (4 km × 4 km) and the spatial footprint of the <code class="docutils literal notranslate"> <span class="pre">GFv1.1</span> <span class="pre">HRUs</span></code>, using <code class="docutils literal notranslate"><span class="pre">&quot;parallel&quot;</span></code>or <code class="docutils literal notranslate"><span class="pre">&quot;dask&quot;</span></code> in this case is the most efficient method.</p>
+</section>
+<section id="parallel-and-dask-methods">
+<h2>Parallel and Dask Methods<a class="headerlink" href="#parallel-and-dask-methods" title="Link to this heading">#</a></h2>
+<p>The domain in this workflow is large as defined by the number of polygons, the polygon complexity, and the relatively small scale of the conus404 cell geometries.  We can take advantage of the parallel methods to improve performance in both the weight calculation and the interpolation.  The parallel and dask engines used in the <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code> class operate in a similar manner, utilizing Python’s <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> module and <code class="docutils literal notranslate"><span class="pre">dask.bag</span></code>, respectively.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">jobs</span></code> parameter, users can specify the number of processes to run. The target data is divided into chunks based on the number of processes, and each processor receives a chunked <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> along with a copy of the subsetted source data. This setup introduces overhead that can affect how efficiently the parallel processing runs.</p>
+<p><strong>Trade-offs in Parallel Processing:</strong></p>
+<p>The use of parallel processing involves balancing the number of processors with the overhead of copying data:</p>
+<ul class="simple">
+<li><p><strong>Benefits</strong>: Increasing the number of processors can reduce computation time by dividing the workload.</p></li>
+<li><p><strong>Costs</strong>: More processors increase memory usage due to duplicate datasets and add coordination overhead between processes.</p></li>
+<li><p><strong>Optimal Performance</strong>: There is a ‘sweet spot’ where the number of processors maximizes performance. Beyond this point, additional processors may slow down the operation due to overhead.</p></li>
+</ul>
+<p>The optimal number of processors depends on factors such as data size, available memory, and system architecture. It often requires experimentation to determine the most efficient configuration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">wght_gen</span> <span class="o">=</span> <span class="n">WeightGen</span><span class="p">(</span>
+    <span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;serial&quot;</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;wghts_gfv11_c404daily.csv&quot;</span><span class="p">,</span>
+    <span class="n">weight_gen_crs</span><span class="o">=</span><span class="n">weight_gen_crs</span>
+<span class="p">)</span>
+
+<span class="n">wdf</span> <span class="o">=</span> <span class="n">wght_gen</span><span class="o">.</span><span class="n">calculate_weights</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">wght_gen</span> <span class="o">=</span> <span class="n">WeightGen</span><span class="p">(</span>
+    <span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;wghts_gfv11_c404daily_p.csv&quot;</span><span class="p">,</span>
+    <span class="n">weight_gen_crs</span><span class="o">=</span><span class="n">weight_gen_crs</span><span class="p">,</span>
+    <span class="n">jobs</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+
+<span class="n">wdf</span> <span class="o">=</span> <span class="n">wght_gen</span><span class="o">.</span><span class="n">calculate_weights</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-the-areal-weighted-spatial-interpolation">
+<h2>Compute the areal weighted spatial interpolation<a class="headerlink" href="#compute-the-areal-weighted-spatial-interpolation" title="Link to this heading">#</a></h2>
+<p>Because the result will be rather large.  To manage the file size and memory requirements for processing we process by year.  Additionaly, The conus404 data starts and ends on the water year dates, so we chose to process by water year in this case.  The code below generates a list of start_dates, end_dates, and years that we iterate over to process the data by year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_start_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1979-10-01&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;YS-OCT&quot;</span><span class="p">)</span>
+<span class="n">t_end_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1980-09-30&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Y-SEP &quot;</span><span class="p">)</span>
+<span class="n">f_time_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1980&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+<span class="n">time_start</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_start_series</span><span class="p">]</span>
+<span class="n">time_end</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_end_series</span><span class="p">]</span>
+<span class="n">file_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">f_time_series</span><span class="p">]</span>
+<span class="n">time_start</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">time_end</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="areal-interpolation-with-the-agggen-class">
+<h2>Areal Interpolation with the <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> Class<a class="headerlink" href="#areal-interpolation-with-the-agggen-class" title="Link to this heading">#</a></h2>
+<p>In this section, we demonstrate the use of the <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> class and its <code class="docutils literal notranslate"><span class="pre">calculate_agg()</span></code> method from the <code class="docutils literal notranslate"><span class="pre">gdptools</span></code> package to perform areal interpolation. We will explore all three <code class="docutils literal notranslate"><span class="pre">agg_engine</span></code> options: <code class="docutils literal notranslate"><span class="pre">&quot;serial&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;parallel&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;dask&quot;</span></code>. The following links provide detailed documentation on the available parameter options:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/agg_gen_classes.html#gdptools.agg_gen.AGGENGINES"><strong>agg_engines</strong></a></p></li>
+<li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/agg_gen_classes.html#gdptools.agg_gen.AGGWRITERS"><strong>agg_writers</strong></a></p></li>
+<li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/agg_gen_classes.html#gdptools.agg_gen.STATSMETHODS"><strong>stat_methods</strong></a></p></li>
+</ul>
+<p>When using <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> and the <code class="docutils literal notranslate"><span class="pre">calculate_agg()</span></code> method, it is important to consider the overlap between the source and target data when selecting the <code class="docutils literal notranslate"><span class="pre">stat_method</span></code> parameter value. All statistical methods have a masked variant in addition to the standard method; for example, <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;masked_mean&quot;</span></code>. In cases where the source data has partial overlap with a target polygon, the <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> method will return a missing value for the polygon, whereas the <code class="docutils literal notranslate"><span class="pre">&quot;masked_mean&quot;</span></code> method will calculate the statistic based on the available overlapping source cells. These considerations help users determine whether using a masked statistic is desirable or if a missing value would be preferred, allowing for post-processing of missing values (e.g., using nearest-neighbor or other approaches to handle the lack of overlap). In the case here conus404 completely covers the footprint of the DRB HUC12s, as such the <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> method would be sufficient.</p>
+<p>Because we are processing by year, we have to create a new UserCatData object for each year processed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">_ts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time_start</span><span class="p">):</span>
+    <span class="n">sdate</span> <span class="o">=</span> <span class="n">time_start</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">edate</span> <span class="o">=</span> <span class="n">time_end</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sdate</span><span class="p">,</span> <span class="n">edate</span><span class="p">)</span>
+    <span class="n">user_data</span> <span class="o">=</span> <span class="n">UserCatData</span><span class="p">(</span>
+        <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>  <span class="c1"># conus404 read from the intake catalog</span>
+        <span class="n">proj_ds</span><span class="o">=</span><span class="n">source_crs</span><span class="p">,</span>
+        <span class="n">x_coord</span><span class="o">=</span><span class="n">x_coord</span><span class="p">,</span>
+        <span class="n">y_coord</span><span class="o">=</span><span class="n">y_coord</span><span class="p">,</span>
+        <span class="n">t_coord</span><span class="o">=</span><span class="n">t_coord</span><span class="p">,</span>
+        <span class="n">var</span><span class="o">=</span><span class="n">variables</span><span class="p">,</span>
+        <span class="n">f_feature</span><span class="o">=</span><span class="n">gfv11</span><span class="p">,</span>  <span class="c1"># GFv1.1 read above from the intake catalog</span>
+        <span class="n">proj_feature</span><span class="o">=</span><span class="n">target_crs</span><span class="p">,</span>
+        <span class="n">id_feature</span><span class="o">=</span><span class="n">target_poly_idx</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="p">[</span><span class="n">sdate</span><span class="p">,</span> <span class="n">edate</span><span class="p">],</span>
+    <span class="p">)</span>
+    
+    <span class="n">agg_gen</span> <span class="o">=</span> <span class="n">AggGen</span><span class="p">(</span>
+        <span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span>
+        <span class="n">stat_method</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+        <span class="n">agg_engine</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span><span class="p">,</span>
+        <span class="n">agg_writer</span><span class="o">=</span><span class="s2">&quot;netcdf&quot;</span><span class="p">,</span>
+        <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;wghts_gfv11_c404daily_p.csv&#39;</span><span class="p">,</span>
+        <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+        <span class="n">file_prefix</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_time</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2">_gfv11_c404_daily_diagnostic&quot;</span><span class="p">,</span>
+        <span class="n">jobs</span><span class="o">=</span><span class="mi">4</span>
+    <span class="p">)</span>
+    <span class="n">ngdf</span><span class="p">,</span> <span class="n">ds_out</span> <span class="o">=</span> <span class="n">agg_gen</span><span class="o">.</span><span class="n">calculate_agg</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./dataset_processing/tutorials/spatial_aggregation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="conus404_spatial_aggregation_DRB.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="conus404_spatial_aggregation_WBD12.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-with-hytest-intake-catalog">Access data with HyTest intake catalog.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-quick-plot-of-gfv11">Generate a quick plot of GFv11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-conus404-dataset-using-the-hytest-catalog">Load the conus404 dataset using the HyTest catalog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdptools-background">GDPTools Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiation-of-the-usercatdata-class">Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-generation-with-weightgen">Weight Generation with <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-and-dask-methods">Parallel and Dask Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-areal-weighted-spatial-interpolation">Compute the areal weighted spatial interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#areal-interpolation-with-the-agggen-class">Areal Interpolation with the <code class="docutils literal notranslate"><span class="pre">AggGen</span></code> Class</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
