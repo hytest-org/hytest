@@ -4,7 +4,7 @@ Spatial aggregation of a gridded dataset to a polygon area is a common processin
 
 We developed both of these methods over the Delaware River Basin to test how their speed and accuracy would compare. You can see notebooks demonstrating each method over this spatially subsetted area in the following notebooks:
 - [gdptools method](./tutorials/spatial_aggregation/conus404_spatial_aggregation_DRB.ipynb)
-- [Pangeo method](./dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation.ipynb)
+- [Pangeo method](./tutorials/spatial_aggregation/conus404_spatial_aggregation.ipynb)
 
 As well as a notebook directly comparing the two methods' speed and accuracy:
 - [gdptools-Pangeo comparison](./tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison.ipynb)
