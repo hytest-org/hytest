@@ -53,7 +53,7 @@ for analysis.  Rectifying the data includes measures such as:
 * Obtaining data from an API and storing it in more efficient format for reuse
 
 :::{margin}
-See [here](../../../dataset_preprocessing/tutorials/rechunking/ReChunkingData.ipynb) for a primer on re-chunking data, and why we choose to do it before analysis.
+See [here](../../../dataset_processing/tutorials/rechunking/ReChunkingData.ipynb) for a primer on re-chunking data, and why we choose to do it before analysis.
 :::
 
 At this stage, a given variable should be represented as a pair of 2D array of values (one
