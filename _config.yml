@@ -3,11 +3,11 @@
 
 title: HyTEST Project
 copyright: '2023'
-logo: doc/assets/HyTEST_Badge.svg
+logo: ./doc/assets/HyTEST_Badge.svg
 
 
 description: Training materials for HyTEST workflows.
-thumbnail: doc/assets/HyTEST_Badge.svg
+thumbnail: ./doc/assets/HyTEST_Badge.svg
 exclude_patterns : [_build, Thumbs.db, .github, .DS_Store, "**.ipynb_checkpoints", "*.zarr", .pytest_cache]
 only_build_toc_files: True
 repository: 
@@ -48,7 +48,7 @@ sphinx:
     suppress_warnings: ["mystnb.unknown_mime_type"] 
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
-    html_favicon: doc/assets/favicon.ico
+    html_favicon: ./doc/assets/favicon.ico
     # html_last_updated_fmt: '%-d %B %Y'
     # # html_theme: sphinx_pythia_theme                                  # this theme must be installed in the conda environment when jupyter-book runs
     # html_permalinks_icon: '<i class="fas fa-link"></i>'
