@@ -42,6 +42,28 @@ parts:
         - file: dataset_access/CONUS404_CHANGELOG
         - file: dataset_access/conus404_explore
 
+  - caption: Zarr Creation (Chunking)
+    chapters:
+        - file: dataset_processing/tutorials/chunking/index
+        - file: dataset_processing/tutorials/chunking/101/index
+          sections:
+          - file: dataset_processing/tutorials/chunking/101/WhyChunk
+          - file: dataset_processing/tutorials/chunking/101/ExamineDataChunking
+          - file: dataset_processing/tutorials/chunking/101/BasicsShapeSize
+          - file: dataset_processing/tutorials/chunking/101/WriteChunkedFiles
+          - file: dataset_processing/tutorials/chunking/101/Rechunking
+        - file: dataset_processing/tutorials/chunking/201/index
+          sections:
+          - file: dataset_processing/tutorials/chunking/201/RechunkingwithDask
+          - file: dataset_processing/tutorials/chunking/201/CreateVirtualZarr
+          - file: dataset_processing/tutorials/chunking/201/IncludeCRSinZarr
+          - file: dataset_processing/tutorials/chunking/201/OptimalChunkSelection
+        - file: dataset_processing/tutorials/chunking/back/index
+          sections:
+          - file: dataset_processing/tutorials/chunking/back/Glossary
+          - file: dataset_processing/tutorials/chunking/back/AdditionalResources
+
+
   - caption: Dataset Processing
     chapters:
     - file: dataset_processing/tutorials/conus404_temporal_aggregation
@@ -54,10 +76,6 @@ parts:
       - file: dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison
     - file: dataset_processing/tutorials/conus404_point_selection
     - file: dataset_processing/tutorials/conus404_regrid
-    - file: dataset_processing/chunk
-      sections: 
-      - file: dataset_processing/tutorials/rechunking/ReChunkingData
-      - file: dataset_processing/tutorials/rechunking/ReChunkingData_Cloud
 
   - caption: Model Evaluation
     chapters:
