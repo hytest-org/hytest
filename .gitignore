@@ -37,7 +37,8 @@ dask-report.html
 
 ruff.toml
 
-# NIWAA tutorial outputs
+# tutorial outputs
 *.out
 tmp*
 checkpoints*
+virtual_zarr/
