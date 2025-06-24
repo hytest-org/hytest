@@ -1,0 +1,294 @@
+Traceback (most recent call last):
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+ds = xr.open_dataset(
+    'virtual_zarr/kerchunk/gridmet.json',
+    engine='kerchunk',
+    chunks={},
+    backend_kwargs={
+        'storage_options': {
+            'remote_protocol': 's3',
+            'remote_options': {
+                'anon': True,
+                'endpoint_url': 'https://usgs.osn.mghpcc.org/'}
+        },
+    }
+)
+ds
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m ds = [43mxr[49m[43m.[49m[43mopen_dataset[49m[43m([49m
+[32m      2[39m [43m    [49m[33;43m'[39;49m[33;43mvirtual_zarr/kerchunk/gridmet.json[39;49m[33;43m'[39;49m[43m,[49m
+[32m      3[39m [43m    [49m[43mengine[49m[43m=[49m[33;43m'[39;49m[33;43mkerchunk[39;49m[33;43m'[39;49m[43m,[49m
+[32m      4[39m [43m    [49m[43mchunks[49m[43m=[49m[43m{[49m[43m}[49m[43m,[49m
+[32m      5[39m [43m    [49m[43mbackend_kwargs[49m[43m=[49m[43m{[49m
+[32m      6[39m [43m        [49m[33;43m'[39;49m[33;43mstorage_options[39;49m[33;43m'[39;49m[43m:[49m[43m [49m[43m{[49m
+[32m      7[39m [43m            [49m[33;43m'[39;49m[33;43mremote_protocol[39;49m[33;43m'[39;49m[43m:[49m[43m [49m[33;43m'[39;49m[33;43ms3[39;49m[33;43m'[39;49m[43m,[49m
+[32m      8[39m [43m            [49m[33;43m'[39;49m[33;43mremote_options[39;49m[33;43m'[39;49m[43m:[49m[43m [49m[43m{[49m
+[32m      9[39m [43m                [49m[33;43m'[39;49m[33;43manon[39;49m[33;43m'[39;49m[43m:[49m[43m [49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m
+[32m     10[39m [43m                [49m[33;43m'[39;49m[33;43mendpoint_url[39;49m[33;43m'[39;49m[43m:[49m[43m [49m[33;43m'[39;49m[33;43mhttps://usgs.osn.mghpcc.org/[39;49m[33;43m'[39;49m[43m}[49m
+[32m     11[39m [43m        [49m[43m}[49m[43m,[49m
+[32m     12[39m [43m    [49m[43m}[49m
+[32m     13[39m [43m)[49m
+[32m     14[39m ds
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/api.py:687[39m, in [36mopen_dataset[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
+[32m    675[39m decoders = _resolve_decoders_kwargs(
+[32m    676[39m     decode_cf,
+[32m    677[39m     open_backend_dataset_parameters=backend.open_dataset_parameters,
+[32m   (...)[39m[32m    683[39m     decode_coords=decode_coords,
+[32m    684[39m )
+[32m    686[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
+[32m--> [39m[32m687[39m backend_ds = [43mbackend[49m[43m.[49m[43mopen_dataset[49m[43m([49m
+[32m    688[39m [43m    [49m[43mfilename_or_obj[49m[43m,[49m
+[32m    689[39m [43m    [49m[43mdrop_variables[49m[43m=[49m[43mdrop_variables[49m[43m,[49m
+[32m    690[39m [43m    [49m[43m*[49m[43m*[49m[43mdecoders[49m[43m,[49m
+[32m    691[39m [43m    [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m,[49m
+[32m    692[39m [43m[49m[43m)[49m
+[32m    693[39m ds = _dataset_from_backend_dataset(
+[32m    694[39m     backend_ds,
+[32m    695[39m     filename_or_obj,
+[32m   (...)[39m[32m    705[39m     **kwargs,
+[32m    706[39m )
+[32m    707[39m [38;5;28;01mreturn[39;00m ds
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/kerchunk/xarray_backend.py:12[39m, in [36mKerchunkBackend.open_dataset[39m[34m(self, filename_or_obj, storage_options, open_dataset_options, **kw)[39m
+[32m      8[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mopen_dataset[39m(
+[32m      9[39m     [38;5;28mself[39m, filename_or_obj, *, storage_options=[38;5;28;01mNone[39;00m, open_dataset_options=[38;5;28;01mNone[39;00m, **kw
+[32m     10[39m ):
+[32m     11[39m     open_dataset_options = (open_dataset_options [38;5;129;01mor[39;00m {}) | kw
+[32m---> [39m[32m12[39m     ref_ds = [43mopen_reference_dataset[49m[43m([49m
+[32m     13[39m [43m        [49m[43mfilename_or_obj[49m[43m,[49m
+[32m     14[39m [43m        [49m[43mstorage_options[49m[43m=[49m[43mstorage_options[49m[43m,[49m
+[32m     15[39m [43m        [49m[43mopen_dataset_options[49m[43m=[49m[43mopen_dataset_options[49m[43m,[49m
+[32m     16[39m [43m    [49m[43m)[49m
+[32m     17[39m     [38;5;28;01mreturn[39;00m ref_ds
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/kerchunk/xarray_backend.py:46[39m, in [36mopen_reference_dataset[39m[34m(filename_or_obj, storage_options, open_dataset_options)[39m
+[32m     42[39m     open_dataset_options = {}
+[32m     44[39m m = fsspec.get_mapper([33m"[39m[33mreference://[39m[33m"[39m, fo=filename_or_obj, **storage_options)
+[32m---> [39m[32m46[39m [38;5;28;01mreturn[39;00m [43mxr[49m[43m.[49m[43mopen_dataset[49m[43m([49m[43mm[49m[43m,[49m[43m [49m[43mengine[49m[43m=[49m[33;43m"[39;49m[33;43mzarr[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43mconsolidated[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mopen_dataset_options[49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/api.py:687[39m, in [36mopen_dataset[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
+[32m    675[39m decoders = _resolve_decoders_kwargs(
+[32m    676[39m     decode_cf,
+[32m    677[39m     open_backend_dataset_parameters=backend.open_dataset_parameters,
+[32m   (...)[39m[32m    683[39m     decode_coords=decode_coords,
+[32m    684[39m )
+[32m    686[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
+[32m--> [39m[32m687[39m backend_ds = [43mbackend[49m[43m.[49m[43mopen_dataset[49m[43m([49m
+[32m    688[39m [43m    [49m[43mfilename_or_obj[49m[43m,[49m
+[32m    689[39m [43m    [49m[43mdrop_variables[49m[43m=[49m[43mdrop_variables[49m[43m,[49m
+[32m    690[39m [43m    [49m[43m*[49m[43m*[49m[43mdecoders[49m[43m,[49m
+[32m    691[39m [43m    [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m,[49m
+[32m    692[39m [43m[49m[43m)[49m
+[32m    693[39m ds = _dataset_from_backend_dataset(
+[32m    694[39m     backend_ds,
+[32m    695[39m     filename_or_obj,
+[32m   (...)[39m[32m    705[39m     **kwargs,
+[32m    706[39m )
+[32m    707[39m [38;5;28;01mreturn[39;00m ds
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/zarr.py:1578[39m, in [36mZarrBackendEntrypoint.open_dataset[39m[34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, zarr_version, zarr_format, store, engine, use_zarr_fill_value_as_mask, cache_members)[39m
+[32m   1576[39m filename_or_obj = _normalize_path(filename_or_obj)
+[32m   1577[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m store:
+[32m-> [39m[32m1578[39m     store = [43mZarrStore[49m[43m.[49m[43mopen_group[49m[43m([49m
+[32m   1579[39m [43m        [49m[43mfilename_or_obj[49m[43m,[49m
+[32m   1580[39m [43m        [49m[43mgroup[49m[43m=[49m[43mgroup[49m[43m,[49m
+[32m   1581[39m [43m        [49m[43mmode[49m[43m=[49m[43mmode[49m[43m,[49m
+[32m   1582[39m [43m        [49m[43msynchronizer[49m[43m=[49m[43msynchronizer[49m[43m,[49m
+[32m   1583[39m [43m        [49m[43mconsolidated[49m[43m=[49m[43mconsolidated[49m[43m,[49m
+[32m   1584[39m [43m        [49m[43mconsolidate_on_close[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[32m   1585[39m [43m        [49m[43mchunk_store[49m[43m=[49m[43mchunk_store[49m[43m,[49m
+[32m   1586[39m [43m        [49m[43mstorage_options[49m[43m=[49m[43mstorage_options[49m[43m,[49m
+[32m   1587[39m [43m        [49m[43mzarr_version[49m[43m=[49m[43mzarr_version[49m[43m,[49m
+[32m   1588[39m [43m        [49m[43muse_zarr_fill_value_as_mask[49m[43m=[49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
+[32m   1589[39m [43m        [49m[43mzarr_format[49m[43m=[49m[43mzarr_format[49m[43m,[49m
+[32m   1590[39m [43m        [49m[43mcache_members[49m[43m=[49m[43mcache_members[49m[43m,[49m
+[32m   1591[39m [43m    [49m[43m)[49m
+[32m   1593[39m store_entrypoint = StoreBackendEntrypoint()
+[32m   1594[39m [38;5;28;01mwith[39;00m close_on_error(store):
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/zarr.py:664[39m, in [36mZarrStore.open_group[39m[34m(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, align_chunks, zarr_version, zarr_format, use_zarr_fill_value_as_mask, write_empty, cache_members)[39m
+[32m    638[39m [38;5;129m@classmethod[39m
+[32m    639[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mopen_group[39m(
+[32m    640[39m     [38;5;28mcls[39m,
+[32m   (...)[39m[32m    657[39m     cache_members: [38;5;28mbool[39m = [38;5;28;01mTrue[39;00m,
+[32m    658[39m ):
+[32m    659[39m     (
+[32m    660[39m         zarr_group,
+[32m    661[39m         consolidate_on_close,
+[32m    662[39m         close_store_on_close,
+[32m    663[39m         use_zarr_fill_value_as_mask,
+[32m--> [39m[32m664[39m     ) = [43m_get_open_params[49m[43m([49m
+[32m    665[39m [43m        [49m[43mstore[49m[43m=[49m[43mstore[49m[43m,[49m
+[32m    666[39m [43m        [49m[43mmode[49m[43m=[49m[43mmode[49m[43m,[49m
+[32m    667[39m [43m        [49m[43msynchronizer[49m[43m=[49m[43msynchronizer[49m[43m,[49m
+[32m    668[39m [43m        [49m[43mgroup[49m[43m=[49m[43mgroup[49m[43m,[49m
+[32m    669[39m [43m        [49m[43mconsolidated[49m[43m=[49m[43mconsolidated[49m[43m,[49m
+[32m    670[39m [43m        [49m[43mconsolidate_on_close[49m[43m=[49m[43mconsolidate_on_close[49m[43m,[49m
+[32m    671[39m [43m        [49m[43mchunk_store[49m[43m=[49m[43mchunk_store[49m[43m,[49m
+[32m    672[39m [43m        [49m[43mstorage_options[49m[43m=[49m[43mstorage_options[49m[43m,[49m
+[32m    673[39m [43m        [49m[43mzarr_version[49m[43m=[49m[43mzarr_version[49m[43m,[49m
+[32m    674[39m [43m        [49m[43muse_zarr_fill_value_as_mask[49m[43m=[49m[43muse_zarr_fill_value_as_mask[49m[43m,[49m
+[32m    675[39m [43m        [49m[43mzarr_format[49m[43m=[49m[43mzarr_format[49m[43m,[49m
+[32m    676[39m [43m    [49m[43m)[49m
+[32m    678[39m     [38;5;28;01mreturn[39;00m [38;5;28mcls[39m(
+[32m    679[39m         zarr_group,
+[32m    680[39m         mode,
+[32m   (...)[39m[32m    689[39m         cache_members=cache_members,
+[32m    690[39m     )
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/zarr.py:1815[39m, in [36m_get_open_params[39m[34m(store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, zarr_version, use_zarr_fill_value_as_mask, zarr_format)[39m
+[32m   1811[39m     [38;5;28;01mif[39;00m _zarr_v3():
+[32m   1812[39m         [38;5;66;03m# we have determined that we don't want to use consolidated metadata[39;00m
+[32m   1813[39m         [38;5;66;03m# so we set that to False to avoid trying to read it[39;00m
+[32m   1814[39m         open_kwargs[[33m"[39m[33muse_consolidated[39m[33m"[39m] = [38;5;28;01mFalse[39;00m
+[32m-> [39m[32m1815[39m     zarr_group = [43mzarr[49m[43m.[49m[43mopen_group[49m[43m([49m[43mstore[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mopen_kwargs[49m[43m)[49m
+[32m   1817[39m close_store_on_close = zarr_group.store [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m store
+[32m   1819[39m [38;5;66;03m# we use this to determine how to handle fill_value[39;00m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/zarr/hierarchy.py:1575[39m, in [36mopen_group[39m[34m(store, mode, cache_attrs, synchronizer, path, chunk_store, storage_options, zarr_version, meta_array)[39m
+[32m   1572[39m [38;5;66;03m# ensure store is initialized[39;00m
+[32m   1574[39m [38;5;28;01mif[39;00m mode [38;5;129;01min[39;00m [[33m"[39m[33mr[39m[33m"[39m, [33m"[39m[33mr+[39m[33m"[39m]:
+[32m-> [39m[32m1575[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [43mcontains_group[49m[43m([49m[43mstore[49m[43m,[49m[43m [49m[43mpath[49m[43m=[49m[43mpath[49m[43m)[49m:
+[32m   1576[39m         [38;5;28;01mif[39;00m contains_array(store, path=path):
+[32m   1577[39m             [38;5;28;01mraise[39;00m ContainsArrayError(path)
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/zarr/storage.py:131[39m, in [36mcontains_group[39m[34m(store, path, explicit_only)[39m
+[32m    129[39m store_version = [38;5;28mgetattr[39m(store, [33m"[39m[33m_store_version[39m[33m"[39m, [32m2[39m)
+[32m    130[39m [38;5;28;01mif[39;00m store_version == [32m2[39m [38;5;129;01mor[39;00m explicit_only:
+[32m--> [39m[32m131[39m     [38;5;28;01mreturn[39;00m [43mkey[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mstore[49m
+[32m    132[39m [38;5;28;01melse[39;00m:
+[32m    133[39m     [38;5;28;01mif[39;00m key [38;5;129;01min[39;00m store:
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/zarr/storage.py:1496[39m, in [36mFSStore.__contains__[39m[34m(self, key)[39m
+[32m   1494[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__contains__[39m([38;5;28mself[39m, key):
+[32m   1495[39m     key = [38;5;28mself[39m._normalize_key(key)
+[32m-> [39m[32m1496[39m     [38;5;28;01mreturn[39;00m [43mkey[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43mmap[49m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/mapping.py:193[39m, in [36mFSMap.__contains__[39m[34m(self, key)[39m
+[32m    191[39m [38;5;250m[39m[33;03m"""Does key exist in mapping?"""[39;00m
+[32m    192[39m path = [38;5;28mself[39m._key_to_str(key)
+[32m--> [39m[32m193[39m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mfs[49m[43m.[49m[43misfile[49m[43m([49m[43mpath[49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:1171[39m, in [36mReferenceFileSystem.isfile[39m[34m(self, path)[39m
+[32m   1170[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34misfile[39m([38;5;28mself[39m, path):  [38;5;66;03m# overwrite auto-sync version[39;00m
+[32m-> [39m[32m1171[39m     [38;5;28;01mreturn[39;00m [43mpath[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43mreferences[49m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:577[39m, in [36mLazyReferenceMapper.__contains__[39m[34m(self, item)[39m
+[32m    575[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__contains__[39m([38;5;28mself[39m, item):
+[32m    576[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m577[39m         [38;5;28;43mself[39;49m[43m.[49m[43m_load_one_key[49m[43m([49m[43mitem[49m[43m)[49m
+[32m    578[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mTrue[39;00m
+[32m    579[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m:
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:295[39m, in [36mLazyReferenceMapper._load_one_key[39m[34m(self, key)[39m
+[32m    290[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_load_one_key[39m([38;5;28mself[39m, key):
+[32m    291[39m [38;5;250m    [39m[33;03m"""Get the reference for one key[39;00m
+[32m    292[39m 
+[32m    293[39m [33;03m    Returns bytes, one-element list or three-element list.[39;00m
+[32m    294[39m [33;03m    """[39;00m
+[32m--> [39m[32m295[39m     [38;5;28;01mif[39;00m key [38;5;129;01min[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_items[49m:
+[32m    296[39m         [38;5;28;01mreturn[39;00m [38;5;28mself[39m._items[key]
+[32m    297[39m     [38;5;28;01melif[39;00m key [38;5;129;01min[39;00m [38;5;28mself[39m.zmetadata:
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:158[39m, in [36mLazyReferenceMapper.__getattr__[39m[34m(self, item)[39m
+[32m    156[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__getattr__[39m([38;5;28mself[39m, item):
+[32m    157[39m     [38;5;28;01mif[39;00m item [38;5;129;01min[39;00m ([33m"[39m[33m_items[39m[33m"[39m, [33m"[39m[33mrecord_size[39m[33m"[39m, [33m"[39m[33mzmetadata[39m[33m"[39m):
+[32m--> [39m[32m158[39m         [38;5;28;43mself[39;49m[43m.[49m[43msetup[49m[43m([49m[43m)[49m
+[32m    159[39m         [38;5;66;03m# avoid possible recursion if setup fails somehow[39;00m
+[32m    160[39m         [38;5;28;01mreturn[39;00m [38;5;28mself[39m.[34m__dict__[39m[item]
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:165[39m, in [36mLazyReferenceMapper.setup[39m[34m(self)[39m
+[32m    163[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34msetup[39m([38;5;28mself[39m):
+[32m    164[39m     [38;5;28mself[39m._items = {}
+[32m--> [39m[32m165[39m     [38;5;28mself[39m._items[[33m"[39m[33m.zmetadata[39m[33m"[39m] = [38;5;28;43mself[39;49m[43m.[49m[43mfs[49m[43m.[49m[43mcat_file[49m[43m([49m
+[32m    166[39m [43m        [49m[33;43m"[39;49m[33;43m/[39;49m[33;43m"[39;49m[43m.[49m[43mjoin[49m[43m([49m[43m[[49m[38;5;28;43mself[39;49m[43m.[49m[43mroot[49m[43m,[49m[43m [49m[33;43m"[39;49m[33;43m.zmetadata[39;49m[33;43m"[39;49m[43m][49m[43m)[49m
+[32m    167[39m [43m    [49m[43m)[49m
+[32m    168[39m     met = json.loads([38;5;28mself[39m._items[[33m"[39m[33m.zmetadata[39m[33m"[39m])
+[32m    169[39m     [38;5;28mself[39m.record_size = met[[33m"[39m[33mrecord_size[39m[33m"[39m]
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/spec.py:797[39m, in [36mAbstractFileSystem.cat_file[39m[34m(self, path, start, end, **kwargs)[39m
+[32m    785[39m [38;5;250m[39m[33;03m"""Get the content of a file[39;00m
+[32m    786[39m 
+[32m    787[39m [33;03mParameters[39;00m
+[32m   (...)[39m[32m    794[39m [33;03mkwargs: passed to ``open()``.[39;00m
+[32m    795[39m [33;03m"""[39;00m
+[32m    796[39m [38;5;66;03m# explicitly set buffering off?[39;00m
+[32m--> [39m[32m797[39m [38;5;28;01mwith[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mopen[49m[43m([49m[43mpath[49m[43m,[49m[43m [49m[33;43m"[39;49m[33;43mrb[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m [38;5;28;01mas[39;00m f:
+[32m    798[39m     [38;5;28;01mif[39;00m start [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    799[39m         [38;5;28;01mif[39;00m start >= [32m0[39m:
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/spec.py:1338[39m, in [36mAbstractFileSystem.open[39m[34m(self, path, mode, block_size, cache_options, compression, **kwargs)[39m
+[32m   1336[39m [38;5;28;01melse[39;00m:
+[32m   1337[39m     ac = kwargs.pop([33m"[39m[33mautocommit[39m[33m"[39m, [38;5;129;01mnot[39;00m [38;5;28mself[39m._intrans)
+[32m-> [39m[32m1338[39m     f = [38;5;28;43mself[39;49m[43m.[49m[43m_open[49m[43m([49m
+[32m   1339[39m [43m        [49m[43mpath[49m[43m,[49m
+[32m   1340[39m [43m        [49m[43mmode[49m[43m=[49m[43mmode[49m[43m,[49m
+[32m   1341[39m [43m        [49m[43mblock_size[49m[43m=[49m[43mblock_size[49m[43m,[49m
+[32m   1342[39m [43m        [49m[43mautocommit[49m[43m=[49m[43mac[49m[43m,[49m
+[32m   1343[39m [43m        [49m[43mcache_options[49m[43m=[49m[43mcache_options[49m[43m,[49m
+[32m   1344[39m [43m        [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m,[49m
+[32m   1345[39m [43m    [49m[43m)[49m
+[32m   1346[39m     [38;5;28;01mif[39;00m compression [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1347[39m         [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mfsspec[39;00m[34;01m.[39;00m[34;01mcompression[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compr
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/local.py:206[39m, in [36mLocalFileSystem._open[39m[34m(self, path, mode, block_size, **kwargs)[39m
+[32m    204[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.auto_mkdir [38;5;129;01mand[39;00m [33m"[39m[33mw[39m[33m"[39m [38;5;129;01min[39;00m mode:
+[32m    205[39m     [38;5;28mself[39m.makedirs([38;5;28mself[39m._parent(path), exist_ok=[38;5;28;01mTrue[39;00m)
+[32m--> [39m[32m206[39m [38;5;28;01mreturn[39;00m [43mLocalFileOpener[49m[43m([49m[43mpath[49m[43m,[49m[43m [49m[43mmode[49m[43m,[49m[43m [49m[43mfs[49m[43m=[49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/local.py:383[39m, in [36mLocalFileOpener.__init__[39m[34m(self, path, mode, autocommit, fs, compression, **kwargs)[39m
+[32m    381[39m [38;5;28mself[39m.compression = get_compression(path, compression)
+[32m    382[39m [38;5;28mself[39m.blocksize = io.DEFAULT_BUFFER_SIZE
+[32m--> [39m[32m383[39m [38;5;28;43mself[39;49m[43m.[49m[43m_open[49m[43m([49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/local.py:388[39m, in [36mLocalFileOpener._open[39m[34m(self)[39m
+[32m    386[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.f [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;28mself[39m.f.closed:
+[32m    387[39m     [38;5;28;01mif[39;00m [38;5;28mself[39m.autocommit [38;5;129;01mor[39;00m [33m"[39m[33mw[39m[33m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m [38;5;28mself[39m.mode:
+[32m--> [39m[32m388[39m         [38;5;28mself[39m.f = [38;5;28;43mopen[39;49m[43m([49m[38;5;28;43mself[39;49m[43m.[49m[43mpath[49m[43m,[49m[43m [49m[43mmode[49m[43m=[49m[38;5;28;43mself[39;49m[43m.[49m[43mmode[49m[43m)[49m
+[32m    389[39m         [38;5;28;01mif[39;00m [38;5;28mself[39m.compression:
+[32m    390[39m             compress = compr[[38;5;28mself[39m.compression]
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: '/shared/hytest/asnyder/hytest-jb/hytest/dataset_processing/tutorials/chunking/201/virtual_zarr/kerchunk/gridmet.json/.zmetadata'
+

@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Adding Coordinate Reference Systems (CRS) to Zarr Datasets &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/chunking/201/IncludeCRSinZarr';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Choosing an Optimal Chunk Size and Shape" href="OptimalChunkSelection.html" />
+    <link rel="prev" title="Generating a Virtual Zarr Store" href="CreateVirtualZarr.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../../../../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../essential_reading/README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../essential_reading/DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation (Chunking)</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Advanced Topics in Chunking</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../back/index.html">Back Matter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../back/AdditionalResources.html">Additional Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Adding Coordinate Reference Systems (CRS) to Zarr Datasets</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-dataset">Example Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-crs">Identify the CRS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-crs-cf-compliant">Making the CRS CF compliant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-crs-to-a-regular-zarr-store">Adding CRS to a Regular Zarr Store</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="adding-coordinate-reference-systems-crs-to-zarr-datasets">
+<h1>Adding Coordinate Reference Systems (CRS) to Zarr Datasets<a class="headerlink" href="#adding-coordinate-reference-systems-crs-to-zarr-datasets" title="Link to this heading">#</a></h1>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This notebook is a pared down version of the material in <a class="reference external" href="https://code.usgs.gov/wma/nhgf/geo-data-portal/gdp_data_processing/-/blob/main/workflows/opendap/CIDA/crs_notebooks/tutorial.ipynb">this notebook by Kieran Bartels and Sarah Jordan</a>.</p>
+</div>
+</aside>
+<p>The goal of this notebook is to learn how to add and verify the addition of coordinate reference systems (CRS) to Zarr datasets.
+We will be utilizing <a class="reference external" href="https://cfconventions.org/">the Climate and Forecast (CF) Metadata Conventions</a> for our CRS format and to determine where we include the CRS in the Zarr store.
+While these conventions were <a class="reference external" href="https://cfconventions.org/cf-conventions/cf-conventions.html">originally designed for NetCDF files</a>, Zarr has become the cloud optimized alternative to NetCDF, and it retains the same general metadata and data representation standards.
+Therefore, we can easily apply the CF conventions to promote the standardization and interoperability of climate data even within Zarr stores.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <a class="reference external" href="https://www.unidata.ucar.edu/blogs/news/entry/netcdf-vs-zarr-an-incomplete">blog post by Thomas Martin and Ward Fisher</a> for some details on the differences between Zarr and NetCDF.</p>
+</div>
+</aside>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">fsspec</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ujson</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="example-dataset">
+<h2>Example Dataset<a class="headerlink" href="#example-dataset" title="Link to this heading">#</a></h2>
+<p>In this notebook, we will use the virtual Zarr store of the daily gridMET dataset that we created in <a class="reference internal" href="CreateVirtualZarr.html"><span class="std std-doc">the notebook on Generating a Virtual Zarr Store</span></a>.
+Note that this means you will need to run that notebook to run this one.
+However, the contents of this example can easily be used for any Zarr store, virtual or not.
+The only difference will be how the data is read in.</p>
+<p>On that note, let’s read in the data using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_dataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_dataset</span></code></a> and Kerchunk as the engine (i.e., <code class="docutils literal notranslate"><span class="pre">engine='kerchunk'</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;virtual_zarr/kerchunk/gridmet.json&#39;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;kerchunk&#39;</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;storage_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;remote_protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;remote_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;anon&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s1">&#39;endpoint_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://usgs.osn.mghpcc.org/&#39;</span><span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="s1">&#39;virtual_zarr/kerchunk/gridmet.json&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;kerchunk&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="s1">&#39;storage_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="s1">&#39;remote_protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="s1">&#39;remote_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                 <span class="s1">&#39;anon&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                 <span class="s1">&#39;endpoint_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://usgs.osn.mghpcc.org/&#39;</span><span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">ds</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/api.py:687,</span> in <span class="ni">open_dataset</span><span class="nt">(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="n">decoders</span> <span class="o">=</span> <span class="n">_resolve_decoders_kwargs</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">decode_cf</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>     <span class="n">open_backend_dataset_parameters</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">open_dataset_parameters</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">683</span>     <span class="n">decode_coords</span><span class="o">=</span><span class="n">decode_coords</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span> <span class="n">overwrite_encoded_chunks</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;overwrite_encoded_chunks&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">687</span> <span class="n">backend_ds</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>     <span class="n">drop_variables</span><span class="o">=</span><span class="n">drop_variables</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="o">**</span><span class="n">decoders</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">691</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">692</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">_dataset_from_backend_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">694</span>     <span class="n">backend_ds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">695</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">705</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span> <span class="k">return</span> <span class="n">ds</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/kerchunk/xarray_backend.py:12,</span> in <span class="ni">KerchunkBackend.open_dataset</span><span class="nt">(self, filename_or_obj, storage_options, open_dataset_options, **kw)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">def</span><span class="w"> </span><span class="nf">open_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">open_dataset_options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">open_dataset_options</span> <span class="o">=</span> <span class="p">(</span><span class="n">open_dataset_options</span> <span class="ow">or</span> <span class="p">{})</span> <span class="o">|</span> <span class="n">kw</span>
+<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">ref_ds</span> <span class="o">=</span> <span class="n">open_reference_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>         <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="n">open_dataset_options</span><span class="o">=</span><span class="n">open_dataset_options</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">return</span> <span class="n">ref_ds</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/kerchunk/xarray_backend.py:46,</span> in <span class="ni">open_reference_dataset</span><span class="nt">(filename_or_obj, storage_options, open_dataset_options)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="n">open_dataset_options</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">m</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">get_mapper</span><span class="p">(</span><span class="s2">&quot;reference://&quot;</span><span class="p">,</span> <span class="n">fo</span><span class="o">=</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">**</span><span class="n">storage_options</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">46</span> <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;zarr&quot;</span><span class="p">,</span> <span class="n">consolidated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">open_dataset_options</span><span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/api.py:687,</span> in <span class="ni">open_dataset</span><span class="nt">(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="n">decoders</span> <span class="o">=</span> <span class="n">_resolve_decoders_kwargs</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">decode_cf</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>     <span class="n">open_backend_dataset_parameters</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">open_dataset_parameters</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">683</span>     <span class="n">decode_coords</span><span class="o">=</span><span class="n">decode_coords</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span> <span class="n">overwrite_encoded_chunks</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;overwrite_encoded_chunks&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">687</span> <span class="n">backend_ds</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>     <span class="n">drop_variables</span><span class="o">=</span><span class="n">drop_variables</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="o">**</span><span class="n">decoders</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">691</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">692</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">_dataset_from_backend_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">694</span>     <span class="n">backend_ds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">695</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">705</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span> <span class="k">return</span> <span class="n">ds</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/zarr.py:1578,</span> in <span class="ni">ZarrBackendEntrypoint.open_dataset</span><span class="nt">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, zarr_version, zarr_format, store, engine, use_zarr_fill_value_as_mask, cache_members)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1576</span> <span class="n">filename_or_obj</span> <span class="o">=</span> <span class="n">_normalize_path</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1577</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">store</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1578</span>     <span class="n">store</span> <span class="o">=</span> <span class="n">ZarrStore</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1579</span>         <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1580</span>         <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1581</span>         <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1582</span>         <span class="n">synchronizer</span><span class="o">=</span><span class="n">synchronizer</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1583</span>         <span class="n">consolidated</span><span class="o">=</span><span class="n">consolidated</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1584</span>         <span class="n">consolidate_on_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1585</span>         <span class="n">chunk_store</span><span class="o">=</span><span class="n">chunk_store</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1586</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1587</span>         <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1588</span>         <span class="n">use_zarr_fill_value_as_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span>         <span class="n">zarr_format</span><span class="o">=</span><span class="n">zarr_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>         <span class="n">cache_members</span><span class="o">=</span><span class="n">cache_members</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1593</span> <span class="n">store_entrypoint</span> <span class="o">=</span> <span class="n">StoreBackendEntrypoint</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1594</span> <span class="k">with</span> <span class="n">close_on_error</span><span class="p">(</span><span class="n">store</span><span class="p">):</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/zarr.py:664,</span> in <span class="ni">ZarrStore.open_group</span><span class="nt">(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, align_chunks, zarr_version, zarr_format, use_zarr_fill_value_as_mask, write_empty, cache_members)</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="k">def</span><span class="w"> </span><span class="nf">open_group</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">640</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">657</span>     <span class="n">cache_members</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span>     <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">660</span>         <span class="n">zarr_group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">661</span>         <span class="n">consolidate_on_close</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>         <span class="n">close_store_on_close</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>         <span class="n">use_zarr_fill_value_as_mask</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">664</span>     <span class="p">)</span> <span class="o">=</span> <span class="n">_get_open_params</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span>         <span class="n">store</span><span class="o">=</span><span class="n">store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span>         <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span>         <span class="n">synchronizer</span><span class="o">=</span><span class="n">synchronizer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>         <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>         <span class="n">consolidated</span><span class="o">=</span><span class="n">consolidated</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">670</span>         <span class="n">consolidate_on_close</span><span class="o">=</span><span class="n">consolidate_on_close</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="n">chunk_store</span><span class="o">=</span><span class="n">chunk_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="n">use_zarr_fill_value_as_mask</span><span class="o">=</span><span class="n">use_zarr_fill_value_as_mask</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="n">zarr_format</span><span class="o">=</span><span class="n">zarr_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>         <span class="n">zarr_group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>         <span class="n">mode</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">689</span>         <span class="n">cache_members</span><span class="o">=</span><span class="n">cache_members</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/xarray/backends/zarr.py:1815,</span> in <span class="ni">_get_open_params</span><span class="nt">(store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, zarr_version, use_zarr_fill_value_as_mask, zarr_format)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1811</span>     <span class="k">if</span> <span class="n">_zarr_v3</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">1812</span>         <span class="c1"># we have determined that we don&#39;t want to use consolidated metadata</span>
+<span class="g g-Whitespace">   </span><span class="mi">1813</span>         <span class="c1"># so we set that to False to avoid trying to read it</span>
+<span class="g g-Whitespace">   </span><span class="mi">1814</span>         <span class="n">open_kwargs</span><span class="p">[</span><span class="s2">&quot;use_consolidated&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">-&gt; </span><span class="mi">1815</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1817</span> <span class="n">close_store_on_close</span> <span class="o">=</span> <span class="n">zarr_group</span><span class="o">.</span><span class="n">store</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">store</span>
+<span class="g g-Whitespace">   </span><span class="mi">1819</span> <span class="c1"># we use this to determine how to handle fill_value</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/zarr/hierarchy.py:1575,</span> in <span class="ni">open_group</span><span class="nt">(store, mode, cache_attrs, synchronizer, path, chunk_store, storage_options, zarr_version, meta_array)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1572</span> <span class="c1"># ensure store is initialized</span>
+<span class="g g-Whitespace">   </span><span class="mi">1574</span> <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">]:</span>
+<span class="ne">-&gt; </span><span class="mi">1575</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">contains_group</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1576</span>         <span class="k">if</span> <span class="n">contains_array</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1577</span>             <span class="k">raise</span> <span class="n">ContainsArrayError</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/zarr/storage.py:131,</span> in <span class="ni">contains_group</span><span class="nt">(store, path, explicit_only)</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span> <span class="n">store_version</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="s2">&quot;_store_version&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="k">if</span> <span class="n">store_version</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">explicit_only</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">131</span>     <span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">store</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/zarr/storage.py:1496,</span> in <span class="ni">FSStore.__contains__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1494</span> <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1495</span>     <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1496</span>     <span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/mapping.py:193,</span> in <span class="ni">FSMap.__contains__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Does key exist in mapping?&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key_to_str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">193</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:1171,</span> in <span class="ni">ReferenceFileSystem.isfile</span><span class="nt">(self, path)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1170</span> <span class="k">def</span><span class="w"> </span><span class="nf">isfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>  <span class="c1"># overwrite auto-sync version</span>
+<span class="ne">-&gt; </span><span class="mi">1171</span>     <span class="k">return</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">references</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:577,</span> in <span class="ni">LazyReferenceMapper.__contains__</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">    </span><span class="mi">575</span> <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">577</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_load_one_key</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">578</span>         <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span>     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:295,</span> in <span class="ni">LazyReferenceMapper._load_one_key</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span> <span class="k">def</span><span class="w"> </span><span class="nf">_load_one_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Get the reference for one key</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span><span class="sd">     Returns bytes, one-element list or three-element list.</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">295</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>     <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">zmetadata</span><span class="p">:</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:158,</span> in <span class="ni">LazyReferenceMapper.__getattr__</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span> <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>     <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;_items&quot;</span><span class="p">,</span> <span class="s2">&quot;record_size&quot;</span><span class="p">,</span> <span class="s2">&quot;zmetadata&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">158</span>         <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span>         <span class="c1"># avoid possible recursion if setup fails somehow</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/reference.py:165,</span> in <span class="ni">LazyReferenceMapper.setup</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">165</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="s2">&quot;.zmetadata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cat_file</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>         <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;.zmetadata&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="n">met</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="s2">&quot;.zmetadata&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="bp">self</span><span class="o">.</span><span class="n">record_size</span> <span class="o">=</span> <span class="n">met</span><span class="p">[</span><span class="s2">&quot;record_size&quot;</span><span class="p">]</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/spec.py:797,</span> in <span class="ni">AbstractFileSystem.cat_file</span><span class="nt">(self, path, start, end, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Get the content of a file</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">787</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)    794 kwargs: passed to ``open()``.</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span> <span class="c1"># explicitly set buffering off?</span>
+<span class="ne">--&gt; </span><span class="mi">797</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">799</span>         <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/spec.py:1338,</span> in <span class="ni">AbstractFileSystem.open</span><span class="nt">(self, path, mode, block_size, cache_options, compression, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1336</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1337</span>     <span class="n">ac</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;autocommit&quot;</span><span class="p">,</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intrans</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1338</span>     <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1339</span>         <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1340</span>         <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1341</span>         <span class="n">block_size</span><span class="o">=</span><span class="n">block_size</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1342</span>         <span class="n">autocommit</span><span class="o">=</span><span class="n">ac</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1343</span>         <span class="n">cache_options</span><span class="o">=</span><span class="n">cache_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1345</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1346</span>     <span class="k">if</span> <span class="n">compression</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1347</span>         <span class="kn">from</span><span class="w"> </span><span class="nn">fsspec.compression</span><span class="w"> </span><span class="kn">import</span> <span class="n">compr</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/local.py:206,</span> in <span class="ni">LocalFileSystem._open</span><span class="nt">(self, path, mode, block_size, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_mkdir</span> <span class="ow">and</span> <span class="s2">&quot;w&quot;</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="bp">self</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">206</span> <span class="k">return</span> <span class="n">LocalFileOpener</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/local.py:383,</span> in <span class="ni">LocalFileOpener.__init__</span><span class="nt">(self, path, mode, autocommit, fs, compression, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span> <span class="o">=</span> <span class="n">get_compression</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">compression</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">DEFAULT_BUFFER_SIZE</span>
+<span class="ne">--&gt; </span><span class="mi">383</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open</span><span class="p">()</span>
+
+<span class="nn">File /home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/fsspec/implementations/local.py:388,</span> in <span class="ni">LocalFileOpener._open</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autocommit</span> <span class="ow">or</span> <span class="s2">&quot;w&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">388</span>         <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>             <span class="n">compress</span> <span class="o">=</span> <span class="n">compr</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">]</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/shared/hytest/asnyder/hytest-jb/hytest/dataset_processing/tutorials/chunking/201/virtual_zarr/kerchunk/gridmet.json/.zmetadata&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identify-the-crs">
+<h2>Identify the CRS<a class="headerlink" href="#identify-the-crs" title="Link to this heading">#</a></h2>
+<p>A “<a class="reference internal" href="../back/Glossary.html#term-Coordinate-Reference-System"><span class="std std-ref"><strong>coordinate reference system</strong></span></a>” (CRS) is a framework used to precisely measure locations on the surface of Earth as coordinates (<a class="reference external" href="https://en.wikipedia.org/wiki/Spatial_reference_system">wikipedia.org, 2024</a>).
+To be CF-Compliant, a dataset must contain a “grid mapping” variable that is used to explicitly declare the CRS for any variables with spatial dimensions.
+Specifically, the grid mapping variable provides the description of the CRS via a collection of attached attributes.
+Common grid mapping variable names include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">crs</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polar_stereographic</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">albers_conical_equal_area</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rcm_map</span></code>.</p></li>
+</ul>
+<p>Spatial variables that need the CRS to define their positions are then linked to the grid mapping variable by having a <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute, which is set to the name of the grid mapping variable.</p>
+<p>To locate the grid mapping variable, the first thing is to check for a variable (or coordinate) with one of the common grid mapping variable names.
+If one exists, it can be confirmed to be the grid mapping by checking a spatial variable for the <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute and making sure it points to the grid mapping variable name.
+If so, you are good to go.
+If no obvious grid mapping variable is present, you can still check a spatial variable for its <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute to see what grid mapping variable it points to.
+If there is a <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute, but no variable present with the name it points to, or if there is no <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute at all, you will need to create the CRS given what you know about the data.
+However, creating a CRS is beyond this notebook and we refer readers to <a class="reference external" href="https://code.usgs.gov/wma/nhgf/geo-data-portal/gdp_data_processing/-/blob/main/workflows/opendap/CIDA/crs_notebooks/tutorial.ipynb">this notebook by Kieran Bartels and Sarah Jordan</a> on how to add a missing CRS.</p>
+<p>Okay, now that we know how to identify the CRS, let’s look at our data again and check for it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Right away, we can see that the dataset has a <code class="docutils literal notranslate"><span class="pre">crs</span></code> coordinate, and a check if a spatial variable, say <code class="docutils literal notranslate"><span class="pre">precipitation_amount</span></code>, shows a <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">crs</span></code>.
+So, this dataset already has the CRS info, and it is stored in the <code class="docutils literal notranslate"><span class="pre">crs</span></code> coordinate with a dimension of <code class="docutils literal notranslate"><span class="pre">crs</span></code>.</p>
+</section>
+<section id="making-the-crs-cf-compliant">
+<h2>Making the CRS CF compliant<a class="headerlink" href="#making-the-crs-cf-compliant" title="Link to this heading">#</a></h2>
+<p>While we have the CRS info, to be CF compliant, the CRS needs to be a dimensionless <strong>data variable</strong>.
+Since it is currently a coordinate with a dimension, we can convert it to a variable by squeezing (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.squeeze.html#xarray.Dataset.squeeze"><code class="docutils literal notranslate"><span class="pre">squeeze</span></code></a>) out the <code class="docutils literal notranslate"><span class="pre">crs</span></code> dimension and reseting the <code class="docutils literal notranslate"><span class="pre">crs</span></code> coordinate (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.reset_coords.html"><code class="docutils literal notranslate"><span class="pre">reset_coords</span></code></a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">reset_coords</span><span class="p">(</span><span class="s1">&#39;crs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nice, that did it!
+However, this actually gets us a CF compliant CRS for the <strong>in-memory</strong> dataset, and it does not actually adjust the Zarr store to be CF compliant.
+As we don’t want to rewrite the whole Zarr store, we can fix this by directly adjusting some of the keywords in the json serialized Zarr store.</p>
+<p>Note: The following code is for our virtual Zarr store, which is a single json file with nested keys that make the Zarr store.
+See <a class="reference internal" href="#Adding-CRS-to-a-Regular-Zarr-Store"><span class="xref myst">below</span></a> for how to adjust the CRS in a regular, non-virtual Zarr store.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs_local</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">virtual_zarr_store</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fs_local</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/kerchunk/gridmet.json&#39;</span><span class="p">))</span>
+
+<span class="n">zattrs</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">virtual_zarr_store</span><span class="p">[</span><span class="s1">&#39;refs&#39;</span><span class="p">][</span><span class="s1">&#39;crs/.zattrs&#39;</span><span class="p">])</span>
+<span class="n">zattrs</span><span class="p">[</span><span class="s1">&#39;_ARRAY_DIMENSIONS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">virtual_zarr_store</span><span class="p">[</span><span class="s1">&#39;refs&#39;</span><span class="p">][</span><span class="s1">&#39;crs/.zattrs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">zattrs</span><span class="p">)</span>
+
+<span class="n">zarray</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">virtual_zarr_store</span><span class="p">[</span><span class="s1">&#39;refs&#39;</span><span class="p">][</span><span class="s1">&#39;crs/.zarray&#39;</span><span class="p">])</span>
+<span class="n">zarray</span><span class="p">[</span><span class="s1">&#39;chunks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">zarray</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">virtual_zarr_store</span><span class="p">[</span><span class="s1">&#39;refs&#39;</span><span class="p">][</span><span class="s1">&#39;crs/.zarray&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">zarray</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">fs_local</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/kerchunk/gridmet_cf_crs.json&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">virtual_zarr_store</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have updated our virtual Zarr store, let’s read it in to make sure everything looks right.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;virtual_zarr/kerchunk/gridmet_cf_crs.json&#39;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;kerchunk&#39;</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;storage_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;remote_protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;remote_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;anon&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s1">&#39;endpoint_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://usgs.osn.mghpcc.org/&#39;</span><span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at that, easy as can be, and we now have a CF compliant virtual Zarr store!</p>
+</section>
+<section id="adding-crs-to-a-regular-zarr-store">
+<h2>Adding CRS to a Regular Zarr Store<a class="headerlink" href="#adding-crs-to-a-regular-zarr-store" title="Link to this heading">#</a></h2>
+<p>As you may want to apply this process to a regular Zarr store, we have included some code that does the same adjustments as above, but for a regular Zarr store.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">zarr_store_path</span> <span class="o">=</span> <span class="s1">&#39;gridment.zarr&#39;</span>
+
+<span class="k">with</span> <span class="n">fs_local</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">zarr_store_path</span><span class="si">}</span><span class="s1">/crs/.zattrs&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">orig_metadata</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>        
+    <span class="n">orig_metadata</span><span class="p">[</span><span class="s1">&#39;_ARRAY_DIMENSIONS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">orig_metadata</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+<span class="k">with</span> <span class="n">fs_local</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">zarr_store_path</span><span class="si">}</span><span class="s1">/crs/.zarray&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">orig_metadata</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>        
+    <span class="n">orig_metadata</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">orig_metadata</span><span class="p">[</span><span class="s1">&#39;chunks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">orig_metadata</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./dataset_processing/tutorials/chunking/201"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CreateVirtualZarr.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Generating a Virtual Zarr Store</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="OptimalChunkSelection.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Choosing an Optimal Chunk Size and Shape</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-dataset">Example Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-crs">Identify the CRS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-crs-cf-compliant">Making the CRS CF compliant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-crs-to-a-regular-zarr-store">Adding CRS to a Regular Zarr Store</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
