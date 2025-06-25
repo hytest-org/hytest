@@ -235,6 +235,13 @@
 <li class="toctree-l2"><a class="reference internal" href="Rechunking.html">Rechunking</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../back/Glossary.html">Glossary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../back/AdditionalResources.html">Additional Resources</a></li>
@@ -1273,7 +1280,7 @@ Then, additional data would only require making new chunks versus editing existi
 Therefore, considering updates to the dataset when chunking can save a lot of time when appending the dataset in the future.</p>
 <p>Additionally, all of the information provided here does not discuss proper optimization of chunk shape and size.
 Proper optimization would attempt to select chunk sizes that are near powers of two (i.e., <span class="math notranslate nohighlight">\(2^N\)</span>) to facilitate optimal storage and disk retrieval.
-Details on this topic can be found in the advanced topic notebook of <span class="xref myst">Choosing an Optimal Chunk Size and Shape</span>.</p>
+Details on this topic can be found in the advanced topic notebook of <a class="reference internal" href="../201/OptimalChunkSelection.html"><span class="std std-doc">Choosing an Optimal Chunk Size and Shape</span></a>.</p>
 </section>
 </section>
 </section>
