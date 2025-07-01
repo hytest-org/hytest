@@ -478,9 +478,9 @@ To do this, we will utilize an existing dataset from the HyTEST OSN, take a guid
 <section id="accessing-the-dataset">
 <h2>Accessing the Dataset<a class="headerlink" href="#accessing-the-dataset" title="Link to this heading">#</a></h2>
 <p>Before we can open the dataset, we must first get a mapper that will easily allow for <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html">xarray</a> to open the dataset.
-To do this, we will use <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a> to perform an anonymous read from an endpoints outside of S3, using the S3 API (i.e., the HyTEST OSN).
+To do this, we will use <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a> to perform an anonymous read from an endpoint outside of S3, that uses the S3 API (i.e., the HyTEST OSN).
 This requires us to set up an S3 file system and feed it the endpoint URL.
-We can then point the the file system to our dataset (in this case the PRISM V2 Zarr store) and get a mapper to the file.</p>
+We can then point the file system to our dataset (in this case the PRISM V2 Zarr store) and get a mapper to the file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span>
@@ -1008,13 +1008,13 @@ Attributes: (12/24)
                &#x27;2024-06-01&#x27;, &#x27;2024-07-01&#x27;],
               dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=1555, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1b98ec39-c8de-4fb9-a972-ed2fd262b866' class='xr-section-summary-in' type='checkbox'  ><label for='section-1b98ec39-c8de-4fb9-a972-ed2fd262b866' class='xr-section-summary' >Attributes: <span>(24)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.4</dd><dt><span>Metadata_Conventions :</span></dt><dd>Unidata Dataset Discovery v1.0</dd><dt><span>acknowledgment :</span></dt><dd>PRISM Climate Group, Oregon State University, http://prism.oregonstate.edu, Accessed Feb 2025.</dd><dt><span>authors :</span></dt><dd>PRISM Climate Group</dd><dt><span>cdm_data_type :</span></dt><dd>Grid</dd><dt><span>creator_email :</span></dt><dd>daley@nacse.org</dd><dt><span>creator_name :</span></dt><dd>Christopher Daley</dd><dt><span>geospatial_lat_max :</span></dt><dd>24.10416603088379</dd><dt><span>geospatial_lat_min :</span></dt><dd>49.9375</dd><dt><span>geospatial_lon_max :</span></dt><dd>-66.52083587646484</dd><dt><span>geospatial_lon_min :</span></dt><dd>-125.02083587646484</dd><dt><span>id :</span></dt><dd>prism/thredds/cida.usgs.gov</dd><dt><span>institution :</span></dt><dd>Oregon State University</dd><dt><span>keywords :</span></dt><dd>Atmospheric Temperature, Air Temperature Atmosphere, Precipitation, Rain, Maximum Daily Temperature, Minimum  Daily Temperature</dd><dt><span>keywords_vocabulary :</span></dt><dd>GCMD Science Keywords</dd><dt><span>license :</span></dt><dd>Freely Available: The PRISM Climate Group, Oregon State University retains rights to ownership of the data and information.</dd><dt><span>naming_authority :</span></dt><dd>cida.usgs.gov</dd><dt><span>publisher_name :</span></dt><dd>PRISM Climate Group</dd><dt><span>publisher_url :</span></dt><dd>http://prism.oregonstate.edu/</dd><dt><span>summary :</span></dt><dd>This dataset was created using the PRISM (Parameter-elevation Regressions on Independent Slopes Model) climate mapping system, developed by Dr. Christopher Daly, PRISM Climate Group director. PRISM is a unique knowledge-based system that uses point measurements of precipitation, temperature, and other climatic factors to produce continuous, digital grid estimates of monthly, yearly, and event-based climatic parameters. Continuously updated, this unique analytical tool incorporates point data, a digital elevation model, and expert knowledge of complex climatic extremes, including rain shadows, coastal effects, and temperature inversions. PRISM data sets are recognized world-wide as the highest-quality spatial climate data sets currently available. PRISM is the USDA&#x27;s official climatological data.</dd><dt><span>time_coverage_resolution :</span></dt><dd>Monthly</dd><dt><span>title :</span></dt><dd>Parameter-elevation Regressions on Independent Slopes Model Monthly Climate Data for the Continental United States 01-1895 - 07-2024.</dd><dt><span>time_coverage_start :</span></dt><dd>1895-01-01T00:00</dd><dt><span>time_coverage_end :</span></dt><dd>2024-07-01T00:00</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<p>The “rich” HTML output to show the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> includes a lot of information, some of which is hidden behind toggles.
+<p>The HTML output for the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> includes a lot of information, some of which is hidden behind toggles.
 Click on the icons to the right to expand and see all the metadata available for the dataset.
 The page icon will display attributes attached to the data, while the database icon will display information about the dataset.</p>
 <p>Notable observations:</p>
 <ul class="simple">
 <li><p><strong>Dimensions</strong>: This dataset is 3D, with data being indexed by <code class="docutils literal notranslate"><span class="pre">lat</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span></code>, and <code class="docutils literal notranslate"><span class="pre">time</span></code> (setting  aside <code class="docutils literal notranslate"><span class="pre">tbnd</span></code> for the moment; it is a special case).
-Looking at the “Dimensions” line, you can see that each of these dimensions is quantified (i.e., how many unique values are available in each dimension).</p>
+Looking at the “Dimensions” line, you can see that each of these dimensions is quantified (i.e., the size of each dimension).</p>
 <ul>
 <li><p><strong>lat</strong> = 621</p></li>
 <li><p><strong>lon</strong> = 1405</p></li>
@@ -1023,8 +1023,8 @@ Looking at the “Dimensions” line, you can see that each of these dimensions 
 </li>
 <li><p><strong>Coordinates</strong>: These are the convenient handles by which dimensions can be referenced.
 In this dataset, a coordinate can be used to pick out a particular cell of the array.
-Asking for cells where say <code class="docutils literal notranslate"><span class="pre">lat=49.9</span></code> is possible because these coordinates map the meaningful values of latitude to the behind-the-scenes cell index needed to fetch the value.</p></li>
-<li><p><strong>Data Variables</strong>: The variables are <code class="docutils literal notranslate"><span class="pre">tmx</span></code>, <code class="docutils literal notranslate"><span class="pre">ppt</span></code>, and <code class="docutils literal notranslate"><span class="pre">tmn</span></code>, which are associated with three coordinates by which data values are located in space and time (the “Dimensions”).</p></li>
+Selecting cells where say <code class="docutils literal notranslate"><span class="pre">lat=49.9</span></code> is possible because these coordinates map the meaningful values of latitude to the behind-the-scenes cell index needed to fetch the value.</p></li>
+<li><p><strong>Data Variables</strong>: The primary variables are <code class="docutils literal notranslate"><span class="pre">ppt</span></code>, <code class="docutils literal notranslate"><span class="pre">tmn</span></code>, and <code class="docutils literal notranslate"><span class="pre">tmx</span></code>, which each have three dimensions (<code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">lat</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span></code>) by which data values are located in space and time.</p></li>
 <li><p><strong>Indexes</strong>: This is an internal data structure to help xarray quickly find items in the array.</p></li>
 <li><p><strong>Attributes</strong>: Arbitrary metadata that has been given to the dataset.</p></li>
 </ul>
@@ -1528,7 +1528,7 @@ Attributes:
 So, behind the scenes, there is an array whose first index (for time) is a value between 0 and 1555.
 But how do we know the time value of index 0 (or any index, really)?
 The “Coordinates” are the lookup table to say what “real” time value is associated with each index address.</p>
-<p>You’ll notice that the data description in this case is merely “1356745275 values with dtype=float64” with no indication as to how it is chunked.
+<p>You’ll notice the data description in this case is merely “1356745275 values with dtype=float64” with no indication as to how it is chunked.
 Assuming our 3-D array is fully populated, this value makes sense:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1544,13 +1544,9 @@ Assuming our 3-D array is fully populated, this value makes sense:</p>
 </div>
 </div>
 <p>In terms of chunking, this is where it gets interesting.
-If you thoroughly looked at the rich HTML output, you may have noticed that there is no reference to chunking anywhere.
-Occasionally, some datasets will include some info in their “Attributes” that potentially indicate how the data is chunked.
-For example, some may include a <code class="docutils literal notranslate"><span class="pre">_ChunkSizes</span></code> that gives the chunk shape of the data, expressed as a tuple to match the dimensions.
-However, we should be skeptical of any information on how the data is chunked in the “Attributes”.
-Virtually anything can be set as an attribute on the dataset, and it does not affect the internal structure of the dataset <strong>AT ALL</strong>.
+If you thoroughly examined the HTML output, you may have noticed that there is no reference to chunking anywhere.
 Therefore, we need to directly access the data in a way that returns the true chunk shape of the stored dataset.</p>
-<p>To do this, we can simply check the variables “encoding”.
+<p>To do this, we can simply check a variable’s “encoding”.
 This returns metadata that was used by xarray when reading the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1571,9 +1567,9 @@ This returns metadata that was used by xarray when reading the data.</p>
 </div>
 </div>
 </div>
-<p>From here we can see two keys dealing with chunks: <code class="docutils literal notranslate"><span class="pre">'chunks'</span></code> and <code class="docutils literal notranslate"><span class="pre">'preferred_chunks'</span></code> - both contain the same information of how the data is chunked.
-The difference between the two is <code class="docutils literal notranslate"><span class="pre">'chunks'</span></code> is the actual chunk shape of the chunks stored on disk (what is commonly termed “<a class="reference internal" href="../back/Glossary.html#term-Stored-chunks"><span class="std std-ref"><strong>stored chunks</strong></span></a>”), while <code class="docutils literal notranslate"><span class="pre">'preferred_chunks'</span></code> is the chunk shape that the engine chose to open the dataset with.
-Generally, these are the same, but they may be different if the engine you use has not been set to equate them.
+<p>From here we can see two keys dealing with chunks: <code class="docutils literal notranslate"><span class="pre">'chunks'</span></code> and <code class="docutils literal notranslate"><span class="pre">'preferred_chunks'</span></code> - in this case both contain the same information of how the data is chunked.
+The difference between the two is <code class="docutils literal notranslate"><span class="pre">'chunks'</span></code> is the chunk shape of the chunks stored on disk (what is commonly termed “<a class="reference internal" href="../back/Glossary.html#term-Stored-chunks"><span class="std std-ref"><strong>stored chunks</strong></span></a>”), while <code class="docutils literal notranslate"><span class="pre">'preferred_chunks'</span></code> is the chunk shape that the engine chose to open the dataset with.
+Generally, these are the same, but they may be different if the engine you use has not been set to equate them or if a different chunk shape is specified when opening the dataset.
 Therefore, our data has a stored chunk shape of <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">68,</span> <span class="pre">'lat':</span> <span class="pre">131,</span> <span class="pre">'lon':</span> <span class="pre">294}</span></code>.</p>
 </section>
 </section>
@@ -2559,8 +2555,8 @@ Attributes: (12/24)
                &#x27;2024-06-01&#x27;, &#x27;2024-07-01&#x27;],
               dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=1555, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a9231147-53a1-4833-a0e0-6a073383c57b' class='xr-section-summary-in' type='checkbox'  ><label for='section-a9231147-53a1-4833-a0e0-6a073383c57b' class='xr-section-summary' >Attributes: <span>(24)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.4</dd><dt><span>Metadata_Conventions :</span></dt><dd>Unidata Dataset Discovery v1.0</dd><dt><span>acknowledgment :</span></dt><dd>PRISM Climate Group, Oregon State University, http://prism.oregonstate.edu, Accessed Feb 2025.</dd><dt><span>authors :</span></dt><dd>PRISM Climate Group</dd><dt><span>cdm_data_type :</span></dt><dd>Grid</dd><dt><span>creator_email :</span></dt><dd>daley@nacse.org</dd><dt><span>creator_name :</span></dt><dd>Christopher Daley</dd><dt><span>geospatial_lat_max :</span></dt><dd>24.10416603088379</dd><dt><span>geospatial_lat_min :</span></dt><dd>49.9375</dd><dt><span>geospatial_lon_max :</span></dt><dd>-66.52083587646484</dd><dt><span>geospatial_lon_min :</span></dt><dd>-125.02083587646484</dd><dt><span>id :</span></dt><dd>prism/thredds/cida.usgs.gov</dd><dt><span>institution :</span></dt><dd>Oregon State University</dd><dt><span>keywords :</span></dt><dd>Atmospheric Temperature, Air Temperature Atmosphere, Precipitation, Rain, Maximum Daily Temperature, Minimum  Daily Temperature</dd><dt><span>keywords_vocabulary :</span></dt><dd>GCMD Science Keywords</dd><dt><span>license :</span></dt><dd>Freely Available: The PRISM Climate Group, Oregon State University retains rights to ownership of the data and information.</dd><dt><span>naming_authority :</span></dt><dd>cida.usgs.gov</dd><dt><span>publisher_name :</span></dt><dd>PRISM Climate Group</dd><dt><span>publisher_url :</span></dt><dd>http://prism.oregonstate.edu/</dd><dt><span>summary :</span></dt><dd>This dataset was created using the PRISM (Parameter-elevation Regressions on Independent Slopes Model) climate mapping system, developed by Dr. Christopher Daly, PRISM Climate Group director. PRISM is a unique knowledge-based system that uses point measurements of precipitation, temperature, and other climatic factors to produce continuous, digital grid estimates of monthly, yearly, and event-based climatic parameters. Continuously updated, this unique analytical tool incorporates point data, a digital elevation model, and expert knowledge of complex climatic extremes, including rain shadows, coastal effects, and temperature inversions. PRISM data sets are recognized world-wide as the highest-quality spatial climate data sets currently available. PRISM is the USDA&#x27;s official climatological data.</dd><dt><span>time_coverage_resolution :</span></dt><dd>Monthly</dd><dt><span>title :</span></dt><dd>Parameter-elevation Regressions on Independent Slopes Model Monthly Climate Data for the Continental United States 01-1895 - 07-2024.</dd><dt><span>time_coverage_start :</span></dt><dd>1895-01-01T00:00</dd><dt><span>time_coverage_end :</span></dt><dd>2024-07-01T00:00</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<p>Now if we inspect the data variables metadata, we will see that the data is now read in as a dask array.
-Let’s look at at the <code class="docutils literal notranslate"><span class="pre">tmn</span></code> variable again to simplify this.</p>
+<p>Now when we inspect the data variables metadata, we will see the data is now read in as a dask array.
+Let’s look at the <code class="docutils literal notranslate"><span class="pre">tmn</span></code> variable again to simplify this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">tmn</span>
@@ -3182,7 +3178,7 @@ Attributes:
                &#x27;2024-06-01&#x27;, &#x27;2024-07-01&#x27;],
               dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=1555, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c07750b1-635d-4b37-ae31-28470e63610d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c07750b1-635d-4b37-ae31-28470e63610d' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degC</dd><dt><span>long_name :</span></dt><dd>Minimum monthly temperature</dd><dt><span>grid_mapping :</span></dt><dd>crs</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<p>As we can see the data is chunked into chunks of shape <code class="docutils literal notranslate"><span class="pre">(68,</span> <span class="pre">131,</span> <span class="pre">294)</span></code> with a “<a class="reference internal" href="../back/Glossary.html#term-Chunk-size"><span class="std std-ref"><strong>chunk size</strong></span></a> of ~20 MiB.
+<p>As we can see the data is chunked into chunks of shape <code class="docutils literal notranslate"><span class="pre">(68,</span> <span class="pre">131,</span> <span class="pre">294)</span></code> with a <a class="reference internal" href="../back/Glossary.html#term-Chunk-size"><span class="std std-ref"><strong>chunk size</strong></span></a> of ~20 MiB.
 This is exactly what we saw when looking at the encoding.
 So, this additional keyword worked as expected and gives us a standard way to open chunked datasets using the stored chunk shape as our chunk shape!</p>
 <p>Note that the coordinate variables themselves (<code class="docutils literal notranslate"><span class="pre">lat</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span></code>, and <code class="docutils literal notranslate"><span class="pre">time</span></code>) are stored as single unchunked arrays of data.
@@ -3192,7 +3188,7 @@ So, they are included in each chunk such that they read whenever a chunk is read
 </section>
 <section id="changing-the-chunk-shape-and-size">
 <h2>Changing the Chunk Shape and Size<a class="headerlink" href="#changing-the-chunk-shape-and-size" title="Link to this heading">#</a></h2>
-<p>Now that we know our stored chunk shape and size or how to find them, they may not always be the optimal choice for performing analysis.
+<p>Now we can identify the stored chunk shape and size, but these settings may not always be ideal for performing analysis.
 For example, <a class="reference external" href="https://zarr.readthedocs.io/en/stable/tutorial.html#chunk-size-and-shape">Zarr recommends a stored chunk size of at least 1 MB uncompressed</a> as they give better performance.
 However, <a class="reference external" href="https://docs.dask.org/en/stable/array-chunks.html#specifying-chunk-shapes">dask recommends chunk sizes between 10 MB and 1 GB for computations</a>, depending on the availability of RAM and the duration of computations.
 Therefore, our stored chunk size may not be large enough for optimal computations.
@@ -3200,7 +3196,7 @@ Thankfully, stored chunks do not need to be the same size as those we use for ou
 In other words, we can group multiple smaller stored chunks together when performing our computations.
 Xarray makes this easy by allowing us to adjust the chunk shape and size, either as we load the data or after.</p>
 <p>Let’s show how this works by increasing our chunks of the minimum monthly temperature to a size of ~500 MiB.
-To do so when reading in the data, all we need to do is actually specify the chunk shape to <code class="docutils literal notranslate"><span class="pre">chunks</span></code>.
+To do so when reading in the data, all we need to do is specify the chunk shape with the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> argument.
 For our example, let’s do chunks of shape: <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">150,</span> <span class="pre">'lat':</span> <span class="pre">310,</span> <span class="pre">'lon':</span> <span class="pre">1405}</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3806,16 +3802,16 @@ Attributes:
               dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=1555, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-12761901-830e-4ee5-9ead-a077e323b107' class='xr-section-summary-in' type='checkbox'  checked><label for='section-12761901-830e-4ee5-9ead-a077e323b107' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degC</dd><dt><span>long_name :</span></dt><dd>Minimum monthly temperature</dd><dt><span>grid_mapping :</span></dt><dd>crs</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Nice!
-As we can see, the chunk shape is now reflected in data description with about the right chunk size we wanted.
+As we can see, the chunk shape is now displayed in the DataArray description with the chunk size we requested.
 However, we did get a warning indicating that:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">UserWarning</span><span class="p">:</span> <span class="n">The</span> <span class="n">specified</span> <span class="n">chunks</span> <span class="n">separate</span> <span class="n">the</span> <span class="n">stored</span> <span class="n">chunks</span> <span class="n">along</span> <span class="n">dimension</span> <span class="n">X</span> <span class="n">starting</span> <span class="n">at</span> <span class="n">index</span> <span class="n">i</span><span class="o">.</span> <span class="n">This</span> <span class="n">could</span> <span class="n">degrade</span> <span class="n">performance</span><span class="o">.</span> <span class="n">Instead</span><span class="p">,</span> <span class="n">consider</span> <span class="n">rechunking</span> <span class="n">after</span> <span class="n">loading</span><span class="o">.</span>
 </pre></div>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>This warning is telling us that the chunk shape we have chosen is not a multiple (or grouping) of the the stored chunks, and if we really want this chunk shape, we should rechunk.</p>
+<p>This warning is telling us the chunk shape we have chosen is not a multiple (or grouping) of the stored chunks, and if we really want this chunk shape, we should rechunk the data.</p>
 </div>
-<p>Oops, as we are not attached to this chunk shape nor wanting to rechunk the data (see the <a class="reference internal" href="WhyChunk.html"><span class="std std-doc">Why (re)Chunk Data? notebook</span></a> for reasons why you might), we need to select a chunk shape that is a <strong>multiple</strong> of the stored chunks.
+<p>Oops, as we are not attached to this chunk shape nor wanting to rechunk the data (see <a class="reference internal" href="WhyChunk.html"><span class="std std-doc">Why (re)Chunk Data? notebook</span></a> for reasons why you might), we need to select a chunk shape that is a <strong>multiple</strong> of the stored chunks.
 This time, let’s try: <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">68*3,</span> <span class="pre">'lat':</span> <span class="pre">131*3,</span> <span class="pre">'lon':</span> <span class="pre">294*3}</span></code>.
 This should increase our original chunk size (~20 MiB) by a factor of 27 (<span class="math notranslate nohighlight">\(3^3 = 27\)</span>) - close to the ~500 MiB we are wanting.</p>
 <div class="cell docutils container">
@@ -4996,7 +4992,7 @@ Attributes:
 </div>
 <div class="admonition-not-recommended admonition">
 <p class="admonition-title">Not Recommended</p>
-<p>Warning: We do not recommend using this method as you will not get the same warning notifying you that the chosen chunk shape does not match a multiple of the stored chunk shape. Therefore, if you choose a non-multiple chunk shape you could slow down your whole workflow as the data will have to be rechunked to meet your requested chunk shape.</p>
+<p>Warning: We do not recommend using this method as you will not get the same warning notifying you that the chosen chunk shape does not match a multiple of the stored chunk shape. If you choose a non-multiple chunk shape you could slow down your whole workflow as the data will have to be rechunked to meet your requested chunk shape.</p>
 </div>
 </section>
 </section>

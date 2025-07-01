@@ -501,7 +501,7 @@ This will be a culmination of all the <a class="reference internal" href="index.
 <h2>Read in a Zarr Store<a class="headerlink" href="#read-in-a-zarr-store" title="Link to this heading">#</a></h2>
 <p>For the dataset in this tutorial, we will use the data from the National Water Model Reanalysis Version 2.1.
 The full dataset is part of the <a class="reference external" href="https://aws.amazon.com/opendata/">AWS Open Data Program</a>, available via the S3 bucket at: <code class="docutils literal notranslate"><span class="pre">s3://noaa-nwm-retro-v2-zarr-pds/</span></code>.</p>
-<p>As this is a Zarr store, we can easily read it in directly with <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_dataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_dataset()</span></code></a>, including the keyword <code class="docutils literal notranslate"><span class="pre">chunks={}</span></code> to make sure it loads the data with dask using the stored chunks’ shape and size.</p>
+<p>As this is a Zarr store, we can easily read it in directly with <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_dataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_dataset()</span></code></a>, including the keyword <code class="docutils literal notranslate"><span class="pre">chunks={}</span></code> to make sure dask loads the data using the stored chunks’ shape and size.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">get_mapper</span><span class="p">(</span><span class="s1">&#39;s3://noaa-nwm-retro-v2-zarr-pds&#39;</span><span class="p">,</span> <span class="n">anon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1846,20 +1846,20 @@ Attributes: (12/17)
 </section>
 <section id="check-the-current-chunk-shape-and-size">
 <h2>Check the Current Chunk Shape and Size<a class="headerlink" href="#check-the-current-chunk-shape-and-size" title="Link to this heading">#</a></h2>
-<p>From the output, we can see that there are two dimensions, <code class="docutils literal notranslate"><span class="pre">time</span></code> of length 227,904 and <code class="docutils literal notranslate"><span class="pre">feature_id</span></code> of length 2,729,077.
+<p>From the output, we can see there are two dimensions, <code class="docutils literal notranslate"><span class="pre">time</span></code> of length 227,904 and <code class="docutils literal notranslate"><span class="pre">feature_id</span></code> of length 2,729,077.
 Both <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">feature_id</span></code> are coordinates, along with two extra coordinates of <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> which are tied to the <code class="docutils literal notranslate"><span class="pre">feature_id</span></code>.
-Inspecting these extra coordinates in detail, we can notice that they are “chunked”, but only to a single chunk of size 10.41 MiB.
+Inspecting these extra coordinates in detail, we notice they are “chunked”, but only to a single chunk of size 10.41 MiB.
 This is good, as we will want them in a single chunk for writing, such that they are fully read in with each data variable chunk.
 Finally, there are eight data variables, all having both of the dimensions, meaning they are 2D data.
-Examining the variables in detail, they all have chunks of shape <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">672,</span> <span class="pre">'feature_id':</span> <span class="pre">30000}</span></code> and size of 153.81 MiB or 76.9 MiB (depending if the variable is 64 or 32 bit, respectively).
+Examining the variables in detail, they all have chunks of shape <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">672,</span> <span class="pre">'feature_id':</span> <span class="pre">30000}</span></code> and size of 153.81 MiB or 76.9 MiB (depending if the variable is 64- or 32-bit, respectively).
 Additionally, we can see that each variable is a whopping 4.53 or 2.26 TiB in memory, which means the whole dataset is almost 32 TiB!</p>
 <p>This is a bit more than we want to work with in our example.
-So, let’s go ahead an select a subset of the data that is about 1 GiB in memory.
-While this is not a larger-than-memory dataset anymore, it is still reasonably large that it will work well for this example without taking forever to get data and rechunk.
-For the subset, let’s only look at <code class="docutils literal notranslate"><span class="pre">streamflow</span></code> and <code class="docutils literal notranslate"><span class="pre">velocity</span></code> for the first 15,000 <code class="docutils literal notranslate"><span class="pre">feature_id</span></code>s and the one year time range of water year 2018 (i.e., October 2017 to September 2018).</p>
+So, let’s go ahead and select a subset of the data that is about 1 GiB in memory.
+While this is not a larger-than-memory dataset anymore, it is still reasonably large and it will work well for this example without taking forever to get data and rechunk.
+For the subset, let’s only look at water year 2018 (i.e., October 2017 to September 2018) for the variables <code class="docutils literal notranslate"><span class="pre">streamflow</span></code> and <code class="docutils literal notranslate"><span class="pre">velocity</span></code> for the first 15,000 <code class="docutils literal notranslate"><span class="pre">feature_id</span></code>s.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As we are not working on AWS, we have selected this subset to minimize the number of chunks that effectively need to be downloaded from the S3 bucket.</p>
+<p>As we are not working on AWS, we have selected this subset to minimize the number of chunks that need to be downloaded from the S3 bucket.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2607,7 +2607,7 @@ Attributes: (12/17)
 </div>
 <p>Now, our subset of data is only about 1 GiB per data variable and has a chunk shape of <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">672,</span> <span class="pre">'feature_id':</span> <span class="pre">15000}</span></code> with size of 76.9 MiB.
 This is a good chunk size and between the optimal range of 10 to 200 MiB.
-However, the chunk shape may not be an optimal choice for our analysis as it is chunked completely by <code class="docutils literal notranslate"><span class="pre">feature_id</span></code> (i.e., all feature IDs for a given time can be read in a single chunk).</p>
+However, the chunk shape may not be an optimal choice for our analysis as it is chunked completely by <code class="docutils literal notranslate"><span class="pre">feature_id</span></code> (i.e., all feature IDs for a given time are read in a single chunk).</p>
 </section>
 <section id="choose-a-new-chunk-shape-and-size">
 <h2>Choose a New Chunk Shape and Size<a class="headerlink" href="#choose-a-new-chunk-shape-and-size" title="Link to this heading">#</a></h2>
@@ -2662,7 +2662,7 @@ Chunk size: 111.39 [MiB]
 </div>
 </div>
 </div>
-<p>Okay, so, the time-series streamflow chunking for a single feature ID has way too small of a chunk size.
+<p>The time-series streamflow chunking for a single feature ID has way too small of a chunk size.
 If we increase the number of feature IDs per chunk by a factor of 1000, we should have the right size for that chunk
 As for velocity, the split of the data into three chunks along both dimensions resulted in no partial chunks and a chunk size of 111 MiB.
 This is within our optimal chunk size range.
@@ -2699,7 +2699,7 @@ Time to get to rechunking!</p>
 <p>This is a relatively trivial example, due to the smaller size of the subset of the dataset.
 As the whole subset can fit into memory easily, chunking in general is largely unnecesary in terms of optimizing I/O (however, parallelism is still a consideration).
 But it is worth doing, as the concepts will apply if we take this to the full dataset.</p>
-<p>First thing we need is a chunk plan to describe the chunk layout we want.
+<p>First thing we need to determine is a chunk plan to describe the chunk layout we want.
 We already created a basic version of this above that describes the chunk shapes of streamflow and velocity.
 We just need to place it into a more cohesive list along with chunk shapes for the coordinates.</p>
 <div class="cell docutils container">
@@ -2729,8 +2729,8 @@ We just need to place it into a more cohesive list along with chunk shapes for t
 </div>
 </div>
 <p>With this plan, we can ask <a class="reference external" href="https://rechunker.readthedocs.io/en/latest/index.html">Rechunker</a> to re-write the data using the prescribed chunking pattern.
-Rechunker will take the currently read in data and rechunk it using an intermediate Zarr store for efficiency.
-The result will be our rechunked data saved to a new Zarr store.</p>
+Rechunker will read the data and rechunk it using an intermediate Zarr store for efficiency.
+This will produce a new Zarr store with the chunk shapes we specified in <code class="docutils literal notranslate"><span class="pre">chunk_plan</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outfile</span> <span class="o">=</span> <span class="s2">&quot;rechunked_nwm.zarr&quot;</span>

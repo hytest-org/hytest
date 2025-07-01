@@ -1055,7 +1055,7 @@ if (window.Jupyter !== undefined) {
 <section id="example-dataset">
 <h2>Example Dataset<a class="headerlink" href="#example-dataset" title="Link to this heading">#</a></h2>
 <p>In this notebook, we will use the daily gridMET precipitation dataset as an example for reading data and writing to Zarr.
-The data is currently hosted on the HyTEST OSN as a collection NetCDF files.
+The data is currently hosted on the HyTEST OSN as a collection of NetCDF files.
 To get the files, we will use <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a> to open each year of precipitation data to a list.
 Then, we can read in the all the files at once using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_mfdataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code></a>.</p>
 <div class="cell docutils container">
@@ -1729,7 +1729,7 @@ Attributes: (12/19)
 <p>As we can see in the rich HTML output of our dataset, the NetCDF files were already chunked with pattern of <code class="docutils literal notranslate"><span class="pre">{'day':</span> <span class="pre">61,</span> <span class="pre">'lat':</span> <span class="pre">98,</span> <span class="pre">'lon':</span> <span class="pre">231}</span></code>.
 However, the size of these chunks are relatively small and near the lower limit of an acceptable chunk size of 10 MiB.
 So, it would be better if we could increase our chunk sizes to say 70-110 MiB.
-To do this, we will simply use multiples of the current chunks as to not completely rechunk the dataset (grouping chunks is way faster than completely changing chunk shape).
+To do this, we will simply use multiples of the current chunks so we don’t have to completely rechunk the dataset (grouping chunks is way faster than completely changing chunk shape).
 Our goal will be to try and evenly distribute the number of chunks between the time and space dimensions.</p>
 <p>First, let’s check how many chunks are in the temporal and spatial dimensions with the current chunk shape.</p>
 <div class="cell docutils container">
@@ -1775,9 +1775,9 @@ Number of spatial chunks: 36.0
 </div>
 </div>
 <p>Okay, so there are about 7 times as many time chunks as there are spatial chunks.
-Let’s try to balance this better so that there are an approximately equal amount.
+Let’s try to balance this better so there are an approximately equal amount.
 We will do this by simply increasing the time chunk shape by a factor of 7.
-Then, we can double check our chunk size to see if it aligns with out chunk size goal.</p>
+Then, we can double check our chunk size to see if it aligns with our chunk size goal.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Also by increasing our temporal chunk shape by a factor of seven, it is now larger than a whole year.

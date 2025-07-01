@@ -473,13 +473,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="why-re-chunk-data">
 <h1>Why (re)Chunk Data?<a class="headerlink" href="#why-re-chunk-data" title="Link to this heading">#</a></h1>
 <p>If you are completely new to chunking, then you are probably interested in learning “what is data chunking?” and “why should I care?”.
-The goal of this notebooks is to answer these two basic questions and give you the understanding of what it means for data to be chunked and why you would want to do it.</p>
+The goal of this notebook is to answer these two basic questions and give you the understanding of what it means for data to be chunked and why you would want to do it.</p>
 <section id="what-is-chunking">
 <h2>What is chunking?<a class="headerlink" href="#what-is-chunking" title="Link to this heading">#</a></h2>
 <p>Since modern computers were invented, there have existed datasets that were too large to fully read into computer memory.
 These datasets have come to be known as “<a class="reference internal" href="../back/Glossary.html#term-Larger-than-memory"><span class="std std-ref"><strong>larger-than-memory</strong></span></a>” datasets.
 While these datasets may be larger than memory, we will still want to access them and perform analysis on the data.
-This where chunking comes in.
+This is where chunking comes in.
 “<a class="reference internal" href="../back/Glossary.html#term-Chunking"><span class="std std-ref"><strong>Chunking</strong></span></a>” is the process of breaking down large amounts of data into smaller, more manageable pieces.
 By breaking the data down into “<a class="reference internal" href="../back/Glossary.html#term-Chunk"><span class="std std-ref"><strong>chunks</strong></span></a>”, it allows for us to work with the chunks of the larger overall dataset using a structured approach without exceeding our machine’s available memory.
 Additionally, proper chunking can allow for faster retrieval and analysis when we only need to work with part of the dataset.</p>
@@ -546,7 +546,7 @@ The “distance” from <code class="docutils literal notranslate"><span class="
 \end{array}
 \end{split}\]</div>
 <ul class="simple">
-<li><p><strong>Column-Major</strong>: A column of the array occupies a contiguious block of memory.
+<li><p><strong>Column-Major</strong>: A column of the array occupies a contiguous block of memory.
 This implies that cells which are adjacent horizontally are not near one another physically in memory.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -571,7 +571,7 @@ However, if we wanted <code class="docutils literal notranslate"><span class="pr
 As the size of the array increases, the chunk shape becomes more relevant.
 Now suppose the square array is now larger-than-memory and stored on disk such that only a single row or column can fit into memory at a time.
 If your data is chunked by row, and you need to process the <span class="math notranslate nohighlight">\(i^{th}\)</span> column, you will have to read one row at a time into memory, skip to the <span class="math notranslate nohighlight">\(i^{th}\)</span> column value in each row, and extract that value.
-For this analysis, you can easily see why this would be slow due to the massive amount of I/O and be better if the array could instead be chunked in column-major order.
+For this type of analysis, you can see why this would be slow due to the massive amount of I/O and it would be better if the array could instead be chunked in column-major order.
 Just to make this clear, if your data was now chunked by columns, all you would have to do is read the <span class="math notranslate nohighlight">\(i^{th}\)</span> column into memory, and you would be good to go.
 Meaning you would just need a single read from disk versus reading however many rows your data has.
 While handling chunks may seem like it would become complicated, array-handling libraries (<a class="reference external" href="https://numpy.org/">numpy</a>, <a class="reference external" href="https://xarray.dev/">xarray</a>, <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, <a class="reference external" href="https://www.dask.org/">dask</a>, and others) will handle all of the record-keeping to know which chunk holds what data within the dataset.</p>
@@ -579,7 +579,7 @@ While handling chunks may seem like it would become complicated, array-handling 
 </section>
 <section id="toy-example">
 <h2>Toy Example<a class="headerlink" href="#toy-example" title="Link to this heading">#</a></h2>
-<p>By now, we have hopefully answered both of the question about “what is data chunking?” and “why should I care?”.
+<p>By now, we have hopefully answered both of the questions about “what is data chunking?” and “why should I care?”.
 To really drive home the idea, let’s apply the above theoretical example using <a class="reference external" href="https://docs.dask.org/en/stable/">dask</a>.
 In this case, we will generate a square array of ones to test how different “<a class="reference internal" href="../back/Glossary.html#term-Chunk-shape"><span class="std std-ref"><strong>chunk shapes</strong></span></a>” compare.</p>
 <div class="cell docutils container">
@@ -592,7 +592,7 @@ In this case, we will generate a square array of ones to test how different “<
 <section id="chunk-by-rows">
 <h3>Chunk by Rows<a class="headerlink" href="#chunk-by-rows" title="Link to this heading">#</a></h3>
 <p>First, let’s start with the square array chunked by rows.
-We’ll do a 50625x50625 array as this is about 19 GiB, which is larger than the typical memory availablity of a laptop.
+We’ll do a 50625x50625 array as this is about 19 GiB, which is larger than the typical memory availability of a laptop.
 The nice thing about dask is that we can see how big our array and chunks are in the output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -690,7 +690,7 @@ The nice thing about dask is that we can see how big our array and chunks are in
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.8 s ± 167 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.2 s ± 230 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -791,7 +791,7 @@ The nice thing about dask is that we can see how big our array and chunks are in
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.54 ms ± 11 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.57 ms ± 11.6 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -910,7 +910,7 @@ The nice thing about dask is that we can see how big our array and chunks are in
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>67.4 ms ± 517 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71.9 ms ± 1.3 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -925,7 +925,7 @@ However, let’s time how long it takes to access a single row.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71.3 ms ± 3.95 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>73.8 ms ± 4.65 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
