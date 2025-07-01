@@ -21,5 +21,6 @@ Feel free to read this tutorial in order (which has been set up for those new to
 ```{tableofcontents}
 ```
 
-If you find any issues or errors in this tutorial or have any ideas for material that should be included,
-please open an issue using GitHub icon in the upper right.
+If you would like to run this tutorial on your own, you can find the jupyter notebooks that are used in this tutorial in our [Github repository](https://github.com/hytest-org/hytest/tree/main/dataset_processing/tutorials/chunking). We also include a python environment file [here](https://github.com/hytest-org/hytest/blob/main/dataset_processing/tutorials/chunking/env.yml). The "101: Introduction to Chunking" topics can be run on your local computer, but some of the "201: Advanced Topics in Chunking" notebooks will likely require an HPC or cloud computing resources to complete. If you are a USGS staff member, you can work in HyTEST's preconfigured cloud environment which will provide both the python environment and access to the needed cloud computing resources. Please reach out to asnyder@usgs.gov if you would like access to this space.
+
+If you find any issues or errors in this tutorial, please open an [issue in our Github repository](https://github.com/hytest-org/hytest/issues). If you have questions or want to talk more about data chunking, please feel free to ask on our [Data Processing Discussion Board](https://github.com/hytest-org/hytest/discussions/categories/data-processing-and-analysis).

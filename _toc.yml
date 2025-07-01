@@ -44,7 +44,7 @@ parts:
 
   - caption: Zarr Creation
     chapters:
-    - file: dataset_processing/tutorials/chunking/index
+    - file: dataset_processing/tutorials/chunking/README
     - file: dataset_processing/tutorials/chunking/101/index
       sections:
       - file: dataset_processing/tutorials/chunking/101/WhyChunk
