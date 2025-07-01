@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Additional Resources &#8212; HyTEST Project</title>
+    <title>Advanced Topics in Chunking &#8212; HyTEST Project</title>
   
   
   
@@ -57,13 +57,15 @@
     <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/chunking/back/AdditionalResources';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/chunking/201/index';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="icon" href="../../../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="CONUS404 Temporal Aggregation" href="../../conus404_temporal_aggregation.html" />
-    <link rel="prev" title="Glossary" href="Glossary.html" />
+    <link rel="next" title="Rechunking Larger Datasets with Dask" href="RechunkingwithDask.html" />
+    <link rel="prev" title="Rechunking" href="../101/Rechunking.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -224,7 +226,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Data Chunking Tutorial Overview</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../101/WhyChunk.html">Why (re)Chunk Data?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
@@ -233,16 +235,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../101/Rechunking.html">Rechunking</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Advanced Topics in Chunking</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Chunking References</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Glossary.html">Glossary</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Additional Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -350,7 +352,7 @@
       
       
       
-      <li><a href="../../../../_sources/dataset_processing/tutorials/chunking/back/AdditionalResources.md" target="_blank"
+      <li><a href="../../../../_sources/dataset_processing/tutorials/chunking/201/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -432,7 +434,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Additional Resources</h1>
+    <h1>Advanced Topics in Chunking</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -446,22 +448,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="additional-resources">
-<h1>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h1>
-<p>As we can’t cover all possible material on chunking in one series of notebooks,
-listed below are some links to additional resources on chunking that can be referred to for additional information.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://zarr.readthedocs.io/en/stable/tutorial.html#chunk-optimizations">Zarr docs on chunk optimization</a></p></li>
-<li><p><a class="reference external" href="https://docs.dask.org/en/stable/array-chunks.html">Dask docs on chunk selection</a></p></li>
-<li><p><a class="reference external" href="https://rechunker.readthedocs.io/en/latest/index.html">Rechunker docs</a></p></li>
-<li><p><a class="reference external" href="https://fsspec.github.io/kerchunk/index.html">Kerchunk docs</a></p></li>
-<li><p><a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/index.html">VirtualiZarr docs</a></p></li>
-<li><p><a class="reference external" href="https://code.usgs.gov/wma/nhgf/geo-data-portal/gdp_data_processing/-/blob/main/workflows/opendap/CIDA/crs_notebooks/tutorial.ipynb">Tutorial notebook on adding CRS to Zarr</a></p></li>
-<li><p><a class="reference external" href="https://www.unidata.ucar.edu/blogs/news/entry/netcdf-vs-zarr-an-incomplete">UCAR Blog on Difference between NetCDF and Zarr</a></p></li>
-<li><p><a class="reference external" href="https://www.unidata.ucar.edu/blogs/developer/en/entry/chunking_data_why_it_matters">UCAR Blog on Why Chunk Data</a></p></li>
-<li><p><a class="reference external" href="https://www.unidata.ucar.edu/blogs/developer/en/entry/chunking_data_choosing_shapes">UCAR Blog on Choosing Chunk Shapes</a></p></li>
-<li><p><a class="reference external" href="https://projectpythia.org/kerchunk-cookbook/README.html">Project Pythia Cookbook on Kerchunk with Dask</a></p></li>
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-topics-in-chunking">
+<h1>Advanced Topics in Chunking<a class="headerlink" href="#advanced-topics-in-chunking" title="Link to this heading">#</a></h1>
+<p>In this second series of notebooks, we will go over more advanced topics associated with chunking.
+The key concepts you should understand have after this series include:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
 </ul>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,7 +475,7 @@ listed below are some links to additional resources on chunking that can be refe
         },
         kernelOptions: {
             name: "python3",
-            path: "./dataset_processing/tutorials/chunking/back"
+            path: "./dataset_processing/tutorials/chunking/201"
         },
         predefinedOutput: true
     }
@@ -495,20 +493,20 @@ listed below are some links to additional resources on chunking that can be refe
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Glossary.html"
+       href="../101/Rechunking.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Glossary</p>
+        <p class="prev-next-title">Rechunking</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../conus404_temporal_aggregation.html"
+       href="RechunkingwithDask.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">CONUS404 Temporal Aggregation</p>
+        <p class="prev-next-title">Rechunking Larger Datasets with Dask</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
