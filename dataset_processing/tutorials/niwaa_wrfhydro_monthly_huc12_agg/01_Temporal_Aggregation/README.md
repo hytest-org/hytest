@@ -59,6 +59,7 @@ Repeat for other variables.
 ## Shell Scripts
 <details>
 <summary>LDASOUT:</summary>
+
 ### nco_process_ldasout.sh
 ### Script Preparations:
 You will need to specify three paths: 
