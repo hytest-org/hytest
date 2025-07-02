@@ -56,16 +56,16 @@ scancel <jobid>
 ```
 Repeat for other variables.
 
-##Shell Scripts
+## Shell Scripts
 <details>
 <summary>LDASOUT:</summary>
-#### nco_process_ldasout.sh
-##### Script Preparations:
+### nco_process_ldasout.sh
+### Script Preparations:
 You will need to specify three paths: 
   - The location of the 3-hour WRF-Hydro output LDASOUT files.
   - The location of the static soil properties file.
   - The location of where to save the monthly outputs.
-##### Overview:
+### Overview:
   - Process porosity & wilting point parameters
   - Process accumulated flux & state differences
   - Process mean states
