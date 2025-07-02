@@ -60,7 +60,7 @@ Repeat for other variables.
 <details>
 <summary>LDASOUT:</summary>
 
-### nco_process_ldasout.sh
+### [nco_process_ldasout.sh](nco_process_ldasout.sh)
 #### Script Preparations:
 You will need to specify three paths: 
   - The location of the 3-hour WRF-Hydro output LDASOUT files.
@@ -711,6 +711,253 @@ done
 
 </details>
 
+## Slurm files
+<details>
+<summary>LDASOUT:</summary>
+
+### ldasout_nco.slurm
+#### Script Preparations:
+You will need to specify three paths:
+  - Set the --array variable to desirable time step
+  - The location of the WRF-Hydro output LDASOUT folder.
+  - The location of the shell script
+#### Overview:
+The slurm file sets up the parallel process. 
+
+```
+#!/bin/bash
+############################################################################
+# Parallelized slurm file: summarize hourly data into monthly files.
+#                
+# Usage: Call shell script using associated slurm file
+#    e.g sbatch -o 
+# Developed: 1/25/25, L. Staub
+# Updated: 4/7/25, L. Staub
+############################################################################
+
+############################################################################
+
+#SBATCH -p cpu  			  # set partition
+#SBATCH -A impd 		  	  # set account
+#SBATCH --job-name=ldasout_nco            # Job name
+#SBATCH --nodes=1                         # Number of nodes (adjust as needed)
+#SBATCH --ntasks=1                        # Number of tasks (one task per node/year)
+#SBATCH --cpus-per-task=1                 # CPUs per task (adjust as needed)
+#SBATCH --time=05:00:00                   # Time limit (adjust as needed)
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=   		          # enter email
+#SBATCH -o output_%A_%a.out	          # set path for job output files to be saved(A=main task a=subtask)
+#SBATCH --array=2011-2013                 # set time step to process 
+
+# Set the source directory containing year folders
+SOURCE_DIR="/path/to/LDASOUT"
+
+# Load necessary modules 
+module load nco
+
+# Record the start time
+global_start=$(date +%s)
+echo "Job started at $(date)"
+
+#Run the temporal aggregation
+
+srun /path/to/shell/script/nco_process_ldasout.sh $SLURM_ARRAY_TASK_ID
+
+
+# Record the end time
+global_end=$(date +%s)
+global_elapsed=$((global_end - global_start))
+echo "Job finished at $(date)"
+echo "Total job runtime: $global_elapsed seconds."
+
+```
+</details>
+
+<details>
+<summary>GWOUT:</summary>
+
+### gwout_nco.slurm
+#### Script Preparations:
+You will need to specify three paths:
+  - Set the --array variable to desirable time step
+  - The location of the WRF-Hydro output GWOUT folder.
+  - The location of the shell script
+#### Overview:
+The slurm file sets up the parallel process. 
+
+```
+#!/bin/bash
+############################################################################
+# Parallelized slurm file: summarize hourly data into monthly files.
+#                
+# Usage: Call shell script using associated slurm file
+#    e.g sbatch -o 
+# Developed: 1/25/25, L. Staub
+# Updated: 4/7/25, L. Staub
+############################################################################
+
+############################################################################
+
+#SBATCH -p cpu  			  # set partition
+#SBATCH -A impd 		  	  # set account
+#SBATCH --job-name=gwout_nco              # Job name
+#SBATCH --nodes=1                         # Number of nodes (adjust as needed)
+#SBATCH --ntasks=1                        # Number of tasks (one task per node/year)
+#SBATCH --cpus-per-task=1                 # CPUs per task (adjust as needed)
+#SBATCH --time=05:00:00                   # Time limit (adjust as needed)
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=	                  # enter email
+#SBATCH -o output_%A_%a.out	          # set path for job output files to be saved(A=main task a=subtask)
+#SBATCH --array=2011-2013                 # set time step to process 
+
+# Set the source directory containing year folders
+SOURCE_DIR="/path/to/GWOUT"
+
+# Load necessary modules 
+module load nco
+
+# Record the start time
+global_start=$(date +%s)
+echo "Job started at $(date)"
+
+#Run the temporal aggregation
+
+srun /path/to/shell/script/nco_process_gwout.sh $SLURM_ARRAY_TASK_ID
+
+# Record the end time
+global_end=$(date +%s)
+global_elapsed=$((global_end - global_start))
+echo "Job finished at $(date)"
+echo "Total job runtime: $global_elapsed seconds."
+
+```
+</details>
+
+<details>
+<summary>LDASIN:</summary>
+
+### ldasin_nco.slurm
+#### Script Preparations:
+You will need to specify three paths:
+  - Set the --array variable to desirable time step
+  - The location of the WRF-Hydro output LDASIN folder.
+  - The location of the shell script
+#### Overview:
+The slurm file sets up the parallel process. 
+
+```
+#!/bin/bash
+############################################################################
+# Parallelized slurm file: summarize hourly data into monthly files.
+#                
+# Usage: Call shell script using associated slurm file
+#    e.g sbatch -o 
+# Developed: 1/25/25, L. Staub
+# Updated: 4/7/25, L. Staub
+############################################################################
+
+############################################################################
+
+#SBATCH -p cpu  			  # set partition
+#SBATCH -A impd 		  	  # set account
+#SBATCH --job-name=ldasin_nco             # Job name
+#SBATCH --nodes=1                         # Number of nodes (adjust as needed)
+#SBATCH --ntasks=1                        # Number of tasks (one task per node/year)
+#SBATCH --cpus-per-task=1                 # CPUs per task (adjust as needed)
+#SBATCH --time=05:00:00                   # Time limit (adjust as needed)
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=	   	          # enter email
+#SBATCH -o output_%A_%a.out	          # set path for job output files to be saved(A=main task a=subtask)
+#SBATCH --array=2011-2013                 # set time step to process 
+
+# Set the source directory containing year folders
+SOURCE_DIR="/path/to/LDASIN"
+
+# Load necessary modules 
+module load nco
+
+# Record the start time
+global_start=$(date +%s)
+echo "Job started at $(date)"
+
+#Run the temporal aggregation 
+
+srun /path/to/shell/script/nco_process_ldasin.sh $SLURM_ARRAY_TASK_ID
+
+
+# Record the end time
+global_end=$(date +%s)
+global_elapsed=$((global_end - global_start))
+echo "Job finished at $(date)"
+echo "Total job runtime: $global_elapsed seconds."
+
+```
+
+</details>
+
+<details>
+<summary>CHRTOUT:</summary>
+
+### chrtout_nco.slurm
+#### Script Preparations:
+You will need to specify three paths:
+  - Set the --array variable to desirable time step
+  - The location of the WRF-Hydro output LDASIN folder.
+  - The location of the shell script
+#### Overview:
+The slurm file sets up the parallel process. 
+
+```
+#!/bin/bash
+############################################################################
+# Parallelized slurm file: summarize hourly data into monthly files.
+#                
+# Usage: Call shell script using associated slurm file
+#    e.g sbatch -o 
+# Developed: 1/25/25, L. Staub
+# Updated: 4/7/25, L. Staub
+############################################################################
+
+############################################################################
+
+#SBATCH -p cpu  			  # set partition
+#SBATCH -A impd 		  	  # set account
+#SBATCH --job-name=chrtout_nco            # Job name
+#SBATCH --nodes=1                         # Number of nodes (adjust as needed)
+#SBATCH --ntasks=1                        # Number of tasks (one task per node/year)
+#SBATCH --cpus-per-task=1                 # CPUs per task (adjust as needed)
+#SBATCH --time=05:00:00                   # Time limit (adjust as needed)
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=       		  # enter email
+#SBATCH -o output_%A_%a.out	          # set path for job output files to be saved(A=main task a=subtask)
+#SBATCH --array=2011-2013                 # set time step to process 
+
+# Set the source directory containing year folders
+SOURCE_DIR="/path/to/CHRTOUT"
+
+# Load necessary modules 
+module load nco
+
+# Record the start time
+global_start=$(date +%s)
+echo "Job started at $(date)"
+
+#run the temporal aggregation script 
+
+srun /path/to/shell/script/nco_process_chrtout.sh $SLURM_ARRAY_TASK_ID
+
+# Record the end time
+global_end=$(date +%s)
+global_elapsed=$((global_end - global_start))
+echo "Job finished at $(date)"
+echo "Total job runtime: $global_elapsed seconds."
+
+
+```
+
+</details>
+
+
 ## Results
 The following metrics will be generated with these scripts: 
 <table>
@@ -799,20 +1046,20 @@ The following metrics will be generated with these scripts:
   <tr>
     <td rowspan="4">GWOUT</td>
     <td>totOutflow</td>
+    <td>Total outflow</td>
     <td>Total outflow volume over month</td>
-    <td>---</td>
     <td>m3</td>
   </tr>
   <tr>
     <td>totInflow</td>
+    <td>Total inflow</td>
     <td>Total inflow volume over month</td>
-    <td>---</td>
     <td>m3</td>
   </tr>
   <tr>
     <td>deltaDepth</td>
+    <td>Baseflow bucket storage change</td>
     <td>Change in baseflow bucket storage (month end minus month start)</td>
-    <td>---</td>
     <td>mm</td>
   </tr>
   <tr>
@@ -836,7 +1083,7 @@ The following metrics will be generated with these scripts:
   </tr>
   <tr>
     <td>totStreamflow</td>
-    <td>---</td>
+    <td>Streamflow</td>
     <td>Total streamflow volume over month</td>
     <td>m3</td>
   </tr>
