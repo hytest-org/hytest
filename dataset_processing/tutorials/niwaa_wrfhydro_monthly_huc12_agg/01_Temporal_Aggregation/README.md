@@ -254,7 +254,7 @@ rm ${paramfile}
 
 <summary>GWOUT:</summary>
 
-### nco_process_gwout.sh
+### [nco_process_gwout.sh](nco_process_gwout.sh)
 #### Script Preparations:
 You will need to specify two paths: 
   - The location of the hourly WRF-Hydro output GWOUT files.
@@ -434,7 +434,7 @@ done
 <details>
 <summary>LDASIN:</summary>
 
-### nco_process_clim.sh
+### [nco_process_clim.sh](nco_process_clim.sh)
 #### Script Preparations:
 You will need to specify two paths: 
   - The location of the hourly CONUS404-BA output LDASIN files.
@@ -585,7 +585,7 @@ done
 <details>
 <summary>CHRTOUT:</summary>
 
-### nco_process_chrtout.sh
+### [nco_process_chrtout.sh](nco_process_chrtout.sh)
 #### Script Preparations:
 You will need to specify two paths: 
   - The location of the hourly WRF-Hydro output CHRTOUT files.
@@ -715,7 +715,7 @@ done
 <details>
 <summary>LDASOUT:</summary>
 
-### ldasout_nco.slurm
+### [ldasout_nco.slurm](ldasout_nco.slurm)
 #### Script Preparations:
 You will need to specify three paths:
   - Set the --array variable to desirable time step
@@ -836,7 +836,7 @@ echo "Total job runtime: $global_elapsed seconds."
 <details>
 <summary>LDASIN:</summary>
 
-### ldasin_nco.slurm
+### [ldasin_nco.slurm](ldasin_nco.slurm)
 #### Script Preparations:
 You will need to specify three paths:
   - Set the --array variable to desirable time step
@@ -898,7 +898,7 @@ echo "Total job runtime: $global_elapsed seconds."
 <details>
 <summary>CHRTOUT:</summary>
 
-### chrtout_nco.slurm
+### [chrtout_nco.slurm](chrtout_nco.slurm)
 #### Script Preparations:
 You will need to specify three paths:
   - Set the --array variable to desirable time step
