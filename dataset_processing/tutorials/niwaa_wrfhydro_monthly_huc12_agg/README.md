@@ -122,7 +122,9 @@ The 10-year WRF-Hydro Modeling Application forced with CONUS404-BA is comprised 
 
 There are roughly ~350,640 files used as inputs to this workflow that will take up at least 70 TBs worth of storage space. Because of these file sizes, this workflow was developed using High Performance Computing (HPC) systems. If this is the first time HPC systems are being used, an account will need to be [requested](https://hpcportal.cr.usgs.gov/index.html). It is highly encouraged that new users attend [HPC101 Training](https://hpcportal.cr.usgs.gov/training/index.html) before beginning work on HPC systems. To save on storage space, a 3-year subset of these data was downloaded to the USGS HPC system, Hovenweep. The workflow in this repository is currently set up to run on this temporal subset of data (2011, 2012, and 2013) but can be modified to include a larger time span.
 
-The temporal aggregation part of this workflow requires a module called Netcdf Operator (NCO). The spatial aggregation portion of this workflow requires a python environment yml file to be installed. 
+The temporal aggregation part of this workflow requires a module called Netcdf Operator (NCO). Instructionss on NCO installation can be found in the Set-Up section [here](https://github.com/hytest-org/hytest/blob/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/01_Temporal_Aggregation/README.md) The spatial aggregation portion of this workflow requires a python environment yml file to be installed, which can be found [here](https://github.com/hytest-org/hytest/blob/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/02_Spatial_Aggregation/wrfhydro_huc12_agg.yml).
+
+If you would like to run this tutorial on your own, you can find the shell scripts and jupyter notebooks that are used in this tutorial in our [Github repository](https://github.com/hytest-org/hytest/tree/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg).  
 
 <a id="Hourly to Monthly"></a>
 <h3>1. Temporal Aggregation</h3>
