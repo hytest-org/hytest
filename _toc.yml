@@ -7,7 +7,6 @@ parts:
     - file: environment_set_up/README
       sections:
       - file: environment_set_up/QuickStart-General
-      - file: environment_set_up/QuickStart-Cloud-pangeoCHS
       - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/OpenOnDemand
       - file: environment_set_up/JupyterForward
@@ -16,7 +15,6 @@ parts:
     - file: environment_set_up/clusters
       sections:
       - file: environment_set_up/Start_Dask_Cluster_Nebari
-      - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
       - file: environment_set_up/Start_Dask_Cluster_Tallgrass
       - file: environment_set_up/Start_Dask_Cluster_Desktop
