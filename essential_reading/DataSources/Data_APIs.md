@@ -81,7 +81,7 @@ The example below is being made to the
 and is being done using the already known HUC6 ids 020401 and 020402.
 
 ```python
-from pygeohydro import pygeohydro
+import pygeohydro
 
 # bring in HUC6 boundaries based on known IDs
 gdf = pygeohydro.WBD("huc6").byids("huc6", ["020401", "020402"])
@@ -96,7 +96,7 @@ SQL call with `column='value'` to query the database. (e.g. `states='MI'`). Note
 single quotes, which SQL uses in this instance.  It will not work with double quotes (" ").
 
 ```python
-from pygeohydro import pygeohydro
+import pygeohydro
 
 # bring in HUC boundaries found only in Michigan
 gdf = pygeohydro.WBD("huc6").bysql("states='MI'")

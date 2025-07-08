@@ -9,7 +9,7 @@ here, create an issue to submit the recommendation.
 
 ## HPC &amp; Linux
 
-* <https://hpcportal.cr.usgs.gov/training/courses/Intro_to_Linux/index.html> &#9820;
+* <https://hpcportal.cr.usgs.gov/training/courses/Intro_to_HPC/04_basics.html> &#9820;
 * <https://hpcportal.cr.usgs.gov/training/courses/Intro_to_HPC/index.html> &#9820;
 * [Introduction to HPC](https://code.chs.usgs.gov/sas/arc/training/introduction_to_hpc) &#9820;
 * [Training GitLab Landing Page](https://code.chs.usgs.gov/sas/arc/training) &#9820;
@@ -40,9 +40,8 @@ here, create an issue to submit the recommendation.
   * <https://github.com/ramonpzg/scipyus21_dask_analytics>
 * scipy
   * <https://docs.scipy.org/doc/scipy/tutorial/index.html>
-  * <https://sites.math.washington.edu/~morrow/464_08/Numpy.pdf>
+  * <https://faculty.washington.edu/otoomet/machinelearning-py/numpy-and-pandas.html>
 * Visualizations:
   * <https://matplotlib.org/stable/tutorials/index.html>
   * <https://holoviz.org/tutorial>
-  * <https://github.com/holoviz/holoviz/blob/master/doc/installation.rst>
   * <https://github.com/symmy596/PythonMaps-Scipy-2022>
