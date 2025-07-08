@@ -20,12 +20,12 @@ The `conus404-hourly` data is a subset of the wrfout model output and `conus404-
 
 **Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.** These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable. 
 
-**We recommend that you regularly check our [CONUS404 changelog](./CONUS404_CHANGELOG) to see any updates that have been made to the zarr stores.** We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.
-
 ## CONUS404 Bias-Adjusted Data
-The `conus404-hourly-ba` data contains bias-adjusted temperature and precipiation data from the CONUS404 dataset, which is described in the official [CONUS404 bias adjusted data release](https://doi.org/10.5066/P9JE61P7). Users should review the official data release to understand the dataset before working with the zarr stores provided in our intake catalog.
+The `conus404-hourly-ba` data contains bias-adjusted temperature and precipitation data from the CONUS404 dataset, which is described in the official [CONUS404 bias adjusted data release](https://doi.org/10.5066/P9JE61P7). Users should review the official data release to understand the dataset before working with the zarr stores provided in our intake catalog.
 
 The `conus404-daily-ba` files are resampled from the `conus404-hourly-ba` data.
+
+**Please note that missing values have been identified in the U2D and V2D variables.** This issue was raised in our [discussion boards](https://github.com/hytest-org/hytest/discussions/596), and we hope to find a resolution to this issue.
 
 ## CONUS404 PGW Data
 The CONUS404 pseudo-global warming (PGW) dataset is a future-perturbed hydro-climate dataset, created as a follow on to the CONUS404 dataset. The CONUS404 PGW dataset represents the weather from 1980 to 2021 under a warmer and wetter climate environment and provides an opportunity to explore the event-based climate change impacts when used with the CONUS404 historical data. Users should review the official [CONUS404 PGW data release](https://doi.org/10.5066/P9HH85UU) to understand the dataset before working with the zarr stores provided in our intake catalog.
