@@ -35,6 +35,8 @@ parts:
     - file: dataset_catalog/README
       sections:
         - file: dataset_catalog/subcatalogs/README
+        - file: dataset_catalog/STAC
+
     - file: dataset_access/CONUS404_ACCESS
       sections:
         - file: dataset_access/CONUS404_CHANGELOG
