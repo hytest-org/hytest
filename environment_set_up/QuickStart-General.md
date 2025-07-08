@@ -15,12 +15,12 @@ If multiple users will be using the same server, consider deploying a [Jupyter H
 
 We recommend `conda` (or its functional equivalent, `mamba`) as the environment configuration tool. If you are a USGS Staff Member, you will want to install [miniforge](https://conda-forge.org/download/), which includes conda and mamba.
 
-The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) software stack. The software stack we use is defined in [this environment file](https://raw.githubusercontent.com/hytest-org/hytest/main/environment_set_up/HyTEST.yml). 
+The HyTEST workflows are built largely on the [Pangeo](https://pangeo.io/) software stack. The software stack we use is defined in [this environment file](https://raw.githubusercontent.com/hytest-org/hytest/main/hytest.yml). 
 
 Use `conda` to create an environment called `hytest` with this command: 
 
 ```text
-conda env create -f ./HyTEST.yml
+conda env create -f ./hytest.yml
 ```
 
 You will then need to select the `hytest` environment as your kernel when you try to run the notebook.
