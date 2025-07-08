@@ -19,7 +19,9 @@ dependencies:
   - httpx
   - hvplot
   - intake
+  - intake-xarray
   - ipykernel
+  - jupyter_bokeh
   - matplotlib
   - metpy
   - numpy
