@@ -13,6 +13,7 @@ dependencies:
   - dask-kubernetes
   - flox
   - fsspec
+  - gdptools
   - geopandas
   - geoviews
   - holoviews
