@@ -18,6 +18,7 @@ dependencies:
   - gdptools
   - geopandas
   - geoviews
+  - graphviz
   - holoviews
   - httpx
   - hvplot
