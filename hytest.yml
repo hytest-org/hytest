@@ -22,6 +22,7 @@ dependencies:
   - httpx
   - hvplot
   - intake
+  - intake-geopandas
   - intake-parquet
   - intake-xarray
   - ipykernel
