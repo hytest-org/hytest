@@ -12,14 +12,7 @@ The content is split into two primary sections:
  - [Introduction to Chunking](./101/index.md)
  - [Advanced Topics in Chunking](./201/index.md)
 
-In [Introduction to Chunking](./101/index.md), we discuss all of the basic introductory topics associated with chunking.
-As for [Advanced Topics in Chunking](./201/index.md), we dive into some more advanced topics related to chunking,
-which require a firm understanding of introductory topics.
-
-Feel free to read this tutorial in order (which has been set up for those new to chunking) or jump directly to the topic that interests you:
-
-```{tableofcontents}
-```
+In [Introduction to Chunking](./101/index.md), we discuss all of the basic introductory topics associated with chunking. As for [Advanced Topics in Chunking](./201/index.md), we dive into some more advanced topics related to chunking, which require a firm understanding of introductory topics. Feel free to read this tutorial in order (which has been set up for those new to chunking) or jump directly to the topic that interests you.
 
 If you would like to run this tutorial on your own, you can find the jupyter notebooks that are used in this tutorial in our [Github repository](https://github.com/hytest-org/hytest/tree/main/dataset_processing/tutorials/chunking). We also include a python environment file [here](https://github.com/hytest-org/hytest/blob/main/dataset_processing/tutorials/chunking/env.yml). The "101: Introduction to Chunking" topics can be run on your local computer, but some of the "201: Advanced Topics in Chunking" notebooks will likely require an HPC or cloud computing resources to complete. If you are a USGS staff member, you can work in HyTEST's preconfigured cloud environment which will provide both the python environment and access to the needed cloud computing resources. Please reach out to asnyder@usgs.gov if you would like access to this space.
 
