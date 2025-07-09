@@ -43,7 +43,7 @@ dependencies:
   - pywatershed
   - rechunker
   - rioxarray
-  - s3fs
+  - s3fs>=2025.2.0
   - scipy
   - shapely
   - statsmodels

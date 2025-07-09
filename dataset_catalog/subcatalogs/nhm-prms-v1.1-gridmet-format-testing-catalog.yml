@@ -90,7 +90,7 @@ sources:
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org
           
-      nhm_prms_v1_1_gridmet-gpkg-osn:
+  nhm_prms_v1_1_gridmet-gpkg-osn:
     driver: geoparquet # This should be geopackage, but this is not currently supported by intake - will be supported in intake v2
     description: "NHM-PRMS v1.1 with Gridmet forcings data stored in a geopackage. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data."
     args:
