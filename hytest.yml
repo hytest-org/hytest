@@ -5,6 +5,7 @@ dependencies:
   - python=3.11
   - async_retriever
   - bokeh
+  - boto3
   - cartopy
   - configparser
   - dask
