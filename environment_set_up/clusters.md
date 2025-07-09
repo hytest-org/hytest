@@ -4,5 +4,5 @@ Many of the workflows in this repository are designed to take advantage of paral
 
 * [Nebari](Start_Dask_Cluster_Nebari.ipynb)
 * [Denali HPC](Start_Dask_Cluster_Denali.ipynb)
-* [Tallgrass HPC](Start_Dask_Cluster_Tallgrass.ipynb)
+* [Hovenweep/Tallgrass HPC](Start_Dask_Cluster_Tallgrass.ipynb)
 * [Local Desktop](Start_Dask_Cluster_Desktop.ipynb)

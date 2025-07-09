@@ -11,7 +11,9 @@ dependencies:
   - dask-gateway
   - dask-jobqueue
   - dask-kubernetes
+  - dask-labextension
   - flox
+  - fiona
   - fsspec
   - gdptools
   - geopandas
