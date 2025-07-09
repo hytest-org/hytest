@@ -20,7 +20,7 @@ directory/folder on that host, which is where your notebooks will reside.
  
 ## Conda Environment Set Up
 If you need to set up your own conda environment to run the notebooks, proceed with the following steps:
-* make sure you have the [HyTEST environment file](../hytest.yml) uploaded to the HPCs. You can manually upload just this file, or you can clone the [HyTEST repository](https://github.com/hytest-org/hytest), which contains this file.
+* make sure you have the [HyTEST environment file]([../hytest.yml](https://github.com/hytest-org/hytest/blob/main/hytest.yml)) uploaded to the HPCs. You can manually upload just this file, or you can clone the [HyTEST repository](https://github.com/hytest-org/hytest), which contains this file.
 * load the conda module with `module load conda`
 * navigate in to the directory containing the environment yaml file from step 1, and create the hytest environment with `conda env create -f hytest.yml`
 * activate your environment with `conda activate hytest`
@@ -33,4 +33,4 @@ For additional help setting up and using conda environments on the HPCs, please 
 *Note: The code to build the HyTEST Jupyter app is in [this repository](https://code.chs.usgs.gov/sas/arc/arc-software/ood/bc_jupyter_hytest); however, this repo is only visible on the internal USGS network.*
 
 ## Dask Dashboard
-If you plan to use the dask dashboard with OnDemand, you will need to launch your interactive session in a conda environment that includes the `dask_labextension` package. If you are using the HyTEST environment provided in the [hytest.yml] file in our repository, we have included this package. You will just need to choose the hytest environment when you are launching your interactive session (after you have built it).
+If you plan to use the dask dashboard with OnDemand, you will need to launch your interactive session in a conda environment that includes the `dask_labextension` package. If you are using the HyTEST environment provided in the [hytest.yml](https://github.com/hytest-org/hytest/blob/main/hytest.yml) file in our repository, we have included this package. You will just need to choose the hytest environment when you are launching your interactive session (after you have built it) using the `I have a custom conda env I'd like to use` option during launch.
