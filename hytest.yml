@@ -22,6 +22,7 @@ dependencies:
   - httpx
   - hvplot
   - intake
+  - intake-parquet
   - intake-xarray
   - ipykernel
   - jupyter_bokeh
