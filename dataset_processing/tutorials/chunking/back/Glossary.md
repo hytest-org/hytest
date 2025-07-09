@@ -3,30 +3,31 @@
 A glossary of common terms used throughout Jupyter Book.
 
 ```{glossary}
+
 **Chunk**
     Smaller, more manageable pieces of a larger dataset.
 
 **Chunking**
     The process of breaking down large amounts of data into smaller, more manageable pieces.
-    
+
 **Chunk shape**
     The actual shape of a chunk, specifying the number of elements in each dimension.
-    
+
 **Chunk size**
     The size of the chunk in terms of memory, which depends on the chunk shape.
 
 **Coordinate Reference System**
     A framework used to precisely measure locations on the surface of Earth as coordinates.
-    
+
 **Larger-than-memory**
     A dataset whose memory footprint is too large to fit into memory all at once.
 
 **Partial Chunk**
     The final chunk along a dimensions of a dataset that is not completely full of data due to the chosen chunk shape not being an integer divisor of the dataset's dimensions.
-    
+
 **Rechunking**
     The process of changing the current chunk shape of a dataset to another chunk shape.
-    
+
 **Stored chunks**
     The chunks that are physically stored on disk.
 

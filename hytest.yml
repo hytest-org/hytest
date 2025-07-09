@@ -27,6 +27,7 @@ dependencies:
   - intake-xarray
   - ipykernel
   - jupyter_bokeh
+  - kerchunk
   - matplotlib
   - metpy
   - numpy
