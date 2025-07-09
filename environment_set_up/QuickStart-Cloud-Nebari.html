@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="HPC Server: Open OnDemand Quick-Start" href="OpenOnDemand.html" />
-    <link rel="prev" title="Cloud: pangeo.chs.usgs.gov Quick-Start" href="QuickStart-Cloud-pangeoCHS.html" />
+    <link rel="prev" title="General QuickStart" href="QuickStart-General.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,7 +180,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Compute Environments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -402,7 +420,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -418,6 +438,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-space">File Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-nebari-jupyterhub-instance">Accessing the Nebari JupyterHub Instance</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -429,10 +459,30 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cloud-nebari-quick-start">
 <h1>Cloud: Nebari Quick-Start<a class="headerlink" href="#cloud-nebari-quick-start" title="Link to this heading">#</a></h1>
-<p>The HyTEST project is currently working on deploying an instance of <a class="reference external" href="https://www.nebari.dev/">Nebari</a> JupyterHub. HyTEST will allow some of our priority users to test out this space once it is created. We will also provide instructions for how your project can deploy its own instance of Nebari JupyterHub. Nebari includes a shared space in the JupyterHub deployement, where all users can access and run each other’s files/scripts. Any user can also quickly modify and update a set of shared kernels so that all users are working in the same development environment. This work is currently in development, and these instructions will be updated once this is available.</p>
-<p>This document will help you set up the correct computing environment on a
-USGS JupyterHub instance deployed on the Nebari. This instructional material
-will be updated once the deployment has been created.</p>
+<p>If you are a USGS employee, and you would like to run HyTEST workflows in a cloud environment, we recommend that you work with the CHS’s deployment of <a class="reference external" href="https://www.nebari.dev/">Nebari</a>, which can be accessed <a class="reference external" href="https://nebari.chs.usgs.gov/">here</a>. This JupyterHub instance is deployed on USGS’s AWS account, and any USGS employee can request access to this space.</p>
+<section id="file-space">
+<h2>File Space<a class="headerlink" href="#file-space" title="Link to this heading">#</a></h2>
+<p>This resource offers both a private (per user) and a shared file space in the JupyterHub environment. The private space is only visible to the user who created it, while the shared space allows for file sharing and collaboration among team members.</p>
+</section>
+<section id="kernels">
+<h2>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h2>
+<p>USGS’s Cloud Hosting Solutions (CHS) team provides a global “pangeo” environment that is available to all users in the Nebari space by default. This environment includes many of the packages needed to run pangeo-style workflows.</p>
+<p>However, most users will need to add custom packages for their workflows at some point. Thankfully, Nebari also allows any user to set up and modify a set of python kernels in their personal namespace.</p>
+<p>We also have a HyTEST team set up in this space, where we manage a set of environments needed to run our HyTEST workflows. Please reach out to asnyder&#64;usgs.gov if you have your Nebari account set up and would like to be added to the HyTEST team.</p>
+</section>
+<section id="accessing-the-nebari-jupyterhub-instance">
+<h2>Accessing the Nebari JupyterHub Instance<a class="headerlink" href="#accessing-the-nebari-jupyterhub-instance" title="Link to this heading">#</a></h2>
+<p>To use this JupyterHub instance:</p>
+<ol class="arabic simple">
+<li><p>You will need to request an account before you can log in. If you previously used the <code class="docutils literal notranslate"><span class="pre">pangeo.chs.usgs.gov</span></code> endpoint, you will have an account and you can proceed to log in with the <code class="docutils literal notranslate"><span class="pre">USGS</span> <span class="pre">Login</span></code> button. If you do not have an account yet, you can submit a request for one <a class="reference external" href="https://taskmgr.chs.usgs.gov/plugins/servlet/desk/portal/10/create/485">here</a>.</p></li>
+<li><p>Open <a class="reference external" href="https://nebari.chs.usgs.gov/">https://nebari.chs.usgs.gov/</a> in your browser (you will need to be on the USGS network or VPN to access this resource)</p></li>
+<li><p>Login using Keycloak  and the <code class="docutils literal notranslate"><span class="pre">USGS</span> <span class="pre">Login</span></code> button</p></li>
+<li><p>Launch JupyterLab from the landing page, and spawn a server with the appropriate specifications from the menu of options that appears (the smallest one is probably fine if you are just testing things out)</p></li>
+<li><p>Launch a terminal, configure your Github credentials, and clone this repository (or another that you are working on) into your working space</p></li>
+<li><p>Use the navigation panel on the left to open a notebook, and select the hytest-pangeo conda env kernel in the dropdown menu in the upper right</p></li>
+</ol>
+<p>Now you are ready to run/develop your notebooks.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -466,12 +516,12 @@ will be updated once the deployment has been created.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="QuickStart-Cloud-pangeoCHS.html"
+       href="QuickStart-General.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Cloud: pangeo.chs.usgs.gov Quick-Start</p>
+        <p class="prev-next-title">General QuickStart</p>
       </div>
     </a>
     <a class="right-next"
@@ -489,6 +539,23 @@ will be updated once the deployment has been created.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-space">File Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-nebari-jupyterhub-instance">Accessing the Nebari JupyterHub Instance</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

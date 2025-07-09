@@ -1,0 +1,1082 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Why (re)Chunk Data? &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/chunking/101/WhyChunk';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="How to Examine a Stored Dataset’s Chunk Shape" href="ExamineDataChunking.html" />
+    <link rel="prev" title="Introduction to Chunking" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../../../../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../essential_reading/README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../essential_reading/DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to Chunking</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../back/AdditionalResources.html">Additional Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/dataset_processing/tutorials/chunking/101/WhyChunk.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Why (re)Chunk Data?</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-chunking">What is chunking?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-should-i-care">Why should I care?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-first-principles">Example - First Principles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extend-to-chunking">Extend to Chunking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example">Toy Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-by-rows">Chunk by Rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-by-columns">Chunk by Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-chunks">Balanced Chunks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-cons-to-chunking">Pros &amp; Cons to Chunking</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="why-re-chunk-data">
+<h1>Why (re)Chunk Data?<a class="headerlink" href="#why-re-chunk-data" title="Link to this heading">#</a></h1>
+<p>If you are completely new to chunking, then you are probably interested in learning “what is data chunking?” and “why should I care?”.
+The goal of this notebook is to answer these two basic questions and give you the understanding of what it means for data to be chunked and why you would want to do it.</p>
+<section id="what-is-chunking">
+<h2>What is chunking?<a class="headerlink" href="#what-is-chunking" title="Link to this heading">#</a></h2>
+<p>Since modern computers were invented, there have existed datasets that were too large to fully read into computer memory.
+These datasets have come to be known as “<a class="reference internal" href="../back/Glossary.html#term-Larger-than-memory"><span class="std std-ref"><strong>larger-than-memory</strong></span></a>” datasets.
+While these datasets may be larger than memory, we will still want to access them and perform analysis on the data.
+This is where chunking comes in.
+“<a class="reference internal" href="../back/Glossary.html#term-Chunking"><span class="std std-ref"><strong>Chunking</strong></span></a>” is the process of breaking down large amounts of data into smaller, more manageable pieces.
+By breaking the data down into “<a class="reference internal" href="../back/Glossary.html#term-Chunk"><span class="std std-ref"><strong>chunks</strong></span></a>”, it allows for us to work with the chunks of the larger overall dataset using a structured approach without exceeding our machine’s available memory.
+Additionally, proper chunking can allow for faster retrieval and analysis when we only need to work with part of the dataset.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chunks are not another dimension to your data, but merely a map to how the dataset is partitioned into more palatable sized units for manipulation in memory.</p>
+</div>
+</section>
+<section id="why-should-i-care">
+<h2>Why should I care?<a class="headerlink" href="#why-should-i-care" title="Link to this heading">#</a></h2>
+<p>The simple reason you should care is that <strong>you are working with a dataset that is larger-than-memory</strong>.
+This dataset has to be divided in some way so that only those parts of the data being actively worked on are loaded into memory at a given time; otherwise, your machine would crash.
+This has benefits when it comes to parallel algorithms - if work can be performed on independent chunks, it is easy to set up your algorithm such that separate parallel workers each work on a chunk of the data simultaneously.
+Therefore, proper chunking can allow for faster retrieval and analysis of the dataset.
+Even datasets that are small enough to fit into memory can still technically be chunked, and proper chunking of these datasets can potentially speed up retrieval and analysis.
+To help you understand this, let’s begin with a simple example.</p>
+<section id="example-first-principles">
+<h3>Example - First Principles<a class="headerlink" href="#example-first-principles" title="Link to this heading">#</a></h3>
+<p>In this example, we will illustrate two common memory organization strategies (analagous to chunking) that computers use when handling basic multidimensional data.
+To simplify this, let’s consider a small 10x10 array of integer values.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\def\arraystretch{2.0}
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+   \hline
+   0,0 &amp; 0,1 &amp; 0,2 &amp; 0,3 &amp; 0,4 &amp; 0,5 &amp; 0,6 &amp; 0,7 &amp; 0,8 &amp; 0,9\\
+   \hline
+   1,0 &amp; 1,1 &amp; 1,2 &amp; 1,3 &amp; 1,4 &amp; 1,5 &amp; 1,6 &amp; 1,7 &amp; 1,8 &amp; 1,9\\
+   \hline
+   2,0 &amp; 2,1 &amp; 2,2 &amp; 2,3 &amp; 2,4 &amp; 2,5 &amp; 2,6 &amp; 2,7 &amp; 2,8 &amp; 2,9\\
+   \hline
+    3,0 &amp; 3,1 &amp; 3,2 &amp; 3,3 &amp; 3,4 &amp; 3,5 &amp; 3,6 &amp; 3,7 &amp; 3,8 &amp; 3,9\\
+   \hline
+    4,0 &amp; 4,1 &amp; 4,2 &amp; 4,3 &amp; 4,4 &amp; 4,5 &amp; 4,6 &amp; 4,7 &amp; 4,8 &amp; 4,9\\
+   \hline
+    5,0 &amp; 5,1 &amp; 5,2 &amp; 5,3 &amp; 5,4 &amp; 5,5 &amp; 5,6 &amp; 5,7 &amp; 5,8 &amp; 5,9\\
+    \hline
+   6,0 &amp; 6,1 &amp; 6,2 &amp; 6,3 &amp; 6,4 &amp; 6,5 &amp; 6,6 &amp; 6,7 &amp; 6,8 &amp; 6,9\\
+    \hline
+   7,0 &amp; 7,1 &amp; 7,2 &amp; 7,3 &amp; 7,4 &amp; 7,5 &amp; 7,6 &amp; 7,7 &amp; 7,8 &amp; 7,9\\
+    \hline
+   8,0 &amp; 8,1 &amp; 8,2 &amp; 8,3 &amp; 8,4 &amp; 8,5 &amp; 8,6 &amp; 8,7 &amp; 8,8 &amp; 8,9\\
+    \hline
+   9,0 &amp; 9,1 &amp; 9,2 &amp; 9,3 &amp; 9,4 &amp; 9,5 &amp; 9,6 &amp; 9,7 &amp; 9,8 &amp; 9,9\\
+\hline
+\end{array}
+\end{split}\]</div>
+<p>While this is easy for us humans to visualize, computer memory is not addressed in grids.
+Instead, it is organized as a linear address space.
+So, the 2D matrix has to be organized in memory such that it presents as 2D, while being stored as 1D.
+Two common options are <strong>row-major</strong> order, and <strong>column-major</strong> order:</p>
+<ul class="simple">
+<li><p><strong>Row-Major</strong>: A row of data occupies a contiguous block of memory.
+This implies that cells which are logically adjacent vertically are not physically near one another in memory.
+The “distance” from <code class="docutils literal notranslate"><span class="pre">r0c0</span></code> to <code class="docutils literal notranslate"><span class="pre">r0c1</span></code> (a one-cell logical move within the row) is short, while the “distance” to <code class="docutils literal notranslate"><span class="pre">r1c0</span></code> (a one-cell logical move within the column) is long.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\def\arraystretch{2.0}
+\begin{array}{|c|c|c|c|c c|c|c|c|c| c}
+   \hline
+   0,0 &amp; 0,1 &amp; 0,2 &amp; 0,3 &amp; ... &amp; ... &amp; 1,0  &amp; 1,1 &amp; 1,2 &amp; 1,3 &amp; ... \\
+   \hline
+\end{array}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Column-Major</strong>: A column of the array occupies a contiguous block of memory.
+This implies that cells which are adjacent horizontally are not near one another physically in memory.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\def\arraystretch{2.0}
+\begin{array}{|c|c|c|c|c c|c|c|c|c| c}
+   \hline
+   0,0 &amp; 1,0 &amp; 2,0 &amp; 3,0 &amp; ... &amp; ... &amp; 0,1  &amp; 1,1 &amp; 2,1 &amp; 3,1 &amp; ... \\
+   \hline
+\end{array}
+\end{split}\]</div>
+<p>In either mapping, <code class="docutils literal notranslate"><span class="pre">r3c5</span></code> (for example) still fetches the same value.
+For a single value, this is not a problem.
+The array is still indexed/addressed in the same way as far as the user is concerned, but the memory organization strategy determines how nearby an “adjacent” index is.
+This becomes important when trying to get a subsection of the data.
+For example, if the array is in row-major order and we select say <code class="docutils literal notranslate"><span class="pre">r0</span></code>, this is fast for the computer as all the data is adjacent.
+However, if we wanted <code class="docutils literal notranslate"><span class="pre">c0</span></code>, then the computer has to access every 10th value in memory, which as you can imagine is not as efficient.</p>
+</section>
+<section id="extend-to-chunking">
+<h3>Extend to Chunking<a class="headerlink" href="#extend-to-chunking" title="Link to this heading">#</a></h3>
+<p>The basic idea behind chunking is an extension of this memory organization principle.
+As the size of the array increases, the chunk shape becomes more relevant.
+Now suppose the square array is now larger-than-memory and stored on disk such that only a single row or column can fit into memory at a time.
+If your data is chunked by row, and you need to process the <span class="math notranslate nohighlight">\(i^{th}\)</span> column, you will have to read one row at a time into memory, skip to the <span class="math notranslate nohighlight">\(i^{th}\)</span> column value in each row, and extract that value.
+For this type of analysis, you can see why this would be slow due to the massive amount of I/O and it would be better if the array could instead be chunked in column-major order.
+Just to make this clear, if your data was now chunked by columns, all you would have to do is read the <span class="math notranslate nohighlight">\(i^{th}\)</span> column into memory, and you would be good to go.
+Meaning you would just need a single read from disk versus reading however many rows your data has.
+While handling chunks may seem like it would become complicated, array-handling libraries (<a class="reference external" href="https://numpy.org/">numpy</a>, <a class="reference external" href="https://xarray.dev/">xarray</a>, <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, <a class="reference external" href="https://www.dask.org/">dask</a>, and others) will handle all of the record-keeping to know which chunk holds what data within the dataset.</p>
+</section>
+</section>
+<section id="toy-example">
+<h2>Toy Example<a class="headerlink" href="#toy-example" title="Link to this heading">#</a></h2>
+<p>By now, we have hopefully answered both of the questions about “what is data chunking?” and “why should I care?”.
+To really drive home the idea, let’s apply the above theoretical example using <a class="reference external" href="https://docs.dask.org/en/stable/">dask</a>.
+In this case, we will generate a square array of ones to test how different “<a class="reference internal" href="../back/Glossary.html#term-Chunk-shape"><span class="std std-ref"><strong>chunk shapes</strong></span></a>” compare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dask.array</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">da</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="chunk-by-rows">
+<h3>Chunk by Rows<a class="headerlink" href="#chunk-by-rows" title="Link to this heading">#</a></h3>
+<p>First, let’s start with the square array chunked by rows.
+We’ll do a 50625x50625 array as this is about 19 GiB, which is larger than the typical memory availability of a laptop.
+The nice thing about dask is that we can see how big our array and chunks are in the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vals</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50625</span><span class="p">,</span> <span class="mi">50625</span><span class="p">),</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50625</span><span class="p">))</span>
+<span class="n">vals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 19.10 GiB </td>
+                        <td> 395.51 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (50625, 50625) </td>
+                        <td> (1, 50625) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 50625 chunks in 1 graph layer </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="6" x2="120" y2="6" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="18" x2="120" y2="18" />
+  <line x1="0" y1="25" x2="120" y2="25" />
+  <line x1="0" y1="31" x2="120" y2="31" />
+  <line x1="0" y1="37" x2="120" y2="37" />
+  <line x1="0" y1="44" x2="120" y2="44" />
+  <line x1="0" y1="50" x2="120" y2="50" />
+  <line x1="0" y1="56" x2="120" y2="56" />
+  <line x1="0" y1="63" x2="120" y2="63" />
+  <line x1="0" y1="69" x2="120" y2="69" />
+  <line x1="0" y1="75" x2="120" y2="75" />
+  <line x1="0" y1="82" x2="120" y2="82" />
+  <line x1="0" y1="88" x2="120" y2="88" />
+  <line x1="0" y1="94" x2="120" y2="94" />
+  <line x1="0" y1="101" x2="120" y2="101" />
+  <line x1="0" y1="107" x2="120" y2="107" />
+  <line x1="0" y1="113" x2="120" y2="113" />
+  <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >50625</text>
+  <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">50625</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>Now, let’s see how long on average it takes to get the first column.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">.compute()</span></code> method on our slice to ensure its extraction is not lazily performed.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%timeit</span>
+<span class="n">vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18.9 s ± 988 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="chunk-by-columns">
+<h3>Chunk by Columns<a class="headerlink" href="#chunk-by-columns" title="Link to this heading">#</a></h3>
+<p>Switching the array to be chunked by columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vals</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50625</span><span class="p">,</span> <span class="mi">50625</span><span class="p">),</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">50625</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">vals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 19.10 GiB </td>
+                        <td> 395.51 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (50625, 50625) </td>
+                        <td> (50625, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 50625 chunks in 1 graph layer </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="6" y1="0" x2="6" y2="120" />
+  <line x1="12" y1="0" x2="12" y2="120" />
+  <line x1="18" y1="0" x2="18" y2="120" />
+  <line x1="25" y1="0" x2="25" y2="120" />
+  <line x1="31" y1="0" x2="31" y2="120" />
+  <line x1="37" y1="0" x2="37" y2="120" />
+  <line x1="44" y1="0" x2="44" y2="120" />
+  <line x1="50" y1="0" x2="50" y2="120" />
+  <line x1="56" y1="0" x2="56" y2="120" />
+  <line x1="63" y1="0" x2="63" y2="120" />
+  <line x1="69" y1="0" x2="69" y2="120" />
+  <line x1="75" y1="0" x2="75" y2="120" />
+  <line x1="82" y1="0" x2="82" y2="120" />
+  <line x1="88" y1="0" x2="88" y2="120" />
+  <line x1="94" y1="0" x2="94" y2="120" />
+  <line x1="101" y1="0" x2="101" y2="120" />
+  <line x1="107" y1="0" x2="107" y2="120" />
+  <line x1="113" y1="0" x2="113" y2="120" />
+  <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >50625</text>
+  <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">50625</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>Time to see how much faster this is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%timeit</span>
+<span class="n">vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7 ms ± 7.6 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, the time difference is massive when properly chunked.</p>
+</section>
+<section id="balanced-chunks">
+<h3>Balanced Chunks<a class="headerlink" href="#balanced-chunks" title="Link to this heading">#</a></h3>
+<p>As a final example, let’s check a square chunk shape that keeps about the same number of elements as the pure row and column chunking.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vals</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50625</span><span class="p">,</span> <span class="mi">50625</span><span class="p">),</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">225</span><span class="p">))</span>
+<span class="n">vals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 19.10 GiB </td>
+                        <td> 395.51 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (50625, 50625) </td>
+                        <td> (225, 225) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 50625 chunks in 1 graph layer </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="5" x2="120" y2="5" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="18" x2="120" y2="18" />
+  <line x1="0" y1="25" x2="120" y2="25" />
+  <line x1="0" y1="31" x2="120" y2="31" />
+  <line x1="0" y1="37" x2="120" y2="37" />
+  <line x1="0" y1="43" x2="120" y2="43" />
+  <line x1="0" y1="50" x2="120" y2="50" />
+  <line x1="0" y1="56" x2="120" y2="56" />
+  <line x1="0" y1="62" x2="120" y2="62" />
+  <line x1="0" y1="69" x2="120" y2="69" />
+  <line x1="0" y1="75" x2="120" y2="75" />
+  <line x1="0" y1="81" x2="120" y2="81" />
+  <line x1="0" y1="88" x2="120" y2="88" />
+  <line x1="0" y1="94" x2="120" y2="94" />
+  <line x1="0" y1="100" x2="120" y2="100" />
+  <line x1="0" y1="107" x2="120" y2="107" />
+  <line x1="0" y1="113" x2="120" y2="113" />
+  <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="5" y1="0" x2="5" y2="120" />
+  <line x1="12" y1="0" x2="12" y2="120" />
+  <line x1="18" y1="0" x2="18" y2="120" />
+  <line x1="25" y1="0" x2="25" y2="120" />
+  <line x1="31" y1="0" x2="31" y2="120" />
+  <line x1="37" y1="0" x2="37" y2="120" />
+  <line x1="43" y1="0" x2="43" y2="120" />
+  <line x1="50" y1="0" x2="50" y2="120" />
+  <line x1="56" y1="0" x2="56" y2="120" />
+  <line x1="62" y1="0" x2="62" y2="120" />
+  <line x1="69" y1="0" x2="69" y2="120" />
+  <line x1="75" y1="0" x2="75" y2="120" />
+  <line x1="81" y1="0" x2="81" y2="120" />
+  <line x1="88" y1="0" x2="88" y2="120" />
+  <line x1="94" y1="0" x2="94" y2="120" />
+  <line x1="100" y1="0" x2="100" y2="120" />
+  <line x1="107" y1="0" x2="107" y2="120" />
+  <line x1="113" y1="0" x2="113" y2="120" />
+  <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >50625</text>
+  <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">50625</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%timeit</span>
+<span class="n">vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75.9 ms ± 5.41 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, this is only slightly slower when accessing the first column compared to the column chunking.
+However, let’s time how long it takes to access a single row.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%timeit</span>
+<span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75.5 ms ± 6.18 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, it is about the same as accessing a single column.
+However, that means it is drastically faster than the column chunking when accessing rows.
+Therefore, a chunk shape that balances the dimensions is more generally applicable when both dimensions are needed for analysis.</p>
+</section>
+</section>
+<section id="pros-cons-to-chunking">
+<h2>Pros &amp; Cons to Chunking<a class="headerlink" href="#pros-cons-to-chunking" title="Link to this heading">#</a></h2>
+<p>As a wrap up, let’s review some of the pros and cons to chunking.
+Some we have clearly discussed while others may be more subtle.
+The primary pro, as we hopefully conveyed with our previous example, is that well chunked data substantially speeds up any analysis that favors that chunk shape.
+However, this becomes a con when you change your analysis to one that favors a new chunk shape.
+In other words, data that is well-organized to optimize one kind of analysis may not suit another kind of analysis on the same data.
+While not a problem for our example here, changing the chunk shape (known as “<a class="reference internal" href="../back/Glossary.html#term-Rechunking"><span class="std std-ref"><strong>rechunking</strong></span></a>”) on an established dataset is time-consuming, and it produces a separate copy of the dataset, increasing storage requirements.
+The space commitment can be substantial if a complex dataset needs to be organized for many different analyses.
+If our example above used unique values that we wanted to keep as we changed chunking, this would have meant that rather than having a single ~19 GiB dataset, we would have needed to keep all three, tripling our storage to almost 60 GiB.
+Therefore, selecting an appropriate chunk shape is critical when generating widely used datasets.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./dataset_processing/tutorials/chunking/101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to Chunking</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ExamineDataChunking.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">How to Examine a Stored Dataset’s Chunk Shape</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-chunking">What is chunking?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-should-i-care">Why should I care?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-first-principles">Example - First Principles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extend-to-chunking">Extend to Chunking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example">Toy Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-by-rows">Chunk by Rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-by-columns">Chunk by Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-chunks">Balanced Chunks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-cons-to-chunking">Pros &amp; Cons to Chunking</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

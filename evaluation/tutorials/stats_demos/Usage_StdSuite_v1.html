@@ -180,7 +180,6 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="current nav bd-sidenav">
@@ -563,7 +581,7 @@ arguments: an array/series of observed values and an array/series of modeled/sim
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55.73589185136414
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(55.73589185136414)
 </pre></div>
 </div>
 </div>
@@ -576,7 +594,7 @@ arguments: an array/series of observed values and an array/series of modeled/sim
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3286282290159971
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.3286282290159971)
 </pre></div>
 </div>
 </div>
@@ -640,7 +658,7 @@ Name: 1104200, dtype: float64
 <h2>Streamflow and FDC plots<a class="headerlink" href="#streamflow-and-fdc-plots" title="Link to this heading">#</a></h2>
 <p>In the case of <code class="docutils literal notranslate"><span class="pre">streamflow</span></code>, the NWM standard suite offers a way to plot the Flow Duration Curve when calculating the pBias metrics per Yilmaz et al. This mechanism uses <a class="reference external" href="https://matplotlib.org/">matplotlib</a> to implement the figures.</p>
 <p>Some examples:</p>
-<div class="cell tag_full-width docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -654,7 +672,7 @@ Name: 1104200, dtype: float64
 <img alt="../../../_images/ecb1f0a10bd8138a8c305498e421d8c6c60bc70d2181e22dc041f32949ee3bd4.png" src="../../../_images/ecb1f0a10bd8138a8c305498e421d8c6c60bc70d2181e22dc041f32949ee3bd4.png" />
 </div>
 </div>
-<div class="cell tag_full-width docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same fig, but with &quot;segment=&#39;lo&#39;&quot;</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -668,7 +686,7 @@ Name: 1104200, dtype: float64
 <img alt="../../../_images/eb4738f6671ed1ef1c0e2ba54777eedcc77302f37ceda3fb99d4c51d74abc618.png" src="../../../_images/eb4738f6671ed1ef1c0e2ba54777eedcc77302f37ceda3fb99d4c51d74abc618.png" />
 </div>
 </div>
-<div class="cell tag_full-width docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same fig, but with &quot;segment=&#39;hi&#39;&quot;</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -686,7 +704,7 @@ Name: 1104200, dtype: float64
 If you would like to manipulate these parameters, you may adjust the <code class="docutils literal notranslate"><span class="pre">ax</span></code> after calling <code class="docutils literal notranslate"><span class="pre">FDCplot()</span></code>
 (see example, next cell). In general, any of the matplotlib parameters can be adjusted after
 <code class="docutils literal notranslate"><span class="pre">FDCplot()</span></code> in order to customize the figure.</p>
-<div class="cell tag_full-width docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">FDCplot</span><span class="p">(</span><span class="n">sampleData</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">],</span> <span class="n">sampleData</span><span class="p">[</span><span class="s1">&#39;nwm&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;mid&#39;</span><span class="p">)</span>

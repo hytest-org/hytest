@@ -180,7 +180,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Compute Environments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -427,7 +445,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-own-computing-environment">Setting Up Your Own Computing Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-cloud-environment-only-available-to-usgs-staff">USGS Cloud Environment (only available to USGS staff)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-hpc-environment-only-avaialble-to-usgs-staff">USGS HPC Environment (only avaialble to USGS staff)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-hpc-environment-only-available-to-usgs-staff">USGS HPC Environment (only available to USGS staff)</a></li>
 </ul>
             </nav>
         </div>
@@ -442,34 +460,19 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="compute-environments">
 <h1>Compute Environments<a class="headerlink" href="#compute-environments" title="Link to this heading">#</a></h1>
 <p>This section contains instructional materials and helper scripts to set up your computational environment for running HyTEST workflows and scripts in this repository.</p>
-<p>The HyTEST workflows are built largely on the <a class="reference external" href="https://pangeo.io/">Pangeo</a> software stack, and are designed to be portable between the cloud, HPC clusters, and your local computer (though some workflows may take an unreasonable amount of time to complete if you are working only on a local computer).</p>
+<p>The HyTEST workflows are built largely on the <a class="reference external" href="https://pangeo.io/">Pangeo</a> software stack, and are designed to be portable between the cloud, HPC clusters, and your local computer (though some workflows may take an unreasonable amount of time to complete if you are working only on a local computer). Most of our workflows are contained in Jupyter notebooks, and we recommend running them in <a class="reference external" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> or another development environment of your choice that supports Jupyter notebooks. If you are working on a team, you may want to consider using a shared <a class="reference external" href="https://jupyter.org/hub">JupyterHub</a> instance, which allows multiple users to work in the same environment and share files easily. Below, we describe a few options for setting up or connecting to JupyterHub resources.</p>
 <section id="setting-up-your-own-computing-environment">
 <h2>Setting Up Your Own Computing Environment<a class="headerlink" href="#setting-up-your-own-computing-environment" title="Link to this heading">#</a></h2>
-<p>If you do not have access to USGS computational resources, we recommend you follow <a class="reference internal" href="QuickStart-General.html"><span class="std std-doc">these instructions</span></a> to set up a computational environment that can run our workflows.</p>
+<p>If you do not have access to a JupyterLab/JupyterHub environment that has already been deployed, we recommend you follow <a class="reference internal" href="QuickStart-General.html"><span class="std std-doc">these instructions</span></a> to set up a computational environment that can run our workflows.</p>
 </section>
 <section id="usgs-cloud-environment-only-available-to-usgs-staff">
 <h2>USGS Cloud Environment (only available to USGS staff)<a class="headerlink" href="#usgs-cloud-environment-only-available-to-usgs-staff" title="Link to this heading">#</a></h2>
-<p>If you are working in the cloud, we expect you to work in a JupyterHub instance that has already been set up. If you are a USGS Water Mission Area (WMA) employee, you have a few
-options for accessing a JupyterHub instance. These are described below, and more detailed instructions to set each option up are included in the hyperlinked name of the environment:</p>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="QuickStart-Cloud-pangeoCHS.html"><span class="std std-doc">pangeo.chs.usgs.gov</span></a><br>
-This JupyterHub instance is currently deployed on USGS’s AWS account, and any USGS employee
-can request access to this space. Once you are added, the url will take you to your own
-personal JupyterHub space. The files in this space are only visible/accessible to the user
-who created them, so you will need to push them to a shared repository to work collaboratively.
-You will also have access to a shared set of kernels that are managed by USGS’s Cloud Technologies
-(CTek) team in the Enterprise Technology Office (ETO). Anyone can put in a request to update these
-shared kernels, but sometimes the update process can take several weeks.</p></li>
-<li><p><a class="reference internal" href="QuickStart-Cloud-Nebari.html"><span class="std std-doc">Nebari</span></a><br>
-The HyTEST project has successfully deployed an instance of <a class="reference external" href="https://www.nebari.dev/">Nebari</a> JupyterHub in the USGS cloud account. Nebari includes both a private (per user) and shared file space in the JupyterHub environment. Any user can also quickly modify and update a set of shared kernels so that all members of a team can use the same development environment. HyTEST will allow some of our priority users to test their workflows in this space; please contact Amelia Snyder (asnyder&#64;usgs.gov) if you would like to request access to this space. The HyTEST team is currently working on developing instructions for how your project can deploy its own instance of Nebari JupyterHub in the USGS cloud.</p></li>
-<li><p>Your own JupyterHub Instance<br>
-Your can also work with your own deployment of a JupyterHub environment. You will need to make sure you have a kernel with all of the required packages set up to run these notebooks.</p></li>
-</ol>
+<p>If you are a USGS employee, and you would like to run HyTEST workflows in a cloud environment, we recommend that you work with the CHS’s deployment of <a class="reference external" href="https://www.nebari.dev/">Nebari</a>, which can be accessed <a class="reference external" href="https://nebari.chs.usgs.gov/">here</a>. This JupyterHub instance is deployed on USGS’s AWS account, backed by a Kubernetes cluster for scaled compute, and any USGS employee can request access to this space. This resource offers both a private (per user) and a shared file space in the JupyterHub environment. The private space is only visible to the user who created it, while the shared space allows for file sharing and collaboration among team members. Learn how to use the Nebari JupyterHub instance in the <a class="reference internal" href="QuickStart-Cloud-Nebari.html"><span class="std std-doc">Quick-Start Guide</span></a>.</p>
 </section>
-<section id="usgs-hpc-environment-only-avaialble-to-usgs-staff">
-<h2>USGS HPC Environment (only avaialble to USGS staff)<a class="headerlink" href="#usgs-hpc-environment-only-avaialble-to-usgs-staff" title="Link to this heading">#</a></h2>
-<p>While we prioritize the development of workflows to run on “<em>cloud</em>” infrastructure, we also provide some guidance for running them on USGS’s supercomputers. First, make sure you have an account on Denali or Tallgrass. We recommend accounts on both systems, as at times compute nodes may be unavailable on one system or the other. To get an account, fill out the <a class="reference external" href="https://hpcportal.cr.usgs.gov/hpc-user-docs/index.html#getting-started">request form</a> and wait for approval (this may take a day or so).</p>
-<p>Note that to access any of the HPCs, you must be on the DOI Network. If you are not in the office, use Ivanti Secure to access the VPN.</p>
+<section id="usgs-hpc-environment-only-available-to-usgs-staff">
+<h2>USGS HPC Environment (only available to USGS staff)<a class="headerlink" href="#usgs-hpc-environment-only-available-to-usgs-staff" title="Link to this heading">#</a></h2>
+<p>While we prioritize the development of workflows to run on “<em>cloud</em>” infrastructure, we also provide some guidance for running them on USGS’s supercomputers. First, make sure you have an account on Denali, Tallgrass, and/or Hovenweep. We recommend requesting accounts on all of these systems, as at times compute nodes may be unavailable on one system or the other. To get an account, fill out the <a class="reference external" href="https://hpcportal.cr.usgs.gov/index.html">request form</a> and wait for approval (this may take a day or so).</p>
+<p>Note that to access any of the HPCs, you must be on the DOI Network. If you are not in the office, please make sure you access these resources on the VPN.</p>
 <p>You will need to access an enviroment which emulates the Jupyter server – where the notebooks will reside and execute – using the HPC hardware. There are many ways to do this. Here are three options, in increasing order of complexity and flexibility:</p>
 <ol class="arabic simple">
 <li><p><a class="reference internal" href="OpenOnDemand.html"><span class="std std-doc">Open OnDemand</span></a><br>
@@ -550,7 +553,7 @@ This option lets you completely customize your HPC compute environment and invok
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-own-computing-environment">Setting Up Your Own Computing Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-cloud-environment-only-available-to-usgs-staff">USGS Cloud Environment (only available to USGS staff)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-hpc-environment-only-avaialble-to-usgs-staff">USGS HPC Environment (only avaialble to USGS staff)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-hpc-environment-only-available-to-usgs-staff">USGS HPC Environment (only available to USGS staff)</a></li>
 </ul>
   </nav></div>
 

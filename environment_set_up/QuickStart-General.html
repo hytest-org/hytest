@@ -62,7 +62,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Cloud: pangeo.chs.usgs.gov Quick-Start" href="QuickStart-Cloud-pangeoCHS.html" />
+    <link rel="next" title="Cloud: Nebari Quick-Start" href="QuickStart-Cloud-Nebari.html" />
     <link rel="prev" title="Compute Environments" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,7 +180,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Compute Environments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -425,8 +443,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environment">Virtual Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-server">Jupyter Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environment">Virtual Environment</a></li>
 </ul>
             </nav>
         </div>
@@ -440,41 +458,28 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="general-quickstart">
 <h1>General QuickStart<a class="headerlink" href="#general-quickstart" title="Link to this heading">#</a></h1>
-<p>The HyTEST workflows are built largely on the <a class="reference external" href="https://pangeo.io/">Pangeo</a>
-software stack. For general advice, you should start with Pangeo’s
-<a class="reference external" href="https://pangeo.io/setup_guides/index.html">Deployment Setup Guides</a>
-and select an option which resembles your compute environment.</p>
-<p>The usual sticking points are to do with</p>
-<ul class="simple">
-<li><p>Getting the virtual environment correct</p></li>
-<li><p>Launching a Jupyter server</p></li>
-</ul>
-<section id="virtual-environment">
-<h2>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Link to this heading">#</a></h2>
-<p>We recommend <code class="docutils literal notranslate"><span class="pre">conda</span></code> (or its functional equivalent, <code class="docutils literal notranslate"><span class="pre">mamba</span></code>)
-as the environment configuration tool.  The software stack we use is
-defined in
-<a class="reference external" href="https://raw.githubusercontent.com/hytest-org/hytest/main/environment_set_up/HyTEST.yml">this environment file</a>.</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to create an environment called <code class="docutils literal notranslate"><span class="pre">hytest</span></code> with this command:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda env create -f ./HyTEST.yml
-</pre></div>
-</div>
-<p>You will then need to select the <code class="docutils literal notranslate"><span class="pre">hytest</span></code> environment as your kernel when you try to run the notebook.</p>
-<p>While is is possible to run most of these workflows on a desktop system,
-they have been developed to run on a Linux variant.  This will affect which
-versions and which architectures of the various software packages are
-installed.</p>
-</section>
 <section id="jupyter-server">
 <h2>Jupyter Server<a class="headerlink" href="#jupyter-server" title="Link to this heading">#</a></h2>
 <p>If you are working in an environment that already has a pathway to run Jupyter notebooks, you will not need to worry about this section. You will simply launch the Jupyter notebook in whatever way you know how.</p>
 <p>If you do need to set up your own Jupyter server, this is a harder problem to solve – primarily because
-there are so many variables and options to consider when setting it up.
-The Pangeo docs cover a few of the options, and the <a class="reference external" href="https://jupyter.org/">Jupyter</a>
-docs also give some help for setting up. These deployments, generally,
-are meant for a single user to run notebooks on a semi-private host.</p>
-<p>If multiple users will be using the same server, consider deploying a
-<a class="reference external" href="https://jupyter.org/hub">Jupyter Hub</a> on a centralized computing host.</p>
+there are so many variables and options to consider when setting it up. The <a class="reference external" href="https://jupyter.org/">Jupyter</a>
+docs give some help for setting up; however, these deployments, generally, are meant for a single user to run notebooks on a semi-private host.</p>
+<p>If multiple users will be using the same server, consider deploying a <a class="reference external" href="https://jupyter.org/hub">Jupyter Hub</a> on a centralized computing host. There are many resources online for deploying a JupyterHub, including:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/blogs/containers/building-multi-tenant-jupyterhub-platforms-on-amazon-eks/">Building multi-tenant JupyterHub Platforms on Amazon EKS</a></p></li>
+<li><p><a class="reference external" href="https://planetarycomputer.microsoft.com/docs/concepts/hub-deployment/">Microsoft Planetrary Computer’s Guide: Deploy your own JupyterHub</a></p></li>
+</ol>
+</section>
+<section id="virtual-environment">
+<h2>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Link to this heading">#</a></h2>
+<p>We recommend <code class="docutils literal notranslate"><span class="pre">conda</span></code> (or its functional equivalent, <code class="docutils literal notranslate"><span class="pre">mamba</span></code>) as the environment configuration tool. If you are a USGS Staff Member, you will want to install <a class="reference external" href="https://conda-forge.org/download/">miniforge</a>, which includes conda and mamba.</p>
+<p>The HyTEST workflows are built largely on the <a class="reference external" href="https://pangeo.io/">Pangeo</a> software stack. The software stack we use is defined in <a class="reference external" href="https://raw.githubusercontent.com/hytest-org/hytest/main/hytest.yml">this environment file</a>.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to create an environment called <code class="docutils literal notranslate"><span class="pre">hytest</span></code> with this command:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda env create -f ./hytest.yml
+</pre></div>
+</div>
+<p>You will then need to select the <code class="docutils literal notranslate"><span class="pre">hytest</span></code> environment as your kernel when you try to run the notebook.</p>
+<p>While is is possible to run most of these workflows on a desktop system, they have been developed to run on a Linux variant.  This will affect which versions and which architectures of the various software packages are installed.</p>
 </section>
 </section>
 
@@ -518,11 +523,11 @@ are meant for a single user to run notebooks on a semi-private host.</p>
       </div>
     </a>
     <a class="right-next"
-       href="QuickStart-Cloud-pangeoCHS.html"
+       href="QuickStart-Cloud-Nebari.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cloud: pangeo.chs.usgs.gov Quick-Start</p>
+        <p class="prev-next-title">Cloud: Nebari Quick-Start</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -542,8 +547,8 @@ are meant for a single user to run notebooks on a semi-private host.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environment">Virtual Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-server">Jupyter Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environment">Virtual Environment</a></li>
 </ul>
   </nav></div>
 

@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CONUS404 Zarr Changelog" href="CONUS404_CHANGELOG.html" />
-    <link rel="prev" title="HyTEST Intake Sub-Catalogs" href="../dataset_catalog/subcatalogs/README.html" />
+    <link rel="prev" title="USGS Water Mission Area STAC Catalog" href="../dataset_catalog/STAC.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,7 +180,6 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">CONUS404 Products Data Access</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -457,12 +475,12 @@ document.write(`
 <p>CONUS404 is a unique, high-resolution hydro-climate dataset appropriate for forcing hydrological models and conducting meteorological analysis over the contiguous United States. Users should review the official <a class="reference external" href="https://doi.org/10.5066/P9PHPK4F">CONUS404 data release</a> to understand the dataset before working with the zarr stores provided in our intake catalog.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data is a subset of the wrfout model output and <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic</span></code> is a subset from the wrfxtrm model output, both of which are described in the official data release. We also provide <code class="docutils literal notranslate"><span class="pre">conus404-daily</span></code> and <code class="docutils literal notranslate"><span class="pre">conus404-monthly</span></code> files, which are just resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly</span></code> data.</p>
 <p><strong>Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.</strong> These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable.</p>
-<p><strong>We recommend that you regularly check our <a class="reference internal" href="CONUS404_CHANGELOG.html"><span class="doc std std-doc">CONUS404 changelog</span></a> to see any updates that have been made to the zarr stores.</strong> We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data.</p>
 </section>
 <section id="conus404-bias-adjusted-data">
 <h2>CONUS404 Bias-Adjusted Data<a class="headerlink" href="#conus404-bias-adjusted-data" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data contains bias-adjusted temperature and precipiation data from the CONUS404 dataset, which is described in the official <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias adjusted data release</a>. Users should review the official data release to understand the dataset before working with the zarr stores provided in our intake catalog.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data contains bias-adjusted temperature and precipitation data from the CONUS404 dataset, which is described in the official <a class="reference external" href="https://doi.org/10.5066/P9JE61P7">CONUS404 bias adjusted data release</a>. Users should review the official data release to understand the dataset before working with the zarr stores provided in our intake catalog.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">conus404-daily-ba</span></code> files are resampled from the <code class="docutils literal notranslate"><span class="pre">conus404-hourly-ba</span></code> data.</p>
+<p><strong>Please note that missing values have been identified in the U2D and V2D variables.</strong> This issue was raised in our <a class="reference external" href="https://github.com/hytest-org/hytest/discussions/596">discussion boards</a>, and we hope to find a resolution to this issue.</p>
 </section>
 <section id="conus404-pgw-data">
 <h2>CONUS404 PGW Data<a class="headerlink" href="#conus404-pgw-data" title="Link to this heading">#</a></h2>
@@ -519,12 +537,12 @@ domain of a specified variable at a specfic time step, and loads and plots a tim
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../dataset_catalog/subcatalogs/README.html"
+       href="../dataset_catalog/STAC.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">HyTEST Intake Sub-Catalogs</p>
+        <p class="prev-next-title">USGS Water Mission Area STAC Catalog</p>
       </div>
     </a>
     <a class="right-next"

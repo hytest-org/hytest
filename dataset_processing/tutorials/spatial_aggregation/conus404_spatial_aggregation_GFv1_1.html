@@ -180,7 +180,6 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -453,7 +471,7 @@ document.write(`
 <p>Compared to the <strong>gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</strong> tutorial, the main difference is that to manage file size and memory overhead we process CONUS404 by year, generating 43 annual netcdf files of the interpolated data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Common python packages</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Common python packages</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.xarray</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.pandas</span>
@@ -486,7 +504,7 @@ document.write(`
 <p>Here we setup a variable the sets our local context, working on the HPC or working locally on your Desktop.  This just modifies the access point of the conus404 data, using the Hovenweep access for HPC and the OSN pod access for the Desktop.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_sys</span> <span class="o">=</span> <span class="s2">&quot;HPC&quot;</span>  <span class="c1"># &quot;HPC&quot; or &quot;Desktop&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t_sys</span> <span class="o">=</span> <span class="s2">&quot;HPC&quot;</span>  <span class="c1"># &quot;HPC&quot; or &quot;Desktop&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -499,7 +517,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
 <span class="c1"># hytest_cat = intake.open_catalog(&quot;../dataset_catalog/hytest_intake_catalog.yml&quot;)</span>
 <span class="n">hytest_cat</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml&quot;</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">hytest_cat</span><span class="p">)</span>
@@ -509,7 +527,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the gfv1.1_simp file</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the gfv1.1_simp file</span>
 <span class="n">gfv11_file</span> <span class="o">=</span> <span class="n">hytest_cat</span><span class="p">[</span><span class="s1">&#39;geofabric_v1_1_nhru_v1_1_simp-osn&#39;</span><span class="p">]</span>
 <span class="n">gfv11</span> <span class="o">=</span> <span class="n">gfv11_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="n">gfv11</span>
@@ -522,7 +540,7 @@ document.write(`
 <h2>Generate a quick plot of GFv11<a class="headerlink" href="#generate-a-quick-plot-of-gfv11" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot using hvplot with datashading</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot using hvplot with datashading</span>
 <span class="n">plot</span> <span class="o">=</span> <span class="n">gfv11</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span>
     <span class="n">datashade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable datashading for large datasets</span>
     <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span>
@@ -541,7 +559,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
 <span class="n">hytest_cat</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml&quot;</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">hytest_cat</span><span class="p">)</span>
 </pre></div>
@@ -550,7 +568,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the conus404 sub-catalog</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the conus404 sub-catalog</span>
 <span class="n">cat</span> <span class="o">=</span> <span class="n">hytest_cat</span><span class="p">[</span><span class="s1">&#39;conus404-catalog&#39;</span><span class="p">]</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
 </pre></div>
@@ -586,7 +604,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Select the dataset you want to read into your notebook and preview its metadata</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Select the dataset you want to read into your notebook and preview its metadata</span>
 <span class="k">if</span> <span class="n">t_sys</span> <span class="o">==</span> <span class="s2">&quot;HPC&quot;</span><span class="p">:</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="s1">&#39;conus404-daily-diagnostic-onprem-hw&#39;</span>
 <span class="k">elif</span> <span class="n">t_sys</span> <span class="o">==</span> <span class="s2">&quot;Desktop&quot;</span><span class="p">:</span>
@@ -600,7 +618,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the dataset and use metpy to parse the crs information on the dataset</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the dataset and use metpy to parse the crs information on the dataset</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2"> metadata...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">cat</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span><span class="o">.</span><span class="n">to_dask</span><span class="p">()</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">()</span>
 <span class="n">ds</span>
@@ -625,7 +643,7 @@ Facilitates the interpolation of target data to match the source data using the 
 <h2>Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.<a class="headerlink" href="#instantiation-of-the-usercatdata-class" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coordinate Reference System (CRS) of the conus404 dataset</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coordinate Reference System (CRS) of the conus404 dataset</span>
 <span class="n">source_crs</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">crs_wkt</span>
 
 <span class="c1"># Coordinate names of the conus404 dataset</span>
@@ -679,7 +697,7 @@ Facilitates the interpolation of target data to match the source data using the 
 <p>In this section, we utilize the <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code> class from the <code class="docutils literal notranslate"><span class="pre">gdptools</span></code> package to calculate the normalized areal weights necessary for interpolating the source gridded data (<code class="docutils literal notranslate"><span class="pre">conus404</span></code>) to the target polygonal boundaries (<code class="docutils literal notranslate"><span class="pre">DRB</span> <span class="pre">HUC12s</span></code>). The areal weights represent the proportion of each grid cell that overlaps with each polygon, facilitating accurate <strong>areal interpolation</strong> of the data. These weights are calculated using the <code class="docutils literal notranslate"><span class="pre">calculate_weights()</span></code> method.</p>
 <p><strong>Weight Calculation Process:</strong></p>
 <ol class="arabic simple">
-<li><p><strong>Subset Source Data</strong>: The source data is subset based on the bounds of the target data, with an additional small buffer to ensure coverage. The buffer size is determined based on [specific criteria or methodology].</p></li>
+<li><p><strong>Subset Source Data</strong>: The source data is subset based on the bounds of the target data, with an additional small buffer to ensure coverage. The buffer size is determined based on the cell size of the source data. The buffer is 2 times the max(dx, dy). In other words, the buffer is essentially 2 source grid cells in the x and y dimensions.</p></li>
 <li><p><strong>Create cell boundary GeoDataFrame</strong>: A GeoDataFrame of the cell boundaries is created for each node in the subsetted source data, enabling spatial operations.</p></li>
 <li><p><strong>Validate Geometries</strong>: The target file is checked for invalid geometries, which can occur due to various reasons such as topology errors. Invalid geometries are fixed using Shapely’s <code class="docutils literal notranslate"><span class="pre">make_valid()</span></code> method to prevent failures during intersection calculations.</p></li>
 <li><p><strong>Calculate and Normalize Areas</strong>: For each polygon, <code class="docutils literal notranslate"><span class="pre">gdptools</span></code> calculates the area of each intersecting grid cell and normalizes it by the total area of the target polygon. This ensures that the weights for each polygon sum to 1, provided the polygon is entirely covered by the source data.</p>
@@ -704,7 +722,7 @@ Facilitates the interpolation of target data to match the source data using the 
 <p>The optimal number of processors depends on factors such as data size, available memory, and system architecture. It often requires experimentation to determine the most efficient configuration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="n">wght_gen</span> <span class="o">=</span> <span class="n">WeightGen</span><span class="p">(</span>
     <span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;serial&quot;</span><span class="p">,</span>
@@ -719,7 +737,7 @@ Facilitates the interpolation of target data to match the source data using the 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="n">wght_gen</span> <span class="o">=</span> <span class="n">WeightGen</span><span class="p">(</span>
     <span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span><span class="p">,</span>
@@ -739,7 +757,7 @@ Facilitates the interpolation of target data to match the source data using the 
 <p>Because the result will be rather large.  To manage the file size and memory requirements for processing we process by year.  Additionaly, The conus404 data starts and ends on the water year dates, so we chose to process by water year in this case.  The code below generates a list of start_dates, end_dates, and years that we iterate over to process the data by year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_start_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1979-10-01&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;YS-OCT&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t_start_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1979-10-01&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;YS-OCT&quot;</span><span class="p">)</span>
 <span class="n">t_end_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1980-09-30&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Y-SEP &quot;</span><span class="p">)</span>
 <span class="n">f_time_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1980&quot;</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 
@@ -764,7 +782,7 @@ Facilitates the interpolation of target data to match the source data using the 
 <p>Because we are processing by year, we have to create a new UserCatData object for each year processed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">_ts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time_start</span><span class="p">):</span>
     <span class="n">sdate</span> <span class="o">=</span> <span class="n">time_start</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="n">edate</span> <span class="o">=</span> <span class="n">time_end</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>

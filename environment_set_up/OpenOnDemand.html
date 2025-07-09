@@ -180,7 +180,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Compute Environments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -426,6 +444,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-environment-set-up">Conda Environment Set Up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-dashboard">Dask Dashboard</a></li>
 </ul>
             </nav>
         </div>
@@ -440,7 +459,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="hpc-server-open-ondemand-quick-start">
 <h1>HPC Server: Open OnDemand Quick-Start<a class="headerlink" href="#hpc-server-open-ondemand-quick-start" title="Link to this heading">#</a></h1>
 <p>This is a custom service provided by the USGS ARC team that is available to <strong>anyone who has an account on the USGS high performance computers (HPCs)</strong>. If you are a <strong>USGS staff member</strong> who does not yet have an account on the HPCs, you can request one <a class="reference external" href="https://hpcportal.cr.usgs.gov/index.html">here</a>. Once your USGS HPC account has been created, you will be able to follow the instructions below to use this service.</p>
-<p>This is the easiest option for running Jupyter notebooks on the HPCs, as there isno configuration needed on your part. This option provides reasonable compute resources via the <code class="docutils literal notranslate"><span class="pre">tallgrass</span></code> and <code class="docutils literal notranslate"><span class="pre">hovenweep</span></code> HPC hosts:</p>
+<p>This is the easiest option for running Jupyter notebooks on the HPCs, as there is no configuration needed on your part. This option provides reasonable compute resources via the <code class="docutils literal notranslate"><span class="pre">tallgrass</span></code> and <code class="docutils literal notranslate"><span class="pre">hovenweep</span></code> HPC hosts:</p>
 <ul class="simple">
 <li><p>To log in to OnDemand, select the appropriate login link from the <code class="docutils literal notranslate"><span class="pre">OnDemand</span></code> section of the <a class="reference external" href="https://hpcportal.cr.usgs.gov/">HPC User Docs</a>. Note that you must be on the USGS VPN to access this host. Denali/Tallgrass share one disk for data storage and Hovenweep has a different disk. If you have data stored on the HPCs, you will want to choose whichever resource is attached to where your data is stored. If you are accessing data from a different, publicly accessible storage location, you can choose either option.</p></li>
 <li><p>From the OnDemand landing page, choose <code class="docutils literal notranslate"><span class="pre">Interactive</span> <span class="pre">Apps</span></code>. If you are using <code class="docutils literal notranslate"><span class="pre">Hovenweep</span></code>, select the <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> option from this dropdown. If you are using <code class="docutils literal notranslate"><span class="pre">Tallgrass</span></code>, you can either select <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> or you can launch the <code class="docutils literal notranslate"><span class="pre">HyTEST</span> <span class="pre">Jupyter</span></code> server app, which will include a conda environment pre-configured with the packages you need to run the workflows in this JupyterBook. If you do not use our pre-configured environment (if you selected <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code>), you will need to build your own once your connect to the HPC. This process is described below in [Conda Environment Set Up](#Conda Environment Set Up).</p></li>
@@ -450,7 +469,7 @@ document.write(`
 will be doing heavier processing, you may want to request a compute node.  None of the HyTEST tutorials
 utilize GPU code; a GPU-enabled node is not necessary.</p></li>
 <li><p>You may want to consider adding the git and/or aws modules if you plan to use them during your session. You will just need to type <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">git</span></code> and/or <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">aws</span></code> in the <code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">loads</span></code> section.</p></li>
-<li><p>If you expect to run code in parallel on multiple compute nodes, you have two options. (1) You can use the form to request the number of cores you need and then run a <a class="reference internal" href="Start_Dask_Cluster_Denali.html"><span class="std std-doc">Dask Local Cluster</span></a> on those cores, or (2) you can request the standard 2 cores, and then use a <a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html"><span class="std std-doc">Dask SLURMCluster</span></a> to submit new jobs to the SLURM scheduler, giving you access to additional compute nodes.</p></li>
+<li><p>If you expect to run code in parallel on multiple compute nodes, you have two options. (1) You can use the form to request the number of cores you need and then run a <a class="reference internal" href="Start_Dask_Cluster_Denali.html"><span class="std std-doc">Dask Local Cluster</span></a> on those cores, or (2) you can request the standard 2 cores, and then use a <a class="reference internal" href="Start_Dask_Cluster_Tallgrass.html"><span class="std std-doc">Dask SLURMCluster</span></a> to submit new jobs to the SLURM scheduler, giving you access to additional compute nodes. Please see the HPC docs to learn more about the available compute and memory resources for <a class="reference external" href="https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/tallgrass.html">Tallgrass</a> and <a class="reference external" href="https://hpcportal.cr.usgs.gov/hpc-user-docs/supercomputers/hovenweep.html">Hovenweep</a>.</p></li>
 </ul>
 </li>
 <li><p>Click Submit</p></li>
@@ -460,14 +479,21 @@ utilize GPU code; a GPU-enabled node is not necessary.</p></li>
 directory/folder on that host, which is where your notebooks will reside.</p>
 <section id="conda-environment-set-up">
 <h2>Conda Environment Set Up<a class="headerlink" href="#conda-environment-set-up" title="Link to this heading">#</a></h2>
-<p>If you need to set up your own conda environment on the HPCs, please refer to the <a class="reference external" href="https://hpcportal.cr.usgs.gov/hpc-user-docs/guides/software/environments/python/Python_Environment_Setup_with_Conda.html">HPC User Docs</a>. You can stop right before they create the sample python environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">env</span> <span class="pre">--name</span> <span class="pre">py310</span> <span class="pre">python=3.10</span></code> and instead create whatever conda environment you need to use for your work. Once you have created your conda environment, you will need to take one additional step to make this conda environment visible as a kernel in your Jupyter Notebook:</p>
+<p>If you need to set up your own conda environment to run the notebooks, proceed with the following steps:</p>
 <ul class="simple">
-<li><p>activate your environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">your_environment_name</span></code></p></li>
-<li><p>make sure <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> is installed in your conda environment</p></li>
-<li><p>run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name</span> <span class="pre">your_environment_name</span> <span class="pre">--display-name</span> <span class="pre">&quot;your_environment_name&quot;</span></code></p></li>
+<li><p>make sure you have the <a class="reference internal" href="#%5B../hytest.yml%5D(https://github.com/hytest-org/hytest/blob/main/hytest.yml)"><span class="xref myst">HyTEST environment file</span></a> uploaded to the HPCs. You can manually upload just this file, or you can clone the <a class="reference external" href="https://github.com/hytest-org/hytest">HyTEST repository</a>, which contains this file.</p></li>
+<li><p>load the conda module with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">conda</span></code></p></li>
+<li><p>navigate in to the directory containing the environment yaml file from step 1, and create the hytest environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">hytest.yml</span></code></p></li>
+<li><p>activate your environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hytest</span></code></p></li>
+<li><p>create kernel of hytest environment by running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name</span> <span class="pre">hytest</span> <span class="pre">--display-name</span> <span class="pre">&quot;hytest&quot;</span></code></p></li>
 </ul>
 <p>Now, you will be able to see the environment you just built as an available kernel from your Jupyter notebook.</p>
+<p>For additional help setting up and using conda environments on the HPCs, please see the <a class="reference external" href="https://hpcportal.cr.usgs.gov/hpc-user-docs/guides/software/environments/python/conda.html">HPC User Docs</a>.</p>
 <p><em>Note: The code to build the HyTEST Jupyter app is in <a class="reference external" href="https://code.chs.usgs.gov/sas/arc/arc-software/ood/bc_jupyter_hytest">this repository</a>; however, this repo is only visible on the internal USGS network.</em></p>
+</section>
+<section id="dask-dashboard">
+<h2>Dask Dashboard<a class="headerlink" href="#dask-dashboard" title="Link to this heading">#</a></h2>
+<p>If you plan to use the dask dashboard with OnDemand, you will need to launch your interactive session in a conda environment that includes the <code class="docutils literal notranslate"><span class="pre">dask_labextension</span></code> package. If you are using the HyTEST environment provided in the <a class="reference external" href="https://github.com/hytest-org/hytest/blob/main/hytest.yml">hytest.yml</a> file in our repository, we have included this package. You will just need to choose the hytest environment when you are launching your interactive session (after you have built it) using the <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">custom</span> <span class="pre">conda</span> <span class="pre">env</span> <span class="pre">I'd</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">use</span></code> option during launch.</p>
 </section>
 </section>
 
@@ -536,6 +562,7 @@ directory/folder on that host, which is where your notebooks will reside.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-environment-set-up">Conda Environment Set Up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-dashboard">Dask Dashboard</a></li>
 </ul>
   </nav></div>
 

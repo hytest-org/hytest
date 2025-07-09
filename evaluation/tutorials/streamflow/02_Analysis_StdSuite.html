@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -180,7 +180,6 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="current nav bd-sidenav">
@@ -464,6 +482,11 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Needed when boto3 &gt;= 1.36.0 or the rechunking process will fail</span>
+<span class="c1"># This needs to be set before the boto3 library gets loaded</span>
+<span class="c1"># See: https://github.com/aws/aws-cli/issues/9214#issuecomment-2606619168</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AWS_REQUEST_CHECKSUM_CALCULATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;when_required&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AWS_RESPONSE_CHECKSUM_VALIDATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;when_required&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -508,7 +531,7 @@ nwis-streamflow-usgs-gages-onprem
 nwis-streamflow-usgs-gages-osn
 nwm21-streamflow-usgs-gages-onprem
 nwm21-streamflow-usgs-gages-osn
-nwm21-streamflow-cloud
+nwm21-streamflow-s3
 geofabric_v1_1-zip-osn
 geofabric_v1_1_POIs_v1_1-osn
 geofabric_v1_1_TBtoGFv1_POIs-osn
@@ -520,7 +543,7 @@ wbd-zip-osn
 huc12-geoparquet-osn
 huc12-gpkg-osn
 nwm21-scores
-lcmap-cloud
+lcmap-s3
 rechunking-tutorial-osn
 pointsample-tutorial-sites-osn
 pointsample-tutorial-output-osn
@@ -801,14 +824,14 @@ as input and return a list of metrics.</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NSE          0.610187
 KGE          0.581806
-logNSE       0.437533
+logNSE       0.437532
 pbias      -12.679162
 rSD          0.655655
 pearson      0.799410
 spearman     0.859123
 pBiasFMS   -34.154374
-pBiasFLV    90.474844
-pBiasFHV   -43.865919
+pBiasFLV    90.474846
+pBiasFHV   -43.865921
 Name: USGS-01030350, dtype: float64
 </pre></div>
 </div>
@@ -840,7 +863,7 @@ You can override their function by doing your own cluster configuration if you l
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The &#39;cluster&#39; object can be used to adjust cluster behavior.  i.e. &#39;cluster.adapt(minimum=10)&#39;
 The &#39;client&#39; object can be used to directly interact with the cluster.  i.e. &#39;client.submit(func)&#39; 
 The link to view the client dashboard is:
-&gt;  https://nebari.chs.usgs.gov/gateway/clusters/nebari.6f722420dbe24b55a78ea3c2b8ba4f74/status
+&gt;  https://nebari.chs.usgs.gov/gateway/clusters/nebari.2c64b34587de4c1b8e003677ea0c078f/status
 </pre></div>
 </div>
 </div>
@@ -858,14 +881,14 @@ to one in isolation:</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NSE          0.610187
 KGE          0.581806
-logNSE       0.437533
+logNSE       0.437532
 pbias      -12.679162
 rSD          0.655655
 pearson      0.799410
 spearman     0.859123
 pBiasFMS   -34.154374
-pBiasFLV    90.474844
-pBiasFHV   -43.865919
+pBiasFLV    90.474846
+pBiasFHV   -43.865921
 Name: USGS-01030350, dtype: float64
 </pre></div>
 </div>
@@ -961,26 +984,26 @@ We will make use of <code class="docutils literal notranslate"><span class="pre"
       <td>0.689087</td>
       <td>0.662586</td>
       <td>0.597192</td>
-      <td>-19.883495</td>
+      <td>-19.883493</td>
       <td>0.774751</td>
       <td>0.846457</td>
       <td>0.818826</td>
       <td>14.807267</td>
-      <td>61.287969</td>
-      <td>-36.838683</td>
+      <td>61.287968</td>
+      <td>-36.838684</td>
     </tr>
     <tr>
       <th>USGS-01013500</th>
       <td>0.620606</td>
       <td>0.480716</td>
       <td>0.752852</td>
-      <td>-22.970420</td>
+      <td>-22.970419</td>
       <td>0.552287</td>
       <td>0.871763</td>
       <td>0.873238</td>
       <td>-14.653922</td>
       <td>60.804260</td>
-      <td>-51.751721</td>
+      <td>-51.751720</td>
     </tr>
     <tr>
       <th>USGS-01015800</th>
@@ -992,12 +1015,12 @@ We will make use of <code class="docutils literal notranslate"><span class="pre"
       <td>0.847514</td>
       <td>0.862823</td>
       <td>-5.586978</td>
-      <td>43.496275</td>
-      <td>-40.215325</td>
+      <td>43.496277</td>
+      <td>-40.215324</td>
     </tr>
     <tr>
       <th>USGS-01017000</th>
-      <td>0.676276</td>
+      <td>0.676275</td>
       <td>0.662182</td>
       <td>0.728323</td>
       <td>-13.596089</td>
@@ -1006,20 +1029,20 @@ We will make use of <code class="docutils literal notranslate"><span class="pre"
       <td>0.836719</td>
       <td>-2.559546</td>
       <td>50.629818</td>
-      <td>-40.769273</td>
+      <td>-40.769272</td>
     </tr>
     <tr>
       <th>USGS-01017550</th>
       <td>-0.007026</td>
       <td>0.488803</td>
-      <td>0.187778</td>
-      <td>25.384879</td>
+      <td>0.187780</td>
+      <td>25.384880</td>
       <td>1.159282</td>
       <td>0.585860</td>
       <td>0.778949</td>
       <td>20.736102</td>
-      <td>15.696818</td>
-      <td>-33.564582</td>
+      <td>15.696817</td>
+      <td>-33.564583</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1044,7 +1067,7 @@ We will make use of <code class="docutils literal notranslate"><span class="pre"
       <td>0.877457</td>
       <td>0.771774</td>
       <td>43.800611</td>
-      <td>112.890410</td>
+      <td>112.890411</td>
       <td>13.504784</td>
     </tr>
     <tr>
@@ -1058,19 +1081,19 @@ We will make use of <code class="docutils literal notranslate"><span class="pre"
       <td>0.889055</td>
       <td>48.189721</td>
       <td>-26.875940</td>
-      <td>-18.711448</td>
+      <td>-18.711449</td>
     </tr>
     <tr>
       <th>USGS-14375100</th>
       <td>-1.256398</td>
       <td>-0.270989</td>
       <td>-0.519090</td>
-      <td>96.341796</td>
+      <td>96.341797</td>
       <td>1.701510</td>
       <td>0.558273</td>
       <td>0.330280</td>
       <td>6.331031</td>
-      <td>735.452175</td>
+      <td>735.452148</td>
       <td>8.474573</td>
     </tr>
     <tr>
@@ -1083,8 +1106,8 @@ We will make use of <code class="docutils literal notranslate"><span class="pre"
       <td>0.931750</td>
       <td>0.955249</td>
       <td>-4.176341</td>
-      <td>22.406697</td>
-      <td>19.312102</td>
+      <td>22.406696</td>
+      <td>19.312101</td>
     </tr>
     <tr>
       <th>USGS-14400000</th>

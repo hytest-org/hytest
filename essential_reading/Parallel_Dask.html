@@ -180,7 +180,6 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-pangeoCHS.html">Cloud: pangeo.chs.usgs.gov Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
@@ -189,10 +188,9 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">nebari.esipfed.org Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_PangeoCHS.html">pangeo.chs.usgs.gov Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
 </ul>
 </details></li>
@@ -214,11 +212,36 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
 </ul>
 </details></li>
 </ul>
@@ -235,11 +258,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/chunk.html">Chunking Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData.html">Re-Chunking Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/rechunking/ReChunkingData_Cloud.html">Re-Chunking Larger Datasets</a></li>
-</ul>
-</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
 <ul class="nav bd-sidenav">
@@ -543,9 +561,9 @@ make a distributed cluster.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
 Perhaps you already have a cluster running?
-Hosting the HTTP server on port 40517 instead
+Hosting the HTTP server on port 42813 instead
   warnings.warn(
 </pre></div>
 </div>
@@ -565,7 +583,7 @@ Hosting the HTTP server on port 40517 instead
 computation has not been done yet. Dask is a ‘lazy’ system in which computations are
 delayed as long as possible.</p>
 <p>As with other dask operations, <code class="docutils literal notranslate"><span class="pre">result</span></code> at this point just contains the ‘task graph’ – what
-dask is going to do, and in what order.  We can see that task graph with the <code class="docutils literal notranslate"><span class="pre">visulalize</span></code>
+dask is going to do, and in what order.  We can see that task graph with the <code class="docutils literal notranslate"><span class="pre">visualize</span></code>
 method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,7 +592,51 @@ method:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8483363b0ab1042ae2fcdab859de1ba7d65c901965209b2f975834c73c37700f.png" src="../_images/8483363b0ab1042ae2fcdab859de1ba7d65c901965209b2f975834c73c37700f.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">result</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+
+<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:299,</span> in <span class="ni">DaskMethodsMixin.visualize</span><span class="nt">(self, filename, format, optimize_graph, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="k">def</span><span class="w"> </span><span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;mydask&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimize_graph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Render the computation of this object&#39;s task graph using graphviz.</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="sd">     Requires ``graphviz`` to be installed.</span>
+<span class="sd">   (...)    297     https://docs.dask.org/en/latest/optimize.html</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">299</span>     <span class="k">return</span> <span class="n">visualize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>         <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>     <span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:778,</span> in <span class="ni">visualize</span><span class="nt">(filename, traverse, optimize_graph, maxval, engine, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">774</span> <span class="n">args</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">unpack_collections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">traverse</span><span class="o">=</span><span class="n">traverse</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="n">dsk</span> <span class="o">=</span> <span class="n">collections_to_expr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">)</span><span class="o">.</span><span class="n">__dask_graph__</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">778</span> <span class="k">return</span> <span class="n">visualize_dsk</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span>     <span class="n">dsk</span><span class="o">=</span><span class="n">dsk</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="n">traverse</span><span class="o">=</span><span class="n">traverse</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="n">maxval</span><span class="o">=</span><span class="n">maxval</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:921,</span> in <span class="ni">visualize_dsk</span><span class="nt">(dsk, filename, traverse, optimize_graph, maxval, o, engine, limit, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span>     <span class="k">return</span> <span class="n">cytoscape_graph</span><span class="p">(</span><span class="n">dsk</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">920</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">921</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span>         <span class="s2">&quot;No visualization engine detected, please install graphviz or ipycytoscape&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">924</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">925</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Visualization engine </span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: No visualization engine detected, please install graphviz or ipycytoscape
+</pre></div>
+</div>
 </div>
 </div>
 <p>Note that each of those elements is independent from the others, so they can in theory execute in parallel.
@@ -591,30 +653,12 @@ Because these threads do not depend on one another, they can operate in parallel
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 208 ms, sys: 22.9 ms, total: 231 ms
-Wall time: 10 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="c1">## using the dask bag task-graph</span>
 <span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 79.8 ms, sys: 13.1 ms, total: 92.9 ms
-Wall time: 3.1 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 </pre></div>
 </div>
 </div>
@@ -627,41 +671,7 @@ Wall time: 3.1 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## shut down cluster scheduler</span>
 <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">client</span>
-<span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">cluster</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-27 13:32:36,363 - distributed.worker - ERROR - Failed to communicate with scheduler during heartbeat.
-Traceback (most recent call last):
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/comm/tcp.py&quot;, line 225, in read
-    frames_nosplit_nbytes_bin = await stream.read_bytes(fmt_size)
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-tornado.iostream.StreamClosedError: Stream is closed
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/worker.py&quot;, line 1269, in heartbeat
-    response = await retry_operation(
-               ^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/utils_comm.py&quot;, line 441, in retry_operation
-    return await retry(
-           ^^^^^^^^^^^^
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/utils_comm.py&quot;, line 420, in retry
-    return await coro()
-           ^^^^^^^^^^^^
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/core.py&quot;, line 1259, in send_recv_from_rpc
-    return await send_recv(comm=comm, op=key, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/core.py&quot;, line 1018, in send_recv
-    response = await comm.read(deserializers=deserializers)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/comm/tcp.py&quot;, line 236, in read
-    convert_stream_closed_error(self, e)
-  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/comm/tcp.py&quot;, line 142, in convert_stream_closed_error
-    raise CommClosedError(f&quot;in {obj}: {exc}&quot;) from exc
-distributed.comm.core.CommClosedError: in &lt;TCP (closed) ConnectionPool.heartbeat_worker local=tcp://127.0.0.1:42572 remote=tcp://127.0.0.1:36599&gt;: Stream is closed
+<span class="n">cluster</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span> <span class="k">del</span> <span class="n">cluster</span>
 </pre></div>
 </div>
 </div>
