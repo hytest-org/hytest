@@ -1,4 +1,4 @@
-name: hytest
+name: hytest-dev
 channels:
   - conda-forge
 dependencies:
@@ -58,5 +58,8 @@ dependencies:
   - xoak
   - yaml
   - zarr<3.0.0
+  - ghp-import
+  - jupyter-book
+  - pre_commit
   - pip:
     - git+https://github.com/DOI-USGS/pyPRMS.git
