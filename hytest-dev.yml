@@ -1,4 +1,4 @@
-name: hytest
+name: hytest-dev
 channels:
   - conda-forge
 dependencies:
