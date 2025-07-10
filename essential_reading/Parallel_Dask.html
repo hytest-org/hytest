@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -561,9 +561,9 @@ make a distributed cluster.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/5ff9e393-1752151307-205-pangeo/lib/python3.11/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
 Perhaps you already have a cluster running?
-Hosting the HTTP server on port 42813 instead
+Hosting the HTTP server on port 34241 instead
   warnings.warn(
 </pre></div>
 </div>
@@ -592,51 +592,7 @@ method:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">result</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
-
-<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:299,</span> in <span class="ni">DaskMethodsMixin.visualize</span><span class="nt">(self, filename, format, optimize_graph, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="k">def</span><span class="w"> </span><span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;mydask&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimize_graph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Render the computation of this object&#39;s task graph using graphviz.</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="sd">     Requires ``graphviz`` to be installed.</span>
-<span class="sd">   (...)    297     https://docs.dask.org/en/latest/optimize.html</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">299</span>     <span class="k">return</span> <span class="n">visualize</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>         <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span>     <span class="p">)</span>
-
-<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:778,</span> in <span class="ni">visualize</span><span class="nt">(filename, traverse, optimize_graph, maxval, engine, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">774</span> <span class="n">args</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">unpack_collections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">traverse</span><span class="o">=</span><span class="n">traverse</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="n">dsk</span> <span class="o">=</span> <span class="n">collections_to_expr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">)</span><span class="o">.</span><span class="n">__dask_graph__</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">778</span> <span class="k">return</span> <span class="n">visualize_dsk</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">779</span>     <span class="n">dsk</span><span class="o">=</span><span class="n">dsk</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="n">traverse</span><span class="o">=</span><span class="n">traverse</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="n">maxval</span><span class="o">=</span><span class="n">maxval</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="p">)</span>
-
-<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:921,</span> in <span class="ni">visualize_dsk</span><span class="nt">(dsk, filename, traverse, optimize_graph, maxval, o, engine, limit, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span>     <span class="k">return</span> <span class="n">cytoscape_graph</span><span class="p">(</span><span class="n">dsk</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">920</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">921</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">922</span>         <span class="s2">&quot;No visualization engine detected, please install graphviz or ipycytoscape&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">924</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">925</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Visualization engine </span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span>
-
-<span class="ne">RuntimeError</span>: No visualization engine detected, please install graphviz or ipycytoscape
-</pre></div>
-</div>
+<img alt="../_images/8483363b0ab1042ae2fcdab859de1ba7d65c901965209b2f975834c73c37700f.png" src="../_images/8483363b0ab1042ae2fcdab859de1ba7d65c901965209b2f975834c73c37700f.png" />
 </div>
 </div>
 <p>Note that each of those elements is independent from the others, so they can in theory execute in parallel.
@@ -653,12 +609,30 @@ Because these threads do not depend on one another, they can operate in parallel
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 132 ms, sys: 6.7 ms, total: 139 ms
+Wall time: 10 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="c1">## using the dask bag task-graph</span>
 <span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 67.6 ms, sys: 2.9 ms, total: 70.5 ms
+Wall time: 3.16 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 </pre></div>
 </div>
 </div>
@@ -671,7 +645,7 @@ Because these threads do not depend on one another, they can operate in parallel
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## shut down cluster scheduler</span>
 <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">client</span>
-<span class="n">cluster</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span> <span class="k">del</span> <span class="n">cluster</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">cluster</span>
 </pre></div>
 </div>
 </div>

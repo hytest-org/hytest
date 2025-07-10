@@ -25,51 +25,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-result.visualize()
+import os
+import graphviz
+# Needed when boto3 >= 1.36.0 or the rechunking process will fail
+# This needs to be set before the boto3 library gets loaded
+# See: https://github.com/aws/aws-cli/issues/9214#issuecomment-2606619168
+os.environ['AWS_REQUEST_CHECKSUM_CALCULATION'] = 'when_required'
+os.environ['AWS_RESPONSE_CHECKSUM_VALIDATION'] = 'when_required'
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mRuntimeError[39m                              Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m [43mresult[49m[43m.[49m[43mvisualize[49m[43m([49m[43m)[49m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mos[39;00m
+[32m----> [39m[32m2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mgraphviz[39;00m
+[32m      3[39m [38;5;66;03m# Needed when boto3 >= 1.36.0 or the rechunking process will fail[39;00m
+[32m      4[39m [38;5;66;03m# This needs to be set before the boto3 library gets loaded[39;00m
+[32m      5[39m [38;5;66;03m# See: https://github.com/aws/aws-cli/issues/9214#issuecomment-2606619168[39;00m
+[32m      6[39m os.environ[[33m'[39m[33mAWS_REQUEST_CHECKSUM_CALCULATION[39m[33m'[39m] = [33m'[39m[33mwhen_required[39m[33m'[39m
 
-[36mFile [39m[32m/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:299[39m, in [36mDaskMethodsMixin.visualize[39m[34m(self, filename, format, optimize_graph, **kwargs)[39m
-[32m    255[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mvisualize[39m([38;5;28mself[39m, filename=[33m"[39m[33mmydask[39m[33m"[39m, [38;5;28mformat[39m=[38;5;28;01mNone[39;00m, optimize_graph=[38;5;28;01mFalse[39;00m, **kwargs):
-[32m    256[39m [38;5;250m    [39m[33;03m"""Render the computation of this object's task graph using graphviz.[39;00m
-[32m    257[39m 
-[32m    258[39m [33;03m    Requires ``graphviz`` to be installed.[39;00m
-[32m   (...)[39m[32m    297[39m [33;03m    https://docs.dask.org/en/latest/optimize.html[39;00m
-[32m    298[39m [33;03m    """[39;00m
-[32m--> [39m[32m299[39m     [38;5;28;01mreturn[39;00m [43mvisualize[49m[43m([49m
-[32m    300[39m [43m        [49m[38;5;28;43mself[39;49m[43m,[49m
-[32m    301[39m [43m        [49m[43mfilename[49m[43m=[49m[43mfilename[49m[43m,[49m
-[32m    302[39m [43m        [49m[38;5;28;43mformat[39;49m[43m=[49m[38;5;28;43mformat[39;49m[43m,[49m
-[32m    303[39m [43m        [49m[43moptimize_graph[49m[43m=[49m[43moptimize_graph[49m[43m,[49m
-[32m    304[39m [43m        [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m,[49m
-[32m    305[39m [43m    [49m[43m)[49m
-
-[36mFile [39m[32m/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:778[39m, in [36mvisualize[39m[34m(filename, traverse, optimize_graph, maxval, engine, *args, **kwargs)[39m
-[32m    774[39m args, _ = unpack_collections(*args, traverse=traverse)
-[32m    776[39m dsk = collections_to_expr(args, optimize_graph=optimize_graph).__dask_graph__()
-[32m--> [39m[32m778[39m [38;5;28;01mreturn[39;00m [43mvisualize_dsk[49m[43m([49m
-[32m    779[39m [43m    [49m[43mdsk[49m[43m=[49m[43mdsk[49m[43m,[49m
-[32m    780[39m [43m    [49m[43mfilename[49m[43m=[49m[43mfilename[49m[43m,[49m
-[32m    781[39m [43m    [49m[43mtraverse[49m[43m=[49m[43mtraverse[49m[43m,[49m
-[32m    782[39m [43m    [49m[43moptimize_graph[49m[43m=[49m[43moptimize_graph[49m[43m,[49m
-[32m    783[39m [43m    [49m[43mmaxval[49m[43m=[49m[43mmaxval[49m[43m,[49m
-[32m    784[39m [43m    [49m[43mengine[49m[43m=[49m[43mengine[49m[43m,[49m
-[32m    785[39m [43m    [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m,[49m
-[32m    786[39m [43m[49m[43m)[49m
-
-[36mFile [39m[32m/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:921[39m, in [36mvisualize_dsk[39m[34m(dsk, filename, traverse, optimize_graph, maxval, o, engine, limit, **kwargs)[39m
-[32m    919[39m     [38;5;28;01mreturn[39;00m cytoscape_graph(dsk, filename=filename, **kwargs)
-[32m    920[39m [38;5;28;01melif[39;00m engine [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[32m--> [39m[32m921[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
-[32m    922[39m         [33m"[39m[33mNo visualization engine detected, please install graphviz or ipycytoscape[39m[33m"[39m
-[32m    923[39m     )
-[32m    924[39m [38;5;28;01melse[39;00m:
-[32m    925[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([33mf[39m[33m"[39m[33mVisualization engine [39m[38;5;132;01m{[39;00mengine[38;5;132;01m}[39;00m[33m not recognized[39m[33m"[39m)
-
-[31mRuntimeError[39m: No visualization engine detected, please install graphviz or ipycytoscape
+[31mModuleNotFoundError[39m: No module named 'graphviz'
 

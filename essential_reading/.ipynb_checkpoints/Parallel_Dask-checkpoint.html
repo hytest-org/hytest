@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Parallelism with Dask &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'essential_reading/Parallel_Dask';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HyTEST Data Catalog (Intake)" href="../dataset_catalog/README.html" />
+    <link rel="prev" title="Data/Cloud Storage" href="DataSources/Data_S3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/chunking/README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/index.html">Advanced Topics in Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/CreateVirtualZarr.html">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/201/OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/chunking/back/AdditionalResources.html">Additional Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_processing/spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_processing/tutorials/conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/essential_reading/Parallel_Dask.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parallelism with Dask</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-and-maps">Lists and Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-bag">Dask Bag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-bags-in-hytest-workflows">Dask Bags in HyTEST Workflows</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parallelism-with-dask">
+<h1>Parallelism with Dask<a class="headerlink" href="#parallelism-with-dask" title="Link to this heading">#</a></h1>
+<p>The dask folks have a very good introduction to dask data structures and parallelism in their
+<a class="reference external" href="https://tutorial.dask.org/">dask tutorial</a>.  In that tutorial, you’ll get exposure to
+the general dask architecture, as well as specific hands-on examples with two of the three
+key dask data structures:  dask arrays, and dask dataframes.</p>
+<p>The above tutorial does not cover dask <strong><code class="docutils literal notranslate"><span class="pre">bag</span></code></strong> in any detail – this is a key data structure
+that we use to distribute parallel tasks in clustered environments.  Here’s a quick demo of
+a dask bag and how we use it. A bag is analagous to a standard Python <code class="docutils literal notranslate"><span class="pre">list</span></code>… let’s start there
+with some nomenclature:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Needed when boto3 &gt;= 1.36.0 or the rechunking process will fail</span>
+<span class="c1"># This needs to be set before the boto3 library gets loaded</span>
+<span class="c1"># See: https://github.com/aws/aws-cli/issues/9214#issuecomment-2606619168</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AWS_REQUEST_CHECKSUM_CALCULATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;when_required&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AWS_RESPONSE_CHECKSUM_VALIDATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;when_required&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="lists-and-maps">
+<h2>Lists and Maps<a class="headerlink" href="#lists-and-maps" title="Link to this heading">#</a></h2>
+<p>A common pattern in Python is a ‘list comprehension’ – a way of transforming a list of values into a new list of values using a transformation pattern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">newList</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myList</span><span class="p">]</span>
+
+<span class="n">newList</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This feature of python <strong>maps</strong> an action onto each element in a list. The result is a new list
+holding the result of each action – one action per element in the list.</p>
+<p>The syntax of the above list comprehension is purely for us
+humans. The python implementation behind the scenes uses a special built-in python function
+called <code class="docutils literal notranslate"><span class="pre">map</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">myFunc</span><span class="p">,</span> <span class="n">myList</span><span class="p">))</span>
+<span class="c1"># maps each element of myList to a separate invokation of myFunc. </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">map()</span></code> call handles the work of calling <code class="docutils literal notranslate"><span class="pre">myFunc()</span></code> once each for the elements of <code class="docutils literal notranslate"><span class="pre">myList</span></code>.<br />
+You can see that doing it this way involves a lot of extra hoops and parenthesis to jump through.
+Which is why it is almost never written that way.</p>
+<p>The list element is given to the function as a positional argument.  In essence, the above <code class="docutils literal notranslate"><span class="pre">map</span></code> is the same as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myList</span><span class="p">:</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dask-bag">
+<h2>Dask Bag<a class="headerlink" href="#dask-bag" title="Link to this heading">#</a></h2>
+<p>A dask bag datastructure is much like a list, but it has the <strong><code class="docutils literal notranslate"><span class="pre">map</span></code></strong> function built into it as
+an object method. The invocation is slightly different, but the concept is the same: it
+pairs up elements of a list with a function call to execute against those elements.  A dask
+bag has the ability to spawn the <code class="docutils literal notranslate"><span class="pre">myFunc()</span></code> calls in parallel, distributing those calls to
+workers around the dask cluster.</p>
+<p>Let’s look at an example… first, let’s make <code class="docutils literal notranslate"><span class="pre">myFunc()</span></code> simulate time-consuming work by having
+it pause for a while.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">## Simulates dense computation taking one second</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function is one that we want to distribute across a dask compute cluster.</p>
+<p>For this small demonstration, we’ll build a cluster on the local host; no need to
+make a distributed cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dask.bag</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">db</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">LocalCluster</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">(</span><span class="n">threads_per_worker</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 44511 instead
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fill the bag with our list of items</span>
+<span class="n">myBag</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">from_sequence</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>
+<span class="c1"># then &#39;map&#39; the elements to the worker function we want to execute on each element in the bag</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">myBag</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">myFunc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this returned immediately (i.e very small execution time). That’s because the
+computation has not been done yet. Dask is a ‘lazy’ system in which computations are
+delayed as long as possible.</p>
+<p>As with other dask operations, <code class="docutils literal notranslate"><span class="pre">result</span></code> at this point just contains the ‘task graph’ – what
+dask is going to do, and in what order.  We can see that task graph with the <code class="docutils literal notranslate"><span class="pre">visualize</span></code>
+method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">result</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+
+<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:299,</span> in <span class="ni">DaskMethodsMixin.visualize</span><span class="nt">(self, filename, format, optimize_graph, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="k">def</span><span class="w"> </span><span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;mydask&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimize_graph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Render the computation of this object&#39;s task graph using graphviz.</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="sd">     Requires ``graphviz`` to be installed.</span>
+<span class="sd">   (...)    297     https://docs.dask.org/en/latest/optimize.html</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">299</span>     <span class="k">return</span> <span class="n">visualize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>         <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>     <span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:778,</span> in <span class="ni">visualize</span><span class="nt">(filename, traverse, optimize_graph, maxval, engine, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">774</span> <span class="n">args</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">unpack_collections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">traverse</span><span class="o">=</span><span class="n">traverse</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="n">dsk</span> <span class="o">=</span> <span class="n">collections_to_expr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">)</span><span class="o">.</span><span class="n">__dask_graph__</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">778</span> <span class="k">return</span> <span class="n">visualize_dsk</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span>     <span class="n">dsk</span><span class="o">=</span><span class="n">dsk</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="n">traverse</span><span class="o">=</span><span class="n">traverse</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="n">optimize_graph</span><span class="o">=</span><span class="n">optimize_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="n">maxval</span><span class="o">=</span><span class="n">maxval</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/base.py:921,</span> in <span class="ni">visualize_dsk</span><span class="nt">(dsk, filename, traverse, optimize_graph, maxval, o, engine, limit, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span>     <span class="k">return</span> <span class="n">cytoscape_graph</span><span class="p">(</span><span class="n">dsk</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">920</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">921</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span>         <span class="s2">&quot;No visualization engine detected, please install graphviz or ipycytoscape&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">924</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">925</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Visualization engine </span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: No visualization engine detected, please install graphviz or ipycytoscape
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that each of those elements is independent from the others, so they can in theory execute in parallel.
+‘Thread’ zero will call myFunc with some arguments to produce result zero.  Same with threads 1 throuth 9.
+Because these threads do not depend on one another, they can operate in parallel, on separate workers.</p>
+<p>In the original, pure-python operation, these calls to <code class="docutils literal notranslate"><span class="pre">myFunc</span></code> would be serialized: one at a time.</p>
+<p>Let’s compare run times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>  
+<span class="c1"># should take about 10 seconds: one second per call to myFunc</span>
+<span class="c1">## Pure python mapping:</span>
+<span class="nb">list</span><span class="p">(</span> <span class="nb">map</span><span class="p">(</span> <span class="n">myFunc</span><span class="p">,</span> <span class="n">myList</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1">## using the dask bag task-graph</span>
+<span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the pure python execution took right around 10 seconds.  Each call to <code class="docutils literal notranslate"><span class="pre">myFunc</span></code>, remember, is artificially set to take one second each.  Calling them serially should take 10 seconds (plus whatever internal overhead python needs).</p>
+<p>The dask bag approach took substantially less time. If it were <strong>perfectly</strong> parallel, the result would have been computed in one second (ten simultaneous executions of <code class="docutils literal notranslate"><span class="pre">myFunc</span></code>, each taking one second).  But that parallelism depends on how many cpus/cores you have.  If you only have one core, then parallelism isn’t going to help  you – the dispatched workers still need to take turns on the CPU.</p>
+<p>If you had 10 cores (the number of elements in the bag), then you might get close to the perfect parallelism.  Dask does involve more overhead than pure python in order to achieve its parallelism; the administrative overhead for operating the cluster scheduler will prevent this from being perfectly parallel.</p>
+<p>The above example uses a <strong>local</strong> cluster, meaning that the work is scheduled among the CPUs on the local hardware.  Dask can also utilize <strong>distributed</strong> clusters, meaning that workers can be organized among several computers connected via network. This allows for many more CPUs to attach to a problem, but the overhead of network communication will impact the administrative costs of coordinating the workers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## shut down cluster scheduler</span>
+<span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">client</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span> <span class="k">del</span> <span class="n">cluster</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dask-bags-in-hytest-workflows">
+<h2>Dask Bags in HyTEST Workflows<a class="headerlink" href="#dask-bags-in-hytest-workflows" title="Link to this heading">#</a></h2>
+<p>This pattern is used extensively in the benchmarking workflows.  A series of statistics are calculated for each streamgage in a list of 5000+ gages. With a dask bag (the contents of which is the list of gages), the stats package can be dispatched to workers operating independently and in parallel.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: ""
+        },
+        kernelOptions: {
+            name: "",
+            path: "./essential_reading"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = ''</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DataSources/Data_S3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data/Cloud Storage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../dataset_catalog/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">HyTEST Data Catalog (Intake)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-and-maps">Lists and Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-bag">Dask Bag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-bags-in-hytest-workflows">Dask Bags in HyTEST Workflows</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
