@@ -1,28 +1,139 @@
 sources:
 
+  nhm-v1.1-c404-bc-byHRU-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with CONUS404 bias-corrected forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.1/c404-bc_byHRU/nhm_v1.1_c404-bc_byHRU_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.1-c404-bc-byHRU-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with CONUS404 bias-corrected forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.1/c404-bc_byHRU/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
+  nhm-v1.1-c404-bc-byHW-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with CONUS404 bias-corrected forcings(see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.1/c404-bc_byHW/nhm_v1.1_c404-bc_byHW_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.1-c404-bc-byHW-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with CONUS404 bias-corrected forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.1/c404-bc_byHW/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
+  nhm-v1.1-c404-bc-byHWobs-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with CONUS404 bias-corrected forcings(see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.1/c404-bc_byHWobs/nhm_v1.1_c404-bc_byHWobs_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.1-c404-bc-byHWobs-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with CONUS404 bias-corrected forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.1/c404-bc_byHWobs/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.1-c404-bc-byHRU-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with CONUS404 bias-corrected forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with CONUS404 bias-corrected forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/c404-bc_byHRU/nhm_v1.1_c404-bc_byHRU_combined.json'
 
+  nhm-v1.1-c404-bc-byHRU-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with CONUS404 bias-corrected forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/c404-bc_byHRU/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.1-c404-bc-byHW-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with CONUS404 bias-corrected forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with CONUS404 bias-corrected forcings(see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/c404-bc_byHW/nhm_v1.1_c404-bc_byHW_combined.json'
 
+  nhm-v1.1-c404-bc-byHW-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with CONUS404 bias-corrected forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/c404-bc_byHW/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.1-c404-bc-byHWobs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with CONUS404 bias-corrected forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with CONUS404 bias-corrected forcings(see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/c404-bc_byHWobs/nhm_v1.1_c404-bc_byHWobs_combined.json'
+
+  nhm-v1.1-c404-bc-byHWobs-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with CONUS404 bias-corrected forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P148FA7G). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/c404-bc_byHWobs/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
