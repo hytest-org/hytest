@@ -9,6 +9,15 @@ sources:
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHRU/nhm_v1.1_gm_byHRU_combined.json'
 
+  nhm-v1.1-gridmet-byHRU-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using byHRU calibrated parameters with gridmet forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9J1LY80). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHRU/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.1-gridmet-byHW-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
     description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with gridmet forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9J1LY80). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
@@ -18,6 +27,15 @@ sources:
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHW/nhm_v1.1_gm_byHW_combined.json'
 
+  nhm-v1.1-gridmet-byHW-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater calibrated parameters with gridmet forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9J1LY80). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHW/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.1-gridmet-byHWobs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
     description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with gridmet forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9J1LY80). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
@@ -26,3 +44,12 @@ sources:
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHWobs/nhm_v1.1_gm_byHWobs_combined.json'
+
+  nhm-v1.1-gridmet-byHWobs-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.1 model output variables using by-headwater-with-observed-streamflow calibrated parameters with gridmet forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9J1LY80). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.1/gm_byHWobs/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
