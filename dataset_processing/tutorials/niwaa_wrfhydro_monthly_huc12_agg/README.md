@@ -124,7 +124,7 @@ There are roughly ~350,640 files used as inputs to this workflow that will take 
 
 The temporal aggregation part of this workflow requires a module called Netcdf Operator (NCO). Instructionss on NCO installation can be found in the Set-Up section [here](https://github.com/hytest-org/hytest/blob/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/01_Temporal_Aggregation/README.md) The spatial aggregation portion of this workflow requires a python environment yml file to be installed, which can be found [here](https://github.com/hytest-org/hytest/blob/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/02_Spatial_Aggregation/wrfhydro_huc12_agg.yml).
 
-If you would like to run this tutorial on your own, you can find the shell scripts and jupyter notebooks that are used in this tutorial in our [Github repository](https://github.com/hytest-org/hytest/tree/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg).  
+If you would like to run this tutorial on your own, you can find the shell scripts and jupyter notebooks that are used in this tutorial in our [Github repository](https://github.com/hytest-org/hytest/tree/lstaub_updates/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg). If you find any issues or errors in this tutorial, please open an [issue in our Github repository](https://github.com/hytest-org/hytest/issues). 
 
 <a id="Hourly to Monthly"></a>
 <h3>1. Temporal Aggregation</h3>
