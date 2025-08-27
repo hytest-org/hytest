@@ -12,8 +12,8 @@ Tracking computation times for a 3-year subset of WRF-Hydro modeling application
 
 | **Script** | **Description** | **Datasets processed** | **Dask** | **Completion Time** | **Output** | 
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 01_Merge_1D_and_2D_files | Combine 1-Dimensional and 2-Dimensional aggregations into one netcdf file | CONUS_HUC12_2D_20111001_20120930.nc & CONUS_HUC12_1D_2011001_20120930.nc | No | 10 min | CONUS_HUC12_WB_combined_19791001_20220930.nc |
-| 02_Format | Formatting | CONUS_HUC12_WB_combined_19791001_20220930.nc | No | 10 min | huc12_monthly_wb_iwaa_wrfhydro_WY2011_2013.nc |
+| 01_Merge_1D_and_2D_files | Combine 1-Dimensional and 2-Dimensional aggregations into one netcdf file | CONUS_HUC12_2D_WY2011_2013.nc & CONUS_HUC12_1D_WY2011_2013.nc | No | 10 min | CONUS_HUC12_WB_combined_WY2011_2013.nc |
+| 02_Format | Formatting | CONUS_HUC12_WB_combined_WY2011_2013.nc | No | 10 min | huc12_monthly_wb_iwaa_wrfhydro_WY2011_2013.nc |
 
 ## Compute Environment Needs
 Users will need to create and activate a conda environment using the [wrfhydro_huc12_agg.yml](02_Spatial_Aggregation/wrfhydro_huc12_agg.yml) file to run the python script and notebooks. For this environment to work, the latest version of Miniforge should be installed in the user area on Hovenweep. Miniconda may work, but has not been tested with this workflow. See the README documentation in the [Spatial Aggregation](02_Spatial_Aggregation/) folder for first time environment set up instructions.  

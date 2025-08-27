@@ -11,8 +11,8 @@ Tracking computation times for a 3-year subset of WRF-Hydro modeling application
 
 | **Script** | **Description** | **Datasets processed** | **Dask** | **Completion Time** | **Output** | 
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 01_2D_spatial_aggregation | Aggregation to HUC12s of 2-Dimensional variables | monthly LDASOUT & LDASIN | Yes | 2 hours | CONUS_HUC12_2D_20111001_20120930.nc |
-| 02_1D_spatial_aggregation | Aggregation to HUC12s of 1-Dimensional variables | monthly GWOUT & CHRTOUT | No | 2.5 hours | CONUS_HUC12_1D_2011001_20120930.nc |
+| 01_2D_spatial_aggregation | Aggregation to HUC12s of 2-Dimensional variables | monthly LDASOUT & LDASIN | Yes | 2 hours | CONUS_HUC12_2D_WY2011_2013.nc |
+| 02_1D_spatial_aggregation | Aggregation to HUC12s of 1-Dimensional variables | monthly GWOUT & CHRTOUT | No | 2.5 hours | CONUS_HUC12_1D_WY2011_2013.nc |
 | usgs_common | python script containg functions used in aggregation | --- | No | --- | --- |
 
 ## Compute Environment Needs
