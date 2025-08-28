@@ -53,6 +53,7 @@ dependencies:
   - shapely
   - gdal=3.5.3=py311hadb6153_11
   - fiona
+  - s3fs
 
 
 
