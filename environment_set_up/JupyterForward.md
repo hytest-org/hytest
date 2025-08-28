@@ -50,7 +50,7 @@ just need to have that enviroment active when you attempt to launch the command 
   ```text
     jupyter-forward --launch-command "srun -A impd -N 1 -t 01:00:00"  denali
   ```
-    * Log in with your AD username and password.
+    * If prompted, log in with your AD username and password.
     * The output of the script will also provide the URL where your PC's browser will find the jupter server. You can open one of these urls in your browser.
 
 ## 4) Shut Down Server<br>

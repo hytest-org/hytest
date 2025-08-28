@@ -86,7 +86,7 @@ sources:
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org
       
-  nwm21-streamflow-cloud:
+  nwm21-streamflow-s3:
     driver: zarr
     description: "National Water Model 2.1 CHRTOUT on AWS"
     args:
@@ -201,7 +201,7 @@ sources:
     args:
       urlpath: 'https://raw.githubusercontent.com/nhm-usgs/data-pipeline-helpers/main/hytest/results/nwm_ref_gages_assessment.csv'
 
-  lcmap-cloud:
+  lcmap-s3:
     driver: intake_xarray.xzarr.ZarrSource
     description: 'LCMAP, all 36 years'
     args:

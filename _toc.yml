@@ -7,7 +7,6 @@ parts:
     - file: environment_set_up/README
       sections:
       - file: environment_set_up/QuickStart-General
-      - file: environment_set_up/QuickStart-Cloud-pangeoCHS
       - file: environment_set_up/QuickStart-Cloud-Nebari
       - file: environment_set_up/OpenOnDemand
       - file: environment_set_up/JupyterForward
@@ -16,7 +15,6 @@ parts:
     - file: environment_set_up/clusters
       sections:
       - file: environment_set_up/Start_Dask_Cluster_Nebari
-      - file: environment_set_up/Start_Dask_Cluster_PangeoCHS
       - file: environment_set_up/Start_Dask_Cluster_Denali
       - file: environment_set_up/Start_Dask_Cluster_Tallgrass
       - file: environment_set_up/Start_Dask_Cluster_Desktop
@@ -37,10 +35,33 @@ parts:
     - file: dataset_catalog/README
       sections:
         - file: dataset_catalog/subcatalogs/README
+        - file: dataset_catalog/STAC
+
     - file: dataset_access/CONUS404_ACCESS
       sections:
         - file: dataset_access/CONUS404_CHANGELOG
         - file: dataset_access/conus404_explore
+
+  - caption: Zarr Creation
+    chapters:
+    - file: dataset_processing/tutorials/chunking/README
+    - file: dataset_processing/tutorials/chunking/101/index
+      sections:
+      - file: dataset_processing/tutorials/chunking/101/WhyChunk
+      - file: dataset_processing/tutorials/chunking/101/ExamineDataChunking
+      - file: dataset_processing/tutorials/chunking/101/BasicsShapeSize
+      - file: dataset_processing/tutorials/chunking/101/WriteChunkedFiles
+      - file: dataset_processing/tutorials/chunking/101/Rechunking
+    - file: dataset_processing/tutorials/chunking/201/index
+      sections:
+      - file: dataset_processing/tutorials/chunking/201/RechunkingwithDask
+      - file: dataset_processing/tutorials/chunking/201/CreateVirtualZarr
+      - file: dataset_processing/tutorials/chunking/201/IncludeCRSinZarr
+      - file: dataset_processing/tutorials/chunking/201/OptimalChunkSelection
+    - file: dataset_processing/tutorials/chunking/back/index
+      sections:
+      - file: dataset_processing/tutorials/chunking/back/Glossary
+      - file: dataset_processing/tutorials/chunking/back/AdditionalResources
 
   - caption: Dataset Processing
     chapters:
@@ -54,10 +75,6 @@ parts:
       - file: dataset_processing/tutorials/spatial_aggregation/conus404_spatial_aggregation_comparison
     - file: dataset_processing/tutorials/conus404_point_selection
     - file: dataset_processing/tutorials/conus404_regrid
-    - file: dataset_processing/chunk
-      sections: 
-      - file: dataset_processing/tutorials/rechunking/ReChunkingData
-      - file: dataset_processing/tutorials/rechunking/ReChunkingData_Cloud
 
   - caption: Model Evaluation
     chapters:

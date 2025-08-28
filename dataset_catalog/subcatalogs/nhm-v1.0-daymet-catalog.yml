@@ -1,46 +1,231 @@
 sources:
 
+  nhm-v1.0-daymet-byHRU-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S) variables using byHRU calibrated parameters with Daymet version 3 forcings. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.0/dm_byHRU/nhm_v1.0_dm_byHRU_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.0-daymet-byHRU-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.0/dm_byHRU/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
+  nhm-v1.0-daymet-byHW-musk-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.0/dm_byHRU_musk/nhm_v1.0_dm_byHRU_musk_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.0-daymet-byHW-musk-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.0/dm_byHRU_musk/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
+  nhm-v1.0-daymet-byHW-musk-obs-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.0/dm_byHRU_musk_obs/nhm_v1.0_dm_byHRU_musk_obs_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.0-daymet-byHW-musk-obs-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.0/dm_byHRU_musk_obs/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
+  nhm-v1.0-daymet-byHW-noroute-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.0/dm_byHRU_noroute/nhm_v1.0_dm_byHRU_noroute_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.0-daymet-byHW-noroute-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.0/dm_byHRU_noroute/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
+  nhm-v1.0-daymet-byHW-noroute_obs-osn:
+    driver: intake_xarray.xzarr.ZarrSource
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 'reference://'
+      consolidated: false
+      storage_options:
+        fo: 'https://usgs.osn.mghpcc.org/hytest/nhm/nhm_v1.0/dm_byHRU_noroute_obs/nhm_v1.0_dm_byHRU_noroute_obs_combined.json'
+        remote_protocol: 's3'
+        remote_options: 
+          anon: true
+          client_kwargs:
+            endpoint_url: https://usgs.osn.mghpcc.org/
+
+  nhm-v1.0-daymet-byHW-noroute_obs-poi-summary-osn:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/nhm/nhm_v1.0/dm_byHRU_noroute_obs/NHM-PRMS_data_release.nc'
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.0-daymet-byHRU-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU/nhm_v1.0_dm_byHRU_combined.json'
 
+  nhm-v1.0-daymet-byHRU-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHRU calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.0-daymet-byHW-musk-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_musk/nhm_v1.0_dm_byHRU_musk_combined.json'
 
+  nhm-v1.0-daymet-byHW-musk-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_musk/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.0-daymet-byHW-musk-obs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_musk_obs/nhm_v1.0_dm_byHRU_musk_obs_combined.json'
 
+  nhm-v1.0-daymet-byHW-musk-obs-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_musk_obs/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.0-daymet-byHW-noroute-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_noroute/nhm_v1.0_dm_byHRU_noroute_combined.json'
 
+  nhm-v1.0-daymet-byHW-noroute-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_noroute/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
+
   nhm-v1.0-daymet-byHW-noroute_obs-onprem-hw:
     driver: intake_xarray.xzarr.ZarrSource
-    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-no-routing-using-observed-streamflow calibrated parameters with Daymet version 3 forcings (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
       urlpath: 'reference://'
       consolidated: false
       storage_options:
         fo: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_noroute_obs/nhm_v1.0_dm_byHRU_noroute_obs_combined.json'
+
+  nhm-v1.0-daymet-byHW-noroute_obs-poi-summary-onprem-hw:
+    driver: netcdf
+    description: "National Hydrologic Model version 1.0 model output variables using byHW-with-muskingum-mann-routing calibrated parameters with Daymet version 3 forcings - simulated streamflow and statistics at streamgages (see ScienceBase data release for more details: https://doi.org/10.5066/P9PGZE0S). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/nhm/nhm_v1.0/dm_byHRU_noroute_obs/NHM-PRMS_data_release.nc'
+      chunks: {}
+      xarray_kwargs:
+        engine: h5netcdf
