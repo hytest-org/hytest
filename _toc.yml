@@ -32,7 +32,7 @@ parts:
 
   - caption: Dataset Access
     chapters:
-    - file: dataset_catalog/README
+    - file: dataset_catalog/intake
       sections:
         - file: dataset_catalog/subcatalogs/README
         - file: dataset_catalog/STAC
