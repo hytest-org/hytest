@@ -34,6 +34,7 @@ parts:
     chapters:
     - file: dataset_catalog/README
       sections:
+        - file: dataset_catalog/storage_locations
         - file: dataset_catalog/STAC
         - file: dataset_catalog/intake
         - file: dataset_catalog/subcatalogs/README
