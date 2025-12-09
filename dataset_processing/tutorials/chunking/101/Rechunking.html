@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Rechunking &#8212; HyTEST Project</title>
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -210,9 +210,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_catalog/README.html">Data Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/storage_locations.html">Data Storage Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/STAC.html">Water Mission Area STAC Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/intake.html">HyTEST Data Catalog (Intake)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -530,28 +532,76 @@ The full dataset is part of the <a class="reference external" href="https://aws.
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
 html[theme="dark"],
 html[data-theme="dark"],
 body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -607,6 +657,7 @@ body.vscode-dark {
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -615,7 +666,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -747,7 +798,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -758,6 +811,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -807,8 +861,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -819,6 +880,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -880,6 +947,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 35TB
 Dimensions:         (time: 227904, feature_id: 2729077)
 Coordinates:
@@ -909,8 +984,8 @@ Attributes: (12/17)
     model_total_valid_times:    2208
     proj4:                      +proj=lcc +units=m +a=6370000.0 +b=6370000.0 ...
     station_dimension:          feature_id
-    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-92ba4f34-72c1-47fd-88e2-e468b2d52e1c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-92ba4f34-72c1-47fd-88e2-e468b2d52e1c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 227904</li><li><span class='xr-has-index'>feature_id</span>: 2729077</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-f35a0b71-22ec-4f6c-a6cf-9ec6feb4de03' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f35a0b71-22ec-4f6c-a6cf-9ec6feb4de03' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 ... 1180001803 1180001804</div><input id='attrs-c3d7742b-cdd6-448f-b385-20f2b46ca35c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c3d7742b-cdd6-448f-b385-20f2b46ca35c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-80917b50-6e3a-4981-875f-bf0cc3fa18af' class='xr-var-data-in' type='checkbox'><label for='data-80917b50-6e3a-4981-875f-bf0cc3fa18af' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([       101,        179,        181, ..., 1180001802, 1180001803,
-       1180001804], shape=(2729077,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(2729077,), meta=np.ndarray&gt;</div><input id='attrs-8cb35948-a3ab-4090-b277-4e30d87dad0a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8cb35948-a3ab-4090-b277-4e30d87dad0a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cde29bdf-1bc7-4152-9046-ade9db749e4a' class='xr-var-data-in' type='checkbox'><label for='data-cde29bdf-1bc7-4152-9046-ade9db749e4a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-c396e0ec-63f2-4415-b801-f9e91a15a648' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c396e0ec-63f2-4415-b801-f9e91a15a648' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 227904</li><li><span class='xr-has-index'>feature_id</span>: 2729077</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-ffef4b42-87dd-4232-88ae-e1d3ca236257' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ffef4b42-87dd-4232-88ae-e1d3ca236257' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 ... 1180001803 1180001804</div><input id='attrs-cee6ac57-c950-4a21-a4a4-b39a4b578822' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cee6ac57-c950-4a21-a4a4-b39a4b578822' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b0d28883-6602-4ca4-a26f-8b0e051c02d1' class='xr-var-data-in' type='checkbox'><label for='data-b0d28883-6602-4ca4-a26f-8b0e051c02d1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([       101,        179,        181, ..., 1180001802, 1180001803,
+       1180001804], shape=(2729077,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(2729077,), meta=np.ndarray&gt;</div><input id='attrs-6ab9036d-2d4b-4748-9c47-673038106ccd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6ab9036d-2d4b-4748-9c47-673038106ccd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3843e06d-165c-4dd1-ae4d-ca5ed97c53c2' class='xr-var-data-in' type='checkbox'><label for='data-3843e06d-165c-4dd1-ae4d-ca5ed97c53c2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -965,7 +1040,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(2729077,), meta=np.ndarray&gt;</div><input id='attrs-c7ac366b-536a-4560-a638-4c85716461ca' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c7ac366b-536a-4560-a638-4c85716461ca' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5ac86a7b-79fb-47c6-942a-fa4761feae74' class='xr-var-data-in' type='checkbox'><label for='data-5ac86a7b-79fb-47c6-942a-fa4761feae74' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(2729077,), meta=np.ndarray&gt;</div><input id='attrs-98775e62-084a-411e-a8a4-3c0662f3b9ec' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-98775e62-084a-411e-a8a4-3c0662f3b9ec' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-38f59b6f-98d6-4b2c-9f2c-b4248caa05ac' class='xr-var-data-in' type='checkbox'><label for='data-38f59b6f-98d6-4b2c-9f2c-b4248caa05ac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1020,10 +1095,10 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1993-01-01 ... 2018-12-31T23:00:00</div><input id='attrs-8503e3e7-0daf-4af8-9e06-7484b36fe966' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8503e3e7-0daf-4af8-9e06-7484b36fe966' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-418092cd-28f4-459a-864e-da8a9cf00bbe' class='xr-var-data-in' type='checkbox'><label for='data-418092cd-28f4-459a-864e-da8a9cf00bbe' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1993-01-01T00:00:00.000000000&#x27;, &#x27;1993-01-01T01:00:00.000000000&#x27;,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1993-01-01 ... 2018-12-31T23:00:00</div><input id='attrs-ce14231f-8c8b-41e5-9c11-b2e9207c89ce' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ce14231f-8c8b-41e5-9c11-b2e9207c89ce' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1a3574d3-eca1-45f5-b968-557eac85dfc9' class='xr-var-data-in' type='checkbox'><label for='data-1a3574d3-eca1-45f5-b968-557eac85dfc9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1993-01-01T00:00:00.000000000&#x27;, &#x27;1993-01-01T01:00:00.000000000&#x27;,
        &#x27;1993-01-01T02:00:00.000000000&#x27;, ..., &#x27;2018-12-31T21:00:00.000000000&#x27;,
        &#x27;2018-12-31T22:00:00.000000000&#x27;, &#x27;2018-12-31T23:00:00.000000000&#x27;],
-      shape=(227904,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ef99cc6e-036d-4241-9889-7cd925725a71' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ef99cc6e-036d-4241-9889-7cd925725a71' class='xr-section-summary' >Data variables: <span>(8)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>elevation</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-831af02f-3a82-477f-94f9-824cfa0844aa' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-831af02f-3a82-477f-94f9-824cfa0844aa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f77d66e0-be97-4267-a3d8-d7dd78c2d6fa' class='xr-var-data-in' type='checkbox'><label for='data-f77d66e0-be97-4267-a3d8-d7dd78c2d6fa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature Elevation</dd><dt><span>standard_name :</span></dt><dd>Elevation</dd><dt><span>units :</span></dt><dd>meters</dd></dl></div><div class='xr-var-data'><table>
+      shape=(227904,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-9e2c4287-3b9a-40ef-975f-b54ed40d9b81' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9e2c4287-3b9a-40ef-975f-b54ed40d9b81' class='xr-section-summary' >Data variables: <span>(8)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>elevation</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-1d649cb6-2132-490a-bf96-6d1d628218fc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1d649cb6-2132-490a-bf96-6d1d628218fc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3df682be-7cb2-4654-b6e9-1f5d06dab238' class='xr-var-data-in' type='checkbox'><label for='data-3df682be-7cb2-4654-b6e9-1f5d06dab238' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature Elevation</dd><dt><span>standard_name :</span></dt><dd>Elevation</dd><dt><span>units :</span></dt><dd>meters</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1114,7 +1189,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>order</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-d8d4dcb8-9607-4ce6-8f0d-7d0e084b3713' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d8d4dcb8-9607-4ce6-8f0d-7d0e084b3713' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3aeaa27b-30be-4bb5-8a33-1438421190a5' class='xr-var-data-in' type='checkbox'><label for='data-3aeaa27b-30be-4bb5-8a33-1438421190a5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Streamflow Order</dd><dt><span>standard_name :</span></dt><dd>order</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>order</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-703efb1a-0767-4393-ac39-f9c31f9fc85d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-703efb1a-0767-4393-ac39-f9c31f9fc85d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-35ff639a-a8a2-4b2b-bc5a-3c5ced04d6e0' class='xr-var-data-in' type='checkbox'><label for='data-35ff639a-a8a2-4b2b-bc5a-3c5ced04d6e0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Streamflow Order</dd><dt><span>standard_name :</span></dt><dd>order</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1205,7 +1280,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qBtmVertRunoff</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-870ab546-9351-40d4-b15d-096a6f0b7297' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-870ab546-9351-40d4-b15d-096a6f0b7297' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6c316ed0-5383-49a2-adc7-acf7c4a493d8' class='xr-var-data-in' type='checkbox'><label for='data-6c316ed0-5383-49a2-adc7-acf7c4a493d8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Runoff from bottom of soil to bucket</dd><dt><span>units :</span></dt><dd>m3</dd><dt><span>valid_range :</span></dt><dd>[0, 499999968]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qBtmVertRunoff</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-a3c06fda-ceb4-4dae-badf-bca9da7152d3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a3c06fda-ceb4-4dae-badf-bca9da7152d3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-839bd626-8750-4d86-8c10-b3af31a93bd3' class='xr-var-data-in' type='checkbox'><label for='data-839bd626-8750-4d86-8c10-b3af31a93bd3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Runoff from bottom of soil to bucket</dd><dt><span>units :</span></dt><dd>m3</dd><dt><span>valid_range :</span></dt><dd>[0, 499999968]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1296,7 +1371,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qBucket</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-dfbb037e-3ebf-4050-95c7-5823ada7a944' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dfbb037e-3ebf-4050-95c7-5823ada7a944' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-86bf62ff-fb1c-43c2-bfd8-2c083d547592' class='xr-var-data-in' type='checkbox'><label for='data-86bf62ff-fb1c-43c2-bfd8-2c083d547592' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Flux from gw bucket</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, -2147483648]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qBucket</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-1ab5642b-f7b8-493b-8bc7-81bde8976cdc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1ab5642b-f7b8-493b-8bc7-81bde8976cdc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-16af9b6e-4bee-411a-816d-c04d3f8e8995' class='xr-var-data-in' type='checkbox'><label for='data-16af9b6e-4bee-411a-816d-c04d3f8e8995' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Flux from gw bucket</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, -2147483648]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1387,7 +1462,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qSfcLatRunoff</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-db9529cc-6712-409f-af1d-903022cef33f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-db9529cc-6712-409f-af1d-903022cef33f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9cba44d7-b612-41ab-9d85-027ecc48bbb4' class='xr-var-data-in' type='checkbox'><label for='data-9cba44d7-b612-41ab-9d85-027ecc48bbb4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Runoff from terrain routing</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, -2147483648]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qSfcLatRunoff</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-bfe655f5-1fbc-4580-9970-117c3d8337c0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bfe655f5-1fbc-4580-9970-117c3d8337c0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4b76d127-e06b-4597-8c0c-98669fe8aed6' class='xr-var-data-in' type='checkbox'><label for='data-4b76d127-e06b-4597-8c0c-98669fe8aed6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Runoff from terrain routing</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, -2147483648]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1478,7 +1553,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>q_lateral</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-32f2c892-ab7f-43a1-b05a-1c40fe596eae' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-32f2c892-ab7f-43a1-b05a-1c40fe596eae' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e5b5b57c-4b53-4a81-aa2d-0619e667be58' class='xr-var-data-in' type='checkbox'><label for='data-e5b5b57c-4b53-4a81-aa2d-0619e667be58' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Runoff into channel reach</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 5000000]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>q_lateral</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-0c925742-7c7a-482a-ab9c-6a2a21432eb0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0c925742-7c7a-482a-ab9c-6a2a21432eb0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-de1c0f35-a4da-484d-aa47-7e6a100df5bd' class='xr-var-data-in' type='checkbox'><label for='data-de1c0f35-a4da-484d-aa47-7e6a100df5bd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>Runoff into channel reach</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 5000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1569,7 +1644,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-b470d34d-5bb8-485a-a10a-60d67b365269' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b470d34d-5bb8-485a-a10a-60d67b365269' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-959317b2-2b39-4d8c-b658-8dfbc65307cb' class='xr-var-data-in' type='checkbox'><label for='data-959317b2-2b39-4d8c-b658-8dfbc65307cb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-75857f0c-a247-4273-a942-0dc6f65020bd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-75857f0c-a247-4273-a942-0dc6f65020bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3fe0f0d7-b77e-4395-a360-98fbdc2236a5' class='xr-var-data-in' type='checkbox'><label for='data-3fe0f0d7-b77e-4395-a360-98fbdc2236a5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1660,7 +1735,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-4e65f39d-a4bc-4d4b-b758-6ebbe46e4a67' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4e65f39d-a4bc-4d4b-b758-6ebbe46e4a67' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ad073b39-c0d2-4677-877c-b15ad7b2a0a4' class='xr-var-data-in' type='checkbox'><label for='data-ad073b39-c0d2-4677-877c-b15ad7b2a0a4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 30000), meta=np.ndarray&gt;</div><input id='attrs-7d369817-3c99-492d-bbc8-921fd291942d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7d369817-3c99-492d-bbc8-921fd291942d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b21eb116-7a92-4d53-9e88-3ca51782b32a' class='xr-var-data-in' type='checkbox'><label for='data-b21eb116-7a92-4d53-9e88-3ca51782b32a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1751,12 +1826,12 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-52752bbc-dd7f-4f76-9362-3c093ce6d95d' class='xr-section-summary-in' type='checkbox'  ><label for='section-52752bbc-dd7f-4f76-9362-3c093ce6d95d' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-e543bc3d-108d-4597-a51f-28fb6a3f9dc5' class='xr-index-data-in' type='checkbox'/><label for='index-e543bc3d-108d-4597-a51f-28fb6a3f9dc5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([       101,        179,        181,        183,        185,        843,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-efaddce6-d9f8-45e4-b3f2-b7025ea39948' class='xr-section-summary-in' type='checkbox'  ><label for='section-efaddce6-d9f8-45e4-b3f2-b7025ea39948' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-aa3764cd-b0eb-45d3-bc91-8a3f7ce427a1' class='xr-index-data-in' type='checkbox'/><label for='index-aa3764cd-b0eb-45d3-bc91-8a3f7ce427a1' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([       101,        179,        181,        183,        185,        843,
               845,        847,        849,        851,
        ...
        1180001795, 1180001796, 1180001797, 1180001798, 1180001799, 1180001800,
        1180001801, 1180001802, 1180001803, 1180001804],
-      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=2729077))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-fe24f686-74a7-4a78-b25b-edb58626a34a' class='xr-index-data-in' type='checkbox'/><label for='index-fe24f686-74a7-4a78-b25b-edb58626a34a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;1993-01-01 00:00:00&#x27;, &#x27;1993-01-01 01:00:00&#x27;,
+      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=2729077))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-bcf46bb2-b953-4b0a-949d-88874bf1a860' class='xr-index-data-in' type='checkbox'/><label for='index-bcf46bb2-b953-4b0a-949d-88874bf1a860' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;1993-01-01 00:00:00&#x27;, &#x27;1993-01-01 01:00:00&#x27;,
                &#x27;1993-01-01 02:00:00&#x27;, &#x27;1993-01-01 03:00:00&#x27;,
                &#x27;1993-01-01 04:00:00&#x27;, &#x27;1993-01-01 05:00:00&#x27;,
                &#x27;1993-01-01 06:00:00&#x27;, &#x27;1993-01-01 07:00:00&#x27;,
@@ -1767,7 +1842,7 @@ Attributes: (12/17)
                &#x27;2018-12-31 18:00:00&#x27;, &#x27;2018-12-31 19:00:00&#x27;,
                &#x27;2018-12-31 20:00:00&#x27;, &#x27;2018-12-31 21:00:00&#x27;,
                &#x27;2018-12-31 22:00:00&#x27;, &#x27;2018-12-31 23:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=227904, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6f765286-d6c6-4ce7-9493-2b6e6a050e0c' class='xr-section-summary-in' type='checkbox'  ><label for='section-6f765286-d6c6-4ce7-9493-2b6e6a050e0c' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=227904, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8e173f25-add4-4551-8f15-f4b7a71d7c4c' class='xr-section-summary-in' type='checkbox'  ><label for='section-8e173f25-add4-4551-8f15-f4b7a71d7c4c' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
 <section id="check-the-current-chunk-shape-and-size">
@@ -1817,28 +1892,76 @@ For the subset, let’s only look at water year 2018 (i.e., October 2017 to Sept
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
 html[theme="dark"],
 html[data-theme="dark"],
 body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -1894,6 +2017,7 @@ body.vscode-dark {
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -1902,7 +2026,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -2034,7 +2158,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -2045,6 +2171,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -2094,8 +2221,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -2106,6 +2240,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -2167,6 +2307,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2GB
 Dimensions:     (time: 8760, feature_id: 15000)
 Coordinates:
@@ -2190,8 +2338,8 @@ Attributes: (12/17)
     model_total_valid_times:    2208
     proj4:                      +proj=lcc +units=m +a=6370000.0 +b=6370000.0 ...
     station_dimension:          feature_id
-    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-607ee1e1-7c81-49d1-85dc-5ea8f44e9bff' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-607ee1e1-7c81-49d1-85dc-5ea8f44e9bff' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 8760</li><li><span class='xr-has-index'>feature_id</span>: 15000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-ff4bff50-f9f1-4685-baad-4cc447edf4a8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ff4bff50-f9f1-4685-baad-4cc447edf4a8' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 181 ... 303422 303424</div><input id='attrs-4f6e7238-978d-4333-a19a-10aac20dc143' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4f6e7238-978d-4333-a19a-10aac20dc143' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dfca547a-1b32-4082-b1bb-416b786d0df5' class='xr-var-data-in' type='checkbox'><label for='data-dfca547a-1b32-4082-b1bb-416b786d0df5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([   101,    179,    181, ..., 303420, 303422, 303424],
-      shape=(15000,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-7ca56e1c-5555-449f-a629-5eac4c9be774' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7ca56e1c-5555-449f-a629-5eac4c9be774' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1fa9e3b6-094b-4455-a3d1-424229f3ad55' class='xr-var-data-in' type='checkbox'><label for='data-1fa9e3b6-094b-4455-a3d1-424229f3ad55' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-0afb9077-446c-42ff-bafd-e17bec07804e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0afb9077-446c-42ff-bafd-e17bec07804e' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 8760</li><li><span class='xr-has-index'>feature_id</span>: 15000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-4e2643ad-a46e-4f71-a314-706e5adb435c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4e2643ad-a46e-4f71-a314-706e5adb435c' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 181 ... 303422 303424</div><input id='attrs-a311722c-e781-45bd-97f5-8ab949189ae1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a311722c-e781-45bd-97f5-8ab949189ae1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5037747b-2c00-41bf-bada-1a94a3aa3e50' class='xr-var-data-in' type='checkbox'><label for='data-5037747b-2c00-41bf-bada-1a94a3aa3e50' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([   101,    179,    181, ..., 303420, 303422, 303424],
+      shape=(15000,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-fa77b799-5852-46c7-817c-c69801cdabb6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fa77b799-5852-46c7-817c-c69801cdabb6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cc22c728-20f1-4958-abc5-8bd52ac80f4a' class='xr-var-data-in' type='checkbox'><label for='data-cc22c728-20f1-4958-abc5-8bd52ac80f4a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2246,7 +2394,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-2888f6fe-8baa-436c-8eb6-df121d115cdb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2888f6fe-8baa-436c-8eb6-df121d115cdb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-efd9ca1e-e3c6-4342-9e3b-f6eb88d17540' class='xr-var-data-in' type='checkbox'><label for='data-efd9ca1e-e3c6-4342-9e3b-f6eb88d17540' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-f66bafa6-9d7e-48c3-8e09-e445af993b52' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f66bafa6-9d7e-48c3-8e09-e445af993b52' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6e2619d8-d66f-4719-894e-f100a24a960c' class='xr-var-data-in' type='checkbox'><label for='data-6e2619d8-d66f-4719-894e-f100a24a960c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2301,10 +2449,10 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2017-10-01 ... 2018-09-30T23:00:00</div><input id='attrs-27ae849f-cead-41b7-8855-ca703884da78' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-27ae849f-cead-41b7-8855-ca703884da78' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e0f5f8c7-94a0-45da-b6b7-ac18f07958d2' class='xr-var-data-in' type='checkbox'><label for='data-e0f5f8c7-94a0-45da-b6b7-ac18f07958d2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2017-10-01T00:00:00.000000000&#x27;, &#x27;2017-10-01T01:00:00.000000000&#x27;,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2017-10-01 ... 2018-09-30T23:00:00</div><input id='attrs-cef5e73e-84cf-4668-8ad6-eac67b3ea936' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cef5e73e-84cf-4668-8ad6-eac67b3ea936' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-32f8b443-3634-4475-a3b6-00cfa17c5ef9' class='xr-var-data-in' type='checkbox'><label for='data-32f8b443-3634-4475-a3b6-00cfa17c5ef9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2017-10-01T00:00:00.000000000&#x27;, &#x27;2017-10-01T01:00:00.000000000&#x27;,
        &#x27;2017-10-01T02:00:00.000000000&#x27;, ..., &#x27;2018-09-30T21:00:00.000000000&#x27;,
        &#x27;2018-09-30T22:00:00.000000000&#x27;, &#x27;2018-09-30T23:00:00.000000000&#x27;],
-      shape=(8760,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b38fe410-0fa9-431b-8adc-6406241b09b5' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b38fe410-0fa9-431b-8adc-6406241b09b5' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(120, 15000), meta=np.ndarray&gt;</div><input id='attrs-73be0e9d-3db4-4d83-8703-1168c5448031' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-73be0e9d-3db4-4d83-8703-1168c5448031' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a0bcec36-1373-4f83-95f5-48a3e37ab506' class='xr-var-data-in' type='checkbox'><label for='data-a0bcec36-1373-4f83-95f5-48a3e37ab506' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+      shape=(8760,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-88c7b343-2ff2-4ce6-a86c-f597b649689e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-88c7b343-2ff2-4ce6-a86c-f597b649689e' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(120, 15000), meta=np.ndarray&gt;</div><input id='attrs-1ea2f358-50b5-4220-bfec-c98951d70e9f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1ea2f358-50b5-4220-bfec-c98951d70e9f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-17fd5eb2-4aec-475e-b040-18a73d8f1a9b' class='xr-var-data-in' type='checkbox'><label for='data-17fd5eb2-4aec-475e-b040-18a73d8f1a9b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2372,7 +2520,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(120, 15000), meta=np.ndarray&gt;</div><input id='attrs-b919a125-21f7-4b94-856d-ad56311782f2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b919a125-21f7-4b94-856d-ad56311782f2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e21e20e1-c67c-488d-b2ae-83619927a416' class='xr-var-data-in' type='checkbox'><label for='data-e21e20e1-c67c-488d-b2ae-83619927a416' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(120, 15000), meta=np.ndarray&gt;</div><input id='attrs-df9b65a6-724f-4e4a-a600-09c008afb57b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-df9b65a6-724f-4e4a-a600-09c008afb57b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a0e5e81c-d719-4d71-977c-633223021761' class='xr-var-data-in' type='checkbox'><label for='data-a0e5e81c-d719-4d71-977c-633223021761' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2440,12 +2588,12 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-b8130914-3ef7-47db-8103-fa3f49aa1d27' class='xr-section-summary-in' type='checkbox'  ><label for='section-b8130914-3ef7-47db-8103-fa3f49aa1d27' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-80a946c2-ea96-4851-943f-fd80554de213' class='xr-index-data-in' type='checkbox'/><label for='index-80a946c2-ea96-4851-943f-fd80554de213' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([   101,    179,    181,    183,    185,    843,    845,    847,    849,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-5c572bfd-d888-4399-983d-e95d52de6910' class='xr-section-summary-in' type='checkbox'  ><label for='section-5c572bfd-d888-4399-983d-e95d52de6910' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-d7d01c69-04db-432b-bfd9-3f2e91121732' class='xr-index-data-in' type='checkbox'/><label for='index-d7d01c69-04db-432b-bfd9-3f2e91121732' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([   101,    179,    181,    183,    185,    843,    845,    847,    849,
           851,
        ...
        303404, 303408, 303410, 303412, 303414, 303416, 303418, 303420, 303422,
        303424],
-      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=15000))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-048271d8-0cbc-426d-9c21-e2f1964cd052' class='xr-index-data-in' type='checkbox'/><label for='index-048271d8-0cbc-426d-9c21-e2f1964cd052' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2017-10-01 00:00:00&#x27;, &#x27;2017-10-01 01:00:00&#x27;,
+      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=15000))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-296f4bb6-360d-47eb-954c-13c4be6661af' class='xr-index-data-in' type='checkbox'/><label for='index-296f4bb6-360d-47eb-954c-13c4be6661af' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2017-10-01 00:00:00&#x27;, &#x27;2017-10-01 01:00:00&#x27;,
                &#x27;2017-10-01 02:00:00&#x27;, &#x27;2017-10-01 03:00:00&#x27;,
                &#x27;2017-10-01 04:00:00&#x27;, &#x27;2017-10-01 05:00:00&#x27;,
                &#x27;2017-10-01 06:00:00&#x27;, &#x27;2017-10-01 07:00:00&#x27;,
@@ -2456,7 +2604,7 @@ Attributes: (12/17)
                &#x27;2018-09-30 18:00:00&#x27;, &#x27;2018-09-30 19:00:00&#x27;,
                &#x27;2018-09-30 20:00:00&#x27;, &#x27;2018-09-30 21:00:00&#x27;,
                &#x27;2018-09-30 22:00:00&#x27;, &#x27;2018-09-30 23:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=8760, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c3dcbc33-61f7-4ec2-96c5-1a923e344454' class='xr-section-summary-in' type='checkbox'  ><label for='section-c3dcbc33-61f7-4ec2-96c5-1a923e344454' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=8760, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-69508b74-fe01-42c5-86bd-6becb0259c78' class='xr-section-summary-in' type='checkbox'  ><label for='section-69508b74-fe01-42c5-86bd-6becb0259c78' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Now, our subset of data is only about 1 GiB per data variable and has a chunk shape of <code class="docutils literal notranslate"><span class="pre">{'time':</span> <span class="pre">672,</span> <span class="pre">'feature_id':</span> <span class="pre">15000}</span></code> with size of 76.9 MiB.
 This is a good chunk size and between the optimal range of 10 to 200 MiB.
@@ -2665,28 +2813,76 @@ Be sure that these locations do not exist before calling Rechunker.</p>
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
 html[theme="dark"],
 html[data-theme="dark"],
 body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -2742,6 +2938,7 @@ body.vscode-dark {
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -2750,7 +2947,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -2882,7 +3079,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -2893,6 +3092,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -2942,8 +3142,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -2954,6 +3161,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -3015,6 +3228,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2GB
 Dimensions:     (time: 8760, feature_id: 15000)
 Coordinates:
@@ -3038,8 +3259,8 @@ Attributes: (12/17)
     model_total_valid_times:    2208
     proj4:                      +proj=lcc +units=m +a=6370000.0 +b=6370000.0 ...
     station_dimension:          feature_id
-    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-72438372-1eac-4e0e-9c72-28dd8d613977' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-72438372-1eac-4e0e-9c72-28dd8d613977' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 8760</li><li><span class='xr-has-index'>feature_id</span>: 15000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-719e28d8-cd1f-4159-9b34-639fb332a486' class='xr-section-summary-in' type='checkbox'  checked><label for='section-719e28d8-cd1f-4159-9b34-639fb332a486' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 181 ... 303422 303424</div><input id='attrs-5b043795-fd18-41f5-a893-da482cb70ab7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5b043795-fd18-41f5-a893-da482cb70ab7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d7e0e4a9-2a98-4200-b24e-47f30f8cc351' class='xr-var-data-in' type='checkbox'><label for='data-d7e0e4a9-2a98-4200-b24e-47f30f8cc351' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([   101,    179,    181, ..., 303420, 303422, 303424],
-      shape=(15000,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-736b3387-583a-4172-a20e-98c35a24165a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-736b3387-583a-4172-a20e-98c35a24165a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3c8a0797-8afd-485d-a27c-d428147b0ed9' class='xr-var-data-in' type='checkbox'><label for='data-3c8a0797-8afd-485d-a27c-d428147b0ed9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-7bbd427e-b969-4f52-a31a-854246cd1d33' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-7bbd427e-b969-4f52-a31a-854246cd1d33' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 8760</li><li><span class='xr-has-index'>feature_id</span>: 15000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-99479d2b-de8d-43df-9b40-9115e171aa6e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-99479d2b-de8d-43df-9b40-9115e171aa6e' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 181 ... 303422 303424</div><input id='attrs-8d786853-cd0e-45e0-8063-156482c14995' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8d786853-cd0e-45e0-8063-156482c14995' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3d80f7cc-f560-4959-ae92-9e65a073e78e' class='xr-var-data-in' type='checkbox'><label for='data-3d80f7cc-f560-4959-ae92-9e65a073e78e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([   101,    179,    181, ..., 303420, 303422, 303424],
+      shape=(15000,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-faf6955e-02fa-471e-97ca-9934c2bb03a5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-faf6955e-02fa-471e-97ca-9934c2bb03a5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-acd157e0-5d50-4985-b4db-b3d0ed2a4d80' class='xr-var-data-in' type='checkbox'><label for='data-acd157e0-5d50-4985-b4db-b3d0ed2a4d80' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3094,7 +3315,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-170ead70-9fc4-4c20-9c55-11b7d4a88c74' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-170ead70-9fc4-4c20-9c55-11b7d4a88c74' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4dbfe54d-1d2c-4bda-881c-e14ec1c02323' class='xr-var-data-in' type='checkbox'><label for='data-4dbfe54d-1d2c-4bda-881c-e14ec1c02323' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-e25a5899-d3c1-49f7-88e0-bf9198ef33f0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e25a5899-d3c1-49f7-88e0-bf9198ef33f0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0ba2f48e-f025-49e4-a755-a7cd3d08d865' class='xr-var-data-in' type='checkbox'><label for='data-0ba2f48e-f025-49e4-a755-a7cd3d08d865' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3149,10 +3370,10 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2017-10-01 ... 2018-09-30T23:00:00</div><input id='attrs-60c5b770-c4b3-45a4-b1a5-724ea9e0f84b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-60c5b770-c4b3-45a4-b1a5-724ea9e0f84b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-50a5c391-248a-4eb2-ac37-067e1dad691d' class='xr-var-data-in' type='checkbox'><label for='data-50a5c391-248a-4eb2-ac37-067e1dad691d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2017-10-01T00:00:00.000000000&#x27;, &#x27;2017-10-01T01:00:00.000000000&#x27;,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2017-10-01 ... 2018-09-30T23:00:00</div><input id='attrs-55a0bcd6-242f-4394-a22b-fa625a9f68b6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-55a0bcd6-242f-4394-a22b-fa625a9f68b6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a8d5b6b6-db76-4414-9500-824c1bb207d1' class='xr-var-data-in' type='checkbox'><label for='data-a8d5b6b6-db76-4414-9500-824c1bb207d1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2017-10-01T00:00:00.000000000&#x27;, &#x27;2017-10-01T01:00:00.000000000&#x27;,
        &#x27;2017-10-01T02:00:00.000000000&#x27;, ..., &#x27;2018-09-30T21:00:00.000000000&#x27;,
        &#x27;2018-09-30T22:00:00.000000000&#x27;, &#x27;2018-09-30T23:00:00.000000000&#x27;],
-      shape=(8760,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d4d7789a-aa60-4ccb-ad99-565b979ea9bd' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d4d7789a-aa60-4ccb-ad99-565b979ea9bd' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 15000), meta=np.ndarray&gt;</div><input id='attrs-2953abc5-47d1-45ad-9f5a-d55261f5175f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2953abc5-47d1-45ad-9f5a-d55261f5175f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bd453122-984b-433d-aa6c-9484ee4d2b37' class='xr-var-data-in' type='checkbox'><label for='data-bd453122-984b-433d-aa6c-9484ee4d2b37' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+      shape=(8760,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-9a51606b-8cb0-40d7-8ca5-cae674c2f0d4' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9a51606b-8cb0-40d7-8ca5-cae674c2f0d4' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 15000), meta=np.ndarray&gt;</div><input id='attrs-9bb9d812-54a1-4386-a956-33a80d67bf0f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9bb9d812-54a1-4386-a956-33a80d67bf0f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-24fabea7-ee73-451e-bafd-e46958308976' class='xr-var-data-in' type='checkbox'><label for='data-24fabea7-ee73-451e-bafd-e46958308976' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3220,7 +3441,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 15000), meta=np.ndarray&gt;</div><input id='attrs-561236a5-a49b-4260-b0e4-d4e1d5383e31' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-561236a5-a49b-4260-b0e4-d4e1d5383e31' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-14cd3320-2b29-4576-b7cc-5791bd8eef98' class='xr-var-data-in' type='checkbox'><label for='data-14cd3320-2b29-4576-b7cc-5791bd8eef98' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(672, 15000), meta=np.ndarray&gt;</div><input id='attrs-665197f0-34c2-4bf7-afc0-ca876ec2de7c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-665197f0-34c2-4bf7-afc0-ca876ec2de7c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-66bf607d-db70-4c00-a1c3-ee69493a4617' class='xr-var-data-in' type='checkbox'><label for='data-66bf607d-db70-4c00-a1c3-ee69493a4617' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3288,12 +3509,12 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-e502db04-842c-4a33-92e6-bc4f5850aeaa' class='xr-section-summary-in' type='checkbox'  ><label for='section-e502db04-842c-4a33-92e6-bc4f5850aeaa' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-d5ce88a7-9059-4477-bc16-7e46bc4837bf' class='xr-index-data-in' type='checkbox'/><label for='index-d5ce88a7-9059-4477-bc16-7e46bc4837bf' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([   101,    179,    181,    183,    185,    843,    845,    847,    849,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-24080ccc-78af-4d67-b42f-2e6c5c987347' class='xr-section-summary-in' type='checkbox'  ><label for='section-24080ccc-78af-4d67-b42f-2e6c5c987347' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-34ceb9e9-64e3-4dfd-a407-d0f03deae992' class='xr-index-data-in' type='checkbox'/><label for='index-34ceb9e9-64e3-4dfd-a407-d0f03deae992' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([   101,    179,    181,    183,    185,    843,    845,    847,    849,
           851,
        ...
        303404, 303408, 303410, 303412, 303414, 303416, 303418, 303420, 303422,
        303424],
-      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=15000))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-90dc74c0-f615-4df9-8f65-8b684ed3fbe5' class='xr-index-data-in' type='checkbox'/><label for='index-90dc74c0-f615-4df9-8f65-8b684ed3fbe5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2017-10-01 00:00:00&#x27;, &#x27;2017-10-01 01:00:00&#x27;,
+      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=15000))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-f30a4e6e-6be5-46be-953c-9f6e1a698d37' class='xr-index-data-in' type='checkbox'/><label for='index-f30a4e6e-6be5-46be-953c-9f6e1a698d37' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2017-10-01 00:00:00&#x27;, &#x27;2017-10-01 01:00:00&#x27;,
                &#x27;2017-10-01 02:00:00&#x27;, &#x27;2017-10-01 03:00:00&#x27;,
                &#x27;2017-10-01 04:00:00&#x27;, &#x27;2017-10-01 05:00:00&#x27;,
                &#x27;2017-10-01 06:00:00&#x27;, &#x27;2017-10-01 07:00:00&#x27;,
@@ -3304,7 +3525,7 @@ Attributes: (12/17)
                &#x27;2018-09-30 18:00:00&#x27;, &#x27;2018-09-30 19:00:00&#x27;,
                &#x27;2018-09-30 20:00:00&#x27;, &#x27;2018-09-30 21:00:00&#x27;,
                &#x27;2018-09-30 22:00:00&#x27;, &#x27;2018-09-30 23:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=8760, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f9744c80-e426-4dac-9e8f-ae683558fa54' class='xr-section-summary-in' type='checkbox'  ><label for='section-f9744c80-e426-4dac-9e8f-ae683558fa54' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=8760, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-2b1fb75d-ea20-4fbc-b90c-e81d97222429' class='xr-section-summary-in' type='checkbox'  ><label for='section-2b1fb75d-ea20-4fbc-b90c-e81d97222429' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div>
         </details>
         <details>
 <summary><b>Intermediate</b></summary>
@@ -3366,28 +3587,76 @@ This is not a required step, but it will really spead up future workflows when t
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
 html[theme="dark"],
 html[data-theme="dark"],
 body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -3443,6 +3712,7 @@ body.vscode-dark {
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -3451,7 +3721,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -3583,7 +3853,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -3594,6 +3866,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -3643,8 +3916,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -3655,6 +3935,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -3716,6 +4002,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2GB
 Dimensions:     (feature_id: 15000, time: 8760)
 Coordinates:
@@ -3739,8 +4033,8 @@ Attributes: (12/17)
     model_total_valid_times:    2208
     proj4:                      +proj=lcc +units=m +a=6370000.0 +b=6370000.0 ...
     station_dimension:          feature_id
-    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-80762f05-4657-4b45-9d22-05e3b697f504' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-80762f05-4657-4b45-9d22-05e3b697f504' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>feature_id</span>: 15000</li><li><span class='xr-has-index'>time</span>: 8760</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-f5c8b045-7683-4e44-85e9-ae03d8c77259' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f5c8b045-7683-4e44-85e9-ae03d8c77259' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 181 ... 303422 303424</div><input id='attrs-901814ee-772d-4f0f-9e19-3dcfcd2084b7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-901814ee-772d-4f0f-9e19-3dcfcd2084b7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a067d4c2-32c5-4f19-9788-c6d8c4befb81' class='xr-var-data-in' type='checkbox'><label for='data-a067d4c2-32c5-4f19-9788-c6d8c4befb81' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([   101,    179,    181, ..., 303420, 303422, 303424],
-      shape=(15000,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-b25272b3-7f0f-44e8-9f3d-c715c782fbf4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b25272b3-7f0f-44e8-9f3d-c715c782fbf4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a2dcda57-43bc-4823-b105-6c5e36a71059' class='xr-var-data-in' type='checkbox'><label for='data-a2dcda57-43bc-4823-b105-6c5e36a71059' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    stream_order_output:        1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-8e35d9ac-d9d6-4812-8048-c65c887eadd1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8e35d9ac-d9d6-4812-8048-c65c887eadd1' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>feature_id</span>: 15000</li><li><span class='xr-has-index'>time</span>: 8760</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-19a6608d-a0fc-4077-bb52-1767abdabc3d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-19a6608d-a0fc-4077-bb52-1767abdabc3d' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>feature_id</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>101 179 181 ... 303422 303424</div><input id='attrs-1ea15339-4842-4b3c-900a-7a71f1c0934b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1ea15339-4842-4b3c-900a-7a71f1c0934b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-96eea86f-04cc-4ef9-942e-c9d1a857e4d1' class='xr-var-data-in' type='checkbox'><label for='data-96eea86f-04cc-4ef9-942e-c9d1a857e4d1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cf_role :</span></dt><dd>timeseries_id</dd><dt><span>comment :</span></dt><dd>Gage Points Specified by User in Routelink file</dd><dt><span>long_name :</span></dt><dd>Reach ID</dd></dl></div><div class='xr-var-data'><pre>array([   101,    179,    181, ..., 303420, 303422, 303424],
+      shape=(15000,), dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-d3110b47-c9c7-4818-8c38-ac4bcd1b891c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d3110b47-c9c7-4818-8c38-ac4bcd1b891c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8d008f76-dd48-4ff6-8017-830254ccb36c' class='xr-var-data-in' type='checkbox'><label for='data-8d008f76-dd48-4ff6-8017-830254ccb36c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3795,7 +4089,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-d4e2537f-c386-4ebe-bdab-b82815e8f147' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d4e2537f-c386-4ebe-bdab-b82815e8f147' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3fc9851a-8d43-4fa2-9acd-6cc4968709e0' class='xr-var-data-in' type='checkbox'><label for='data-3fc9851a-8d43-4fa2-9acd-6cc4968709e0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(feature_id)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(15000,), meta=np.ndarray&gt;</div><input id='attrs-92db6911-9424-47b4-9910-4a1d8757e3e5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-92db6911-9424-47b4-9910-4a1d8757e3e5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4b28b0bd-02df-426d-ae77-64979af8953a' class='xr-var-data-in' type='checkbox'><label for='data-4b28b0bd-02df-426d-ae77-64979af8953a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Feature longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3850,10 +4144,10 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2017-10-01 ... 2018-09-30T23:00:00</div><input id='attrs-0bad0f68-e1ca-4d9d-992f-4f03af36268f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0bad0f68-e1ca-4d9d-992f-4f03af36268f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8451eb61-474f-477b-84b3-6338cfadfc2c' class='xr-var-data-in' type='checkbox'><label for='data-8451eb61-474f-477b-84b3-6338cfadfc2c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2017-10-01T00:00:00.000000000&#x27;, &#x27;2017-10-01T01:00:00.000000000&#x27;,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2017-10-01 ... 2018-09-30T23:00:00</div><input id='attrs-325cd730-d669-4cce-97b9-566104a62f15' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-325cd730-d669-4cce-97b9-566104a62f15' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-79352fc0-819b-464a-b3b9-e16c60e11ca1' class='xr-var-data-in' type='checkbox'><label for='data-79352fc0-819b-464a-b3b9-e16c60e11ca1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>valid output time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2017-10-01T00:00:00.000000000&#x27;, &#x27;2017-10-01T01:00:00.000000000&#x27;,
        &#x27;2017-10-01T02:00:00.000000000&#x27;, ..., &#x27;2018-09-30T21:00:00.000000000&#x27;,
        &#x27;2018-09-30T22:00:00.000000000&#x27;, &#x27;2018-09-30T23:00:00.000000000&#x27;],
-      shape=(8760,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e6f46060-68ea-428d-b3b2-3d90ed0a503a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e6f46060-68ea-428d-b3b2-3d90ed0a503a' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(8760, 1000), meta=np.ndarray&gt;</div><input id='attrs-156f9de5-680c-4fdc-9f9c-18b7c1da8ce6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-156f9de5-680c-4fdc-9f9c-18b7c1da8ce6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ede67ccd-d2bf-4e29-b381-42b8c72a515e' class='xr-var-data-in' type='checkbox'><label for='data-ede67ccd-d2bf-4e29-b381-42b8c72a515e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+      shape=(8760,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0c2a3e59-c3fb-4a81-8ceb-bd07ba710e1d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0c2a3e59-c3fb-4a81-8ceb-bd07ba710e1d' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(8760, 1000), meta=np.ndarray&gt;</div><input id='attrs-6751ce69-2653-48bf-978e-0f1052619901' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6751ce69-2653-48bf-978e-0f1052619901' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7dccaa04-3a86-4ef5-b66d-91d178b19e5c' class='xr-var-data-in' type='checkbox'><label for='data-7dccaa04-3a86-4ef5-b66d-91d178b19e5c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Flow</dd><dt><span>units :</span></dt><dd>m3 s-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3922,7 +4216,7 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(2920, 5000), meta=np.ndarray&gt;</div><input id='attrs-5abb1982-2fcc-4edc-aecc-b241eeab6f41' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5abb1982-2fcc-4edc-aecc-b241eeab6f41' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-01bad4b5-e7b9-4331-8e54-5304b649c96a' class='xr-var-data-in' type='checkbox'><label for='data-01bad4b5-e7b9-4331-8e54-5304b649c96a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>(time, feature_id)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(2920, 5000), meta=np.ndarray&gt;</div><input id='attrs-b0dee03c-401f-4a5b-afbb-3b2d44a46a31' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b0dee03c-401f-4a5b-afbb-3b2d44a46a31' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3762d9fb-5178-4972-95e3-fbcfb8a6bb08' class='xr-var-data-in' type='checkbox'><label for='data-3762d9fb-5178-4972-95e3-fbcfb8a6bb08' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping :</span></dt><dd>crs</dd><dt><span>long_name :</span></dt><dd>River Velocity</dd><dt><span>units :</span></dt><dd>ms-1</dd><dt><span>valid_range :</span></dt><dd>[0, 50000000]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3981,12 +4275,12 @@ Attributes: (12/17)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-ebdd0e10-896e-48fe-b33a-d05adb549e03' class='xr-section-summary-in' type='checkbox'  ><label for='section-ebdd0e10-896e-48fe-b33a-d05adb549e03' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-667b3725-a77f-4ea9-bbf4-bfa018d9bb9a' class='xr-index-data-in' type='checkbox'/><label for='index-667b3725-a77f-4ea9-bbf4-bfa018d9bb9a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([   101,    179,    181,    183,    185,    843,    845,    847,    849,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-7db3e679-4fbf-48fa-9874-a99b8aa0a34d' class='xr-section-summary-in' type='checkbox'  ><label for='section-7db3e679-4fbf-48fa-9874-a99b8aa0a34d' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>feature_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-3e4329ed-fc4d-40ca-990f-5ba0b7d65f09' class='xr-index-data-in' type='checkbox'/><label for='index-3e4329ed-fc4d-40ca-990f-5ba0b7d65f09' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([   101,    179,    181,    183,    185,    843,    845,    847,    849,
           851,
        ...
        303404, 303408, 303410, 303412, 303414, 303416, 303418, 303420, 303422,
        303424],
-      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=15000))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-7a74c733-786c-4d66-8083-2f67dc26978e' class='xr-index-data-in' type='checkbox'/><label for='index-7a74c733-786c-4d66-8083-2f67dc26978e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2017-10-01 00:00:00&#x27;, &#x27;2017-10-01 01:00:00&#x27;,
+      dtype=&#x27;int32&#x27;, name=&#x27;feature_id&#x27;, length=15000))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-5bdcbb22-fda6-452f-bd04-05130d9c2018' class='xr-index-data-in' type='checkbox'/><label for='index-5bdcbb22-fda6-452f-bd04-05130d9c2018' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2017-10-01 00:00:00&#x27;, &#x27;2017-10-01 01:00:00&#x27;,
                &#x27;2017-10-01 02:00:00&#x27;, &#x27;2017-10-01 03:00:00&#x27;,
                &#x27;2017-10-01 04:00:00&#x27;, &#x27;2017-10-01 05:00:00&#x27;,
                &#x27;2017-10-01 06:00:00&#x27;, &#x27;2017-10-01 07:00:00&#x27;,
@@ -3997,7 +4291,7 @@ Attributes: (12/17)
                &#x27;2018-09-30 18:00:00&#x27;, &#x27;2018-09-30 19:00:00&#x27;,
                &#x27;2018-09-30 20:00:00&#x27;, &#x27;2018-09-30 21:00:00&#x27;,
                &#x27;2018-09-30 22:00:00&#x27;, &#x27;2018-09-30 23:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=8760, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ea197369-6575-4614-9e75-93fa06702223' class='xr-section-summary-in' type='checkbox'  ><label for='section-ea197369-6575-4614-9e75-93fa06702223' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=8760, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-55207b6a-da5d-4f42-abc9-16c23d3173b4' class='xr-section-summary-in' type='checkbox'  ><label for='section-55207b6a-da5d-4f42-abc9-16c23d3173b4' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>cdm_datatype :</span></dt><dd>Station</dd><dt><span>code_version :</span></dt><dd>v5.1.0-alpha11</dd><dt><span>dev :</span></dt><dd>dev_ prefix indicates development/internal meta data</dd><dt><span>dev_NOAH_TIMESTEP :</span></dt><dd>3600</dd><dt><span>dev_OVRTSWCRT :</span></dt><dd>1</dd><dt><span>dev_channelBucket_only :</span></dt><dd>0</dd><dt><span>dev_channel_only :</span></dt><dd>0</dd><dt><span>featureType :</span></dt><dd>timeSeries</dd><dt><span>model_configuration :</span></dt><dd>retrospective</dd><dt><span>model_initialization_time :</span></dt><dd>2018-10-01_00:00:00</dd><dt><span>model_output_type :</span></dt><dd>channel_rt</dd><dt><span>model_output_valid_time :</span></dt><dd>2018-12-28_00:00:00</dd><dt><span>model_total_valid_times :</span></dt><dd>2208</dd><dt><span>proj4 :</span></dt><dd>+proj=lcc +units=m +a=6370000.0 +b=6370000.0 +lat_1=30.0 +lat_2=60.0 +lat_0=40.0 +lon_0=-97.0 +x_0=0 +y_0=0 +k_0=1.0 +nadgrids=@</dd><dt><span>station_dimension :</span></dt><dd>feature_id</dd><dt><span>stream_order_output :</span></dt><dd>1</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Great, our chunk shapes are exactly what we specified!
 Let’s do one final check that will compare our original subset of the dataset with our new rechunked dataset, that way we can confirm nothing unexpected happened during rechunking.</p>
@@ -4013,7 +4307,7 @@ More efficient and better ways should be used for larger datasets.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/738ff346-1752093942-203-pangeo/lib/python3.11/site-packages/dask/array/core.py:4998: PerformanceWarning: Increasing number of chunks by factor of 14
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/28b61f30-1750444858-150-rechunking/lib/python3.13/site-packages/dask/array/core.py:4998: PerformanceWarning: Increasing number of chunks by factor of 14
   result = blockwise(
 </pre></div>
 </div>
@@ -4037,28 +4331,76 @@ More efficient and better ways should be used for larger datasets.</p>
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
 html[theme="dark"],
 html[data-theme="dark"],
 body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -4114,6 +4456,7 @@ body.vscode-dark {
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -4122,7 +4465,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -4254,7 +4597,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -4265,6 +4610,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -4314,8 +4660,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -4326,6 +4679,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -4387,11 +4746,19 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 16B
 Dimensions:     ()
 Data variables:
     streamflow  float64 8B 0.0
-    velocity    float64 8B 0.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-246ff5d8-104f-43cb-9644-463edb83c59d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-246ff5d8-104f-43cb-9644-463edb83c59d' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-9d8338eb-c2fa-4407-9a91-7f164fbcc34c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9d8338eb-c2fa-4407-9a91-7f164fbcc34c' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-8a487ebd-dd2b-4713-9796-2ffd6acbbab3' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8a487ebd-dd2b-4713-9796-2ffd6acbbab3' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0</div><input id='attrs-e8965f4b-d2d4-4ebb-89b3-fdad9d847e16' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e8965f4b-d2d4-4ebb-89b3-fdad9d847e16' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4fe8611b-426e-4ac3-801b-5ef200cf13b3' class='xr-var-data-in' type='checkbox'><label for='data-4fe8611b-426e-4ac3-801b-5ef200cf13b3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0</div><input id='attrs-cc9523c2-9fea-49cf-8980-0541b195af19' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-cc9523c2-9fea-49cf-8980-0541b195af19' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9fbad830-f402-45b3-b496-d39fb34a8967' class='xr-var-data-in' type='checkbox'><label for='data-9fbad830-f402-45b3-b496-d39fb34a8967' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a10fe649-8cfa-4661-9e62-b9cdc7698db4' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a10fe649-8cfa-4661-9e62-b9cdc7698db4' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-749c2ad7-3360-4e1b-9f18-42a6a63d83d9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-749c2ad7-3360-4e1b-9f18-42a6a63d83d9' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    velocity    float64 8B 0.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-05962857-db64-4a88-a717-705accb7752c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-05962857-db64-4a88-a717-705accb7752c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-15349bf4-f040-4d8f-bbe3-97e16d47ac86' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-15349bf4-f040-4d8f-bbe3-97e16d47ac86' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-5a36ecf2-3e12-404e-b01c-b0314126d827' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5a36ecf2-3e12-404e-b01c-b0314126d827' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>streamflow</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0</div><input id='attrs-05e3209b-07b8-47ea-a34e-359873cc86f6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-05e3209b-07b8-47ea-a34e-359873cc86f6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-93fa3b6e-69fa-4f43-83e1-4d2fb743eb44' class='xr-var-data-in' type='checkbox'><label for='data-93fa3b6e-69fa-4f43-83e1-4d2fb743eb44' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>velocity</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0</div><input id='attrs-2d78a697-3b29-4087-a34e-d5d705b5c868' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2d78a697-3b29-4087-a34e-d5d705b5c868' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-69e045b9-487f-4c83-958c-8574fcc2331d' class='xr-var-data-in' type='checkbox'><label for='data-69e045b9-487f-4c83-958c-8574fcc2331d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-05e9cf43-0f93-48ba-8b0c-87c8362939ff' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-05e9cf43-0f93-48ba-8b0c-87c8362939ff' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-41dc8d8c-2ac6-43cf-8264-f1c1806ea504' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-41dc8d8c-2ac6-43cf-8264-f1c1806ea504' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Perfect!
 The maximum absolute difference between each both the <code class="docutils literal notranslate"><span class="pre">streamflow</span></code> and <code class="docutils literal notranslate"><span class="pre">velocity</span></code> variables is 0.

@@ -1,0 +1,147 @@
+Traceback (most recent call last):
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# url for the WMA STAC Catalog
+catalog_url = "https://api.water.usgs.gov/gdp/pygeoapi/stac/stac-collection/"
+
+# use pystac to read the catalog
+catalog = pystac.Catalog.from_file(catalog_url)
+
+# list the collections in the catalog
+catalog = get_children(catalog)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mHTTPError[39m                                 Traceback (most recent call last)
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/stac_io.py:301[39m, in [36mDefaultStacIO.read_text_from_href[39m[34m(self, href)[39m
+[32m    300[39m req = Request(href, headers=[38;5;28mself[39m.headers)
+[32m--> [39m[32m301[39m [38;5;28;01mwith[39;00m [43murlopen[49m[43m([49m[43mreq[49m[43m)[49m [38;5;28;01mas[39;00m f:
+[32m    302[39m     href_contents = f.read().decode([33m"[39m[33mutf-8[39m[33m"[39m)
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/urllib/request.py:216[39m, in [36murlopen[39m[34m(url, data, timeout, cafile, capath, cadefault, context)[39m
+[32m    215[39m     opener = _opener
+[32m--> [39m[32m216[39m [38;5;28;01mreturn[39;00m [43mopener[49m[43m.[49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/urllib/request.py:525[39m, in [36mOpenerDirector.open[39m[34m(self, fullurl, data, timeout)[39m
+[32m    524[39m     meth = [38;5;28mgetattr[39m(processor, meth_name)
+[32m--> [39m[32m525[39m     response = [43mmeth[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mresponse[49m[43m)[49m
+[32m    527[39m [38;5;28;01mreturn[39;00m response
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/urllib/request.py:634[39m, in [36mHTTPErrorProcessor.http_response[39m[34m(self, request, response)[39m
+[32m    633[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([32m200[39m <= code < [32m300[39m):
+[32m--> [39m[32m634[39m     response = [38;5;28;43mself[39;49m[43m.[49m[43mparent[49m[43m.[49m[43merror[49m[43m([49m
+[32m    635[39m [43m        [49m[33;43m'[39;49m[33;43mhttp[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m,[49m[43m [49m[43mresponse[49m[43m,[49m[43m [49m[43mcode[49m[43m,[49m[43m [49m[43mmsg[49m[43m,[49m[43m [49m[43mhdrs[49m[43m)[49m
+[32m    637[39m [38;5;28;01mreturn[39;00m response
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/urllib/request.py:563[39m, in [36mOpenerDirector.error[39m[34m(self, proto, *args)[39m
+[32m    562[39m args = ([38;5;28mdict[39m, [33m'[39m[33mdefault[39m[33m'[39m, [33m'[39m[33mhttp_error_default[39m[33m'[39m) + orig_args
+[32m--> [39m[32m563[39m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_call_chain[49m[43m([49m[43m*[49m[43margs[49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/urllib/request.py:496[39m, in [36mOpenerDirector._call_chain[39m[34m(self, chain, kind, meth_name, *args)[39m
+[32m    495[39m func = [38;5;28mgetattr[39m(handler, meth_name)
+[32m--> [39m[32m496[39m result = [43mfunc[49m[43m([49m[43m*[49m[43margs[49m[43m)[49m
+[32m    497[39m [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/urllib/request.py:643[39m, in [36mHTTPDefaultErrorHandler.http_error_default[39m[34m(self, req, fp, code, msg, hdrs)[39m
+[32m    642[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mhttp_error_default[39m([38;5;28mself[39m, req, fp, code, msg, hdrs):
+[32m--> [39m[32m643[39m     [38;5;28;01mraise[39;00m HTTPError(req.full_url, code, msg, hdrs, fp)
+
+[31mHTTPError[39m: HTTP Error 404: Not Found
+
+The above exception was the direct cause of the following exception:
+
+[31mException[39m                                 Traceback (most recent call last)
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/link.py:332[39m, in [36mLink.resolve_stac_object[39m[34m(self, root)[39m
+[32m    331[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m332[39m     obj = [43mstac_io[49m[43m.[49m[43mread_stac_object[49m[43m([49m[43mtarget_href[49m[43m,[49m[43m [49m[43mroot[49m[43m=[49m[43mroot[49m[43m)[49m
+[32m    333[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/stac_io.py:235[39m, in [36mStacIO.read_stac_object[39m[34m(self, source, root, *args, **kwargs)[39m
+[32m    216[39m [38;5;250m[39m[33;03m"""Read a STACObject from a JSON file at the given source.[39;00m
+[32m    217[39m 
+[32m    218[39m [33;03mSee :func:`StacIO.read_text <pystac.StacIO.read_text>` for usage of[39;00m
+[32m   (...)[39m[32m    233[39m [33;03m    contained in the file at the given uri.[39;00m
+[32m    234[39m [33;03m"""[39;00m
+[32m--> [39m[32m235[39m d = [38;5;28;43mself[39;49m[43m.[49m[43mread_json[49m[43m([49m[43msource[49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    236[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m.stac_object_from_dict(
+[32m    237[39m     d, href=source, root=root, preserve_dict=[38;5;28;01mFalse[39;00m
+[32m    238[39m )
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/stac_io.py:206[39m, in [36mStacIO.read_json[39m[34m(self, source, *args, **kwargs)[39m
+[32m    190[39m [38;5;250m[39m[33;03m"""Read a dict from the given source.[39;00m
+[32m    191[39m 
+[32m    192[39m [33;03mSee :func:`StacIO.read_text <pystac.StacIO.read_text>` for usage of[39;00m
+[32m   (...)[39m[32m    204[39m [33;03m    given source.[39;00m
+[32m    205[39m [33;03m"""[39;00m
+[32m--> [39m[32m206[39m txt = [38;5;28;43mself[39;49m[43m.[49m[43mread_text[49m[43m([49m[43msource[49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    207[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m.json_loads(txt)
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/stac_io.py:283[39m, in [36mDefaultStacIO.read_text[39m[34m(self, source, *_, **__)[39m
+[32m    282[39m href = [38;5;28mstr[39m(os.fspath(source))
+[32m--> [39m[32m283[39m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mread_text_from_href[49m[43m([49m[43mhref[49m[43m)[49m
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/stac_io.py:304[39m, in [36mDefaultStacIO.read_text_from_href[39m[34m(self, href)[39m
+[32m    303[39m     [38;5;28;01mexcept[39;00m HTTPError [38;5;28;01mas[39;00m e:
+[32m--> [39m[32m304[39m         [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mCould not read uri [39m[38;5;132;01m{[39;00mhref[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m    305[39m [38;5;28;01melse[39;00m:
+
+[31mException[39m: Could not read uri https://api.water.usgs.gov:443/gdp/pygeoapi/stac/stac-collection/SPEI
+
+The above exception was the direct cause of the following exception:
+
+[31mSTACError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 8[39m
+[32m      5[39m catalog = pystac.Catalog.from_file(catalog_url)
+[32m      7[39m [38;5;66;03m# list the collections in the catalog[39;00m
+[32m----> [39m[32m8[39m catalog = [43mget_children[49m[43m([49m[43mcatalog[49m[43m)[49m
+
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 36[39m, in [36mget_children[39m[34m(catalog, collection_id)[39m
+[32m     34[39m         [38;5;28mprint[39m([33mf[39m[33m"[39m[33m    Description: [39m[38;5;132;01m{[39;00mcollection.assets[asset].description[38;5;132;01m}[39;00m[33m"[39m)
+[32m     35[39m [38;5;28;01melse[39;00m:
+[32m---> [39m[32m36[39m     collections = [38;5;28;43mlist[39;49m[43m([49m[43mcollection[49m[43m.[49m[43mget_collections[49m[43m([49m[43m)[49m[43m)[49m
+[32m     37[39m     [38;5;28mprint[39m([33mf[39m[33m"[39m[33mNumber of collections: [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(collections)[38;5;132;01m}[39;00m[33m"[39m)
+[32m     38[39m     [38;5;28mprint[39m([33m"[39m[33mCollections IDs:[39m[33m"[39m)
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/stac_object.py:432[39m, in [36mSTACObject.get_stac_objects[39m[34m(self, rel, typ, modify_links)[39m
+[32m    430[39m link = links[i]
+[32m    431[39m [38;5;28;01mif[39;00m link.rel == rel:
+[32m--> [39m[32m432[39m     [43mlink[49m[43m.[49m[43mresolve_stac_object[49m[43m([49m[43mroot[49m[43m=[49m[38;5;28;43mself[39;49m[43m.[49m[43mget_root[49m[43m([49m[43m)[49m[43m)[49m
+[32m    433[39m     [38;5;28;01mif[39;00m typ [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;28misinstance[39m(link.target, typ):
+[32m    434[39m         [38;5;28;01myield[39;00m cast(STACObject, link.target)
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/pystac/link.py:334[39m, in [36mLink.resolve_stac_object[39m[34m(self, root)[39m
+[32m    332[39m     obj = stac_io.read_stac_object(target_href, root=root)
+[32m    333[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m--> [39m[32m334[39m     [38;5;28;01mraise[39;00m STACError(
+[32m    335[39m         [33mf[39m[33m"[39m[33mHREF: [39m[33m'[39m[38;5;132;01m{[39;00mtarget_href[38;5;132;01m}[39;00m[33m'[39m[33m does not resolve to a STAC object[39m[33m"[39m
+[32m    336[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m    337[39m obj.set_self_href(target_href)
+[32m    338[39m [38;5;28;01mif[39;00m root [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[31mSTACError[39m: HREF: 'https://api.water.usgs.gov:443/gdp/pygeoapi/stac/stac-collection/SPEI' does not resolve to a STAC object
+

@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s &#8212; HyTEST Project</title>
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -210,9 +210,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">Data Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/storage_locations.html">Data Storage Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">Water Mission Area STAC Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/intake.html">HyTEST Data Catalog (Intake)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -443,10 +445,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-with-hytest-intake-catalog">Access data with HyTest intake catalog.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-with-hytest-intake-catalog-and-the-wma-stac-catalog">Access data with HyTest intake catalog and the WMA STAC Catalog.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-conus404-dataset-using-the-hytest-catalog">Load the conus404 dataset using the HyTest catalog</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdptools-background">GDPTools Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiation-of-the-usercatdata-class">Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdptools-background">GDPTools Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiation-of-the-usercatdata-class">Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-generation-with-weightgen">Weight Generation with <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-and-dask-methods">Parallel and Dask Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-areal-weighted-spatial-interpolation">Compute the areal weighted spatial interpolation</a></li>
@@ -475,9 +479,11 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.xarray</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.pandas</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.dask</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">intake</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">intake_xarray</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pystac</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">Version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zarr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">intake</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">intake_parquet</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">intake_geopandas</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
@@ -508,11 +514,11 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="access-data-with-hytest-intake-catalog">
-<h2>Access data with HyTest intake catalog.<a class="headerlink" href="#access-data-with-hytest-intake-catalog" title="Link to this heading">#</a></h2>
+<section id="access-data-with-hytest-intake-catalog-and-the-wma-stac-catalog">
+<h2>Access data with HyTest intake catalog and the WMA STAC Catalog.<a class="headerlink" href="#access-data-with-hytest-intake-catalog-and-the-wma-stac-catalog" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">huc12-geoparquet-osn</span></code> to read the NHDPlusV2 snapshot of the Watershed Boundary Dataset HUC12 boundaries</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">conus404-daily-diagnostic-onprem-hw</span></code> to read conus404</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">huc12-geoparquet-osn</span></code> intake entry to read the NHDPlusV2 snapshot of the Watershed Boundary Dataset HUC12 boundaries</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">conus404_xtrm_daily</span></code> STAC collection to read conus404</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -544,18 +550,82 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hytest data intake catalog</span>
-<span class="n">hytest_cat</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/hytest-org/hytest/main/dataset_catalog/hytest_intake_catalog.yml&quot;</span><span class="p">)</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">hytest_cat</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_children</span><span class="p">(</span><span class="n">catalog</span><span class="p">,</span> <span class="n">collection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function retrieves a specified collection from a STAC catalog/collection and prints key metadata </span>
+<span class="sd">    for exploring/accessing the datasets contained within it.</span>
+<span class="sd">    If there is no collection ID provided, the collections in the top level of the catalog will be printed.</span>
+<span class="sd">    If a collection ID is provided, it will retrieve the collection with that ID from the input catalog/collection.</span>
+<span class="sd">    If the collection ID points to a dataset, it will print the assets available for the dataset.</span>
+<span class="sd">    If the collection ID points to another collection, it will list the child collections in the IDed collection.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        catalog (pystac.Catalog | pystac.Collection): The STAC catalog/collection object.</span>
+<span class="sd">        collection_id (str): The ID of the collection or dataset to retrieve from catalog.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        collection (pystac.Catalog | pystac.Collection): The collection object corresponding to the provided ID</span>
+<span class="sd">                                                         or the top-level catalog if no ID is provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">collection_id</span><span class="p">:</span>
+        <span class="n">collection</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_child</span><span class="p">(</span><span class="n">collection_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">collection</span><span class="o">.</span><span class="n">assets</span><span class="p">:</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">collection_id</span><span class="si">}</span><span class="s2"> is a dataset. Please review the assets below and select one to open.&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">collection_id</span><span class="si">}</span><span class="s2"> is a collection. Please review the child items and select one to open in the next cell.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">collection</span> <span class="o">=</span> <span class="n">catalog</span>
+    <span class="k">if</span> <span class="n">dataset</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># List the assets</span>
+        <span class="k">for</span> <span class="n">asset</span> <span class="ow">in</span> <span class="n">collection</span><span class="o">.</span><span class="n">assets</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Asset ID: </span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Title: </span><span class="si">{</span><span class="n">collection</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="n">asset</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Description: </span><span class="si">{</span><span class="n">collection</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="n">asset</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">collections</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">get_collections</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of collections: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Collections IDs:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">child_collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">:</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="n">child_collection</span><span class="o">.</span><span class="n">id</span>
+            <span class="n">cite_as</span> <span class="o">=</span> <span class="s2">&quot;Not available&quot;</span>
+            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">child_collection</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">rel</span> <span class="o">==</span> <span class="s2">&quot;cite-as&quot;</span><span class="p">:</span>
+                    <span class="n">cite_as</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">target</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">, Source: </span><span class="si">{</span><span class="n">cite_as</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">collection</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the conus404 sub-catalog</span>
-<span class="n">cat</span> <span class="o">=</span> <span class="n">hytest_cat</span><span class="p">[</span><span class="s1">&#39;conus404-catalog&#39;</span><span class="p">]</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># url for the WMA STAC Catalog</span>
+<span class="n">catalog_url</span> <span class="o">=</span> <span class="s2">&quot;https://api.water.usgs.gov/gdp/pygeoapi/stac/stac-collection/&quot;</span>
+
+<span class="c1"># use pystac to read the catalog</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Catalog</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+
+<span class="c1"># list the collections in the catalog</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">get_children</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># select a collection from the catalog, replace the collection ID with the one you want to use:</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">get_children</span><span class="p">(</span><span class="n">catalog</span><span class="p">,</span> <span class="n">collection_id</span><span class="o">=</span><span class="s2">&quot;conus404&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># select a collection from the catalog, replace the collection ID with the one you want to use:</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">get_children</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">collection_id</span><span class="o">=</span><span class="s2">&quot;conus404_xtrm_daily&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -591,12 +661,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Select the dataset you want to read into your notebook and preview its metadata</span>
 <span class="k">if</span> <span class="n">t_sys</span> <span class="o">==</span> <span class="s2">&quot;HPC&quot;</span><span class="p">:</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="s1">&#39;conus404-daily-diagnostic-onprem-hw&#39;</span>
+    <span class="n">selected_asset_id</span> <span class="o">=</span> <span class="s1">&#39;zarr-disk-hovenweep&#39;</span>
 <span class="k">elif</span> <span class="n">t_sys</span> <span class="o">==</span> <span class="s2">&quot;Desktop&quot;</span><span class="p">:</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="s1">&#39;conus404-daily-diagnostic-osn&#39;</span> 
+    <span class="n">selected_asset_id</span> <span class="o">=</span> <span class="s1">&#39;zarr-s3-osn&#39;</span> 
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please set the variable t_sys above to one of &#39;HPC&#39; or &#39;Desktop&#39;&quot;</span><span class="p">)</span>        
-<span class="n">cat</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span>
+<span class="n">asset</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="n">selected_asset_id</span><span class="p">]</span>
+<span class="n">asset</span>
 </pre></div>
 </div>
 </div>
@@ -604,8 +675,24 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the dataset and use metpy to parse the crs information on the dataset</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2"> metadata...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">cat</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span><span class="o">.</span><span class="n">to_dask</span><span class="p">()</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading </span><span class="si">{</span><span class="n">selected_asset_id</span><span class="si">}</span><span class="s2"> metadata...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">Version</span><span class="p">(</span><span class="n">zarr</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;3.0.0&quot;</span><span class="p">):</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+        <span class="n">asset</span><span class="o">.</span><span class="n">href</span><span class="p">,</span>
+        <span class="n">storage_options</span><span class="o">=</span><span class="n">asset</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">[</span><span class="s1">&#39;xarray:storage_options&#39;</span><span class="p">],</span>
+        <span class="o">**</span><span class="n">asset</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">[</span><span class="s1">&#39;xarray:open_kwargs&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="n">asset</span><span class="o">.</span><span class="n">href</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">asset</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">[</span><span class="s1">&#39;xarray:storage_options&#39;</span><span class="p">],</span>
+    <span class="o">**</span><span class="n">asset</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">[</span><span class="s1">&#39;xarray:open_kwargs&#39;</span><span class="p">],</span>
+    <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+
+
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">()</span>
 <span class="n">ds</span>
 </pre></div>
 </div>
@@ -623,9 +710,8 @@ Responsible for calculating the intersected areas between the source and target 
 <li><p><a class="reference external" href="https://gdptools.readthedocs.io/en/develop/agg_gen_classes.html"><strong>AggGen</strong></a>:<br />
 Facilitates the interpolation of target data to match the source data using the areal weights calculated by <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code>. This process is conducted over the time period specified in the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> object.</p></li>
 </ul>
-</section>
 <section id="instantiation-of-the-usercatdata-class">
-<h2>Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.<a class="headerlink" href="#instantiation-of-the-usercatdata-class" title="Link to this heading">#</a></h2>
+<h3>Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.<a class="headerlink" href="#instantiation-of-the-usercatdata-class" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coordinate Reference System (CRS) of the conus404 dataset</span>
@@ -676,6 +762,7 @@ Facilitates the interpolation of target data to match the source data using the 
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="weight-generation-with-weightgen">
 <h2>Weight Generation with <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code><a class="headerlink" href="#weight-generation-with-weightgen" title="Link to this heading">#</a></h2>
@@ -852,10 +939,12 @@ Facilitates the interpolation of target data to match the source data using the 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-with-hytest-intake-catalog">Access data with HyTest intake catalog.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-with-hytest-intake-catalog-and-the-wma-stac-catalog">Access data with HyTest intake catalog and the WMA STAC Catalog.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-conus404-dataset-using-the-hytest-catalog">Load the conus404 dataset using the HyTest catalog</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdptools-background">GDPTools Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiation-of-the-usercatdata-class">Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdptools-background">GDPTools Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiation-of-the-usercatdata-class">Instantiation of the <code class="docutils literal notranslate"><span class="pre">UserCatData</span></code> class.</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-generation-with-weightgen">Weight Generation with <code class="docutils literal notranslate"><span class="pre">WeightGen</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-and-dask-methods">Parallel and Dask Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-areal-weighted-spatial-interpolation">Compute the areal weighted spatial interpolation</a></li>

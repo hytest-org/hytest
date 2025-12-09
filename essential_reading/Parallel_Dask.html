@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Parallelism with Dask &#8212; HyTEST Project</title>
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -62,7 +62,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HyTEST Data Catalog (Intake)" href="../dataset_catalog/README.html" />
+    <link rel="next" title="Data Catalogs" href="../dataset_catalog/README.html" />
     <link rel="prev" title="Data/Cloud Storage" href="DataSources/Data_S3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -210,9 +210,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_catalog/README.html">Data Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/storage_locations.html">Data Storage Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">Water Mission Area STAC Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/intake.html">HyTEST Data Catalog (Intake)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -561,9 +563,9 @@ make a distributed cluster.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/5ff9e393-1752151307-205-pangeo/lib/python3.11/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/node.py:187: UserWarning: Port 8787 is already in use.
 Perhaps you already have a cluster running?
-Hosting the HTTP server on port 34241 instead
+Hosting the HTTP server on port 40517 instead
   warnings.warn(
 </pre></div>
 </div>
@@ -610,7 +612,7 @@ Because these threads do not depend on one another, they can operate in parallel
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 132 ms, sys: 6.7 ms, total: 139 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 208 ms, sys: 22.9 ms, total: 231 ms
 Wall time: 10 s
 </pre></div>
 </div>
@@ -628,8 +630,8 @@ Wall time: 10 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 67.6 ms, sys: 2.9 ms, total: 70.5 ms
-Wall time: 3.16 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 79.8 ms, sys: 13.1 ms, total: 92.9 ms
+Wall time: 3.1 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
@@ -646,6 +648,40 @@ Wall time: 3.16 s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## shut down cluster scheduler</span>
 <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">client</span>
 <span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">del</span> <span class="n">cluster</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-27 13:32:36,363 - distributed.worker - ERROR - Failed to communicate with scheduler during heartbeat.
+Traceback (most recent call last):
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/comm/tcp.py&quot;, line 225, in read
+    frames_nosplit_nbytes_bin = await stream.read_bytes(fmt_size)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tornado.iostream.StreamClosedError: Stream is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/worker.py&quot;, line 1269, in heartbeat
+    response = await retry_operation(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/utils_comm.py&quot;, line 441, in retry_operation
+    return await retry(
+           ^^^^^^^^^^^^
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/utils_comm.py&quot;, line 420, in retry
+    return await coro()
+           ^^^^^^^^^^^^
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/core.py&quot;, line 1259, in send_recv_from_rpc
+    return await send_recv(comm=comm, op=key, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/core.py&quot;, line 1018, in send_recv
+    response = await comm.read(deserializers=deserializers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/comm/tcp.py&quot;, line 236, in read
+    convert_stream_closed_error(self, e)
+  File &quot;/home/conda/hytest/785d3670-1747942806-104-pangeo/lib/python3.12/site-packages/distributed/comm/tcp.py&quot;, line 142, in convert_stream_closed_error
+    raise CommClosedError(f&quot;in {obj}: {exc}&quot;) from exc
+distributed.comm.core.CommClosedError: in &lt;TCP (closed) ConnectionPool.heartbeat_worker local=tcp://127.0.0.1:42572 remote=tcp://127.0.0.1:36599&gt;: Stream is closed
 </pre></div>
 </div>
 </div>
@@ -701,7 +737,7 @@ Wall time: 3.16 s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">HyTEST Data Catalog (Intake)</p>
+        <p class="prev-next-title">Data Catalogs</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

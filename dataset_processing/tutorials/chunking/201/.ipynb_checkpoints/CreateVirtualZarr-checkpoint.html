@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Generating a Virtual Zarr Store &#8212; HyTEST Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataset_processing/tutorials/chunking/201/CreateVirtualZarr';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Adding Coordinate Reference Systems (CRS) to Zarr Datasets" href="IncludeCRSinZarr.html" />
+    <link rel="prev" title="Rechunking Larger Datasets with Dask" href="RechunkingwithDask.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">v0.0.1_alpha01</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../doc/About.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/HyTEST_Badge.svg" class="logo__image only-light" alt="HyTEST Project - Home"/>
+    <script>document.write(`<img src="../../../../_static/HyTEST_Badge.svg" class="logo__image only-dark" alt="HyTEST Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment Set-Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../environment_set_up/README.html">Compute Environments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-General.html">General QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/QuickStart-Cloud-Nebari.html">Cloud: Nebari Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/OpenOnDemand.html">HPC Server: Open OnDemand Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/JupyterForward.html">HPC Server: Jupyter Forward Quick-Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/StartScript.html">HPC Server: Start Script Quick-Start</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../environment_set_up/Help_AWS_Credentials.html">AWS Credentials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../environment_set_up/clusters.html">Starting a Dask Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Nebari.html">Nebari Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Denali.html">Denali HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Tallgrass.html">Hovenweep/Tallgrass HPC Dask Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../environment_set_up/Start_Dask_Cluster_Desktop.html">Local Desktop Dask Cluster</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../essential_reading/README.html">Essential Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/ReadingsTutorials.html">Foundations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../essential_reading/DataSources/README.html">Data Sources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/DataSources/Data_APIs.html">Data/APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../essential_reading/DataSources/Data_S3.html">Data/Cloud Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../essential_reading/Parallel_Dask.html">Parallelism with Dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_catalog/README.html">Data Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/storage_locations.html">Data Storage Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/STAC.html">Water Mission Area STAC Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/intake.html">HyTEST Data Catalog (Intake)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_access/CONUS404_CHANGELOG.html">CONUS404 Zarr Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dataset_access/conus404_explore.html">Explore CONUS404 Dataset</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zarr Creation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Data Chunking Tutorial Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../101/index.html">Introduction to Chunking</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../101/WhyChunk.html">Why (re)Chunk Data?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/ExamineDataChunking.html">How to Examine a Stored Dataset’s Chunk Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/BasicsShapeSize.html">Basics of Chunk Shape and Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/WriteChunkedFiles.html">Writing Chunked Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../101/Rechunking.html">Rechunking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Advanced Topics in Chunking</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="RechunkingwithDask.html">Rechunking Larger Datasets with Dask</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Generating a Virtual Zarr Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IncludeCRSinZarr.html">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OptimalChunkSelection.html">Choosing an Optimal Chunk Size and Shape</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../back/index.html">Chunking References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../back/Glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../back/AdditionalResources.html">Additional Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_temporal_aggregation.html">CONUS404 Temporal Aggregation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../spatial_aggregation.html">Spatial Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_DRB.html">gdptools CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_GFv1_1.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent GFv1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_WBD12.html">gdptools CONUS404 Spatial Aggregation over CONUS-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation.html">Pangeo CONUS404 Spatial Aggregation over DRB-extent HUC12s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spatial_aggregation/conus404_spatial_aggregation_comparison.html">gdptools-Pangeo Method Comparison for CONUS404 Spatial Aggregation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_point_selection.html">CONUS404 Site Data Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conus404_regrid.html">CONUS404 Regridding (Curvilinear =&gt; Rectilinear)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Evaluation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../evaluation/metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/Metrics_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/stats_demos/Usage_DScore_Suite_v1.html">D-Score Suite (v1) Benchmark – Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/Metrics_StdSuite_v1.html">Standard Suite (v1) Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/stats_demos/Usage_StdSuite_v1.html">Standard Suite (v1) Metrics – Usage Examples</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/00_Overview.html">Streamflow Model Evaluation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/01_Data_Prep.html">Streamflow Eval :: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/02_Analysis_StdSuite.html">Streamflow Eval :: StdSuite Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/02_Analysis_DScore.html">Steamflow Eval :: DScore Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evaluation/tutorials/streamflow/03_Vizualization.html">Streamflow Eval :: Visualization</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hytest-org/hytest" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/dataset_processing/tutorials/chunking/201/CreateVirtualZarr.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Generating a Virtual Zarr Store</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kerchunk-vs-virtualizarr">Kerchunk vs VirtualiZarr</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spin-up-dask-cluster">Spin up Dask Cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison">Example Comparison</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-individual-virtual-zarr-stores">Generate Individual Virtual Zarr Stores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kerchunk">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualizarr">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-individual-virtual-zarr-stores">Combine Individual Virtual Zarr Stores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-the-virtual-zarr-stores">Opening the Virtual Zarr Stores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-with-xarray-open-mfdataset">Reading with <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appending-to-existing-virtual-zarr-store">Appending to Existing Virtual Zarr Store</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-virtual-zarr-for-new-file">Create New Virtual Zarr for New File</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#append-to-existing-store">Append to Existing Store</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-check-new-stores">Double Check New Stores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up">Clean Up</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="generating-a-virtual-zarr-store">
+<h1>Generating a Virtual Zarr Store<a class="headerlink" href="#generating-a-virtual-zarr-store" title="Link to this heading">#</a></h1>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This notebook builds off the <a class="reference external" href="https://fsspec.github.io/kerchunk/index.html">Kerchunk</a> and <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/index.html">VirtualiZarr</a> docs.</p>
+</div>
+</aside>
+<p>The objective of this notebook is to learn how to create a virtual Zarr store for a collection of NetCDF files that together make up a complete dataset.
+To do this, we will use <a class="reference external" href="https://fsspec.github.io/kerchunk/index.html">Kerchunk</a> and <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/index.html">VirtualiZarr</a>.
+As these two packages can both create virtual Zarr stores but do it in different ways, we will utilize them both to show how they compare in combination with <a class="reference external" href="https://www.dask.org/">dask</a> for parallel execution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Needed when boto3 &gt;= 1.36.0 or the rechunking process will fail</span>
+<span class="c1"># This needs to be set before the boto3 library gets loaded</span>
+<span class="c1"># See: https://github.com/aws/aws-cli/issues/9214#issuecomment-2606619168</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AWS_REQUEST_CHECKSUM_CALCULATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;when_required&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AWS_RESPONSE_CHECKSUM_VALIDATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;when_required&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fsspec</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ujson</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">kerchunk.hdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">kerchunk.combine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">virtualizarr</span><span class="w"> </span><span class="kn">import</span> <span class="n">open_virtual_dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="kerchunk-vs-virtualizarr">
+<h2>Kerchunk vs VirtualiZarr<a class="headerlink" href="#kerchunk-vs-virtualizarr" title="Link to this heading">#</a></h2>
+<p>To begin, let’s explain what a virtual Zarr store even is.
+A “<a class="reference internal" href="../back/Glossary.html#term-Virtual-Zarr-Store"><span class="std std-ref"><strong>virtual Zarr store</strong></span></a>” is a virtual representation of a Zarr store generated by mapping any number of real datasets in individual files (e.g., NetCDF/HDF5, GRIB2, TIFF) together into a single, sliceable dataset via an interface layer.
+This interface layer, which Kerchunk and VirtualiZarr generate, contains information about the original files (e.g., chunking, compression, data byte location, etc.) needed to efficiently access the data.
+While this could be done with <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_mfdataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code></a>, we don’t want to run this command every time we open the dataset as it can be a slow and expensive process.
+The reason for this is that <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> performs many consistency checks as it runs, and it requires partially opening all of the datasets to get general metadata information on each of the individual files.
+Therefore, for numerous files, this can have significant overhead, and it would be preferable to just cache these checks and metadata for more performant future reads.
+This cache (specifically in Zarr format) is what a virtual Zarr store is.
+Once we have the virtual Zarr store, we can open the combined xarray dataset using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_dataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_dataset</span></code></a> for an almost instantaneous read.</p>
+<p>Now that we know what a virtual Zarr store is, let’s discuss the differences between Kerchunk and VirtualiZarr and their virtual Zarr stores.
+At a top level, VirtualiZarr provides almost all of the same features as Kerchunk.
+The primary difference is that Kerchunk supports non-Zarr-like virtual format, while VirtualiZarr is specifically focused on the Zarr format.
+Additionally, Kerchunk creates the virtual Zarr store and represents it in memory using json formatting (the format used for Zarr metadata).
+Alternatively, VirtualiZarr represents the store as array-level abstractions (which can be converted to json format).
+These abstractions can be cleanly wrapped by xarray for easy use of <code class="docutils literal notranslate"><span class="pre">xarray.concat</span></code> and <code class="docutils literal notranslate"><span class="pre">xarray.merge</span></code> commands to combine virtual Zarr stores.
+A nice table comparing the two packages can be found in the <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/faq.html#how-do-virtualizarr-and-kerchunk-compare">VirtualiZarr FAQs</a>, which shows how the two packages represent virtual Zarr stores and their comparative syntax.</p>
+</section>
+<section id="spin-up-dask-cluster">
+<h2>Spin up Dask Cluster<a class="headerlink" href="#spin-up-dask-cluster" title="Link to this heading">#</a></h2>
+<p>To run the virtual Zarr creation in parallel, we need to spin up a Dask cluster to schedule the various workers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../../../../environment_set_up/Start_Dask_Cluster_Nebari.ipynb
+<span class="c1">## If this notebook is not being run on Nebari, replace the above </span>
+<span class="c1">## path name with a helper appropriate to your compute environment.  Examples:</span>
+<span class="c1"># %run ../../../../environment_set_up/Start_Dask_Cluster_Denali.ipynb</span>
+<span class="c1"># %run ../../../../environment_set_up/Start_Dask_Cluster_Tallgrass.ipynb</span>
+<span class="c1"># %run ../../../../environment_set_up/Start_Dask_Cluster_Desktop.ipynb</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The &#39;cluster&#39; object can be used to adjust cluster behavior.  i.e. &#39;cluster.adapt(minimum=10)&#39;
+The &#39;client&#39; object can be used to directly interact with the cluster.  i.e. &#39;client.submit(func)&#39; 
+The link to view the client dashboard is:
+&gt;  https://nebari.chs.usgs.gov/gateway/clusters/nebari.c7d97158240848d6b428b41c35eb13ea/status
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-comparison">
+<h2>Example Comparison<a class="headerlink" href="#example-comparison" title="Link to this heading">#</a></h2>
+<p>With our Dask cluster ready, let’s see how Kerchunk and VirtualiZarr can be utilized to generate a vitrual Zarr store.
+For this example, we will use the same daily gridMET NetCDF data as used in the <a class="reference internal" href="../101/WriteChunkedFiles.html"><span class="std std-doc">Writing Chunked File tutorial</span></a>.
+Only this time we will use all of the variables not just precipitation.
+These include:</p>
+<ul class="simple">
+<li><p>precipitation,</p></li>
+<li><p>maximum relative humidity,</p></li>
+<li><p>minimum relative humidity,</p></li>
+<li><p>specific humidity,</p></li>
+<li><p>downward shortwave radiation,</p></li>
+<li><p>minimum air temperature,</p></li>
+<li><p>maximum air temperature,</p></li>
+<li><p>wind direction, and</p></li>
+<li><p>wind speed.</p></li>
+</ul>
+<p>The data is currently hosted on the HyTEST OSN as a collection NetCDF files.
+To access the data with both Kerchunk and VirtualiZarr, we will use <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a> to get the list of files that we are wanting to combine into a virtual Zarr store.</p>
+<p>First we need to create the file system for accessing the files, and a second one for outputting the virtual Zarr store.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We will exclude the year 2019 for now and use it later to show how to append virtual Zarr stores.
+Also, we will not use 2020 as it is a partial year with different chunking than the other 40 years, which is currently incompatible with Kerchunk and Virtualizarr.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These reader options will be needed for VirtualiZarr</span>
+<span class="c1"># We created them here to show how they fold into fsspec</span>
+<span class="n">reader_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;storage_options&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;anon&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+        <span class="s1">&#39;client_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;endpoint_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://usgs.osn.mghpcc.org/&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span>
+    <span class="n">protocol</span><span class="o">=</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">reader_options</span><span class="p">[</span><span class="s1">&#39;storage_options&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">fs_local</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Make directories to save the virtual zarr stores</span>
+<span class="n">fs_local</span><span class="o">.</span><span class="n">mkdirs</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/kerchunk&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fs_local</span><span class="o">.</span><span class="n">mkdirs</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/virtualizarr&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">file_glob</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;s3://mdmf/gdp/netcdf/gridmet/gridmet/*198*.nc&#39;</span><span class="p">)</span>
+<span class="n">file_glob</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob</span> <span class="k">if</span> <span class="p">((</span><span class="s1">&#39;2020&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;2019&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we are ready to generate the virtual Zarr stores.
+For both Kerchunk and VirtualiZarr (<a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/usage.html#opening-files-as-virtual-datasets">for now</a>), this consists of two steps:</p>
+<ol class="arabic simple">
+<li><p>Convert single original data files into individual virtual Zarr stores,</p></li>
+<li><p>Combine the individual virtual Zarr stores into a single combined virtual Zarr store.</p></li>
+</ol>
+<p>We will show these two steps seperately and how they are done for each package.</p>
+<section id="generate-individual-virtual-zarr-stores">
+<h3>Generate Individual Virtual Zarr Stores<a class="headerlink" href="#generate-individual-virtual-zarr-stores" title="Link to this heading">#</a></h3>
+<section id="kerchunk">
+<h4>Kerchunk<a class="headerlink" href="#kerchunk" title="Link to this heading">#</a></h4>
+<p>To generate the individual virtual Zarr stores with Kerchunk, we will use <a class="reference external" href="https://fsspec.github.io/kerchunk/reference.html#kerchunk.hdf.SingleHdf5ToZarr"><code class="docutils literal notranslate"><span class="pre">kerchunk.hdf.SingleHdf5ToZarr</span></code></a>, which translates the content of one HDF5 file into Zarr metadata.
+Other translators exist in Kerchunk that can convert GeoTiffs and NetCDF3 files.
+However, as we are looking at NetCDF4 files (a specific version of a HDF5 file), we will use the HDF5 translator.
+As this only translates one file, we can make a collection of <a class="reference external" href="https://docs.dask.org/en/stable/delayed.html"><code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code></a> objects that wrap the <code class="docutils literal notranslate"><span class="pre">SingleHdf5ToZarr</span></code> call to run it for all files in parallel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a function to run in parallel with dask</span>
+<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_single_virtual_zarr</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">fs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdf</span><span class="p">:</span>
+        <span class="n">h5chunks</span> <span class="o">=</span> <span class="n">kerchunk</span><span class="o">.</span><span class="n">hdf</span><span class="o">.</span><span class="n">SingleHdf5ToZarr</span><span class="p">(</span><span class="n">hdf</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">inline_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">h5chunks</span><span class="o">.</span><span class="n">translate</span><span class="p">()</span>
+
+<span class="c1"># Time the duration for later comparison</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Generate Dask Delayed objects</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_single_virtual_zarr</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob</span><span class="p">]</span>
+<span class="c1"># Compute the delayed object</span>
+<span class="n">single_virtual_zarrs</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+<span class="n">kerchunk_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">single_virtual_zarrs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FutureCancelledError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_single_virtual_zarr</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Compute the delayed object</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">single_virtual_zarrs</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">kerchunk_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">single_virtual_zarrs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File /home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/dask/base.py:681,</span> in <span class="ni">compute</span><span class="nt">(traverse, optimize_graph, scheduler, get, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">__dask_keys__</span><span class="p">()))</span>
+<span class="ne">--&gt; </span><span class="mi">681</span>     <span class="n">results</span> <span class="o">=</span> <span class="n">schedule</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">683</span> <span class="k">return</span> <span class="n">repack</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="nn">File /home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/distributed/client.py:2417,</span> in <span class="ni">Client._gather</span><span class="nt">(self, futures, errors, direct, local_worker)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2415</span>     <span class="n">exception</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">exception</span>
+<span class="g g-Whitespace">   </span><span class="mi">2416</span>     <span class="n">traceback</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">traceback</span>
+<span class="ne">-&gt; </span><span class="mi">2417</span>     <span class="k">raise</span> <span class="n">exception</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">traceback</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2418</span> <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;skip&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2419</span>     <span class="n">bad_keys</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="ne">FutureCancelledError</span>: generate_single_virtual_zarr-85f78130-b40d-49ca-a323-d4d4891fd30e cancelled for reason: scheduler-connection-lost.
+<span class="n">Client</span> <span class="n">lost</span> <span class="n">the</span> <span class="n">connection</span> <span class="n">to</span> <span class="n">the</span> <span class="n">scheduler</span><span class="o">.</span> <span class="n">Please</span> <span class="n">check</span> <span class="n">your</span> <span class="n">connection</span> <span class="ow">and</span> <span class="n">re</span><span class="o">-</span><span class="n">run</span> <span class="n">your</span> <span class="n">work</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the output for a virtualization of a single NetCDF is a json style dictionary, where the coordinate data is actually kept in the dictionary, while the data is a file pointer and the byte range for each chunk.</p>
+</section>
+<section id="virtualizarr">
+<h4>VirtualiZarr<a class="headerlink" href="#virtualizarr" title="Link to this heading">#</a></h4>
+<p>To generate the individual virtual Zarr stores with VirtualiZarr, we will use <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/generated/virtualizarr.backend.open_virtual_dataset.html#virtualizarr-backend-open-virtual-dataset"><code class="docutils literal notranslate"><span class="pre">virtualizarr.open_virtual_dataset</span></code></a>, which can infer what type of file we are reading instead of us having to specify.
+Like Kerchunk, this only translates one file at a time.
+So, we can make a collection of <a class="reference external" href="https://docs.dask.org/en/stable/delayed.html"><code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code></a> objects that wraps <code class="docutils literal notranslate"><span class="pre">open_virtual_dataset</span></code> to run it for all files in parallel.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When reading in the individual files as virtual datasets, it is critical to include the <code class="docutils literal notranslate"><span class="pre">loadable_variables</span></code> keyword.
+The keyword should be set to a list of the coordinate names.
+By adding this keyword, the coordinates are read into memory rather than being loaded as virtual data.
+This can make a massive difference in the next steps of (1) concatenation as it gives the coordinates indexes and (2) the serialization of the virtual Zarr store as it saves the in-memory coordinates directly to the store rather than a pointer.
+Also, if this is not included, coordinates of different sizes will not be able to be concatenated due to potential chunking differences.
+The only downside is that it can slightly increase the time it takes to initially read the virtual datasets.
+However, this slowdown is more than worth the future convenience of having the coords in-memory when reading in the virtual Zarr store.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">open_virtual_dataset</span><span class="p">)(</span>
+        <span class="sa">f</span><span class="s1">&#39;s3://</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">indexes</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">loadable_variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;crs&#39;</span><span class="p">],</span>
+        <span class="n">decode_times</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">reader_options</span><span class="o">=</span><span class="n">reader_options</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob</span>
+<span class="p">]</span>
+
+<span class="n">virtual_datasets</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+<span class="n">virtualizarr_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">virtual_datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the output for a virtualization of a single NetCDF is now an <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code>, where the data is a <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/generated/virtualizarr.manifests.ManifestArray.html"><code class="docutils literal notranslate"><span class="pre">ManifestArray</span></code></a> object.
+This <code class="docutils literal notranslate"><span class="pre">ManifestArray</span></code> contains <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/generated/virtualizarr.manifests.ChunkManifest.html#virtualizarr.manifests.ChunkManifest"><code class="docutils literal notranslate"><span class="pre">ChunkManifest</span></code></a> objects that hold the same info as the Kerchunk json format (i.e., a file pointer and the byte range for each chunk), but allows for it to be nicely wrapped by xarray.</p>
+</section>
+</section>
+<section id="combine-individual-virtual-zarr-stores">
+<h3>Combine Individual Virtual Zarr Stores<a class="headerlink" href="#combine-individual-virtual-zarr-stores" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>Kerchunk<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>To combine the individual virtual Zarr stores into one virtual Zarr store with Kerchunk, we will use <a class="reference external" href="https://fsspec.github.io/kerchunk/reference.html#kerchunk.combine.MultiZarrToZarr"><code class="docutils literal notranslate"><span class="pre">kerchunk.combine.MultiZarrToZarr</span></code></a>, which combines the content of multiple virtual Zarr stores into a single virtual Zarr store.
+This call requires feeding <code class="docutils literal notranslate"><span class="pre">MultiZarrToZarr</span></code> the remote access info that we needed for our file system, along with the dimension we want to combine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">mzz</span> <span class="o">=</span> <span class="n">kerchunk</span><span class="o">.</span><span class="n">combine</span><span class="o">.</span><span class="n">MultiZarrToZarr</span><span class="p">(</span>
+    <span class="n">single_virtual_zarrs</span><span class="p">,</span>
+    <span class="n">remote_protocol</span><span class="o">=</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="n">remote_options</span><span class="o">=</span><span class="n">reader_options</span><span class="p">[</span><span class="s1">&#39;storage_options&#39;</span><span class="p">],</span>
+    <span class="n">concat_dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">mzz</span><span class="o">.</span><span class="n">translate</span><span class="p">()</span>
+
+<span class="c1"># Save the virtual Zarr store, serialized as json</span>
+<span class="k">with</span> <span class="n">fs_local</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/kerchunk/gridmet.json&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+<span class="n">kerchunk_time</span> <span class="o">+=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, notice the output type is in a json format with the coords in the dictionary and data chunks having pointers, but this time all chunks are in the one dictionary.</p>
+</section>
+<section id="id2">
+<h4>VirtualiZarr<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>To combine the virtual datasets from VirtualiZarr, we can just use <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.combine_by_coords.html"><code class="docutils literal notranslate"><span class="pre">xarray.combine_by_coords</span></code></a> which will auto-magically combine the virtual datasets together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">virtual_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">combine_by_coords</span><span class="p">(</span><span class="n">virtual_datasets</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">)</span>
+
+<span class="c1"># Save the virtual Zarr store, serialized as json</span>
+<span class="n">virtual_ds</span><span class="o">.</span><span class="n">virtualize</span><span class="o">.</span><span class="n">to_kerchunk</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/virtualizarr/gridmet.json&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+
+<span class="n">virtualizarr_time</span> <span class="o">+=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">virtual_ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that when we saved the virtual dataset that we converted it to a Kerchunk format for saving.</p>
+</section>
+</section>
+<section id="opening-the-virtual-zarr-stores">
+<h3>Opening the Virtual Zarr Stores<a class="headerlink" href="#opening-the-virtual-zarr-stores" title="Link to this heading">#</a></h3>
+<p>To open the virtual Zarr stores, we can use the same method for both stores as we converted to Kerchunk format when saving from VirtualiZarr.</p>
+<section id="id3">
+<h4>Kerchunk<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;virtual_zarr/kerchunk/gridmet.json&#39;</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;kerchunk&quot;</span><span class="p">,</span>
+    <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;storage_options&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;remote_protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;remote_options&quot;</span><span class="p">:</span> <span class="n">reader_options</span><span class="p">[</span><span class="s1">&#39;storage_options&#39;</span><span class="p">]</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">kerchunk_read_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h4>VirtualiZarr<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;virtual_zarr/virtualizarr/gridmet.json&#39;</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;kerchunk&quot;</span><span class="p">,</span>
+    <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;storage_options&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;remote_protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;remote_options&quot;</span><span class="p">:</span> <span class="n">reader_options</span><span class="p">[</span><span class="s1">&#39;storage_options&#39;</span><span class="p">]</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">virtualizarr_read_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reading-with-xarray-open-mfdataset">
+<h3>Reading with <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code><a class="headerlink" href="#reading-with-xarray-open-mfdataset" title="Link to this heading">#</a></h3>
+<p>As a comparison of read times, let’s also compile the dataset using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.open_mfdataset.html"><code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code></a> in parallel with Dask.
+This way we can see if we will be saving time in the future by having the compiled virtual Zarr for faster reads.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">fs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob</span><span class="p">],</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;h5netcdf&#39;</span>
+<span class="p">)</span>
+
+<span class="n">open_mfdataset_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s compare the computational times!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kerchunk virtual Zarr creation time: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kerchunk_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">s (</span><span class="si">{</span><span class="n">kerchunk_time</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;VirtualiZarr virtual Zarr creation time: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">virtualizarr_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">s (</span><span class="si">{</span><span class="n">virtualizarr_time</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open_mfdataset dataset creation time: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">open_mfdataset_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">s (</span><span class="si">{</span><span class="n">open_mfdataset_time</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time ratio: Kerchunk to open_mfdataset = </span><span class="si">{</span><span class="n">kerchunk_time</span><span class="o">/</span><span class="n">open_mfdataset_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;            VirtualiZarr to open_mfdataset = </span><span class="si">{</span><span class="n">virtualizarr_time</span><span class="o">/</span><span class="n">open_mfdataset_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;            Kerchunk to VirtualiZarr = </span><span class="si">{</span><span class="n">kerchunk_time</span><span class="o">/</span><span class="n">virtualizarr_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see the Kerchunk and VirtualiZarr take about the same amount of time to create a virtual zarr store. <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code> can create the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> on the fly in slightly less time than it takes to create the virtual zarr stores (about 30 seconds less, in this case). However, if you use <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>, you will have to create this dataset <strong>each time</strong> you run your code, whereas Kerchunk and Virtualizarr can create the dataset once and then read it much faster on future uses. Looking at read speed after the virtual Zarr store creation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kerchunk virtual Zarr read time: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kerchunk_read_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;VirtualiZarr virtual Zarr read time: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">virtualizarr_read_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open_mfdataset dataset read/creation time: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">open_mfdataset_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">s (</span><span class="si">{</span><span class="n">open_mfdataset_time</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time ratio: Kerchunk to open_mfdataset = </span><span class="si">{</span><span class="n">kerchunk_read_time</span><span class="o">/</span><span class="n">open_mfdataset_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;            VirtualiZarr to open_mfdataset = </span><span class="si">{</span><span class="n">virtualizarr_read_time</span><span class="o">/</span><span class="n">open_mfdataset_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;            Kerchunk to VirtualiZarr = </span><span class="si">{</span><span class="n">kerchunk_read_time</span><span class="o">/</span><span class="n">virtualizarr_read_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this, it is very clear that performing more than one read using either the Kerchunk or VirtualiZarr virtual Zarr store is more efficient that reading with <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>.
+Additionally, the differences in read times between Kerchunk and Virtualizarr, while appearing drastic, is likely not going to be significant in any workflow.</p>
+</section>
+</section>
+<section id="appending-to-existing-virtual-zarr-store">
+<h2>Appending to Existing Virtual Zarr Store<a class="headerlink" href="#appending-to-existing-virtual-zarr-store" title="Link to this heading">#</a></h2>
+<p>As noted when <a class="reference internal" href="#Example-Comparison"><span class="xref myst">introducing the gridMET data</span></a>, we did not utilize the 2019 data in order to show how to append it to a virtual Zarr store.
+The ability to append more data to the virtual Zarr store is highly convienient, as plenty of datasets are continuously updated as new data becomes available.
+So, let’s appends some data to our virtual Zarr stores we just made.</p>
+<p>First, we create the 2019 file glob.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_glob_2019</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;s3://mdmf/gdp/netcdf/gridmet/gridmet/*_2019.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="create-new-virtual-zarr-for-new-file">
+<h3>Create New Virtual Zarr for New File<a class="headerlink" href="#create-new-virtual-zarr-for-new-file" title="Link to this heading">#</a></h3>
+<p>Next, we need to get our 2019 NetCDFs into a virtual Zarr store.</p>
+<section id="id5">
+<h4>Kerchunk<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>We will do this for Kerchunk the same way we did before, by using <a class="reference external" href="https://fsspec.github.io/kerchunk/reference.html#kerchunk.hdf.SingleHdf5ToZarr"><code class="docutils literal notranslate"><span class="pre">kerchunk.hdf.SingleHdf5ToZarr</span></code></a>, which translates the content of one HDF5 (NetCDF4) file into Zarr metadata.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_single_virtual_zarr</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob_2019</span><span class="p">]</span>
+<span class="n">single_virtual_zarrs_2019</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h4>VirtualiZarr<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>And for VirtualiZarr, we will use <a class="reference external" href="https://virtualizarr.readthedocs.io/en/stable/generated/virtualizarr.backend.open_virtual_dataset.html#virtualizarr-backend-open-virtual-dataset"><code class="docutils literal notranslate"><span class="pre">virtualizarr.open_virtual_dataset</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">open_virtual_dataset</span><span class="p">)(</span>
+        <span class="sa">f</span><span class="s1">&#39;s3://</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">indexes</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">loadable_variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;crs&#39;</span><span class="p">],</span>
+        <span class="n">decode_times</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">reader_options</span><span class="o">=</span><span class="n">reader_options</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_glob_2019</span>
+<span class="p">]</span>
+
+<span class="n">virtual_datasets_2019</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="append-to-existing-store">
+<h3>Append to Existing Store<a class="headerlink" href="#append-to-existing-store" title="Link to this heading">#</a></h3>
+<p>Now, we can append the virtualized NetCDFs to our existing stores.</p>
+<section id="id7">
+<h4>Kerchunk<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>For Kerchunk, we will use still <a class="reference external" href="https://fsspec.github.io/kerchunk/reference.html#kerchunk.combine.MultiZarrToZarr"><code class="docutils literal notranslate"><span class="pre">kerchunk.combine.MultiZarrToZarr</span></code></a>.
+However, this time we will need to use the <code class="docutils literal notranslate"><span class="pre">append</span></code> method to append our new data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Append to the existing reference file</span>
+<span class="n">mzz</span> <span class="o">=</span> <span class="n">kerchunk</span><span class="o">.</span><span class="n">combine</span><span class="o">.</span><span class="n">MultiZarrToZarr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">single_virtual_zarrs_2019</span><span class="p">,</span>
+    <span class="n">original_refs</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+    <span class="n">concat_dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">],</span>
+    <span class="n">remote_protocol</span><span class="o">=</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+    <span class="n">remote_options</span><span class="o">=</span><span class="n">reader_options</span><span class="p">[</span><span class="s1">&#39;storage_options&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">out_2019</span> <span class="o">=</span> <span class="n">mzz</span><span class="o">.</span><span class="n">translate</span><span class="p">()</span>
+
+<span class="c1"># Save the virtual Zarr store, serialized as json</span>
+<span class="k">with</span> <span class="n">fs_local</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;virtual_zarr/kerchunk/gridmet_appended.json&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">out_2019</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h4>VirtualiZarr<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p>For VirtualiZarr, we can just use <code class="docutils literal notranslate"><span class="pre">xarray.concat</span></code> and <code class="docutils literal notranslate"><span class="pre">xarray.merge</span></code> like would to combine any <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">virtual_ds_2019</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">virtual_datasets_2019</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">)</span>
+<span class="n">virtual_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">virtual_ds</span><span class="p">,</span> <span class="n">virtual_ds_2019</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">)</span>
+<span class="n">virtual_ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This simple <code class="docutils literal notranslate"><span class="pre">xarray.merge</span></code> and <code class="docutils literal notranslate"><span class="pre">concat</span></code> is the major advantage of VirtualiZarr.
+Rather than having to figure out Kerchunk’s syntax and commands, we can keep using xarray as we already do.
+Therefore, the increase in time to create the virtual Zarr store compared to Kerchunk is likely worth it due to its native compatibility with xarray.</p>
+</section>
+</section>
+<section id="double-check-new-stores">
+<h3>Double Check New Stores<a class="headerlink" href="#double-check-new-stores" title="Link to this heading">#</a></h3>
+<p>Finally, let’s read in the appended stores to make sure that we correctly appended the 2019 data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;virtual_zarr/kerchunk/gridmet_appended.json&#39;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;kerchunk&quot;</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;storage_options&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;remote_protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;remote_options&quot;</span><span class="p">:</span> <span class="n">reader_options</span><span class="p">[</span><span class="s1">&#39;storage_options&#39;</span><span class="p">]</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nice!
+The 2019 data is now appended and showing on the day coordinate.</p>
+</section>
+</section>
+<section id="clean-up">
+<h2>Clean Up<a class="headerlink" href="#clean-up" title="Link to this heading">#</a></h2>
+<p>Rather than deleting the virtual Zarr stores that we created, we will actually keep them for use in future tutorials.
+However, we will do want to conform with best practices and close our Dask client and cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./dataset_processing/tutorials/chunking/201"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="RechunkingwithDask.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Rechunking Larger Datasets with Dask</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="IncludeCRSinZarr.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Adding Coordinate Reference Systems (CRS) to Zarr Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kerchunk-vs-virtualizarr">Kerchunk vs VirtualiZarr</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spin-up-dask-cluster">Spin up Dask Cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison">Example Comparison</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-individual-virtual-zarr-stores">Generate Individual Virtual Zarr Stores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kerchunk">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualizarr">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-individual-virtual-zarr-stores">Combine Individual Virtual Zarr Stores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-the-virtual-zarr-stores">Opening the Virtual Zarr Stores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-with-xarray-open-mfdataset">Reading with <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appending-to-existing-virtual-zarr-store">Appending to Existing Virtual Zarr Store</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-virtual-zarr-for-new-file">Create New Virtual Zarr for New File</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#append-to-existing-store">Append to Existing Store</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Kerchunk</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">VirtualiZarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-check-new-stores">Double Check New Stores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up">Clean Up</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

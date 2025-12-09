@@ -1,0 +1,73 @@
+Traceback (most recent call last):
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Make a function to run in parallel with dask
+@dask.delayed
+def generate_single_virtual_zarr(file):
+    with fs.open(file) as hdf:
+        h5chunks = kerchunk.hdf.SingleHdf5ToZarr(hdf, file, inline_threshold=0)
+        return h5chunks.translate()
+
+# Time the duration for later comparison
+t0 = time.time()
+
+# Generate Dask Delayed objects
+tasks = [generate_single_virtual_zarr(file) for file in file_glob]
+# Compute the delayed object
+single_virtual_zarrs = dask.compute(*tasks)
+
+kerchunk_time = time.time() - t0
+
+single_virtual_zarrs[0]
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFutureCancelledError[39m                      Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 14[39m
+[32m     12[39m tasks = [generate_single_virtual_zarr(file) [38;5;28;01mfor[39;00m file [38;5;129;01min[39;00m file_glob]
+[32m     13[39m [38;5;66;03m# Compute the delayed object[39;00m
+[32m---> [39m[32m14[39m single_virtual_zarrs = [43mdask[49m[43m.[49m[43mcompute[49m[43m([49m[43m*[49m[43mtasks[49m[43m)[49m
+[32m     16[39m kerchunk_time = time.time() - t0
+[32m     18[39m single_virtual_zarrs[[32m0[39m]
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/dask/base.py:681[39m, in [36mcompute[39m[34m(traverse, optimize_graph, scheduler, get, *args, **kwargs)[39m
+[32m    678[39m     expr = expr.optimize()
+[32m    679[39m     keys = [38;5;28mlist[39m(flatten(expr.__dask_keys__()))
+[32m--> [39m[32m681[39m     results = [43mschedule[49m[43m([49m[43mexpr[49m[43m,[49m[43m [49m[43mkeys[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    683[39m [38;5;28;01mreturn[39;00m repack(results)
+
+[36mFile [39m[32m/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/distributed/client.py:2417[39m, in [36mClient._gather[39m[34m(self, futures, errors, direct, local_worker)[39m
+[32m   2415[39m     exception = st.exception
+[32m   2416[39m     traceback = st.traceback
+[32m-> [39m[32m2417[39m     [38;5;28;01mraise[39;00m exception.with_traceback(traceback)
+[32m   2418[39m [38;5;28;01mif[39;00m errors == [33m"[39m[33mskip[39m[33m"[39m:
+[32m   2419[39m     bad_keys.add(key)
+
+[31mFutureCancelledError[39m: generate_single_virtual_zarr-85f78130-b40d-49ca-a323-d4d4891fd30e cancelled for reason: scheduler-connection-lost.
+Client lost the connection to the scheduler. Please check your connection and re-run your work.
+

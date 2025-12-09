@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Steamflow Eval :: DScore Analysis &#8212; HyTEST Project</title>
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -210,9 +210,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dataset Access</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">HyTEST Data Catalog (Intake)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_catalog/README.html">Data Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/storage_locations.html">Data Storage Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">Water Mission Area STAC Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/intake.html">HyTEST Data Catalog (Intake)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/subcatalogs/README.html">HyTEST Intake Sub-Catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../dataset_catalog/STAC.html">USGS Water Mission Area STAC Catalog</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../dataset_access/CONUS404_ACCESS.html">CONUS404 Products Data Access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -463,8 +465,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="steamflow-eval-dscore-analysis">
 <h1>Steamflow Eval :: DScore Analysis<a class="headerlink" href="#steamflow-eval-dscore-analysis" title="Link to this heading">#</a></h1>
-<a class="reference internal image-reference" href="../../../_images/Eval_Analysis.svg"><img alt="../../../_images/Eval_Analysis.svg" src="../../../_images/Eval_Analysis.svg" style="width: 600px;" />
-</a>
+<a class="reference internal image-reference" href="../../../_images/Eval_Analysis.svg"><img alt="../../../_images/Eval_Analysis.svg" src="../../../_images/Eval_Analysis.svg" width="600" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><em>This notebook adapted from originals by Timothy Hodson and Rich Signell. See that upstream work at:</em></p>
@@ -502,8 +503,7 @@ document.write(`
 </section>
 <section id="step-1-load-data">
 <h2>Step 1: Load Data<a class="headerlink" href="#step-1-load-data" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="../../../_images/Eval_Analysis_Data.svg"><img alt="../../../_images/Eval_Analysis_Data.svg" src="../../../_images/Eval_Analysis_Data.svg" style="width: 360px;" />
-</a>
+<a class="reference internal image-reference" href="../../../_images/Eval_Analysis_Data.svg"><img alt="../../../_images/Eval_Analysis_Data.svg" src="../../../_images/Eval_Analysis_Data.svg" width="360" /></a>
 <p>Essential Benchmark Components:</p>
 <ol class="arabic simple">
 <li><p>A set of predictions and matching observations,  <span style="color:red; font-size:large">&lt;&lt;–You are here</span></p></li>
@@ -621,8 +621,7 @@ Modeled  :  nwm21-streamflow-usgs-gages-osn
 </section>
 <section id="step-2-restrict-to-a-domain">
 <h2>Step 2: Restrict to a Domain<a class="headerlink" href="#step-2-restrict-to-a-domain" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="../../../_images/Eval_Analysis_Domain.svg"><img alt="../../../_images/Eval_Analysis_Domain.svg" src="../../../_images/Eval_Analysis_Domain.svg" style="width: 360px;" />
-</a>
+<a class="reference internal image-reference" href="../../../_images/Eval_Analysis_Domain.svg"><img alt="../../../_images/Eval_Analysis_Domain.svg" src="../../../_images/Eval_Analysis_Domain.svg" width="360" /></a>
 <p>Essential Benchmark Components:</p>
 <ol class="arabic simple">
 <li><p>A set of predictions and matching observations,</p></li>
@@ -753,8 +752,7 @@ those gages found within this benchmarking domain.</p>
 </section>
 <section id="step-3-define-metrics">
 <h2>Step 3: Define Metrics<a class="headerlink" href="#step-3-define-metrics" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="../../../_images/Eval_Analysis_Metrics.svg"><img alt="../../../_images/Eval_Analysis_Metrics.svg" src="../../../_images/Eval_Analysis_Metrics.svg" style="width: 360px;" />
-</a>
+<a class="reference internal image-reference" href="../../../_images/Eval_Analysis_Metrics.svg"><img alt="../../../_images/Eval_Analysis_Metrics.svg" src="../../../_images/Eval_Analysis_Metrics.svg" width="360" /></a>
 <p>Essential Benchmark Components:</p>
 <ol class="arabic simple">
 <li><p>A set of predictions and matching observations,</p></li>
@@ -864,7 +862,7 @@ You can override their function by doing your own cluster configuration if you l
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The &#39;cluster&#39; object can be used to adjust cluster behavior.  i.e. &#39;cluster.adapt(minimum=10)&#39;
 The &#39;client&#39; object can be used to directly interact with the cluster.  i.e. &#39;client.submit(func)&#39; 
 The link to view the client dashboard is:
-&gt;  https://nebari.chs.usgs.gov/gateway/clusters/nebari.911958ca020b46a7978e00022f90a896/status
+&gt;  https://nebari.chs.usgs.gov/gateway/clusters/nebari.fbe82e25a7934b2f9e6b1d1e5b89e0ed/status
 </pre></div>
 </div>
 </div>

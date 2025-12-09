@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/conda/hytest/f9b85f69-1756479041-247-pangeo/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Get the footprint of the grid
+cutout = xr.ones_like(conus404.isel(time=0).drop_vars(['lat', 'lon'])['ACDEWC'])
+# We need to write the CRS to the CONUS404 dataset and
+# reproject to the crs of the HUC12 basins dataframe for clean plotting with hvplot
+cutout = cutout.rio.write_crs(conus404.crs.crs_wkt).rio.reproject('EPSG:4326')
+
+cutout_plt = cutout.hvplot(
+    coastline='50m', geo=True,
+    aspect='equal', frame_width=300, colorbar=False
+)
+huc12_plt = huc12_basins.hvplot(
+    geo=True, c='r'
+)
+cutout_plt * huc12_plt
+------------------
+
+
+[31mKeyError[39m[31m:[39m "No variable named 'ACDEWC'. Variables on the dataset include ['PREC_ACC_NC', 'crs', 'time', 'x', 'y']"
+
+
