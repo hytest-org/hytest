@@ -18,7 +18,7 @@ The gridded datasets used by the HyTEST community are also still contained in ou
 
 The tabular and vector datasets used by the HyTEST community are currently cataloged only in our intake catalog; however, this may change with time, and we encourage our users to visit this page to get the latest information about recommended data catalogs and their maintenance status.
 
-Currentlu you are likely to need to use a combination of these data catalogs to open all the data you need for our tutorials. We recommend prioritizing the use of the WMA STAC Catalog when possible, and supplementing with the HyTEST intake catalog for data assets that are not yet incorporated into the STAC Catalog. To learn more about each of theses catalogs, please review our tutorials of each:
+Currently you are likely to need to use a combination of these data catalogs to open all the data you need for our tutorials. We recommend prioritizing the use of the WMA STAC Catalog when possible, and supplementing with the HyTEST intake catalog for data assets that are not yet incorporated into the STAC Catalog. To learn more about each of theses catalogs, please review our tutorials of each:
 - [WMA STAC Catalog](STAC.ipynb)
 - [HyTEST intake catalog](intake.md)
 
