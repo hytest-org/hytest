@@ -23,14 +23,14 @@ sources:
     driver: zarr
     description: "CONUS404 daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10). These files were created wrfxtrm model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9PHPK4F). This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
-      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404/conus404_daily_xtrm.zarr'
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404/conus404_xtrm_daily.zarr'
       consolidated: true
 
   conus404-daily-diagnostic-osn:
     driver: zarr
     description: "CONUS404 daily diagnostic output (maximum, minimum, mean, and standard deviation) for water vapor (Q2), grid-scale precipitation (RAINNC), skin temperature (SKINTEMP), wind speed at 10 meter height (SPDUV10), temperature at 2 meter height (T2), and U- and V-component of wind at 10 meters with respect to model grid (U10, V10). These files were created wrfxtrm model output files (see ScienceBase data release for more details: https://doi.org/10.5066/P9PHPK4F). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
     args:
-      urlpath: 's3://hytest/conus404/conus404_daily_xtrm.zarr'
+      urlpath: 's3://hytest/conus404/conus404_xtrm_daily.zarr'
       consolidated: true
       storage_options:
         anon: true
