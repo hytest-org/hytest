@@ -80,7 +80,7 @@ sources:
     driver: zarr
     description: "CONUS404 bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P9JE61P7). Hourly data on Hovenweep’s Caldera storage. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
     args:
-      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-biasadjusted/conus404_hourly_bc.zarr'
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-biasadjusted/conus404-biasadjusted_hourly.zarr'
       consolidated: true
 
   conus404-hourly-ba-osn:
@@ -99,7 +99,7 @@ sources:
     driver: zarr
     description: "CONUS404 bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P9JE61P7). Daily values derived from hourly dataset. This dataset is stored on USGS on-premise disk storage for the Hovenweep supercomputer, and is only accessible in that computing environment."
     args:
-      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-biasadjusted/conus404_daily_bc.zarr'
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-biasadjusted/conus404-biasadjusted_daily.zarr'
       consolidated: true
           
     
