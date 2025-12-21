@@ -12,19 +12,19 @@ Tracking computation times for a 3-year subset of WRF-Hydro modeling application
 
 | **Script** | **Description** | **Datasets processed** | **Dask** | **Completion Time** | **Output** | 
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 01_Merge_1D_and_2D_files | Combine 1-Dimensional and 2-Dimensional aggregations into one netcdf file | CONUS_HUC12_2D_20111001_20120930.nc & CONUS_HUC12_1D_2011001_20120930.nc | No | 10 min | CONUS_HUC12_WB_combined_19791001_20220930.nc |
-| 02_Format | Formatting | CONUS_HUC12_WB_combined_19791001_20220930.nc | No | 10 min | huc12_monthly_wb_iwaa_wrfhydro_WY2011_2013.nc |
+| 01_Merge_1D_and_2D_files | Combine 1-Dimensional and 2-Dimensional aggregations into one netcdf file | CONUS_HUC12_2D_WY2011_2013.nc & CONUS_HUC12_1D_WY2011_2013.nc | No | 10 min | CONUS_HUC12_WB_combined_WY2011_2013.nc |
+| 02_Format | Formatting | CONUS_HUC12_WB_combined_WY2011_2013.nc | No | 10 min | huc12_monthly_wb_iwaa_wrfhydro_WY2011_2013.nc |
 
 ## Compute Environment Needs
-Users will need to create and activate a conda environment using the [wrfhydro_huc12_agg.yml](02_Spatial_Aggregation/wrfhydro_huc12_agg.yml) file to run the python script and notebooks. For this environment to work, the latest version of Miniforge should be installed in the user area on Hovenweep. Miniconda may work, but has not been tested with this workflow. See the README documentation in the [Spatial Aggregation](02_Spatial_Aggregation/) folder for first time environment set up instructions.  
+Users will need to create and activate a conda environment using the [wrfhydro_huc12_agg.yml](https://github.com/hytest-org/hytest/blob/main/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/02_Spatial_Aggregation/wrfhydro_huc12_agg.yml) file to run the python script and notebooks. For this environment to work, the latest version of Miniforge should be installed in the user area on Hovenweep. Miniconda may work, but has not been tested with this workflow. See the README documentation in the [Spatial Aggregation](https://github.com/hytest-org/hytest/tree/main/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/02_Spatial_Aggregation) folder for first time environment set up instructions.  
 
 ## Instructions
 
 ### 1. Merge 
-The [Merge 1-D and 2-D jupyter notebook](01_Merge_1D_and_2D_files.ipynb) combines the spatially aggregated outputs of the monthly 1-Dimensional & 2-Dimensional WRF-Hydro modeling application outputs into 1 netCDF file. This script also contains plots that allow the user to explore the range in values for each variable.  
+The [Merge 1-D and 2-D jupyter notebook](https://github.com/hytest-org/hytest/blob/main/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/03_Finalize/01_Merge_1D_and_2D_files.ipynb) combines the spatially aggregated outputs of the monthly 1-Dimensional & 2-Dimensional WRF-Hydro modeling application outputs into 1 netCDF file. This script also contains plots that allow the user to explore the range in values for each variable.  
 
 ### 2. Finalize
-The [Format jupyter notebook](02_Format.ipynb) takes the merged output from step 1 and clarifies variable names, adds character HUCID's, and modifies data types. A 'yrmo' variable is added as a place for year/month information to be stored and to provide an efficient way for R users to access the final datasets. The output from this script is 1 netCDF file containing the monthly WRF-Hydro modeling application outputs aggregated to HUC12s for the years 2011-2013 that is comparable to the netCDF stored on this [Science Base](https://www.sciencebase.gov/catalog/item/6411fd40d34eb496d1cdc99d) page where the original outputs of this workflow are stored. 
+The [Format jupyter notebook](https://github.com/hytest-org/hytest/blob/main/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/03_Finalize/02_Format.ipynb) takes the merged output from step 1 and clarifies variable names, adds character HUCID's, and modifies data types. A 'yrmo' variable is added as a place for year/month information to be stored and to provide an efficient way for R users to access the final datasets. The output from this script is 1 netCDF file containing the monthly WRF-Hydro modeling application outputs aggregated to HUC12s for the years 2011-2013 that is comparable to the netCDF stored on this [Science Base](https://www.sciencebase.gov/catalog/item/6411fd40d34eb496d1cdc99d) page where the original outputs of this workflow are stored. 
 
 ## Variable Table
 <table>
