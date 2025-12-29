@@ -48,6 +48,19 @@ sources:
     description: 'Catalog of NHM-PRMS v1.1 with Gridmet Forcings data stored in various file formats, used for testing purposes with the USGS National Modeled Water Atlas Project. Note: This data is stored in a credentialed bucket; please contact the HyTEST project if you need credentials to read this data.'
     driver: intake.catalog.local.YAMLFileCatalog
 
+  wrfhydro-osn:
+    driver: netcdf
+    description: "Application of the WRF-Hydro Modeling System for the Conterminous United States Using the Bias Adjusted Version of the CONUS404 Atmospheric Forcings (CONUS404BA), Water Years 1980-2022 (see ScienceBase data release for more details: https://doi.org/10.5066/P13ADWKZ). This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      anon: true
+      urlpath: 's3://hytest/wrf_hydro_nhdplusv2_conus404ba_1980-2022/'
+      storage_options:
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org
+      xarray_kwargs:
+        engine: h5netcdf
+
   nwis-streamflow-usgs-gages-onprem:
     driver: zarr
     description: "Streamflow from NWIS, extracted and rechunked into time series (NWM2.1 time period)"

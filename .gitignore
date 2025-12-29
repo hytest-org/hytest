@@ -42,3 +42,6 @@ ruff.toml
 tmp*
 checkpoints*
 virtual_zarr/
+# pixi environments
+.pixi/*
+!.pixi/config.toml

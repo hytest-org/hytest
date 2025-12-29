@@ -62,4 +62,4 @@ dependencies:
   - jupyter-book
   - pre_commit
   - pip:
-    - git+https://github.com/DOI-USGS/pyPRMS.git
+    - pyPRMS @ git+https://github.com/DOI-USGS/pyPRMS.git
