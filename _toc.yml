@@ -44,6 +44,10 @@ parts:
         - file: dataset_access/CONUS404_CHANGELOG
         - file: dataset_access/conus404_explore
 
+    - file: dataset_access/WRFHYDRO_ACCESS
+      sections:
+        - file: dataset_access/wrfhydro_explore
+
   - caption: Zarr Creation
     chapters:
     - file: dataset_processing/tutorials/chunking/README
