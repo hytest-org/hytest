@@ -2,12 +2,13 @@
 
 *Before working with the CONUS404 data, you may want to consider reviewing [NCAR's Climate Primer for Water Availability Assessments](https://ncar.github.io/climate-primer-water/index.html) to learn more about how to apply this dataset in studies focused on water availability.*
 
-This section of our JupyterBook contains notebooks that demonstrate how to access and perform basic data manipulation for the [CONUS404 dataset](https://doi.org/10.5066/P9PHPK4F). The examples can also be applied to the [CONUS404 bias-adjusted dataset](https://doi.org/10.5066/P9JE61P7) and the [CONUS404 psuedo global warming (PGW) dataset](https://doi.org/10.5066/P9HH85UU). 
+This section of our JupyterBook contains notebooks that demonstrate how to access and perform basic data manipulation for the [CONUS404 dataset](https://doi.org/10.5066/P9PHPK4F). The examples can also be applied to the [CONUS404 bias-adjusted dataset](https://doi.org/10.5066/P9JE61P7), the [CONUS404 psuedo global warming (PGW) dataset](https://doi.org/10.5066/P9HH85UU), and the [CONUS404 PGW bias-adjusted dataset](https://doi.org/10.5066/P1M2D3PO). 
 
 In the CONUS404 intake sub-catalog (see [here](../dataset_catalog/README.md) for an explainer of our intake data catalog), you will see entries for:
 - four CONUS404 datasets: `conus404-hourly`, `conus404-daily`, `conus404-monthly`, and `conus404-daily-diagnostic` data
 - two CONUS404 bias-adjusted datasets: `conus404-hourly-ba`, `conus404-daily-ba`
 - two CONUS404 PGW datasets: `conus404-pgw-hourly` and `conus404-pgw-daily-diagnostic`
+- two CONUS404 PGW bias-adjusted datasets: `conus404-pgw-hourly-ba` and `conus404-pgw-daily-ba`
 
 Each of these datasets is duplicated in up to three different storage locations (as the [intake catalog section](../dataset_catalog/README.md) also describes).
 
@@ -33,6 +34,11 @@ The CONUS404 pseudo-global warming (PGW) dataset is a future-perturbed hydro-cli
 The `conus404-pgw-hourly` data is a subset of the wrfout model output and `conus404-pgw-daily-diagnostic` is a subset from the wrfxtrm model output, both of which are described in the official data release.
 
 **Please note that the values in the ACLWDNB, ACLWUPB, ACSWDNB, ACSWDNT, and ACSWUPB variables available in the zarr store differ from the original model output.** These variables have been re-calculated to reflect the accumulated value since the model start, as directed in the WRF manual. An attribute has been added to each of these variables in the zarr store to denote the accumulation period for the variable. 
+
+## CONUS404 PGW Bias-Adjusted Data
+The `conus404-pgw-hourly-ba` data contains bias-adjusted temperature and precipitation data from the CONUS404 PGW dataset, which is described in the official [CONUS404 PGW bias-adjusted data release](https://doi.org/10.5066/P1M2D3PO). Users should review the official data release to understand the dataset before working with the zarr stores provided in our intake catalog.
+
+The `conus404-pgw-daily-ba` files are resampled from the `conus404-pgw-hourly-ba` data.
 
 ## Example Notebooks
 We currently have several notebooks to help demonstrate how to work with these datasets in a python workflow:
