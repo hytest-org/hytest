@@ -190,3 +190,42 @@ sources:
         requester_pays: false
         client_kwargs:
           endpoint_url: https://usgs.osn.mghpcc.org/
+
+  conus404-pgw-hourly-ba-onprem-hw:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P1M2D3PO). Hourly data on Hovenweep’s Caldera storage. This dataset is stored on USGS on-premise Caldera storage for Hovenweep and is only accessible via the USGS Hovenweep supercomputer."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw-biasadjusted/conus404-pgw-biasadjusted_hourly.zarr'
+      consolidated: true
+
+  conus404-pgw-hourly-ba-osn:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P1M2D3PO). Hourly data on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/conus404-pgw-biasadjusted/conus404-pgw-biasadjusted_hourly.zarr'
+      consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
+    
+  conus404-pgw-daily-ba-onprem-hw:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P1M2D3PO). Daily values derived from hourly dataset. This dataset is stored on USGS on-premise disk storage for the Hovenweep supercomputer, and is only accessible in that computing environment."
+    args:
+      urlpath: '/caldera/hovenweep/projects/usgs/water/impd/hytest/conus404-pgw-biasadjusted/conus404-pgw-biasadjusted_daily.zarr'
+      consolidated: true
+          
+    
+  conus404-pgw-daily-ba-osn:
+    driver: zarr
+    description: "CONUS404 pseudo-global warming (PGW) bias-adjusted temperature and precipitation data (see ScienceBase data release for more details: https://doi.org/10.5066/P1M2D3PO). Daily values derived from hourly dataset. This data is stored on HyTEST’s Open Storage Network (OSN) pod. This data can be read with the S3 API and is free to work with in any computing environment (there are no egress fees)."
+    args:
+      urlpath: 's3://hytest/conus404-pgw-biasadjusted/conus404-pgw-biasadjusted_daily.zarr'
+      consolidated: true
+      storage_options:
+        anon: true
+        requester_pays: false
+        client_kwargs:
+          endpoint_url: https://usgs.osn.mghpcc.org/
