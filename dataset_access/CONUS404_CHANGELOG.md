@@ -2,6 +2,9 @@
 
 This changelog documents major changes to the [CONUS404 zarr datasets](./CONUS404_ACCESS.md). We do not anticipate regular changes to the dataset, but we may need to fix an occasional bug or update the dataset with additional years of data. Therefore, we recommend that users of the CONUS404 zarr data check this changelog regularly.
 
+## 2026-04
+We have replaced CONUS404 BA with and updated version (version 2) that fills holes in the dataset and extends it through WY2024. Please see the [official data release](https://doi.org/10.5066/P9JE61P7) for more details.
+
 ## 2025-04
 We have move the CONUS404 zarr dataset in S3 storage to Glacier storage, so it is no longer accessible to be read into workflows. We recommend you use the copy of the zarr on the OSN pod, which can be accessed from any computing location.
 
