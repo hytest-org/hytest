@@ -23,7 +23,7 @@
 #SBATCH --array=2011-2013                 # set time step to process 
 
 # Set the source directory containing year folders
-SOURCE_DIR="/caldera/hovenweep/projects/usgs/water/impd/hytest/niwaa_wrfhydro_monthly_huc12_aggregations_sample_data/CHRTOUT"
+SOURCE_DIR="/path/to/CHRTOUT"
 
 # Load necessary modules 
 module load nco
@@ -34,7 +34,7 @@ echo "Job started at $(date)"
 
 #run the temporal aggregation script 
 
-srun /path/to/repo/hytest/dataset_processing/tutorials/niwaa_wrfhydro_monthly_huc12_agg/nco_process_chrtout.sh $SLURM_ARRAY_TASK_ID
+srun /path/to/shell/script/nco_process_chrtout.sh $SLURM_ARRAY_TASK_ID
 
 # Record the end time
 global_end=$(date +%s)
